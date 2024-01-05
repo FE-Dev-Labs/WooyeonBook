@@ -16,6 +16,7 @@ function ControlPanel() {
 				<Select options={sortOptions} isSearchable={false} />
 				<Select options={option} isSearchable={false} />
 			</div>
+			<button>글쓰기</button>
 		</div>
 	);
 }
