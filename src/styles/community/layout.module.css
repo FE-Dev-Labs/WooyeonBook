@@ -1,0 +1,10 @@
+.container {
+	display: flex;
+	justify-content: space-around;
+}
+.contentWrap {
+	width: 1200px;
+}
+.popularContentWrap {
+	width: 400px;
+}

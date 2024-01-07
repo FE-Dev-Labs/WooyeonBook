@@ -1,15 +1,15 @@
 import Link from 'next/link';
-
+import styles from '@/styles/community/nav.module.css';
 function Nav() {
 	const communityUrl = (to: string) => {
 		return `/community/${to}`;
 	};
 	return (
-		<nav>
+		<nav className={styles.container}>
 			<Link href={communityUrl('bookReport')}>독후감</Link>
-			<Link href={communityUrl('bookReport')}>모임</Link>
-			<Link href={communityUrl('bookReport')}>삽니다</Link>
-			<Link href={communityUrl('bookReport')}>팝니다</Link>
+			<Link href={communityUrl('meeting')}>모임</Link>
+			<Link href={communityUrl('buyingBook')}>삽니다</Link>
+			<Link href={communityUrl('sellingBook')}>팝니다</Link>
 		</nav>
 	);
 }

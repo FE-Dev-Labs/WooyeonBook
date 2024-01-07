@@ -4,7 +4,7 @@ import Search from '@/components/community/common/Search';
 import { BasicLayoutType } from '@/types/layoutType';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-
+import styles from '@/styles/community/layout.module.css';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
@@ -12,24 +12,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: BasicLayoutType) {
 	return (
-		<div>
-			<div>
+		<div className={styles.container}>
+			<div className={styles.contentWrap}>
 				<Nav />
 				<Search />
 				<ControlPanel />
 				<hr />
 				{children}
 			</div>
-			<Link href={''}>
+			<div className={styles.popularContentWrap}>
 				<h3>인기글</h3>
-				<div>
+				<Link href={''}>
 					<div>내용</div>
 					<div>
 						<div>작성자</div>
 						<div>작성일</div>
 					</div>
-				</div>
-			</Link>
+				</Link>
+			</div>
 		</div>
 	);
 }
