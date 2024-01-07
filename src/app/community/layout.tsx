@@ -15,6 +15,7 @@ export default function RootLayout({ children }: BasicLayoutType) {
 			<Nav />
 			<Search />
 			<ControlPanel />
+			<hr />
 			{children}
 		</div>
 	);
