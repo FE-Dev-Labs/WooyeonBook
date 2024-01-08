@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	description: '',
 };
 
-export default function RootLayout({ children }: BasicLayoutType) {
+export default function CommunityLayout({ children }: BasicLayoutType) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.contentWrap}>

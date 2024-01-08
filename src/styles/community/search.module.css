@@ -8,28 +8,26 @@
 }
 
 .searchWrap {
-	position: relative; /* 상대적 위치 지정 */
+	position: relative;
 	width: 950px;
 	height: 36px;
-	display: flex; /* flexbox를 활용해 아이콘과 input을 가로로 배치 */
-	align-items: center; /* 세로 중앙 정렬 */
+	display: flex;
+	align-items: center;
 }
 
 .searchInput {
-	width: calc(
-		100% - 50px
-	); /* 아이콘 너비와 여백을 고려하여 100%에서 빼줍니다. */
+	width: calc(100% - 50px);
 	height: 100%;
-	padding-left: 60px; /* 아이콘의 너비와 여백을 고려한 여백 */
+	padding-left: 60px;
 	border-radius: 10px;
-	border: 1px solid #ccc; /* 테두리를 추가해줍니다. */
+	border: 1px solid #ccc;
 }
 
 .iconContainer {
 	position: absolute;
 	top: 8px;
-	left: 20px; /* 왼쪽에서 20px 떨어진 위치 */
-	z-index: 10; /* input 요소 위에 위치하도록 z-index 설정 */
+	left: 20px;
+	z-index: 10;
 }
 
 .searchLink {
