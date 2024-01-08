@@ -16,21 +16,24 @@ function ControlPanel() {
 		const page = pathName.split('/')[2];
 		if (page === 'meeting') {
 			return [
-				{ value: 'All', label: '모집중' },
-				{ value: 'All', label: '모집완료' },
+				{ value: 'All', label: '전체' },
+				{ value: '2', label: '모집중' },
+				{ value: '3', label: '모집완료' },
 			];
 		}
 		if (page === 'buyingBook') {
 			return [
-				{ value: 'All', label: '삽니다' },
-				{ value: 'All', label: '거래완료' },
+				{ value: 'All', label: '전체' },
+				{ value: '2', label: '삽니다' },
+				{ value: '3', label: '거래완료' },
 			];
 		}
 		if (page === 'sellingBook') {
 			return [
-				{ value: 'All', label: '나눔' },
-				{ value: 'All', label: '팝니다' },
-				{ value: 'All', label: '판매완료' },
+				{ value: 'All', label: '전체' },
+				{ value: '2', label: '나눔' },
+				{ value: '3', label: '팝니다' },
+				{ value: '4', label: '판매완료' },
 			];
 		}
 	};
@@ -48,7 +51,7 @@ function ControlPanel() {
 					<Select
 						className={styles.optionBtn}
 						options={categoriesByPage()}
-						defaultValue={'전체'}
+						defaultValue={{ value: 'All', label: '전체' }}
 						isSearchable={false}
 					/>
 				)}

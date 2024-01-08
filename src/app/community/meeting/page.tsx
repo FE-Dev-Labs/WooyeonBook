@@ -1,11 +1,9 @@
 import ContentBox from '@/components/community/common/ContentBox';
 
-function BookReport() {
+export default function meeting() {
 	return (
 		<div>
-			<ContentBox />
+			<ContentBox page={'meeting'} />
 		</div>
 	);
 }
-
-export default BookReport;

@@ -12,6 +12,9 @@
 	width: 300px;
 	margin-right: 20px;
 }
+.optionBtn {
+	width: 300px;
+}
 .container > a {
 	width: 300px;
 	height: 36px;
