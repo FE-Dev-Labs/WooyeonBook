@@ -17,15 +17,18 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 				<Nav />
 				<Search />
 				<ControlPanel />
-				<hr />
+				<hr className={styles.line} />
 				{children}
 			</div>
 			<div className={styles.popularContentWrap}>
 				<h3>인기글</h3>
 				<Link href={''}>
-					<div>내용</div>
-					<div>
+					<div className={styles.popularContent}>
+						내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+					</div>
+					<div className={styles.popularContentInfoWrap}>
 						<div>작성자</div>
+						<div className={styles.dot}>●</div>
 						<div>작성일</div>
 					</div>
 				</Link>

@@ -1,10 +1,47 @@
 .container {
 	display: flex;
-	justify-content: space-around;
 }
 .contentWrap {
 	width: 1300px;
+	margin-left: 50px;
+	margin-right: 100px;
+}
+.line {
+	width: 1300px;
 }
 .popularContentWrap {
-	width: 400px;
+	width: clamp(180px, 260px, 280px);
+	height: clamp(380px, 480px, 100vh);
+	padding: 20px;
+	position: fixed;
+	top: 130px;
+	right: 0;
+	margin-right: 50px;
+	border: 1px solid #e0e0e0;
+}
+.popularContentWrap > h3 {
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+.popularContentWrap > a {
+	color: #000;
+	margin-bottom: 30px;
+}
+.popularContent {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: 8px;
+}
+.popularContentInfoWrap {
+	display: flex;
+}
+.popularContentInfoWrap > div {
+	color: #909090;
+}
+.dot {
+	font-size: 5px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 5px;
 }
