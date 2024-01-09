@@ -1,0 +1,47 @@
+.container {
+	width: 100vw;
+	min-height: 120px;
+
+	display: flex;
+	justify-content: center;
+
+	background-color: #f4f2e5;
+}
+
+.wrapper {
+	width: 1300px;
+	min-height: 120px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.topWrapper {
+	min-height: 60px;
+
+	display: flex;
+	justify-content: space-between;
+}
+.logo {
+	width: 250px;
+	height: 60px;
+
+	background-color: yellow;
+}
+.searchForm {
+	width: 500px;
+	height: 40px;
+}
+
+.bottomWrapper {
+	min-height: 60px;
+
+	display: flex;
+	justify-content: space-between;
+}
+.navigationWrapper {
+	display: flex;
+}
+.navigationWrapper > a {
+	margin-right: 10px;
+}
