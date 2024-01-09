@@ -2,6 +2,7 @@ import styles from '@/styles/common/header/header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../../public/layout/logo.png';
+import searchIcon from '../../../public/common/searchIcon.png';
 
 export default function Header() {
 	const nav = [
@@ -18,9 +19,17 @@ export default function Header() {
 			<div className={styles.wrapper}>
 				<div className={styles.topWrapper}>
 					<Link href="/">
-						<Image src={logo} alt="logo" />
+						<Image src={logo} alt="logo" width={200} height={60} />
 					</Link>
-					<div className={styles.searchForm}>검색창</div>
+					<div className={styles.searchForm}>
+						<input
+							type="text"
+							placeholder="작가명 또는 책 제목을 입력하세요."
+						/>
+						<div className={styles.searchIcon}>
+							<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
+						</div>
+					</div>
 				</div>
 				<div className={styles.bottomWrapper}>
 					<div className={styles.navigationWrapper}>

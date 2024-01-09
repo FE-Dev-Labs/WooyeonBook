@@ -1,3 +1,4 @@
+/* 헤더 틀 */
 .container {
 	width: 100vw;
 	min-height: 120px;
@@ -7,7 +8,6 @@
 
 	background-color: #f4f2e5;
 }
-
 .wrapper {
 	width: 1300px;
 	min-height: 120px;
@@ -16,6 +16,7 @@
 	flex-direction: column;
 }
 
+/* 헤더 상단 */
 .topWrapper {
 	min-height: 60px;
 
@@ -29,10 +30,31 @@
 	background-color: yellow;
 }
 .searchForm {
-	width: 500px;
-	height: 40px;
+	width: 400px;
+	height: 60px;
+
+	display: flex;
+	align-items: flex-end;
+	position: relative;
+}
+.searchForm input {
+	width: 98%;
+	height: 60%;
+	border-radius: 50px;
+	padding: 0 20px;
+
+	border: none;
+	outline: none;
 }
 
+.searchIcon {
+	right: 15px;
+	bottom: 5px;
+
+	position: absolute;
+}
+
+/* 헤더 하단 */
 .bottomWrapper {
 	min-height: 60px;
 
