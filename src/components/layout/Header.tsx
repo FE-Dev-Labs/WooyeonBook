@@ -1,8 +1,11 @@
 import styles from '@/styles/common/header/header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from '../../../public/layout/logo.png';
-import searchIcon from '../../../public/common/searchIcon.png';
+import logoIcon from '../../../public/layout/logo.png';
+import searchIcon from '../../../public/common/search.png';
+import heartIcon from '../../../public/layout/heart.png';
+import accountIcon from '../../../public/layout/account.png';
+import cartIcon from '../../../public/layout/cart.png';
 
 export default function Header() {
 	const nav = [
@@ -19,7 +22,7 @@ export default function Header() {
 			<div className={styles.wrapper}>
 				<div className={styles.topWrapper}>
 					<Link href="/">
-						<Image src={logo} alt="logo" width={120} height={40} />
+						<Image src={logoIcon} alt="logo" width={120} height={40} />
 					</Link>
 					<div className={styles.searchForm}>
 						<input
@@ -39,7 +42,17 @@ export default function Header() {
 							</Link>
 						))}
 					</div>
-					<div>아이콘</div>
+					<div className={styles.accountWrapper}>
+						<Link href="/my/like">
+							<Image src={heartIcon} alt="heart" width={25} height={25} />
+						</Link>
+						<Link href="/my">
+							<Image src={accountIcon} alt="account" width={25} height={25} />
+						</Link>
+						<Link href="/my/cart">
+							<Image src={cartIcon} alt="cart" width={25} height={25} />
+						</Link>
+					</div>
 				</div>
 			</div>
 		</header>

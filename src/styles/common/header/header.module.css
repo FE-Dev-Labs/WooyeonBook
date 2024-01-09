@@ -67,6 +67,8 @@
 	justify-content: space-between;
 }
 .navigationWrapper {
+	height: inherit;
+
 	display: flex;
 	align-items: center;
 }
@@ -74,5 +76,25 @@
 	width: inherit;
 	height: 20px;
 	font-size: 20px;
-	margin-right: 10px;
+	margin-right: 25px;
+
+	color: #000000;
+	text-decoration-line: none;
+
+	transition: color 0.2s;
+}
+.navigationWrapper > a:hover {
+	color: #6594e7;
+}
+.accountWrapper {
+	height: inherit;
+
+	display: flex;
+	align-items: center;
+}
+.accountWrapper > a {
+	width: inherit;
+	margin-left: 25px;
+
+	color: #000000;
 }
