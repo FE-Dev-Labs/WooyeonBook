@@ -1,4 +1,4 @@
-import styles from '@/styles/layout/header/header.module.css';
+import styles from '@/styles/layout/header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import logoIcon from '../../../public/layout/logo.png';

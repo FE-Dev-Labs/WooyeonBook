@@ -1,0 +1,50 @@
+/* 최근 본 상품 틀 */
+.container {
+	width: 150px;
+	height: 310px;
+	top: 10px;
+	left: 1690px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: sticky;
+	background-color: #f4f2e5;
+}
+.wrapper {
+	width: 125px;
+	height: 300px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.textWrapper {
+	width: inherit;
+	height: 20px;
+	font-size: 12px;
+	font-weight: bold;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.booksWrapper {
+	width: inherit;
+	height: 260px;
+	gap: 10px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+
+	border: 1px solid black;
+}
+.booksWrapper > div {
+	width: 60px;
+	height: 80px;
+
+	border: 1px solid black;
+}
