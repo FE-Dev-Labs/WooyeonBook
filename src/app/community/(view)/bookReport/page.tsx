@@ -1,4 +1,4 @@
-import ContentBox from '@/components/community/common/ContentBox';
+import ContentBox from '@/components/community/common/view/ContentBox';
 
 function BookReport() {
 	return (

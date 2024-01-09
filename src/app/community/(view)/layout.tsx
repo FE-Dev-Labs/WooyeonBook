@@ -1,6 +1,6 @@
-import ControlPanel from '@/components/community/common/ControlPanel';
-import Nav from '@/components/community/common/Nav';
-import Search from '@/components/community/common/Search';
+import ControlPanel from '@/components/community/common/view/ControlPanel';
+import Nav from '@/components/community/common/view/Nav';
+import Search from '@/components/community/common/view/Search';
 import { BasicLayoutType } from '@/types/layoutType';
 import type { Metadata } from 'next';
 import Link from 'next/link';
