@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Noto_Sans_KR } from 'next/font/google';
 import '@/styles/global.css';
 import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const inter = Noto_Sans_KR({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }: BasicLayoutType) {
 			<body>
 				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);

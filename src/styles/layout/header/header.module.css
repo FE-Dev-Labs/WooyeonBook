@@ -10,7 +10,7 @@
 }
 .wrapper {
 	width: 1300px;
-	min-height: 120px;
+	min-height: inherit;
 
 	display: flex;
 	flex-direction: column;

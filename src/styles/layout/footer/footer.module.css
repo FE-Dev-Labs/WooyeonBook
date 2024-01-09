@@ -1,0 +1,40 @@
+.container {
+	width: 100vw;
+	min-height: 120px;
+
+	display: flex;
+	justify-content: center;
+
+	background-color: #231304;
+}
+.wrapper {
+	width: 1300px;
+	min-height: inherit;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+.logoWrapper {
+	display: flex;
+	align-items: center;
+}
+.textWrapper {
+	width: 1000px;
+	height: 90px;
+	font-size: 12px;
+	font-weight: bold;
+
+	display: flex;
+	flex-direction: column;
+	color: #f4f2e5;
+}
+.textWrapper > div {
+	width: inherit;
+	height: 30px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 30px;
+}
