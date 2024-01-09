@@ -19,7 +19,7 @@ export default function Header() {
 			<div className={styles.wrapper}>
 				<div className={styles.topWrapper}>
 					<Link href="/">
-						<Image src={logo} alt="logo" width={200} height={60} />
+						<Image src={logo} alt="logo" width={120} height={40} />
 					</Link>
 					<div className={styles.searchForm}>
 						<input

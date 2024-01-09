@@ -21,6 +21,7 @@
 	min-height: 60px;
 
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 }
 .logo {
@@ -34,10 +35,10 @@
 	height: 60px;
 
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	position: relative;
 }
-.searchForm input {
+.searchForm > input {
 	width: 98%;
 	height: 60%;
 	border-radius: 50px;
@@ -45,11 +46,15 @@
 
 	border: none;
 	outline: none;
-}
 
+	transition: border-radius 0.3s;
+}
+.searchForm > input:focus {
+	border-radius: 5px;
+}
 .searchIcon {
 	right: 15px;
-	bottom: 5px;
+	bottom: 17px;
 
 	position: absolute;
 }
@@ -63,7 +68,11 @@
 }
 .navigationWrapper {
 	display: flex;
+	align-items: center;
 }
 .navigationWrapper > a {
+	width: inherit;
+	height: 20px;
+	font-size: 20px;
 	margin-right: 10px;
 }
