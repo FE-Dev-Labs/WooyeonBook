@@ -8,7 +8,7 @@
 .imgArea {
 	position: relative;
 	border-radius: 10px;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
 }
 .img {
 	width: 302px;
@@ -52,7 +52,7 @@
 	display: block;
 	line-height: 20px;
 	color: #666;
-	font-size: 13px;
+	font-size: 14px;
 }
 .auth > a {
 	text-decoration: none;
@@ -71,14 +71,13 @@
 }
 /* 책, 가격*/
 .inforTopArea {
-	padding-top: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	/* width: 520px; */
-	border-top: solid 1px #aaaaaa;
+	border-top: solid 1px #d8d8d8;
+	border-bottom: solid 1px #d8d8d8;
 }
-.inforBorder {
-	padding-bottom: 20px;
-	border-bottom: solid 1px #aaaaaa;
-}
+
 .inforText {
 	display: table-cell;
 	padding: 8px 0;
@@ -95,17 +94,17 @@
 
 .inforTopArea > dl > dt {
 	display: table-cell;
-	padding: 15px 0;
+	padding: 17px 0;
 	width: 150px;
 	line-height: 20px;
 	color: #333;
 	font-weight: bold;
 }
 .inforTopArea > dl > dd {
-	color: #aaaaaa;
+	color: #d8d8d8;
 }
 .inforPriceSales {
-	font-size: 30px;
+	font-size: 25px;
 	color: #333;
 	font-weight: bold;
 }
@@ -115,6 +114,11 @@
 	font-weight: bold;
 	color: #6594e7;
 }
+.inforTopArea2 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: solid 1px #d8d8d8;
+}
 
 .inforTopArea2 > dl {
 	display: table;
@@ -123,7 +127,22 @@
 }
 .inforTopArea2 > dl > dt {
 	display: table-cell;
-	padding: 15px 0;
+	padding: 17px 0;
+	width: 150px;
+	line-height: 20px;
+	color: #333;
+	font-weight: bold;
+}
+.inforTopArea3 {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: solid 1px #d8d8d8;
+	display: flex;
+	align-items: center;
+}
+.inforTopArea3 > span {
+	display: table-cell;
+	padding: 17px 0;
 	width: 150px;
 	line-height: 20px;
 	color: #333;

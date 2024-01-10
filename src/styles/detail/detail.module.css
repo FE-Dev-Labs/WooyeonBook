@@ -1,5 +1,5 @@
 .container {
 	top: 20px;
 	width: clamp(500px, 90%, 1300px);
-	margin: 0 auto;
+	margin: 50px auto;
 }

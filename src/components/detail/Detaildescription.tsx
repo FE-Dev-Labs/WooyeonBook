@@ -1,5 +1,7 @@
 import styles from '@/styles/detail/detaildescription.module.css';
 import Link from 'next/link';
+import Detailquantity from './Detailquantity';
+import Detailtotalquantity from './Detailtotalquantity';
 
 export default function Detaildescription() {
 	// bookInfo 객체
@@ -83,7 +85,7 @@ export default function Detaildescription() {
 									</span>
 									<em className={styles.divice}></em>
 									<span className={styles.pub}>
-										<Link href={''}>{item.publisher}</Link>
+										<Link href={'/'}>{item.publisher}</Link>
 									</span>
 									<em className={styles.divice}></em>
 									<span className={styles.date}>
@@ -97,55 +99,60 @@ export default function Detaildescription() {
 							</div>
 							{/* 책 가격*/}
 							<div className={styles.inforTopArea}>
-								<div className={styles.inforBorder}>
-									<dl>
-										<dt>정가</dt>
-										<dd>{item.priceStandard.toLocaleString()}원</dd>
-									</dl>
-									<dl>
-										<dt>판매가</dt>
-										<dd>
-											<span className={styles.inforPriceSales}>
-												{item.priceSales.toLocaleString()}원
-											</span>
-											<span className={styles.inforPersent}>
-												{calculateDiscountPercentage}%
-											</span>
-										</dd>
-									</dl>
-								</div>
-								{/* ISBN,중고책 */}
-								<div className={styles.inforTopArea2}>
-									<dl>
-										<dt>마일리지</dt>
-										<dd>{item.mileage}</dd>
-									</dl>
-									<dl>
-										<dt className={styles.inforText}>배송비</dt>
-										<dd className={styles.inforListText}>
-											{item.delivery.toLocaleString()}원
-										</dd>
-									</dl>
-									<dl>
-										<dt className={styles.inforText}>ISBN</dt>
-										<dd className={styles.inforListText}>{item.isbn}</dd>
-									</dl>
-									<dl>
-										<dt className={styles.inforText}>전자책</dt>
-										{item.subInfo.ebookList.map((ebook) => {
-											return (
-												<dd
-													className={styles.inforEbookListLink}
-													key={ebook.itemId}>
-													<Link href={ebook.link}>
-														{ebook.priceSales.toLocaleString()}원
-													</Link>
-												</dd>
-											);
-										})}
-									</dl>
-								</div>
+								<dl>
+									<dt>정가</dt>
+									<dd>{item.priceStandard.toLocaleString()}원</dd>
+								</dl>
+								<dl>
+									<dt>판매가</dt>
+									<dd>
+										<span className={styles.inforPriceSales}>
+											{item.priceSales.toLocaleString()}원
+										</span>
+										<span className={styles.inforPersent}>
+											{calculateDiscountPercentage}%
+										</span>
+									</dd>
+								</dl>
 							</div>
+							{/* ISBN,중고책 */}
+							<div className={styles.inforTopArea2}>
+								<dl>
+									<dt>마일리지</dt>
+									<dd>{item.mileage}</dd>
+								</dl>
+								<dl>
+									<dt className={styles.inforText}>배송비</dt>
+									<dd className={styles.inforListText}>
+										{item.delivery.toLocaleString()}원
+									</dd>
+								</dl>
+								<dl>
+									<dt className={styles.inforText}>ISBN</dt>
+									<dd className={styles.inforListText}>{item.isbn}</dd>
+								</dl>
+								<dl>
+									<dt className={styles.inforText}>전자책</dt>
+									{item.subInfo.ebookList.map((ebook) => {
+										return (
+											<dd
+												className={styles.inforEbookListLink}
+												key={ebook.itemId}>
+												<Link href={ebook.link}>
+													{ebook.priceSales.toLocaleString()}원
+												</Link>
+											</dd>
+										);
+									})}
+								</dl>
+							</div>
+							{/* 수량 */}
+							<div className={styles.inforTopArea3}>
+								<span>수량</span>
+								<Detailquantity />
+							</div>
+							{/* 총 수량 */}
+							<Detailtotalquantity />
 						</div>
 					</div>
 				</>
