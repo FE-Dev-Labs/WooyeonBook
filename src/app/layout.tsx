@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: BasicLayoutType) {
 	return (
 		<html lang="kr">
-			<body>
+			<body className={inter.className}>
 				<Header />
 				{/* <RecentlyViewedBooks /> */}
 				{children}
