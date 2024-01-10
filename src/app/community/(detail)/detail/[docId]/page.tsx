@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import styles from '@/styles/community/detail/DetailPage.module.css';
+import dynamic from 'next/dynamic';
+
 export default function page() {
+	const View = dynamic(() => import('@/components/common/Viewer'), {
+		ssr: false,
+	});
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.title}>title</h2>
@@ -18,7 +23,9 @@ export default function page() {
 				</div>
 			</div>
 			<hr className={styles.line} />
-			<div>view</div>
+			<div className={styles.viewerWrap}>
+				<View />
+			</div>
 			<hr />
 			<div>
 				<div>답변 ##</div>
