@@ -1,0 +1,101 @@
+/* 헤더 틀 */
+.container {
+	width: 100vw;
+	min-height: 120px;
+
+	display: flex;
+	justify-content: center;
+
+	background-color: #f4f2e5;
+}
+.wrapper {
+	width: 1300px;
+	min-height: inherit;
+
+	display: flex;
+	flex-direction: column;
+}
+
+/* 헤더 상단 */
+.topWrapper {
+	min-height: 60px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.logo {
+	width: 250px;
+	height: 60px;
+
+	background-color: yellow;
+}
+.searchForm {
+	width: 400px;
+	height: 60px;
+
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.searchForm > input {
+	width: 98%;
+	height: 60%;
+	border-radius: 50px;
+	padding: 0 20px;
+
+	border: none;
+	outline: none;
+
+	transition: border-radius 0.3s;
+}
+.searchForm > input:focus {
+	border-radius: 5px;
+}
+.searchIcon {
+	right: 15px;
+	bottom: 17px;
+
+	position: absolute;
+}
+
+/* 헤더 하단 */
+.bottomWrapper {
+	min-height: 60px;
+
+	display: flex;
+	justify-content: space-between;
+}
+.navigationWrapper {
+	height: inherit;
+
+	display: flex;
+	align-items: center;
+}
+.navigationWrapper > a {
+	width: inherit;
+	height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 25px;
+
+	color: #000000;
+	text-decoration-line: none;
+
+	transition: color 0.2s;
+}
+.navigationWrapper > a:hover {
+	color: #6594e7;
+}
+.accountWrapper {
+	height: inherit;
+
+	display: flex;
+	align-items: center;
+}
+.accountWrapper > a {
+	width: inherit;
+	margin-left: 25px;
+
+	color: #000000;
+}
