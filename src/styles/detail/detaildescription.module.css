@@ -1,0 +1,131 @@
+.Wrapper {
+	display: flex;
+}
+.topLeft {
+	width: 300px;
+	text-align: left;
+}
+.imgArea {
+	position: relative;
+	border-radius: 10px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+}
+.img {
+	width: 302px;
+	vertical-align: top;
+	border-radius: 10px;
+}
+.img::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 10px;
+	border: solid 1px rgba(0, 0, 0, 0.03);
+}
+
+/*제목, 저자, 옮김이, 출판소, 날짜*/
+.topRigth {
+	margin-left: auto;
+	width: 860px;
+	text-align: left;
+}
+.inforTop {
+	padding-bottom: 30px;
+}
+.titleArea {
+	display: block;
+	padding-bottom: 10px;
+	line-height: 1.7em;
+	font-weight: normal;
+}
+.titleName {
+	margin-right: 2px;
+	line-height: 1.2em;
+	color: #333;
+	font-size: 24px;
+	font-weight: 600;
+}
+.pubArea {
+	display: block;
+	line-height: 20px;
+	color: #666;
+	font-size: 13px;
+}
+.auth > a {
+	text-decoration: none;
+	margin-right: 2px;
+}
+.divice {
+	margin: 5px 5px 0 5px;
+	width: 1px;
+	height: 13px;
+	text-indent: -999em;
+	border-right: solid 1px #ccc;
+}
+.pub > a {
+	text-decoration: none;
+	margin-right: 2px;
+}
+/* 책, 가격*/
+.inforTopArea {
+	padding-top: 20px;
+	/* width: 520px; */
+	border-top: solid 1px #aaaaaa;
+}
+.inforBorder {
+	padding-bottom: 20px;
+	border-bottom: solid 1px #aaaaaa;
+}
+.inforText {
+	display: table-cell;
+	padding: 8px 0;
+	width: 80px;
+	line-height: 20px;
+	color: #333;
+	font-weight: bold;
+}
+.inforTopArea > dl {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.inforTopArea > dl > dt {
+	display: table-cell;
+	padding: 15px 0;
+	width: 150px;
+	line-height: 20px;
+	color: #333;
+	font-weight: bold;
+}
+.inforTopArea > dl > dd {
+	color: #aaaaaa;
+}
+.inforPriceSales {
+	font-size: 30px;
+	color: #333;
+	font-weight: bold;
+}
+.inforPersent {
+	margin-left: 20px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #6594e7;
+}
+
+.inforTopArea2 > dl {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+.inforTopArea2 > dl > dt {
+	display: table-cell;
+	padding: 15px 0;
+	width: 150px;
+	line-height: 20px;
+	color: #333;
+	font-weight: bold;
+}
