@@ -1,0 +1,56 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	width: 1300px;
+	margin: 0 auto 30px auto;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.infoWrap {
+	width: 1300px;
+	margin: 0 auto 20px auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.contentInfoWrap {
+	display: flex;
+	align-items: center;
+}
+
+.dot {
+	font-size: 5px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 5px;
+}
+
+.adimBtnWrap {
+	display: flex;
+}
+
+.adimBtnWrap > a {
+	margin-right: 30px;
+	width: 100px;
+	height: 24px;
+	line-height: 24px;
+	border: 1px solid #000;
+	color: black;
+	text-align: center;
+}
+.adimBtnWrap > button {
+	margin-right: 50px;
+	width: 100px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.line {
+	width: 1300px;
+	margin: 0 auto 30px auto;
+	border-bottom: 1px solid #000;
+}

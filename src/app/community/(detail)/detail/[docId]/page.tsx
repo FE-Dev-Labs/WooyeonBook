@@ -1,21 +1,23 @@
 import Link from 'next/link';
-
+import styles from '@/styles/community/detail/DetailPage.module.css';
 export default function page() {
 	return (
-		<div>
-			<div>title</div>
-			<div>
-				<div>
+		<div className={styles.container}>
+			<h2 className={styles.title}>title</h2>
+			<div className={styles.infoWrap}>
+				<div className={styles.contentInfoWrap}>
 					<div>작성일</div>
+					<div className={styles.dot}>●</div>
 					<div>조회수</div>
+					<div className={styles.dot}>●</div>
 					<div>댓글</div>
 				</div>
-				<div>
+				<div className={styles.adimBtnWrap}>
 					<Link href={`community/edit?type=${`###`}/${`docId`}}`}>수정</Link>
 					<button>삭제</button>
 				</div>
 			</div>
-			<hr />
+			<hr className={styles.line} />
 			<div>view</div>
 			<hr />
 			<div>
