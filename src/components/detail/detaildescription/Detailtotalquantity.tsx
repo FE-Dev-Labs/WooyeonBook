@@ -1,4 +1,4 @@
-import styles from '@/styles/detail/detailquantity.module.css';
+import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 export default function Detailtotalquantity() {
 	return (
 		<div className={styles.quantityTotalSectionWrap}>
