@@ -1,3 +1,4 @@
+/* 메인페이지 틀 */
 .container {
 	width: 100vw;
 	height: 100vh;
@@ -5,7 +6,60 @@
 	display: flex;
 	justify-content: center;
 }
-
 .wrapper {
 	width: 1300px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+/* 신간도서 컴포넌트 */
+.newBooksWrapper {
+	width: inherit;
+	height: 650px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+/* 메인페이지 각 컴포넌트 타이틀 */
+.titleWrapper {
+	width: inherit;
+	height: 30px;
+
+	display: flex;
+	justify-content: space-between;
+}
+.titleNameWrapper {
+	display: flex;
+}
+.titleNameWrapper > h1 {
+	font-size: 30px;
+	font-weight: bold;
+}
+.titleNameWrapper > p {
+	font-size: 20px;
+	margin: 10px 0 0 40px;
+
+	color: #aaaaaa;
+}
+.seeAll {
+	font-size: 16px;
+	margin-top: 14px;
+
+	text-align: right;
+	cursor: pointer;
+}
+.contents {
+	width: 200px;
+	height: 500px;
+	margin-top: 30px;
+
+	display: flex;
+	flex-direction: column;
+}
+.bookImage {
+	border-radius: 10px;
+	overflow: hidden;
 }
