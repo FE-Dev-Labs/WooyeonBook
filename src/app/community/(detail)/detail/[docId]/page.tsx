@@ -6,6 +6,7 @@ export default function page() {
 	const View = dynamic(() => import('@/components/common/Viewer'), {
 		ssr: false,
 	});
+
 	return (
 		<div className={styles.container}>
 			<h2 className={styles.title}>title</h2>
@@ -26,18 +27,53 @@ export default function page() {
 			<div className={styles.viewerWrap}>
 				<View />
 			</div>
-			<hr />
-			<div>
-				<div>답변 ##</div>
-				<div>
-					<div>좋아요</div>
-					<div>최신순</div>
+			<hr className={styles.line} />
+			<div className={styles.commentHeader}>
+				<div className={styles.commentCount}>댓글 ##</div>
+				<div className={styles.commentSortWrap}>
+					<button>좋아요순</button>
+					<div className={styles.dot}>●</div>
+					<button>최신순</button>
 				</div>
 			</div>
-			<div>
-				<button>댓글 작성하기</button>
+			<div className={styles.commentCreateWrap}>
+				<button>###님, 댓글을 작성해보세요.</button>
 			</div>
-			<div>댓글</div>
+			<div className={styles.commentCreateBoxWrap}>
+				<textarea />
+				<div>
+					<button>취소</button>
+					<button>등록</button>
+				</div>
+			</div>
+			<div className={styles.commnetWrap}>
+				<div className={styles.commentInfoWrap}>
+					<div>
+						<div>작성자</div>
+						<div>작성일</div>
+					</div>
+					<div>
+						<button>수정</button>
+						<button>삭제</button>
+					</div>
+				</div>
+				<div className={styles.commentContentWrap}>
+					<p>
+						댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
+						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
+						내용댓글 내용댓글 내용댓글 내용 댓글 내용댓글 내용댓글 내용댓글
+						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
+						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용
+						댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
+						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
+						내용댓글 내용댓글 내용댓글 내용
+					</p>
+				</div>
+				<div className={styles.contentBtnWrap}>
+					<button>공유</button>
+				</div>
+				<hr />
+			</div>
 		</div>
 	);
 }

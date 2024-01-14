@@ -3,7 +3,13 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 
-export default function WysiwygEditor() {
+interface WysiwygEditorProps {
+	height?: string;
+}
+
+export default function WysiwygEditor({
+	height = '600px',
+}: WysiwygEditorProps) {
 	const editorRef = useRef(null);
 	const toolbarItems = [
 		['heading', 'bold', 'italic', 'strike'],
@@ -19,7 +25,7 @@ export default function WysiwygEditor() {
 			<Editor
 				ref={editorRef}
 				initialEditType="markdown"
-				height="600px"
+				height={height}
 				toolbarItems={toolbarItems}
 			/>
 		</>
