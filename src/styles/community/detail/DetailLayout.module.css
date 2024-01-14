@@ -1,0 +1,4 @@
+.constainer {
+	display: flex;
+	flex-direction: column;
+}
