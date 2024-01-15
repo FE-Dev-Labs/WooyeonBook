@@ -34,8 +34,9 @@
 .textWrapper > div {
 	width: inherit;
 	height: 30px;
+	gap: 30px;
 
 	display: flex;
 	flex-direction: row;
-	gap: 30px;
+	align-items: center;
 }
