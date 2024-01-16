@@ -1,11 +1,11 @@
-import styles from '@/styles/main/common/title.module.css';
+import styles from '@/styles/main/common/categoryTitle.module.css';
 
 interface TitleProps {
 	mainTitle: string;
 	subTitle: string;
 }
 
-export default function Title({ mainTitle, subTitle }: TitleProps) {
+export default function CategoryTitle({ mainTitle, subTitle }: TitleProps) {
 	return (
 		<div className={styles.titleWrapper}>
 			<div className={styles.titleName}>

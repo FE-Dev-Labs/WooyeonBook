@@ -1,53 +1,74 @@
 /* 페이지 틀 */
 .container {
 	width: 100vw;
-	height: 100vh;
+	/* height: 100vh; */
 
 	display: flex;
 	justify-content: center;
 }
 .wrapper {
 	width: 1300px;
-	height: 470px;
+	gap: 100px;
 
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-between;
+}
+.wrapper > :first-child {
+	margin-top: 100px;
+}
+.wrapper > :last-child {
+	margin-bottom: 100px;
 }
 
 /* 부모 컴포넌트 */
 .newBooksWrapper {
 	width: inherit;
 	height: 470px;
+
+	display: flex;
+	flex-direction: column;
+}
+.themeRecommendationWrapper {
+	width: inherit;
+	height: 510px;
+
+	display: flex;
+	flex-direction: column;
+}
+.bestSellerWrapper {
+	width: inherit;
+	height: 600px;
+
+	border: 1px solid red;
+
+	display: flex;
+	flex-direction: column;
+}
+.usedBooksWrapper {
+	width: inherit;
+
 	display: flex;
 	flex-direction: column;
 }
 
-/* 부모 컴포넌트 타이틀 */
-.titleWrapper {
-	width: inherit;
-	height: 30px;
+/* /////////////////////////// */
+.themeBox {
+	width: 1300px;
+	height: 450px;
+	gap: 47px;
 
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
+	overflow: hidden;
 }
-.titleName {
-	display: flex;
-}
-.titleName h1 {
-	font-size: 30px;
-	font-weight: bold;
-}
-.titleName p {
-	font-size: 20px;
-	margin: 10px 0 0 40px;
+.themeItem {
+	width: 400px;
+	height: 200px;
+	border-radius: 10px;
 
-	color: #aaaaaa;
-}
-.seeAll {
-	font-size: 16px;
-	margin-top: 14px;
+	position: relative;
 
-	text-align: right;
-	cursor: pointer;
+	background-color: #993366;
 }
