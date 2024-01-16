@@ -3,6 +3,7 @@ import styles from '@/styles/main/main.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import bookImage from '../../public/main/book3.png';
+import Title from '../components/main/Title';
 
 export default function Home() {
 	return (
@@ -10,15 +11,7 @@ export default function Home() {
 			<RecentlyViewedBooks />
 			<div className={styles.wrapper}>
 				<div className={styles.newBooksWrapper}>
-					<div className={styles.titleWrapper}>
-						<div className={styles.titleName}>
-							<h1>신간도서</h1>
-							<p>새로 나온 책 뭐가 있지?</p>
-						</div>
-						<div>
-							<p className={styles.seeAll}>전체보기</p>
-						</div>
-					</div>
+					<Title mainTitle="신간도서" subTitle="새로 나온 책 뭐가 있지?" />
 					<div className={styles.bookItemWrapper}>
 						<div className={styles.bookItem}>
 							<Link href="/">
