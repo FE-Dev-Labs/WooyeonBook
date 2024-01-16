@@ -4,6 +4,7 @@ import CategoryTitle from '../components/main/CategoryTitle';
 import BookItemBox from '@/components/main/BookItemBox';
 import bookImage from '../../public/main/book2.jpg';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
 	return (
@@ -23,14 +24,22 @@ export default function Home() {
 						subTitle="어떤 테마의 책이 있을까?"
 					/>
 					<div className={styles.themeBox}>
-						<div className={styles.themeItem}>
-							<Image
-								src={bookImage}
-								alt="theme book"
-								width={150}
-								height={200}
-							/>
-						</div>
+						<Link href={'/'}>
+							<div className={styles.themeItem}>
+								<div className={styles.themeText}>
+									<p>끝없는 상상의 바다</p>
+									<p># 일반소설</p>
+								</div>
+								<div className={styles.themeImage}>
+									<Image
+										src={bookImage}
+										alt="theme book"
+										layout="fill"
+										objectFit="cover"
+									/>
+								</div>
+							</div>
+						</Link>
 					</div>
 				</div>
 				<div className={styles.bestSellerWrapper}>

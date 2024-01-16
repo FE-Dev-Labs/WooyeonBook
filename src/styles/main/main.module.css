@@ -69,6 +69,29 @@
 	border-radius: 10px;
 
 	position: relative;
+	overflow: hidden;
 
 	background-color: #993366;
+}
+.themeText {
+	width: 225px;
+	height: 200px;
+	gap: 10px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	color: #ffffff;
+}
+.themeImage {
+	width: 150px;
+	height: 200px;
+	top: 50px;
+	left: 225px;
+	border-radius: 10px;
+
+	position: absolute;
+	overflow: hidden;
 }

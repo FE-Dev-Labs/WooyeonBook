@@ -7,7 +7,7 @@
 	flex-direction: column;
 }
 .bookImage {
-	width: inherit;
+	width: 200px;
 	height: 275px;
 
 	border-radius: 10px;

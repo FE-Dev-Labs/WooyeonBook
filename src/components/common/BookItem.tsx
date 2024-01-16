@@ -8,7 +8,13 @@ export default function BookItem() {
 		<div className={styles.bookItem}>
 			<Link href="/">
 				<div className={styles.bookImage}>
-					<Image src={bookImage} alt="new books" width={200} height={275} />
+					<Image
+						src={bookImage}
+						alt="new book"
+						width={200}
+						// layout="fill"
+						// objectFit="cover"
+					/>
 				</div>
 			</Link>
 			<div className={styles.bookText}>
