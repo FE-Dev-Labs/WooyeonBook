@@ -1,4 +1,5 @@
 import styles from '@/styles/main/common/categoryTitle.module.css';
+import Link from 'next/link';
 
 interface TitleProps {
 	mainTitle: string;
@@ -12,9 +13,9 @@ export default function CategoryTitle({ mainTitle, subTitle }: TitleProps) {
 				<h1>{mainTitle}</h1>
 				<p>{subTitle}</p>
 			</div>
-			<div>
+			<Link href="/">
 				<p className={styles.seeAll}>전체보기</p>
-			</div>
+			</Link>
 		</div>
 	);
 }

@@ -26,4 +26,9 @@
 
 	text-align: right;
 	cursor: pointer;
+
+	transition: color 0.2s;
+}
+.seeAll:hover {
+	color: #6594e7;
 }
