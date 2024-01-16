@@ -9,6 +9,7 @@ import NewBook from '../components/main/newBook/NewBook';
 import ThemeRecommendation from '@/components/main/themeRecommendation/ThemeRecommendation';
 import BookItem from '@/components/common/BookItem';
 import BestSeller from '@/components/main/bestSeller/BestSeller';
+import UsedBook from '@/components/main/usedBook/UsedBook';
 
 export default function Home() {
 	return (
@@ -18,13 +19,7 @@ export default function Home() {
 				<NewBook />
 				<ThemeRecommendation />
 				<BestSeller />
-				<div className={styles.usedBookWrapper}>
-					<CategoryTitle
-						mainTitle="중고도서"
-						subTitle="지구를 위해 중고도서 어떠세요?"
-					/>
-					<BookItemBox />
-				</div>
+				<UsedBook />
 			</div>
 		</main>
 	);

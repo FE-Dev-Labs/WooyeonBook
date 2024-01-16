@@ -20,26 +20,3 @@
 .wrapper > :last-child {
 	margin-bottom: 100px;
 }
-
-/* 부모 컴포넌트 */
-.bestSellerWrapper {
-	width: inherit;
-	height: 470px;
-
-	display: flex;
-	flex-direction: column;
-}
-.bestItemWrapper {
-	width: 1300px;
-
-	display: flex;
-	flex-direction: row;
-	gap: 75px;
-}
-
-.usedBookWrapper {
-	width: inherit;
-
-	display: flex;
-	flex-direction: column;
-}
