@@ -1,4 +1,4 @@
-/* 메인페이지 틀 */
+/* 페이지 틀 */
 .container {
 	width: 100vw;
 	height: 100vh;
@@ -8,6 +8,7 @@
 }
 .wrapper {
 	width: 1300px;
+	height: 470px;
 
 	display: flex;
 	flex-direction: row;
@@ -17,13 +18,12 @@
 /* 신간도서 컴포넌트 */
 .newBooksWrapper {
 	width: inherit;
-	height: 650px;
-
+	height: 470px;
 	display: flex;
 	flex-direction: column;
 }
 
-/* 메인페이지 각 컴포넌트 타이틀 */
+/* 컴포넌트 타이틀 */
 .titleWrapper {
 	width: inherit;
 	height: 30px;
@@ -31,14 +31,14 @@
 	display: flex;
 	justify-content: space-between;
 }
-.titleNameWrapper {
+.titleName {
 	display: flex;
 }
-.titleNameWrapper > h1 {
+.titleName h1 {
 	font-size: 30px;
 	font-weight: bold;
 }
-.titleNameWrapper > p {
+.titleName p {
 	font-size: 20px;
 	margin: 10px 0 0 40px;
 
@@ -51,15 +51,50 @@
 	text-align: right;
 	cursor: pointer;
 }
-.contents {
-	width: 200px;
-	height: 500px;
+
+.bookItemWrapper {
+	width: 1300px;
 	margin-top: 30px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
+
+/* 각 도서 컴포넌트 */
+.bookItem {
+	width: 200px;
+	height: 410px;
 
 	display: flex;
 	flex-direction: column;
 }
 .bookImage {
+	width: inherit;
+	height: 275px;
+
 	border-radius: 10px;
 	overflow: hidden;
+
+	transition: transform 0.3s ease-in-out;
+}
+.bookImage:hover {
+	transform: scale(1.05);
+}
+.bookText {
+	width: inherit;
+	height: 135px;
+	margin-top: 20px;
+}
+.bookText h1 {
+	font-size: 18px;
+}
+.bookText h1:hover {
+	text-decoration: underline;
+}
+.bookText p {
+	margin-top: 20px;
+}
+.bookText p:nth-of-type(1) {
+	color: #aaaaaa;
 }
