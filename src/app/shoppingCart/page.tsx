@@ -38,6 +38,10 @@ export default function shoppingCartPage() {
 					<div className={styles.cartBodySumPrice}>합계</div>
 				</div>
 				<hr />
+				<div className={styles.cartFooter}>
+					<button>선택 상품 삭제</button>
+				</div>
+				<hr />
 			</div>
 		</div>
 	);
