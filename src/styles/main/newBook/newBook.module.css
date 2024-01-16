@@ -1,0 +1,15 @@
+.newBookWrapper {
+	width: inherit;
+	height: 470px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.bookItemWrapper {
+	width: 1300px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}

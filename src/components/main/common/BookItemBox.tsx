@@ -1,4 +1,4 @@
-import BookItem from '../common/BookItem';
+import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/main/common/bookItemBox.module.css';
 
 export default function BookItemBox() {

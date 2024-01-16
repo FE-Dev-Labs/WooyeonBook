@@ -22,20 +22,6 @@
 }
 
 /* 부모 컴포넌트 */
-.newBooksWrapper {
-	width: inherit;
-	height: 470px;
-
-	display: flex;
-	flex-direction: column;
-}
-.themeRecommendationWrapper {
-	width: inherit;
-	height: 510px;
-
-	display: flex;
-	flex-direction: column;
-}
 .bestSellerWrapper {
 	width: inherit;
 	height: 600px;
@@ -45,53 +31,9 @@
 	display: flex;
 	flex-direction: column;
 }
-.usedBooksWrapper {
+.usedBookWrapper {
 	width: inherit;
 
 	display: flex;
 	flex-direction: column;
-}
-
-/* /////////////////////////// */
-.themeBox {
-	width: 1300px;
-	height: 450px;
-	gap: 47px;
-
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	overflow: hidden;
-}
-.themeItem {
-	width: 400px;
-	height: 200px;
-	border-radius: 10px;
-
-	position: relative;
-	overflow: hidden;
-
-	background-color: #993366;
-}
-.themeText {
-	width: 225px;
-	height: 200px;
-	gap: 10px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-
-	color: #ffffff;
-}
-.themeImage {
-	width: 150px;
-	height: 200px;
-	top: 50px;
-	left: 225px;
-	border-radius: 10px;
-
-	position: absolute;
-	overflow: hidden;
 }
