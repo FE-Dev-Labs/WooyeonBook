@@ -185,3 +185,22 @@
 	font-weight: bold;
 	color: red;
 }
+.footerBtnWrap {
+	width: 1300px;
+	height: 60px;
+	margin: 0 auto 30px auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.footerBtnWrap :nth-child(1) {
+	margin-right: 30px;
+}
+.footerBtnWrap > button {
+	width: 200px;
+	height: 45px;
+	border: none;
+	border-radius: 15px;
+	font-size: 20px;
+	font-weight: bold;
+}

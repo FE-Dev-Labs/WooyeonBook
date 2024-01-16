@@ -78,6 +78,10 @@ export default function shoppingCartPage() {
 					</div>
 				</div>
 			</div>
+			<div className={styles.footerBtnWrap}>
+				<button>상품 추가</button>
+				<button>결제하기</button>
+			</div>
 		</div>
 	);
 }
