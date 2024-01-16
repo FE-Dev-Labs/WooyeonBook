@@ -1,5 +1,6 @@
 .Wrapper {
 	display: flex;
+	margin-bottom: 150px;
 }
 .topLeft {
 	width: 300px;
