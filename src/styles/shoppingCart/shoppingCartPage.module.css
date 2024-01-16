@@ -122,3 +122,66 @@
 	font-size: 20px;
 	font-family: bold;
 }
+
+/* order History */
+.orderHistoryWrap {
+	width: 1250px;
+	margin: 0 auto;
+	display: flex;
+}
+.orderHistoryWrap > div {
+	flex-grow: 1;
+}
+.orderHistoryHeader {
+	font-size: 20px;
+	font-family: bold;
+	padding-top: 30px;
+}
+.orderHistoryBody {
+	display: flex;
+	flex-direction: column;
+	padding-top: 30px;
+}
+.orderHistoryItemNumberWrap,
+.orderHistoryItemAmountWrap,
+.orderHistoryDiscountAmountWrap,
+.orderHistoryDeliveryChargeWrap {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 40px;
+	color: #9c9c9c;
+	font-size: 20px;
+	font-weight: bold;
+}
+.orderHistoryBodyLine {
+	width: 100%;
+	border-style: dotted;
+	color: #9c9c9c;
+	margin-bottom: 20px;
+}
+.orderHistoryDeliveryChargeWrap {
+	align-items: center;
+}
+.orderHistoryDeliveryChargeInfo {
+	font-size: 14px;
+	margin-top: 8px;
+}
+.orderHistoryFinalPaymentAmountWrap {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 60px;
+}
+.orderHistoryFinalPaymentAmountTitle {
+	font-size: 22px;
+	font-weight: bold;
+}
+.orderHistoryFinalPaymentAmount {
+	display: flex;
+	align-items: center;
+	font-size: 24px;
+}
+.orderHistoryFinalPaymentAmount > p {
+	font-size: 26px;
+	font-weight: bold;
+	color: red;
+}

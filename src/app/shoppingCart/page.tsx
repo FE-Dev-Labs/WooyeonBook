@@ -42,6 +42,41 @@ export default function shoppingCartPage() {
 					<button>선택 상품 삭제</button>
 				</div>
 				<hr />
+				<div className={styles.orderHistoryWrap}>
+					<div className={styles.orderHistoryHeader}>총 주문금액</div>
+					<div className={styles.orderHistoryBody}>
+						<div className={styles.orderHistoryItemNumberWrap}>
+							<div>주문상품 수</div>
+							<div>0</div>
+						</div>
+						<div className={styles.orderHistoryItemAmountWrap}>
+							<div>주문금액</div>
+							<div>0</div>
+						</div>
+						<div className={styles.orderHistoryDiscountAmountWrap}>
+							<div>할인금액</div>
+							<div>0</div>
+						</div>
+						<div className={styles.orderHistoryDeliveryChargeWrap}>
+							<div>
+								<div>배송비</div>
+								<div className={styles.orderHistoryDeliveryChargeInfo}>
+									15,000원 이상 구매시 무료 배송
+								</div>
+							</div>
+							<div>0</div>
+						</div>
+						<hr className={styles.orderHistoryBodyLine} />
+						<div className={styles.orderHistoryFinalPaymentAmountWrap}>
+							<div className={styles.orderHistoryFinalPaymentAmountTitle}>
+								최종결제금액
+							</div>
+							<div className={styles.orderHistoryFinalPaymentAmount}>
+								<p>34,000</p>원
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
