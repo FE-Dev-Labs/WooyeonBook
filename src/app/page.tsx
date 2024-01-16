@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import NewBook from '../components/main/newBook/NewBook';
 import ThemeRecommendation from '@/components/main/themeRecommendation/ThemeRecommendation';
+import BookItem from '@/components/common/BookItem';
 
 export default function Home() {
 	return (
@@ -20,6 +21,13 @@ export default function Home() {
 						mainTitle="베스트셀러"
 						subTitle="어떤 책을 많이 읽을까?"
 					/>
+					<div className={styles.bestItemWrapper}>
+						<BookItem rank={1} />
+						<BookItem rank={2} />
+						<BookItem rank={3} />
+						<BookItem rank={4} />
+						<BookItem rank={5} />
+					</div>
 				</div>
 				<div className={styles.usedBookWrapper}>
 					<CategoryTitle

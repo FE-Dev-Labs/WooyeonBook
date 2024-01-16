@@ -3,9 +3,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import bookImage from '../../../public/main/book3.png';
 
-export default function BookItem() {
+interface BookItemProp {
+	rank?: number;
+}
+
+export default function BookItem({ rank }: BookItemProp) {
 	return (
 		<div className={styles.bookItem}>
+			{rank && <div className={styles.rank}>{rank}</div>}
 			<Link href="/">
 				<div className={styles.bookImage}>
 					<Image
