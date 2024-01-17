@@ -15,7 +15,7 @@
 	justify-content: space-between;
 }
 .wrapper > :first-child {
-	margin-top: 100px;
+	margin-top: 50px;
 }
 .wrapper > :last-child {
 	margin-bottom: 100px;
