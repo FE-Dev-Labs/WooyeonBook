@@ -3,11 +3,11 @@ import styles from '@/styles/common/accordionlayout.module.css';
 import Image from 'next/image';
 import viewIcon from '../../../public/detail/view.png';
 import closeIcon from '../../../public/detail/close.png';
-import Link from 'next/link';
 import Usetogglelist from '@/hooks/Usetogglelist';
-import Detailexplanation from '../detail/detaildata/detailexplanation';
-import Detailinformation from '../detail/detaildata/detailinformation';
-import Detailsustainability from '../detail/detaildata/detailsustainability';
+import Detailexplanation from '../detail/detaildata/Detailexplanation';
+import Detailinformation from '../detail/detaildata/Detailinformation';
+import Detailsustainability from '../detail/detaildata/Detailsustainability';
+import Detailcomment from './../detail/detailcomments/Detailcomment';
 
 export default function Accordionlayout({ ...book }) {
 	const accordiontitle = [
@@ -69,6 +69,9 @@ export default function Accordionlayout({ ...book }) {
 							{isItemOpen && item.title === '지속가능성' && (
 								<Detailsustainability {...book} />
 							)}
+
+							{/*댓글란 */}
+							{isItemOpen && item.title === '한줄평' && <Detailcomment />}
 						</div>
 					);
 				})}
