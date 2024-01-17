@@ -6,7 +6,7 @@
 }
 
 .accordionWrapper {
-	background-color: #eeeeee; /* 회색 배경색 */
+	background-color: #eeeeee;
 	border-radius: 16px;
 	padding: 0 50px;
 	transition:
@@ -33,80 +33,4 @@
 }
 .accordionTitle > h2 {
 	font-size: 25px;
-}
-.accordionContent {
-}
-.accordionwrapper {
-	display: grid;
-	grid-template-columns: 2fr 2fr;
-	grid-column-gap: 10px;
-}
-.accordionwrapper.active {
-	display: grid;
-	grid-template-columns: 2fr 2fr 2fr;
-	grid-column-gap: 10px;
-}
-.accodionRowSelection {
-	margin-bottom: 50px;
-}
-.accordionwrapperItem {
-	display: flex;
-	flex-direction: column;
-}
-.boookItemTitle {
-	line-height: 20px;
-	margin-right: 10px;
-	margin-top: 15px;
-	color: #d8d8d8;
-}
-.bookItem {
-	line-height: 20px;
-	margin-top: 10px;
-}
-.bookWarningText {
-	line-height: 20px;
-	font-weight: 800;
-}
-.accodionRowWarningSelection {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 50px;
-}
-.accordionwrapperWarningItem {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.bookWarningItem {
-	margin-right: 2px;
-	line-height: 1.2em;
-	color: #333;
-	font-size: 24px;
-	font-weight: 600;
-}
-.accodionWarningWrap {
-	display: flex;
-	align-items: center;
-	color: #666;
-}
-.divice {
-	margin: 5px 5px 0 5px;
-	width: 1px;
-	height: 13px;
-	text-indent: -999em;
-	border-right: solid 1px #ccc;
-}
-.bookUsedLinkQuestion {
-	margin-top: 50px;
-	color: #666;
-}
-.bookUsedLinkBtn {
-	margin-top: 20px;
-	background-color: #6594e7;
-	color: white;
-	padding: 10px 70px;
-	border: none;
-	border-radius: 50px;
-	cursor: pointer;
 }

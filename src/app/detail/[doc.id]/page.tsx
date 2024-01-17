@@ -1,4 +1,5 @@
 import Accordionlayout from '@/components/common/Accordionlayout';
+import Detailcomments from '@/components/detail/detailcomments/Detailcomments';
 import Detaildescription from '@/components/detail/detaildescription/Detaildescription';
 import styles from '@/styles/detail/detaildescription/detail.module.css';
 export default function page() {
@@ -56,6 +57,7 @@ export default function page() {
 					<Accordionlayout {...book} />
 				</div>
 			))}
+			<Detailcomments />
 		</div>
 	);
 }
