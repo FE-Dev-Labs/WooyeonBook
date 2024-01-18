@@ -1,11 +1,22 @@
+/* 페이지 틀 */
 .container {
 	width: 100vw;
-	height: 100vh;
+	/* height: 100vh; */
 
 	display: flex;
 	justify-content: center;
 }
-
 .wrapper {
 	width: 1300px;
+	gap: 100px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.wrapper > :first-child {
+	margin-top: 50px;
+}
+.wrapper > :last-child {
+	margin-bottom: 100px;
 }

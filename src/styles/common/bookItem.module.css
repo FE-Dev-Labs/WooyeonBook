@@ -1,0 +1,53 @@
+/* 도서 컴포넌트 */
+.bookItem {
+	width: 200px;
+	height: 410px;
+
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.bookImage {
+	width: 200px;
+	height: 275px;
+	border-radius: 10px;
+
+	overflow: hidden;
+
+	transition: transform 0.3s ease-in-out;
+}
+.bookImage:hover {
+	transform: scale(1.05);
+}
+.bookText {
+	width: inherit;
+	height: 135px;
+	margin-top: 20px;
+}
+.bookText h1 {
+	font-size: 18px;
+}
+.bookText a {
+	color: #000000;
+}
+.bookText a:hover {
+	text-decoration: underline;
+}
+.bookText p {
+	margin-top: 20px;
+}
+.bookText p:nth-of-type(1) {
+	color: #aaaaaa;
+}
+
+.rank {
+	position: absolute;
+	top: 140px;
+	left: -30px;
+	font-size: 150px;
+	padding: 5px;
+	z-index: 1;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+	color: #ffffff;
+}

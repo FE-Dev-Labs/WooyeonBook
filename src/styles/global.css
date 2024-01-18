@@ -124,6 +124,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+.slick-prev:before,
+.slick-next:before {
+	display: none !important;
 hr {
 	width: 1300px;
 }
