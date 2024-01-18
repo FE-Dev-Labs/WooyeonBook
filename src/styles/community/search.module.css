@@ -1,0 +1,40 @@
+.container {
+	width: 1300px;
+	height: 36px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 47px;
+}
+
+.searchWrap {
+	position: relative;
+	width: 950px;
+	height: 36px;
+	display: flex;
+	align-items: center;
+}
+
+.searchInput {
+	width: calc(100% - 50px);
+	height: 100%;
+	padding-left: 60px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+}
+
+.iconContainer {
+	position: absolute;
+	top: 8px;
+	left: 20px;
+	z-index: 10;
+}
+
+.searchLink {
+	width: 150px;
+	height: 36px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 36px;
+}

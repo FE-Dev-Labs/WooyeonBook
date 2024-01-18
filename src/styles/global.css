@@ -85,6 +85,7 @@ video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	text-decoration-line: none;
 }
 article,
 aside,
@@ -122,4 +123,10 @@ q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+.slick-prev:before,
+.slick-next:before {
+	display: none !important;
+hr {
+	width: 1300px;
 }
