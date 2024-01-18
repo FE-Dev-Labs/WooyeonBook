@@ -1,0 +1,17 @@
+.sliderItem {
+	/* width: 100px; */
+	height: 100%;
+	border-radius: 10px;
+	margin: 0 2px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #932a7c;
+	background-color: #bd5c87;
+	background-color: #366cc2;
+	background-color: #ae8555;
+	background-color: #6c3c92;
+	background-color: #d472a1;
+}

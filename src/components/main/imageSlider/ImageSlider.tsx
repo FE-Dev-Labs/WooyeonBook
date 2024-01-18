@@ -9,6 +9,7 @@ import bookImage from '../../../../public/main/book1.jpg';
 import Link from 'next/link';
 import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
+import SliderItem from './SliderItem';
 
 interface ArrowProps {
 	className?: string;
@@ -79,8 +80,8 @@ export default function ImageSlider() {
 
 		autoplay: true, // 자동으로 넘기기
 		autoplaySpeed: 4000, // 자동으로 넘어가는 속도
-		centerMode: true, // 현재 슬라이드를 중앙에 위치시킵니다
-		centerPadding: '200px', // 중앙 슬라이드 양 옆의 패딩입니다. 이 값을 조절하여 좌우 슬라이드의 보이는 부분을 조절하실 수 있습니다.
+		centerMode: true, // 현재 슬라이드를 중앙에 위치
+		centerPadding: '200px', // 중앙 슬라이드 양 옆의 패딩
 
 		prevArrow: <CustomPrevArrow />,
 		nextArrow: <CustomNextArrow />,
@@ -88,21 +89,9 @@ export default function ImageSlider() {
 
 	return (
 		<Slider {...settings} className={styles.container}>
-			<Link href="/">
-				<div className={styles.sliderItem}>
-					<Image src={bookImage} alt="book image" />
-				</div>
-			</Link>
-			<Link href="/">
-				<div className={styles.sliderItem}>
-					<Image src={bookImage} alt="book image" />
-				</div>
-			</Link>
-			<Link href="/">
-				<div className={styles.sliderItem}>
-					<Image src={bookImage} alt="book image" />
-				</div>
-			</Link>
+			<SliderItem />
+			<SliderItem />
+			<SliderItem />
 		</Slider>
 	);
 }
