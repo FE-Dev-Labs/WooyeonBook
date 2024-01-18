@@ -1,0 +1,234 @@
+.container {
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	width: 1300px;
+	margin: 0 auto 30px auto;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.infoWrap {
+	width: 1300px;
+	margin: 0 auto 20px auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.contentInfoWrap {
+	display: flex;
+	align-items: center;
+}
+
+.dot {
+	font-size: 5px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 5px;
+}
+
+.adimBtnWrap {
+	display: flex;
+}
+
+.adimBtnWrap > a {
+	margin-right: 30px;
+	width: 100px;
+	height: 24px;
+	line-height: 24px;
+	border: 1px solid #000;
+	color: black;
+	text-align: center;
+}
+.adimBtnWrap > button {
+	margin-right: 50px;
+	width: 100px;
+	height: 24px;
+	cursor: pointer;
+}
+
+.line {
+	width: 1300px;
+	margin: 0 auto 30px auto;
+	border-bottom: 1px solid #000;
+}
+
+.viewerWrap {
+	width: 1300px;
+	min-height: 400px;
+	margin: 0 auto 30px auto;
+}
+
+/* ToastUIEditor viewer */
+
+.toastuiEditorContents p {
+	font-size: 1.2rem;
+	line-height: 1.8rem;
+	margin-bottom: 1rem;
+}
+
+.toastuiEditorContents h1,
+.toastuiEditorContents h2,
+.toastuiEditorContents h3,
+.toastuiEditorContents h4,
+.toastuiEditorContents h5,
+.toastuiEditorContents h6 {
+	padding: 2rem 0 1rem 0;
+	border-bottom: none;
+	margin: 0;
+}
+
+.toastuiEditorContents h1:first-of-type,
+.toastuiEditorContents h2:first-of-type,
+.toastuiEditorContents h3:first-of-type,
+.toastuiEditorContents h4:first-of-type,
+.toastuiEditorContents h5:first-of-type,
+.toastuiEditorContents h6:first-of-type {
+	padding-top: 0;
+}
+
+.toastuiEditorContents h1 {
+	font-size: 2.4rem;
+}
+.toastuiEditorContents h2 {
+	font-size: 2.1rem;
+}
+.toastuiEditorContents h3 {
+	font-size: 1.9rem;
+}
+.toastuiEditorContents h4 {
+	font-size: 1.7rem;
+}
+.toastuiEditorContents h5 {
+	font-size: 1.5rem;
+}
+.toastuiEditorContents h6 {
+	font-size: 1.3rem;
+}
+
+.toastuiEditorContents ul,
+.toastuiEditorContents ol {
+	margin-bottom: 1rem;
+	padding-left: 2rem;
+}
+
+.toastuiEditorContents li {
+	margin-bottom: 0.5rem;
+}
+
+.toastuiEditorContents li p {
+	margin-bottom: 0;
+}
+
+.toastuiEditorContents li::before {
+	content: '';
+	display: block;
+	margin-top: 0.75rem;
+	margin-left: -1.25rem;
+	width: 0.4375rem;
+	height: 0.4375rem;
+	border-radius: 100%;
+	background-color: black;
+}
+
+/* 댓글 */
+
+.commentHeader {
+	width: 1200px;
+	margin: 0 auto 20px auto;
+	display: flex;
+	justify-content: space-between;
+}
+.commentCount {
+	font-size: 20px;
+	font-weight: bold;
+}
+.commentSortWrap {
+	display: flex;
+	align-items: center;
+}
+.commentSortWrap > button {
+	border: none;
+	background-color: white;
+	cursor: pointer;
+}
+
+.commentCreateWrap {
+	width: 1200px;
+	margin: 0 auto;
+}
+.commentCreateWrap > button {
+	width: 100%;
+	height: 50px;
+	text-align: left;
+	padding: 0 30px;
+	color: #adb5bd;
+	background-color: inherit;
+	border: 1px solid #adb5bd;
+	border-radius: 10px;
+}
+
+.commentEditorBtnWrap > button {
+	width: 100px;
+	height: 30px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+/* 댓글 */
+
+.commentCreateBoxWrap {
+	width: 1300px;
+	margin: 0 auto;
+}
+.commentCreateBoxWrap > textarea {
+	width: 1260px;
+	height: 210px;
+	border: 1px solid #adb5bd;
+	border-radius: 10px;
+	padding: 20px;
+	resize: none;
+	font-size: 20px;
+}
+.commentCreateBoxWrap > div {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.commentCreateBoxWrap > div > button {
+	width: 100px;
+	height: 30px;
+	cursor: pointer;
+	margin-left: 20px;
+}
+/* 댓글 본문 */
+.commnetWrap {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 30px 50px 0 50px;
+}
+.commentInfoWrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.commentInfoWrap > div {
+	display: flex;
+	align-items: center;
+}
+.commentContentWrap {
+	width: 100%;
+}
+.commentContentWrap > p {
+	margin-bottom: 20px;
+}
+.contentBtnWrap {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 30px;
+}
