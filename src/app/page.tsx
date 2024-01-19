@@ -5,6 +5,7 @@ import ThemeRecommendation from '@/components/main/themeRecommendation/ThemeReco
 import BestSeller from '@/components/main/bestSeller/BestSeller';
 import UsedBook from '@/components/main/usedBook/UsedBook';
 import ImageSlider from '@/components/main/imageSlider/ImageSlider';
+import SignupModal from '@/components/auth/signup/SignupModal';
 
 export default function Home() {
 	return (
@@ -17,6 +18,7 @@ export default function Home() {
 				<BestSeller />
 				<UsedBook />
 			</div>
+			{/* <SignupModal /> */}
 		</main>
 	);
 }

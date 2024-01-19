@@ -7,11 +7,13 @@
 	flex-direction: column;
 	position: relative;
 }
+
 .bookImage {
 	width: 200px;
 	height: 275px;
 	border-radius: 10px;
 
+	position: relative;
 	overflow: hidden;
 
 	transition: transform 0.3s ease-in-out;
@@ -38,6 +40,12 @@
 }
 .bookText p:nth-of-type(1) {
 	color: #aaaaaa;
+}
+.addDeleteBook {
+	position: absolute;
+	right: 10px;
+	bottom: 155px;
+	cursor: pointer;
 }
 
 .rank {

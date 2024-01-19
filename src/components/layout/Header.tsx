@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import styles from '@/styles/layout/header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -8,6 +11,8 @@ import accountIcon from '../../../public/layout/account.png';
 import cartIcon from '../../../public/layout/cart.png';
 
 export default function Header() {
+	const [isSignupOpen, setIsSignupOpen] = useState(false);
+
 	const nav = [
 		{ name: '분야', link: '/category' },
 		{ name: '신간도서', link: '/new' },
@@ -22,7 +27,7 @@ export default function Header() {
 			<div className={styles.wrapper}>
 				<div className={styles.topWrapper}>
 					<Link href="/">
-						<Image src={logoIcon} alt="logo" width={120} height={40} />
+						<Image src={logoIcon} alt="logo" width={120} height={22} />
 					</Link>
 					<div className={styles.searchForm}>
 						<input
@@ -46,9 +51,12 @@ export default function Header() {
 						<Link href="/my/like">
 							<Image src={heartIcon} alt="heart" width={25} height={25} />
 						</Link>
-						<Link href="/my">
+						{/* <Link href="/my">
 							<Image src={accountIcon} alt="account" width={25} height={25} />
-						</Link>
+						</Link> */}
+						<div onClick={() => setIsSignupOpen(true)}>
+							<Image src={accountIcon} alt="account" width={25} height={25} />
+						</div>
 						<Link href="/my/cart">
 							<Image src={cartIcon} alt="cart" width={25} height={25} />
 						</Link>
