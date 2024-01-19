@@ -1,0 +1,95 @@
+.Container {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.modalWrapper {
+	width: 950px;
+	height: 550px;
+	border-radius: 10px;
+	gap: 20px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* padding: 2rem; */
+	/* position: relative; */
+	/* text-align: center; */
+
+	background-color: #f4f2e5;
+}
+.modalImage {
+	width: 450px;
+	height: 500px;
+	border-radius: 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: #ffffff;
+}
+.modalContents {
+	width: 450px;
+	height: 500px;
+	border-radius: 10px;
+
+	border: 1px solid black;
+}
+
+.modalContent {
+	background-color: #ffffff;
+	margin: 15% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+.close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.form label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+.form input[type='submit'] {
+	width: 100%;
+	background-color: #4caf50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+}
