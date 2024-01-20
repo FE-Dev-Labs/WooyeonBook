@@ -1,4 +1,4 @@
-import styles from '@/styles/best/category/category.module.css';
+import styles from '@/styles/common/category.module.css';
 
 export default function Category() {
 	const categoryItems = [
