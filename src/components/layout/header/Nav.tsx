@@ -7,7 +7,7 @@ export default function Nav() {
 		{ name: '홈', link: '/' },
 		{ name: '신간도서', link: '/new' },
 		{ name: '테마추천', link: '/theme' },
-		{ name: '베스트셀러', link: '/bestseller' },
+		{ name: '베스트셀러', link: '/best' },
 		{ name: '중고도서', link: '/used' },
 		{ name: '커뮤니티', link: '/community' },
 	];
