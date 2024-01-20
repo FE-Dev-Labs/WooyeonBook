@@ -1,0 +1,25 @@
+/* 카테고리 */
+.categoryBox {
+	width: inherit;
+	height: 130px;
+	column-gap: 5px;
+	row-gap: 5px;
+
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+}
+.categoryItem {
+	width: 125px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: bold;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #f8f8f8;
+}
