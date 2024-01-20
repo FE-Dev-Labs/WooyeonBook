@@ -14,6 +14,12 @@ export default function themePage() {
 					<ThemItem />
 					<ThemItem />
 					<ThemItem />
+					<ThemItem />
+					<ThemItem />
+					<ThemItem />
+					<ThemItem />
+					<ThemItem />
+					<ThemItem />
 				</div>
 			</div>
 		</>
