@@ -9,6 +9,13 @@ export default function bestPage() {
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
 					<Category />
+					<div className={styles.sortBox}>
+						<div className={styles.productAmounts}>상품 (123)</div>
+						<div className={styles.sortItem}>
+							<div>인기순</div>
+							<div>30</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</>

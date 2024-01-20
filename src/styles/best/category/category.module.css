@@ -20,6 +20,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	cursor: pointer;
 
 	background-color: #f8f8f8;
+}
+.categoryItem:hover {
+	color: #ffffff;
+	background-color: #231304;
 }
