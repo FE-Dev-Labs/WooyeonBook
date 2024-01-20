@@ -6,7 +6,7 @@
 }
 .wrapper {
 	width: 1300px;
-	gap: 100px;
+	gap: 50px;
 
 	display: flex;
 	flex-direction: column;
@@ -17,4 +17,26 @@
 }
 .wrapper > :last-child {
 	margin-bottom: 100px;
+}
+
+/* Rank */
+.rankBox {
+	width: inherit;
+	column-gap: 20px;
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+}
+.itemWrapper {
+	height: 500px;
+}
+.rank {
+	width: inherit;
+	height: 90px;
+	font-size: 26px;
+	color: #6594e7;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
