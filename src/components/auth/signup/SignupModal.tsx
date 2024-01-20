@@ -1,4 +1,4 @@
-import styles from '@/styles/auth/signup/signupModal.module.css';
+import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
 import logoIcon from '../../../../public/layout/logo.png';
 import closeIcon from '../../../../public/common/close.png';
@@ -60,7 +60,11 @@ export default function SignupModal() {
 									</label>
 								</div>
 								<div className={styles.buttonWrapper}>
-									<input type="button" value="회원가입" />
+									<input
+										type="button"
+										value="회원가입"
+										className={styles.signupButton}
+									/>
 								</div>
 							</form>
 						</div>
