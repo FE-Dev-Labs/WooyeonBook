@@ -1,0 +1,33 @@
+/* Pagination */
+.paginationWrapper {
+	width: inherit;
+	height: 40px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.paginationBox {
+	width: 600px;
+	height: inherit;
+
+	display: flex;
+	justify-content: space-between;
+}
+.paginationItem {
+	width: 40px;
+	height: inherit;
+	border-radius: 5px;
+	border: 1px solid #aaaaaa;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	color: #aaaaaa;
+}
+.paginationItem:hover {
+	background-color: #6594e7;
+	color: white;
+}

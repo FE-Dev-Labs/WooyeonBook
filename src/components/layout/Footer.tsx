@@ -9,7 +9,7 @@ export default function Footer() {
 			<div className={styles.wrapper}>
 				<div className={styles.logoWrapper}>
 					<Link href="/">
-						<Image src={logoIcon} alt="logo" width={120} height={40} />
+						<Image src={logoIcon} alt="logo" width={200} height={40} />
 					</Link>
 				</div>
 				<div className={styles.textWrapper}>
