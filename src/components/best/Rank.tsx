@@ -1,5 +1,5 @@
 import BookItem from '@/components/common/BookItem';
-import styles from '@/styles/best/rank/rank.module.css';
+import styles from '@/styles/best/rank.module.css';
 
 export default function Rank() {
 	let ranks = [];
