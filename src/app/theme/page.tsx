@@ -5,7 +5,7 @@ import ThemItem from '@/components/common/ThemItem';
 export default function themePage() {
 	return (
 		<>
-			<PageHeader title="추천" />
+			<PageHeader title="테마추천" />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
 					<ThemItem />
