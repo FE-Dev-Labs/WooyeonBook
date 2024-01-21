@@ -3,12 +3,16 @@ import Category from '@/components/common/Category';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
-import styles from '@/styles/used/used.module.css';
+import styles from '@/styles/search/search.module.css';
 
-export default function usedPage() {
+interface searchPageProps {
+	keyword: string;
+}
+
+export default function searchPage({ keyword }: searchPageProps) {
 	return (
 		<>
-			<PageHeader title="중고도서" />
+			<PageHeader title={`'${keyword}' 에 대한 검색 결과`} />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
 					<Category />
