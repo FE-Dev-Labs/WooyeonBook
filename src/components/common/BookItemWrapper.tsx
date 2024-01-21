@@ -1,7 +1,7 @@
-import styles from '@/styles/used/used.module.css';
+import styles from '@/styles/common/bookItemWrapper.module.css';
 import BookItem from '../common/BookItem';
 
-export default function Used() {
+export default function BookItemWrapper() {
 	return (
 		<div className={styles.usedWrapper}>
 			<BookItem />

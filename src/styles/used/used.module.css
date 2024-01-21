@@ -18,17 +18,3 @@
 .wrapper > :last-child {
 	margin-bottom: 100px;
 }
-
-.usedWrapper {
-	width: inherit;
-	column-gap: 20px;
-	row-gap: 50px;
-
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-}
-.itemWrapper {
-	height: 410px;
-
-	display: flex;
-}

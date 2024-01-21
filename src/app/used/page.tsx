@@ -1,8 +1,8 @@
+import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';
 import Pageheader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
-import Used from '@/components/used/Used';
 import styles from '@/styles/used/used.module.css';
 
 export default function usedPage() {
@@ -13,7 +13,7 @@ export default function usedPage() {
 				<div className={styles.wrapper}>
 					<Category />
 					<Sort />
-					<Used />
+					<BookItemWrapper />
 					<Pagination />
 				</div>
 			</div>
