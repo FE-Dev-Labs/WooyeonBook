@@ -3,7 +3,7 @@ import BookItem from '../common/BookItem';
 
 export default function BookItemWrapper() {
 	return (
-		<div className={styles.usedWrapper}>
+		<div className={styles.bookItemWrapper}>
 			<BookItem />
 			<BookItem />
 			<BookItem />
