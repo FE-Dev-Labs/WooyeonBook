@@ -1,5 +1,5 @@
 import CategoryBar from '@/components/category/categoryBar/CategoryBar';
-import CategoryBookItemWrapper from '@/components/category/categoryBookItemWrapper/CategoryBookItem';
+import CategoryBookItemWrapper from '@/components/category/categoryBookItemWrapper/CategoryBookItemWrapper';
 
 import PageHeader from '@/components/common/PageHeader';
 import styles from '@/styles/category/category.module.css';
