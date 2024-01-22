@@ -1,12 +1,3 @@
-.CategoryBookItemWrapper {
-	width: 1025px;
-	margin-top: 50px;
-}
-
-.CategoryBookItemWrapper > div:last-child {
-	margin-bottom: 100px;
-}
-
 .BookItemWrapper {
 	width: inherit;
 	margin: 50px 0 50px 0;

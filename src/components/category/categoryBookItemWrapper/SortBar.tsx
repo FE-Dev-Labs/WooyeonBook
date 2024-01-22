@@ -1,4 +1,4 @@
-import styles from '@/styles/category/categoryBookItem/sortBar.module.css';
+import styles from '@/styles/category/CategoryBookItemWrapper/sortBar.module.css';
 
 export default function SortBar() {
 	return (
