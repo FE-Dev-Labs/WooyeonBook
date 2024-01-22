@@ -1,13 +1,7 @@
-import styles from '@/styles/category/categoryBox/categoryBox.module.css';
+import styles from '@/styles/category/categoryBar/categoryBar.module.css';
 import Link from 'next/link';
 
-export default function CategoryBox() {
-	// const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-	// const handleCategoryClick = (name: string) => {
-	// 	setSelectedCategory(name);
-	// };
-
+export default function CategoryBar() {
 	const categoryItems = [
 		{ name: '전체', link: '' },
 		{ name: '소설', link: '' },

@@ -11,37 +11,3 @@
 	flex-direction: row;
 	justify-content: space-between;
 }
-
-.bookItemWrapper {
-	width: 1025px;
-	margin-top: 50px;
-}
-.sortBox {
-	width: inherit;
-	height: 60px;
-
-	border: solid 1px #ebebeb;
-
-	display: flex;
-	justify-content: end;
-}
-.textBox {
-	width: 250px;
-	height: inherit;
-
-	display: flex;
-	flex-direction: row-reverse;
-	align-items: center;
-}
-.textBox > p {
-	font-size: 12px;
-	margin-right: 25px;
-
-	cursor: pointer;
-
-	color: black;
-	/* color: #999; */
-}
-.textBox > p:hover {
-	text-decoration: underline;
-}
