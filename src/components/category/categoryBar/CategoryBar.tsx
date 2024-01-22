@@ -29,19 +29,21 @@ export default function CategoryBar() {
 	];
 
 	return (
-		<div className={styles.categoryWrapper}>
-			<header className={styles.categoryTitle}>
-				<h1>분야</h1>
-			</header>
-			<ol className={styles.categoryContents}>
-				{categoryItems.map((item, index) => (
-					<li key={index}>
-						<Link href={item.link}>
-							<p>{item.name}</p>
-						</Link>
-					</li>
-				))}
-			</ol>
+		<div>
+			<div className={styles.categoryWrapper}>
+				<header className={styles.categoryTitle}>
+					<h1>분야</h1>
+				</header>
+				<ol className={styles.categoryContents}>
+					{categoryItems.map((item, index) => (
+						<li key={index}>
+							<Link href={item.link}>
+								<p>{item.name}</p>
+							</Link>
+						</li>
+					))}
+				</ol>
+			</div>
 		</div>
 	);
 }
