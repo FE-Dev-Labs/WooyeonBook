@@ -6,7 +6,6 @@
 }
 .wrapper {
 	width: 1300px;
-	gap: 50px;
 
 	display: flex;
 	flex-direction: row;
@@ -14,7 +13,35 @@
 }
 
 .bookItemWrapper {
-	width: 1075px;
-	height: 3000px;
+	width: 1025px;
 	margin-top: 50px;
+}
+.sortBox {
+	width: inherit;
+	height: 60px;
+
+	border: solid 1px #ebebeb;
+
+	display: flex;
+	justify-content: end;
+}
+.textBox {
+	width: 250px;
+	height: inherit;
+
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+}
+.textBox > p {
+	font-size: 12px;
+	margin-right: 25px;
+
+	cursor: pointer;
+
+	color: black;
+	/* color: #999; */
+}
+.textBox > p:hover {
+	text-decoration: underline;
 }
