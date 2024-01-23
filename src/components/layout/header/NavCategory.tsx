@@ -34,7 +34,7 @@ export default function NavCategory() {
 			</div>
 			<div className={styles.showCategoryItemBox}>
 				<Link href={``} className={styles.categoryItem}>
-					분야 전체
+					<p>분야 전체</p>
 				</Link>
 				{category.map((item, index) => (
 					<Link key={index} href={item.link}>

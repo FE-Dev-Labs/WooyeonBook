@@ -8,7 +8,7 @@
 	width: 50px;
 	height: 20px;
 	font-size: 16px;
-	font-weight: bold;
+
 	margin-right: 25px;
 
 	position: relative;
@@ -23,6 +23,7 @@
 	display: flex;
 	position: absolute;
 	cursor: pointer;
+	font-weight: bold;
 }
 .navCategoryTitle:hover {
 	color: #6594e7;
@@ -54,15 +55,18 @@
 }
 
 .showCategoryItemBox {
+	width: 150px;
+	/* height: 450px; */
+	z-index: 100;
+	top: 40px;
+	padding: 15px;
+
 	display: none;
 	flex-direction: column;
 	position: absolute;
-	top: 39px;
-	width: 200px;
-	height: 450px;
-	z-index: 100;
 	background-color: white;
-	padding: 15px;
+
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 
 .navCategoryTitle:hover + .showCategoryItemBox,
@@ -71,14 +75,19 @@
 }
 
 .showCategoryItemBox > a {
-	font-size: 16px;
-	font-weight: bold;
-	padding-bottom: 8px;
-	color: #000000;
+	font-size: 12px;
+	padding-bottom: 12px;
+	color: #666;
+	text-decoration: none;
 }
 .showCategoryItemBox > a:hover {
-	color: #6594e7;
+	/* color: #6594e7; */
+	text-decoration: underline;
 }
 .categoryItem {
-	margin-bottom: 15px;
+	margin-bottom: 8px;
+}
+.categoryItem > p {
+	font-weight: bold;
+	color: #6594e7;
 }
