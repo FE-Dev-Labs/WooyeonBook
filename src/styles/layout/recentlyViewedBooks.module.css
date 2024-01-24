@@ -1,7 +1,7 @@
 /* 최근 본 상품 틀 */
 .container {
 	width: 150px;
-	height: 310px;
+	height: 350px;
 	top: 200px;
 	left: 1690px;
 
@@ -9,13 +9,14 @@
 	border-radius: 10px;
 
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-evenly;
 	position: absolute;
 }
 .wrapper {
 	width: 125px;
-	height: 300px;
+	height: 330px;
 
 	display: flex;
 	flex-direction: column;
@@ -45,4 +46,17 @@
 .booksWrapper > div {
 	width: 60px;
 	height: 80px;
+}
+.buttonWrapper {
+	width: inherit;
+	height: 20px;
+	gap: 5px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.buttonWrapper > p {
+	font-size: 12px;
+	font-weight: bold;
 }
