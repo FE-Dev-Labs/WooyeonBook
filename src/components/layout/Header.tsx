@@ -46,7 +46,7 @@ export default function Header() {
 						<Link href="/my/like">
 							<Image src={heartIcon} alt="heart" width={25} height={25} />
 						</Link>
-						<Link href="/my">
+						<Link href="/mypage">
 							<Image src={accountIcon} alt="account" width={25} height={25} />
 						</Link>
 						<Link href="/my/cart">
