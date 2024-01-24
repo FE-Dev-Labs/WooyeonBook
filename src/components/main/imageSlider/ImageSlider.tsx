@@ -5,8 +5,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import styles from '@/styles/main/imageSlider/imageSlider.module.css';
 import Image from 'next/image';
-import bookImage from '../../../../public/main/book1.jpg';
-import Link from 'next/link';
 import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';

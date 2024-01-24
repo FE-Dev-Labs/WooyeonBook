@@ -1,0 +1,93 @@
+.navigationWrapper {
+	height: inherit;
+
+	display: flex;
+	align-items: center;
+}
+.navigationWrapper > a {
+	width: inherit;
+	height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 25px;
+
+	color: #000000;
+	text-decoration-line: none;
+
+	transition: color 0.2s;
+}
+.navigationWrapper > a:hover {
+	color: #6594e7;
+}
+
+.navigationCatagoryWrap {
+	width: 100px;
+	display: flex;
+	top: -10px;
+	flex-direction: column;
+	position: relative;
+}
+
+.navigationCatagoryItemWrap {
+	height: 40px;
+	display: flex;
+	position: absolute;
+	cursor: pointer;
+}
+.navigationCatagoryItemWrap:hover {
+	color: #6594e7;
+}
+.navigationCatagoryItemWrap > p {
+	height: 20px;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 18px;
+	margin-left: 8px;
+	transition: transform 0.5s ease-in-out; /* 회전에 대한 전환 효과 */
+}
+
+.navigationCatagoryItemWrap:hover > p {
+	color: #6594e7;
+	transform: rotate(180deg);
+}
+
+/* '분야' 텍스트와 화살표의 색상 변경 */
+.navigationCatagoryWrap:hover .navigationCatagoryItemWrap,
+.navigationCatagoryWrap:hover .navigationCatagoryItemWrap > p {
+	color: #6594e7;
+}
+
+/* 화살표의 회전 */
+.navigationCatagoryWrap:hover .navigationCatagoryItemWrap > p {
+	transform: rotate(180deg);
+	transition: transform 0.5s ease-in-out;
+}
+
+.navigationMajorCatagoryWrap {
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	top: 39px;
+	width: 200px;
+	height: 450px;
+	z-index: 100;
+	background-color: white;
+	padding: 15px;
+}
+
+.navigationCatagoryItemWrap:hover + .navigationMajorCatagoryWrap,
+.navigationMajorCatagoryWrap:hover {
+	display: flex;
+}
+.navigationMajorCatagoryWrap > a {
+	font-size: 16px;
+	font-weight: bold;
+	padding-bottom: 8px;
+	color: #000000;
+}
+.navigationMajorCatagoryWrap > a:hover {
+	color: #6594e7;
+}
+.allCatagoryItem {
+	margin-bottom: 15px;
+}

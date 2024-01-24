@@ -1,6 +1,6 @@
 import styles from '@/styles/main/themeRecommendation/themeRecommendation.module.css';
 import CategoryTitle from '../common/CategoryTitle';
-import ThemItem from './ThemItem';
+import ThemItem from '@/components/common/ThemItem';
 
 export default function ThemeRecommendation() {
 	return (

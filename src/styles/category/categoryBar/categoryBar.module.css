@@ -1,0 +1,44 @@
+.categoryWrapper {
+	width: 225px;
+	margin-top: 50px;
+	padding-bottom: 10px;
+
+	border: solid 1px #d8d8d8;
+
+	position: sticky;
+	top: 15px;
+}
+.categoryTitle {
+	width: inherit;
+	height: 30px;
+	font-size: 14px;
+
+	margin-top: 20px;
+}
+.categoryTitle > h1 {
+	margin-left: 20px;
+	font-weight: bold;
+}
+.categoryContents {
+	margin-left: 20px;
+}
+.categoryContents > li {
+	font-size: 12px;
+}
+.categoryContents > li > a {
+	height: 30px;
+
+	display: flex;
+	align-items: center;
+}
+.categoryContents > li > a > p {
+	font-size: 12px;
+
+	cursor: pointer;
+	display: inline;
+
+	color: #666;
+}
+.categoryContents > li > a > p:hover {
+	text-decoration: underline;
+}

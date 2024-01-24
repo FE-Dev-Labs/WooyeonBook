@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '@/styles/main/themeRecommendation/themeItem.module.css';
-import bookImage from '../../../../public/main/book2.jpg';
+import styles from '@/styles/common/themeItem.module.css';
+import bookImage from '../../../public/main/book2.jpg';
 
 export default function ThemItem() {
 	return (
