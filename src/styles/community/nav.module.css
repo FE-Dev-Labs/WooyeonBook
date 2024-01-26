@@ -1,0 +1,15 @@
+.container {
+	width: 100%;
+	display: flex;
+}
+.container > a {
+	height: 36px;
+	font-size: 36px;
+	margin-right: 32px;
+	color: #000000;
+	margin-top: 43px;
+	margin-bottom: 60px;
+}
+.container > a:hover {
+	color: #6594e7;
+}

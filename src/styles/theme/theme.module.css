@@ -1,0 +1,16 @@
+/* 페이지 틀 */
+.container {
+	width: 100vw;
+
+	display: flex;
+	justify-content: center;
+}
+.wrapper {
+	width: 1300px;
+	gap: 50px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}

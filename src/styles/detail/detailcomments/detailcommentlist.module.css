@@ -1,0 +1,26 @@
+.commentListWrapper {
+	height: 70px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-bottom: 8px;
+	margin-bottom: 20px;
+}
+.commentListUserSelection {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.commentListUserName {
+	color: #6594e7;
+}
+.divice {
+	margin: 5px 5px 0 5px;
+	width: 1px;
+	height: 13px;
+	text-indent: -999em;
+	border-right: solid 1px #ccc;
+}
+.commentListDate {
+	color: #666;
+}

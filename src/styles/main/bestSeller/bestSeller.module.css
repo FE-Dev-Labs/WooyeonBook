@@ -1,0 +1,14 @@
+.bestSellerWrapper {
+	width: inherit;
+	height: 470px;
+
+	display: flex;
+	flex-direction: column;
+}
+.bestItemWrapper {
+	width: 1300px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 75px;
+}

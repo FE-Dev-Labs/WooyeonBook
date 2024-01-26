@@ -1,0 +1,93 @@
+.navCategoryWrapper {
+	/* width: 100px;
+	display: flex;
+	top: -10px;
+	flex-direction: column;
+	position: relative; */
+
+	width: 50px;
+	height: 20px;
+	font-size: 16px;
+
+	margin-right: 25px;
+
+	position: relative;
+
+	color: #000000;
+	text-decoration-line: none;
+	transition: color 0.2s;
+}
+
+.navCategoryTitle {
+	height: 40px;
+	display: flex;
+	position: absolute;
+	cursor: pointer;
+	font-weight: bold;
+}
+.navCategoryTitle:hover {
+	color: #6594e7;
+}
+.navCategoryTitle > p {
+	height: 20px;
+	font-size: 11px;
+	font-weight: bold;
+	line-height: 18px;
+	margin-left: 8px;
+	transition: transform 0.5s ease-in-out; /* 회전에 대한 전환 효과 */
+}
+
+.navCategoryTitle:hover > p {
+	color: #6594e7;
+	transform: rotate(180deg);
+}
+
+/* '분야' 텍스트와 화살표의 색상 변경 */
+.navCategoryWrapper:hover .navCategoryTitle,
+.navCategoryWrapper:hover .navCategoryTitle > p {
+	color: #6594e7;
+}
+
+/* 화살표의 회전 */
+.navCategoryWrapper:hover .navCategoryTitle > p {
+	transform: rotate(180deg);
+	transition: transform 0.5s ease-in-out;
+}
+
+.showCategoryItemBox {
+	width: 150px;
+	/* height: 450px; */
+	z-index: 100;
+	top: 40px;
+	padding: 15px 15px 5px 15px;
+
+	display: none;
+	flex-direction: column;
+	position: absolute;
+	background-color: white;
+
+	box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.navCategoryTitle:hover + .showCategoryItemBox,
+.showCategoryItemBox:hover {
+	display: flex;
+}
+
+.showCategoryItemBox > a {
+	font-size: 12px;
+	padding-bottom: 12px;
+	color: #666;
+	text-decoration: none;
+}
+.showCategoryItemBox > a:hover {
+	/* color: #6594e7; */
+	text-decoration: underline;
+}
+.categoryItem {
+	/* margin-bottom: 8px; */
+}
+.categoryItem > p {
+	font-weight: bold;
+	color: #6594e7;
+}
