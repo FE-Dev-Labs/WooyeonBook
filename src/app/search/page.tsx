@@ -15,7 +15,7 @@ export default function searchPage({ keyword }: searchPageProps) {
 			<PageHeader title={`'${keyword}' 에 대한 검색 결과`} />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
-					<Category />
+					{/* <Category /> */}
 					<Sort page="search" />
 					<BookItemWrapper />
 					<Pagination />
