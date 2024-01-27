@@ -1,6 +1,6 @@
-import styles from '@/styles/main/bestSeller/bestSeller.module.css';
-import CategoryTitle from '../common/CategoryTitle';
+import styles from '@/styles/common/bestSeller.module.css';
 import BookItem from '@/components/common/BookItem';
+import CategoryTitle from '../main/common/CategoryTitle';
 
 export default function BestSeller() {
 	return (
