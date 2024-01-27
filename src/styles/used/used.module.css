@@ -18,3 +18,9 @@
 .wrapper > :last-child {
 	margin-bottom: 100px;
 }
+
+.usedLine {
+	width: inherit;
+	height: 1px;
+	background-color: #aaa;
+}

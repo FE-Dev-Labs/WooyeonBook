@@ -1,3 +1,4 @@
+import BestSeller from '@/components/common/BestSeller';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';
 import PageHeader from '@/components/common/PageHeader';
@@ -11,7 +12,9 @@ export default function usedPage() {
 			<PageHeader title="중고도서" />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
-					<Category />
+					<BestSeller page="used" height="500px" />
+					<div className={styles.usedLine} />
+					{/* <Category /> */}
 					<Sort />
 					<BookItemWrapper />
 					<Pagination />
