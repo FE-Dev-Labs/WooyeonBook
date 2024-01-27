@@ -1,12 +1,21 @@
 import styles from '@/styles/common/sort.module.css';
 
-export default function Sort() {
+interface SortProps {
+	page?: string;
+}
+
+export default function Sort({ page }: SortProps) {
 	return (
 		<div className={styles.sortBox}>
-			<div className={styles.productAmounts}>상품 (123)</div>
+			{page === 'search' ? (
+				<div className={styles.productAmounts}>상품 (123)</div>
+			) : (
+				<div style={{ visibility: 'hidden' }}></div>
+			)}
 			<div className={styles.sortItem}>
-				<div>인기순</div>
-				<div>30</div>
+				<div>출간일</div>
+				<div>이름순</div>
+				<div>판매순</div>
 			</div>
 		</div>
 	);

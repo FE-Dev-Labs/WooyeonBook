@@ -15,6 +15,9 @@
 .wrapper > :first-child {
 	margin-top: 50px;
 }
+.wrapper > :nth-child(4) {
+	margin-top: -35px;
+}
 .wrapper > :last-child {
 	margin-bottom: 100px;
 }

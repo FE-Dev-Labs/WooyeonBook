@@ -16,7 +16,7 @@ export default function searchPage({ keyword }: searchPageProps) {
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
 					<Category />
-					<Sort />
+					<Sort page="search" />
 					<BookItemWrapper />
 					<Pagination />
 				</div>

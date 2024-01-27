@@ -8,34 +8,32 @@
 	align-items: center;
 	justify-content: space-between;
 
-	border: 1px solid #aaaaaa;
+	/* border: 1px solid #aaaaaa; */
 }
 .productAmounts {
 	width: 150px;
 	height: 36px;
 	margin-left: 20px;
-	font-size: 20px;
+	font-size: 16px;
 
 	display: flex;
 	align-items: center;
 }
 .sortItem {
 	width: 220px;
-	margin-right: 20px;
 
 	display: flex;
-	justify-content: space-between;
 }
 .sortItem > div {
 	width: 100px;
 	height: 36px;
 	border-radius: 10px;
-	font-size: 18px;
+	font-size: 14px;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 
-	border: 1px solid #aaaaaa;
+	/* border: 1px solid #aaaaaa; */
 }
