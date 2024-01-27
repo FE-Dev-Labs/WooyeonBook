@@ -1,9 +1,11 @@
 .container {
 	width: clamp(500px, 90%, 1300px);
-	margin: 50px auto;
+	margin: 0px auto;
 }
 .wrapper {
 	display: flex;
+	height: 150px;
+	align-items: center;
 }
 .userName {
 	font-size: 25px;

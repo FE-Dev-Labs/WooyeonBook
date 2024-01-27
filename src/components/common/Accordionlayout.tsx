@@ -8,7 +8,9 @@ import Detailexplanation from '../detail/detaildata/Detailexplanation';
 import Detailinformation from '../detail/detaildata/Detailinformation';
 import Detailsustainability from '../detail/detaildata/Detailsustainability';
 import Detailcomment from './../detail/detailcomments/Detailcomment';
-import Mypost from '../mypage/mypost/Mypost';
+import Myprofile from './../mypage/profile/Myprofile';
+import Myorderlist from '../mypage/myorderlist/Myorderlist';
+import Communitynav from './Communitynav';
 
 interface mypageProps {
 	isMypage: boolean;
@@ -65,6 +67,7 @@ export default function Accordionlayout({ isMypage, ...book }: mypageProps) {
 								)}
 							</div>
 
+							{/*-----------디테일 페이지-----------*/}
 							{/*설명란 */}
 							{isItemOpen && item.title === '설명' && (
 								<Detailexplanation {...book} />
@@ -84,9 +87,18 @@ export default function Accordionlayout({ isMypage, ...book }: mypageProps) {
 							{/*댓글란 */}
 							{isItemOpen && item.title === '한줄평' && <Detailcomment />}
 
-							{/*마이페이지란 */}
+							{/*-----------마이 페이지-----------*/}
+							{/* 내가쓴글란 */}
 							{isItemOpen && item.title === '내가쓴글' && isMypage && (
-								<Mypost />
+								<Communitynav />
+							)}
+							{/* 회원정보란 */}
+							{isItemOpen && item.title === '회원정보' && isMypage && (
+								<Myprofile />
+							)}
+							{/* 회원정보란 */}
+							{isItemOpen && item.title === '주문내역' && isMypage && (
+								<Myorderlist />
 							)}
 						</div>
 					);

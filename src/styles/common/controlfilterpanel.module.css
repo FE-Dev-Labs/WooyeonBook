@@ -1,0 +1,23 @@
+.container {
+	/* width: 1300px; */
+	justify-content: space-between;
+	display: flex;
+}
+.optionBtnWrap {
+	display: flex;
+}
+.sortOptionBtn {
+	width: 150px;
+	margin-right: 20px;
+}
+.optionBtn {
+	width: 150px;
+}
+.container > a {
+	width: 300px;
+	height: 36px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 36px;
+}

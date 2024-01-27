@@ -9,8 +9,8 @@ export default function page() {
 				<div className={styles.wrapper}>
 					<h1 className={styles.userName}>박진양님, </h1>
 					<h1 className={styles.userNameText}>안녕하세요!</h1>
-					<Accordionlayout isMypage={true} />
 				</div>
+				<Accordionlayout isMypage={true} />
 			</div>
 		</div>
 	);
