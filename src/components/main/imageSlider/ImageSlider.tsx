@@ -8,6 +8,7 @@ import Image from 'next/image';
 import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
+import arrowStyles from '@/styles/main/imageSlider/customArrow.module.css';
 
 interface ArrowProps {
 	className?: string;
@@ -27,19 +28,7 @@ export default function ImageSlider() {
 		const { className, onClick } = props;
 		return (
 			<div
-				className={className}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					position: 'absolute',
-					left: 180,
-					width: 40,
-					height: 40,
-					borderRadius: '50%',
-					backgroundColor: '#F4F2E5',
-					zIndex: 1,
-				}}
+				className={`${className} ${arrowStyles.arrow} ${arrowStyles.arrowPrev}`}
 				onClick={onClick}>
 				<Image src={prevArrow} alt="prev" width={16} height={16} />
 			</div>
@@ -49,19 +38,7 @@ export default function ImageSlider() {
 		const { className, onClick } = props;
 		return (
 			<div
-				className={className}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					position: 'absolute',
-					right: 180,
-					width: 40,
-					height: 40,
-					borderRadius: '50%',
-					backgroundColor: '#F4F2E5',
-					zIndex: 1,
-				}}
+				className={`${className} ${arrowStyles.arrow} ${arrowStyles.arrowNext}`}
 				onClick={onClick}>
 				<Image src={nextArrow} alt="next" width={16} height={16} />
 			</div>
