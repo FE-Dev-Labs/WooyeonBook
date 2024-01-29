@@ -11,6 +11,8 @@ import Detailcomment from './../detail/detailcomments/Detailcomment';
 import Myprofile from './../mypage/profile/Myprofile';
 import Myorderlist from '../mypage/myorderlist/Myorderlist';
 import Communitynav from './Communitynav';
+import { testdatalist } from '@/apis/testdatalist';
+import Postaccordionlayout from './Postaccordionlayout';
 
 interface mypageProps {
 	isMypage: boolean;
@@ -32,7 +34,6 @@ export default function Accordionlayout({ isMypage, ...book }: mypageProps) {
 			];
 
 	const { toggleAccordion, isOpen } = Usetogglelist();
-
 	return (
 		<div className={styles.accordionBackColor}>
 			<div className={styles.accordionContainer}>
@@ -90,7 +91,18 @@ export default function Accordionlayout({ isMypage, ...book }: mypageProps) {
 							{/*-----------마이 페이지-----------*/}
 							{/* 내가쓴글란 */}
 							{isItemOpen && item.title === '내가쓴글' && isMypage && (
-								<Communitynav />
+								<>
+									<Communitynav />
+									{testdatalist.map((list) => {
+										return (
+											<div className={styles.postAccordionContainer}>
+												<div className={styles.postAccordionWrapper}>
+													<Postaccordionlayout list={list} />
+												</div>
+											</div>
+										);
+									})}
+								</>
 							)}
 							{/* 회원정보란 */}
 							{isItemOpen && item.title === '회원정보' && isMypage && (

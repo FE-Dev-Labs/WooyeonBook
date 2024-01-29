@@ -2,6 +2,7 @@ import styles from '@/styles/detail/detaildescription/detaildescription.module.c
 import Link from 'next/link';
 import Detailquantity from './Detailquantity';
 import Detailtotalquantity from './Detailtotalquantity';
+import Image from 'next/image';
 
 export default function Detaildescription({ bookInfo }: { bookInfo: any }) {
 	// 작가, 옮긴이 함수
@@ -38,7 +39,13 @@ export default function Detaildescription({ bookInfo }: { bookInfo: any }) {
 			<div className={styles.Wrapper}>
 				<div className={styles.topLeft}>
 					<div className={styles.imgArea}>
-						<img className={styles.img} src={bookInfo.cover} alt="메인이미지" />
+						<Image
+							className={styles.img}
+							src={bookInfo.cover}
+							alt="메인이미지"
+							width={302}
+							height={528}
+						/>
 					</div>
 				</div>
 				{/*제목, 저자, 옮김이, 출판소, 날짜 */}

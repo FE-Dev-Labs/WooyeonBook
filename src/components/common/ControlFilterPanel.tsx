@@ -37,6 +37,10 @@ export default function ControlFilterPanel({ state }: controlProps) {
 		}
 	};
 
+	if (state === 'likes') {
+		return null; // null을 반환하여 컴포넌트 자체를 렌더링하지 않도록 처리
+	}
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.optionBtnWrap}>
@@ -46,6 +50,7 @@ export default function ControlFilterPanel({ state }: controlProps) {
 					defaultValue={sortOptions[0]}
 					isSearchable={false}
 				/>
+
 				{state === 'bookReport' ? null : (
 					<Select
 						className={styles.optionBtn}

@@ -1,4 +1,4 @@
-import styles from '@/styles/mypage/mypost/mypost.module.css';
+import styles from '@/styles/common/communitynav.module.css';
 import { useState } from 'react';
 import ControlFilterPanel from './ControlFilterPanel';
 
@@ -57,6 +57,19 @@ export default function Communitynav() {
 								: styles.mypagePostBtn
 						}>
 						팝니다
+					</button>
+				</div>
+				<div className={styles.btnWrapper}>
+					<button
+						onClick={() => {
+							setState('likes');
+						}}
+						className={
+							state === 'likes'
+								? styles.mypagePostBtnActive
+								: styles.mypagePostBtn
+						}>
+						찜한 목록
 					</button>
 				</div>
 			</div>

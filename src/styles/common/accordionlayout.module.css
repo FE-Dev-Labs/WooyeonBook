@@ -34,3 +34,11 @@
 .accordionTitle > h2 {
 	font-size: 25px;
 }
+.postAccordionContainer {
+	margin-bottom: 8px;
+}
+.postAccordionWrapper {
+	background-color: #f8f8f8;
+	border-radius: 16px;
+	margin-bottom: 8px;
+}

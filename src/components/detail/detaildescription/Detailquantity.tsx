@@ -1,18 +1,27 @@
 import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+import Image from 'next/image';
+import minus from '../../../../public/detail/BsDashCircle.png';
+import pluse from '../../../../public/detail/BsPlusCircle.png';
 
 export default function Detailquantity() {
 	return (
 		<div className={styles.quantitySelectionWrap}>
 			<div className={styles.quantityimgArea}>
-				<img
+				<Image
 					className={styles.quantityMinusImg}
-					src={'/detail/BsDashCircle.png'}
+					alt="Minus"
+					src={minus}
+					width={20}
+					height={20}
 				/>
 				<input className={styles.quantityInput} />
 
-				<img
+				<Image
 					className={styles.quantityPlusImg}
-					src={'/detail/BsPlusCircle.png'}
+					alt="Pluse"
+					src={pluse}
+					width={20}
+					height={20}
 				/>
 			</div>
 		</div>
