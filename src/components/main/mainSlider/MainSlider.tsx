@@ -3,12 +3,12 @@
 import dynamic from 'next/dynamic';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from '@/styles/main/imageSlider/imageSlider.module.css';
+import styles from '@/styles/main/mainSlider/mainSlider.module.css';
 import Image from 'next/image';
 import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
-import arrowStyles from '@/styles/main/imageSlider/customArrow.module.css';
+import arrowStyles from '@/styles/main/mainSlider/customArrow.module.css';
 
 interface ArrowProps {
 	className?: string;
@@ -16,7 +16,7 @@ interface ArrowProps {
 	onClick?: () => void;
 }
 
-export default function ImageSlider() {
+export default function MainSlider() {
 	// 슬라이더 다이나믹 라우팅 적용
 	const Slider = dynamic(() => import('react-slick'), {
 		ssr: false,
