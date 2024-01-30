@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 export default function CommunityLayout({ children }: BasicLayoutType) {
 	return (
 		<div className={styles.container}>
+			<div></div>
 			<div className={styles.contentWrap}>
 				<Nav />
 				<Search />
