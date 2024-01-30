@@ -1,5 +1,5 @@
 .container {
-	width: 1300px;
+	width: 1100px;
 	height: 36px;
 	display: flex;
 	justify-content: space-between;
@@ -9,7 +9,7 @@
 
 .searchWrap {
 	position: relative;
-	width: 950px;
+	width: 800px;
 	height: 36px;
 	display: flex;
 	align-items: center;
@@ -37,4 +37,19 @@
 	border-radius: 10px;
 	text-align: center;
 	line-height: 36px;
+}
+
+@media screen and (min-width: 2000px) {
+	.container {
+		width: 1300px;
+	}
+	.searchWrap {
+		width: 1000px;
+	}
+	.searchInput {
+		width: calc(100% - 50px);
+	}
+	.searchLink {
+		width: 200px;
+	}
 }
