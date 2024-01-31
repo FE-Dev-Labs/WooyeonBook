@@ -14,6 +14,7 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 	const communityUrl = (to: string) => {
 		return `/community/${to}`;
 	};
+	const popularData = [1, 2, 3, 4];
 	return (
 		<>
 			<header className={styles.headerWrap}>
@@ -35,7 +36,27 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 						</div>
 					</div>
 					<div>content 영역</div>
-					<div>인기글 영역</div>
+					<div className={styles.weeklyPopularWrap}>
+						<div>
+							<h3>주간 인기글</h3>
+							<Link href={``}>
+								<div className={styles.weeklyPopularContent}>
+									aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+								</div>
+								<div className={styles.weeklyPopularWriter}>작성자</div>
+							</Link>
+							{popularData.map((data, index) => {
+								return (
+									<Link href={``} key={index}>
+										<div className={styles.weeklyPopularContent}>
+											aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+										</div>
+										<div className={styles.weeklyPopularWriter}>작성자</div>
+									</Link>
+								);
+							})}
+						</div>
+					</div>
 				</div>
 				<div></div>
 				{/* <div></div>

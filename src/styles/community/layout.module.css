@@ -59,20 +59,40 @@
 .communityNavWrap > div > a:hover {
 	color: #ef1717;
 }
-/* .popularContentWrap {
-	position: sticky;
-	top: 20px;
-	margin-top: 40px;
-	background: lightgray;
-	width: 260px;
-	height: 500px;
+/* 주간 인기글 영역 */
+
+.weeklyPopularWrap {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
 }
-@media screen and (min-width: 2000px) {
-	.container {
-		grid-template-columns: 1fr 1300px 1fr;
-	}
-	.popularContentWrap {
-		margin-left: 100px;
-		width: 350px;
-	}
-} */
+.weeklyPopularWrap > div {
+	width: 280px;
+	height: 460px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #b5bdc4;
+	border-radius: 5px;
+	padding: 20px 10px;
+}
+.weeklyPopularWrap > div > h3 {
+	font-size: 16px;
+	margin-bottom: 20px;
+	color: #b5bdc4;
+}
+.weeklyPopularWrap > div > a {
+	font-size: 16px;
+	margin-bottom: 20px;
+	color: #b5bdc4;
+	width: 280px;
+	word-wrap: break-word;
+}
+.weeklyPopularWrap > div > a:visited {
+	color: black;
+}
+.weeklyPopularContent {
+	margin-bottom: 10px;
+}
+.weeklyPopularWriter {
+	margin-bottom: 15px;
+}
