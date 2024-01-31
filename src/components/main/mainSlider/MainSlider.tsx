@@ -18,9 +18,9 @@ interface ArrowProps {
 
 export default function MainSlider() {
 	// 슬라이더 다이나믹 라우팅 적용
-	const Slider = dynamic(() => import('react-slick'), {
+	const MainSlider = dynamic(() => import('react-slick'), {
 		ssr: false,
-		loading: () => <div className={styles.container}>로딩중...</div>,
+		loading: () => <div className={styles.mainSliderWrapper}>로딩중...</div>,
 	});
 
 	// 슬라이더 세팅에 스타일링을 위한 좌우 화살표 추가
@@ -63,10 +63,10 @@ export default function MainSlider() {
 	};
 
 	return (
-		<Slider {...settings} className={styles.container}>
+		<MainSlider {...settings} className={styles.mainSliderWrapper}>
 			<SliderItem />
 			<SliderItem />
 			<SliderItem />
-		</Slider>
+		</MainSlider>
 	);
 }

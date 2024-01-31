@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
-import searchIcon from '../../../../public/searchIcon.png';
+import searchIcon from '../../../../../public/searchIcon.png';
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
