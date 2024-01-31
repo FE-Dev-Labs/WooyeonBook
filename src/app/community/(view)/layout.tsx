@@ -11,9 +11,34 @@ export const metadata: Metadata = {
 };
 
 export default function CommunityLayout({ children }: BasicLayoutType) {
+	const communityUrl = (to: string) => {
+		return `/community/${to}`;
+	};
 	return (
-		<div className={styles.container}>
-			<div></div>
+		<>
+			<header className={styles.headerWrap}>
+				<div>
+					<h2>독후감</h2>
+					<p>글쓰기 실력을 늘려보세요</p>
+				</div>
+			</header>
+			<div className={styles.container}>
+				<div></div>
+				<div className={styles.mainWrap}>
+					<div className={styles.communityNavWrap}>
+						<div>
+							<h3>Coummunity</h3>
+							<Link href={communityUrl('bookReport')}>독후감</Link>
+							<Link href={communityUrl('meeting')}>모임</Link>
+							<Link href={communityUrl('buyingBook')}>삽니다</Link>
+							<Link href={communityUrl('sellingBook')}>팝니다</Link>
+						</div>
+					</div>
+					<div>content 영역</div>
+					<div>인기글 영역</div>
+				</div>
+				<div></div>
+				{/* <div></div>
 			<div className={styles.contentWrap}>
 				<Nav />
 				<Search />
@@ -33,7 +58,8 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 						<div>작성일</div>
 					</div>
 				</Link>
+			</div> */}
 			</div>
-		</div>
+		</>
 	);
 }
