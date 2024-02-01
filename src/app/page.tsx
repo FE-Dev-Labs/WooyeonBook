@@ -11,7 +11,7 @@ import MainSlider from '@/components/main/mainSlider/MainSlider';
 export default function Home() {
 	return (
 		<main className={styles.container}>
-			<RecentlyViewedBooks />
+			{/* <RecentlyViewedBooks /> */}
 			<div className={styles.wrapper}>
 				<MainSlider />
 				<NewBook />
