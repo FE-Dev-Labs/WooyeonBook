@@ -28,8 +28,8 @@ export default function CategorySlider() {
 	return (
 		<CategorySlider {...settings} className={styles.categorySliderWrapper}>
 			<div className={styles.sliderItem}>
-				<div>이미지</div>
-				<div>텍스트</div>
+				<div className={styles.ImageBox}>이미지</div>
+				<div className={styles.textBox}>텍스트</div>
 			</div>
 			<div>2</div>
 			<div>3</div>
