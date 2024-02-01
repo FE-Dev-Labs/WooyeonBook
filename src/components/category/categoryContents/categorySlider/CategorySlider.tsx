@@ -8,6 +8,7 @@ import prevArrow from '../../../../../public/common/arrowLeft.png';
 import nextArrow from '../../../../../public/common/arrowRight.png';
 import Image from 'next/image';
 import arrowStyles from '@/styles/category/categoryContents/categorySlider/customArrow.module.css';
+import SliderItem from './SliderItem';
 
 interface ArrowProps {
 	className?: string;
@@ -53,7 +54,7 @@ export default function CategorySlider() {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		autoplay: true,
-		autoplaySpeed: 4000,
+		autoplaySpeed: 5000,
 
 		prevArrow: <CustomPrevArrow />,
 		nextArrow: <CustomNextArrow />,
@@ -61,11 +62,9 @@ export default function CategorySlider() {
 
 	return (
 		<CategorySlider {...settings} className={styles.categorySliderWrapper}>
-			<div className={styles.sliderItem}>
-				<div className={styles.ImageBox}>이미지</div>
-				<div className={styles.textBox}>텍스트</div>
-			</div>
-			<div>2</div>
+			<SliderItem />
+			<SliderItem />
+			<SliderItem />
 		</CategorySlider>
 	);
 }

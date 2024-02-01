@@ -1,24 +1,5 @@
 .categorySliderWrapper {
-	width: 100%;
+	width: 1025px;
 	height: 250px;
 	margin-bottom: 50px;
-}
-
-.sliderItem {
-	width: inherit;
-	height: 250px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	background-color: yellow;
-}
-.imageBox {
-	width: 50%;
-	height: 100%;
-}
-.textBox {
-	width: 50%;
-	height: 100%;
 }
