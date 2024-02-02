@@ -1,8 +1,10 @@
 .container {
 	width: 100vw;
 
-	display: flex;
-	justify-content: center;
+	/* display: flex;
+	justify-content: center; */
+	display: grid;
+	grid-template-columns: 1fr 1300px 1fr;
 }
 .wrapper {
 	width: 1300px;
@@ -14,6 +16,9 @@
 }
 .wrapper > :first-child {
 	margin-top: 50px;
+}
+.wrapper > :nth-child(4) {
+	margin-top: -35px;
 }
 .wrapper > :last-child {
 	margin-bottom: 100px;

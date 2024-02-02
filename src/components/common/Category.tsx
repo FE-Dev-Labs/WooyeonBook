@@ -28,10 +28,13 @@ export default function Category() {
 	];
 
 	return (
-		<div className={styles.categoryBox}>
-			{categoryItems.map((item) => (
-				<div className={styles.categoryItem}>{item}</div>
-			))}
-		</div>
+		<>
+			<div className={styles.categoryBox}>
+				{categoryItems.map((item) => (
+					<div className={styles.categoryItem}>{item}</div>
+				))}
+			</div>
+			<div className={styles.categoryBottom}></div>
+		</>
 	);
 }
