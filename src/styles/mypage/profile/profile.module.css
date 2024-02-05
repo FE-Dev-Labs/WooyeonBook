@@ -32,14 +32,14 @@
 	justify-content: space-between;
 }
 .profileEditBtn {
-	line-height: 5px;
-	margin-right: 10px;
-	margin-top: 15px;
+	/* line-height: 5px; */
+	/* margin-right: 10px;
+	margin-top: 15px; */
 	border: 0;
 	padding: 10px 15px;
 	border-radius: 10px;
 	cursor: pointer;
 	background-color: #6594e7;
 	color: #fff;
-	height: 30px;
+	height: 40px;
 }

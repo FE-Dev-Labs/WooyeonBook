@@ -9,7 +9,7 @@ import Detailinformation from '../detail/detaildata/Detailinformation';
 import Detailsustainability from '../detail/detaildata/Detailsustainability';
 import Detailcomment from './../detail/detailcomments/Detailcomment';
 import Myprofile from './../mypage/profile/Myprofile';
-import Myorderlist from '../mypage/myorderlist/Myorderlist';
+import Myorder from '../mypage/myorder/Myorder';
 import Communitynav from './Communitynav';
 import { testdatalist } from '@/apis/testdatalist';
 import Postaccordionlayout from './Postaccordionlayout';
@@ -110,7 +110,7 @@ export default function Accordionlayout({ isMypage, ...book }: mypageProps) {
 							)}
 							{/* 회원정보란 */}
 							{isItemOpen && item.title === '주문내역' && isMypage && (
-								<Myorderlist />
+								<Myorder />
 							)}
 						</div>
 					);

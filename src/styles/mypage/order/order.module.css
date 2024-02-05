@@ -1,0 +1,44 @@
+.orderDateContainer {
+	padding: 0px 20px 20px 0px;
+}
+.orderAccordionContainer {
+	margin-bottom: 8px;
+}
+.orderAccordionWrapper {
+	background-color: #f8f8f8;
+	border-radius: 16px;
+	margin-bottom: 8px;
+}
+.orderNav {
+	display: flex;
+	/* justify-content: space-evenly; */
+	border-bottom: solid 1px #d8d8d8;
+}
+.orderNav > li {
+	font-weight: bold;
+	padding: 20px;
+}
+.orderNav > li:first-child {
+	margin-left: 110px;
+}
+.orderNav > li:nth-child(2) {
+	margin-left: 300px;
+}
+.orderNav > li:nth-child(3) {
+	margin-left: 40px;
+}
+.orderNav > li:nth-child(4) {
+	margin-left: 30px;
+}
+.orderNav > li:nth-child(5) {
+	margin-left: 30px;
+}
+/* .orderNav > li:first-child {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+	 
+} */

@@ -9,6 +9,18 @@ export const testdatalist = [
 		view: 20,
 		like: 50,
 		comments: 2,
+		orderlist: [
+			{
+				date: '2024-01-11',
+				title: '베르베르씨, 오늘은 뭘 쓰세요?',
+				author: '베르베르',
+				translator: '전미화',
+				originprice: 20000,
+				saleprice: 18000,
+				quantity: 1,
+				totalprice: 36000,
+			},
+		],
 	},
 	{
 		id: 2,
@@ -20,6 +32,18 @@ export const testdatalist = [
 		view: 10,
 		like: 10,
 		comments: 4,
+		orderlist: [
+			{
+				date: '2024-01-11',
+				title: '베르베르씨, 오늘은 뭘 쓰세요?',
+				author: '베르베르',
+				translator: '전미화',
+				originprice: 20000,
+				saleprice: 18000,
+				quantity: 1,
+				totalprice: 36000,
+			},
+		],
 	},
 	{
 		id: 3,
@@ -31,6 +55,18 @@ export const testdatalist = [
 		view: 10,
 		like: 10,
 		comments: 10,
+		orderlist: [
+			{
+				date: '2024-01-11',
+				title: '베르베르씨, 오늘은 뭘 쓰세요?',
+				author: '베르베르',
+				translator: '전미화',
+				originprice: 20000,
+				saleprice: 18000,
+				quantity: 1,
+				totalprice: 36000,
+			},
+		],
 	},
 	{
 		id: 4,
@@ -42,6 +78,18 @@ export const testdatalist = [
 		view: 20,
 		like: 50,
 		comments: 2,
+		orderlist: [
+			{
+				date: '2024-01-11',
+				title: '베르베르씨, 오늘은 뭘 쓰세요?',
+				author: '베르베르',
+				translator: '전미화',
+				originprice: 20000,
+				saleprice: 18000,
+				quantity: 1,
+				totalprice: 36000,
+			},
+		],
 	},
 	{
 		id: 5,
@@ -53,5 +101,17 @@ export const testdatalist = [
 		view: 20,
 		like: 50,
 		comments: 2,
+		orderlist: [
+			{
+				date: '2024-01-11',
+				title: '베르베르씨, 오늘은 뭘 쓰세요?',
+				author: '베르베르',
+				translator: '전미화',
+				originprice: 20000,
+				saleprice: 18000,
+				quantity: 1,
+				totalprice: 36000,
+			},
+		],
 	},
 ];
