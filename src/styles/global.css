@@ -124,6 +124,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* 메인 슬라이더 세팅 */
 .slick-prev:before,
 .slick-next:before {
 	display: none !important;

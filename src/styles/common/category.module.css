@@ -28,3 +28,12 @@
 	color: #ffffff;
 	background-color: #231304;
 }
+
+/* 카테고리 박스 하단 줄 */
+
+.categoryBottom {
+	width: inherit;
+	height: 1px;
+
+	background-color: #aaa;
+}
