@@ -34,6 +34,8 @@
 /* content 영역 */
 .contentWrap {
 	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
 }
 /* 주간 인기글 영역 */
 

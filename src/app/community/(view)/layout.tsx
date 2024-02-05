@@ -28,6 +28,7 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 				<div className={styles.mainWrap}>
 					<div className={styles.contentWrap}>
 						<Nav />
+						<Search />
 					</div>
 					<div className={styles.weeklyPopularWrap}>
 						<div>
