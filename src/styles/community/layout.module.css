@@ -27,37 +27,13 @@
 .mainWrap {
 	display: grid;
 	width: 100%;
-	grid-template-columns: 1fr 700px 1fr;
+	grid-template-columns: 970px 1fr;
+	row-gap: 30px;
 }
 
-/* 링크 영역 */
-.communityNavWrap {
-	display: flex;
-	justify-content: center;
+/* content 영역 */
+.contentWrap {
 	margin-top: 30px;
-}
-
-.communityNavWrap > div {
-	width: 200px;
-	height: 300px;
-	display: flex;
-	flex-direction: column;
-}
-.communityNavWrap > div > h3 {
-	font-size: 16px;
-	margin-bottom: 20px;
-	color: #b5bdc4;
-}
-.communityNavWrap > div > a {
-	font-size: 20px;
-	margin-bottom: 30px;
-	padding-left: 10px;
-}
-.communityNavWrap > div > a:visited {
-	color: black;
-}
-.communityNavWrap > div > a:hover {
-	color: #ef1717;
 }
 /* 주간 인기글 영역 */
 

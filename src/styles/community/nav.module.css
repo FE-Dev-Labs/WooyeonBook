@@ -1,15 +1,31 @@
 .container {
 	width: 100%;
 	display: flex;
+	justify-content: space-between;
 }
-.container > a {
-	height: 36px;
-	font-size: 36px;
-	margin-right: 32px;
-	color: #000000;
-	margin-top: 43px;
-	margin-bottom: 60px;
+/* Link button */
+.linkWrap {
+	display: flex;
+	align-items: center;
 }
-.container > a:hover {
-	color: #6594e7;
+
+.linkItem {
+	margin-right: 10px;
+	width: 100px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+}
+.linkItem:hover {
+	background-color: #6594e7;
+	color: #ffffff;
+}
+/* write button */
+.writeBtn {
+	width: 100px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	background-color: #6594e7;
+	color: #ffffff;
 }

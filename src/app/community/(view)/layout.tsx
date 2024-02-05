@@ -26,16 +26,9 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 			<div className={styles.container}>
 				<div></div>
 				<div className={styles.mainWrap}>
-					<div className={styles.communityNavWrap}>
-						<div>
-							<h3>Coummunity</h3>
-							<Link href={communityUrl('bookReport')}>독후감</Link>
-							<Link href={communityUrl('meeting')}>모임</Link>
-							<Link href={communityUrl('buyingBook')}>삽니다</Link>
-							<Link href={communityUrl('sellingBook')}>팝니다</Link>
-						</div>
+					<div className={styles.contentWrap}>
+						<Nav />
 					</div>
-					<div>content 영역</div>
 					<div className={styles.weeklyPopularWrap}>
 						<div>
 							<h3>주간 인기글</h3>
