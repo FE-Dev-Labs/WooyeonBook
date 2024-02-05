@@ -8,17 +8,32 @@ import Detailexplanation from '../detail/detaildata/Detailexplanation';
 import Detailinformation from '../detail/detaildata/Detailinformation';
 import Detailsustainability from '../detail/detaildata/Detailsustainability';
 import Detailcomment from './../detail/detailcomments/Detailcomment';
+import Myprofile from './../mypage/profile/Myprofile';
+import Myorder from '../mypage/myorder/Myorder';
+import Communitynav from './Communitynav';
+import { testdatalist } from '@/apis/testdatalist';
+import Postaccordionlayout from './Postaccordionlayout';
 
-export default function Accordionlayout({ ...book }) {
-	const accordiontitle = [
-		{ title: '설명', id: 1 },
-		{ title: '정보고시', id: 2 },
-		{ title: '지속가능성', id: 3 },
-		{ title: '한줄평', id: 4 },
-	];
+interface mypageProps {
+	isMypage: boolean;
+}
+
+export default function Accordionlayout({ isMypage, ...book }: mypageProps) {
+	// isMpage true이면 mypage에서 5,6,7만 map을 돌려서 아코디언 레이아웃을 보여준다.
+	const accordiontitle = isMypage
+		? [
+				{ title: '내가쓴글', id: 5 },
+				{ title: '회원정보', id: 6 },
+				{ title: '주문내역', id: 7 },
+			]
+		: [
+				{ title: '설명', id: 1 },
+				{ title: '정보고시', id: 2 },
+				{ title: '지속가능성', id: 3 },
+				{ title: '한줄평', id: 4 },
+			];
 
 	const { toggleAccordion, isOpen } = Usetogglelist();
-
 	return (
 		<div className={styles.accordionBackColor}>
 			<div className={styles.accordionContainer}>
@@ -53,8 +68,8 @@ export default function Accordionlayout({ ...book }) {
 								)}
 							</div>
 
+							{/*-----------디테일 페이지-----------*/}
 							{/*설명란 */}
-
 							{isItemOpen && item.title === '설명' && (
 								<Detailexplanation {...book} />
 							)}
@@ -72,6 +87,31 @@ export default function Accordionlayout({ ...book }) {
 
 							{/*댓글란 */}
 							{isItemOpen && item.title === '한줄평' && <Detailcomment />}
+
+							{/*-----------마이 페이지-----------*/}
+							{/* 내가쓴글란 */}
+							{isItemOpen && item.title === '내가쓴글' && isMypage && (
+								<>
+									<Communitynav />
+									{testdatalist.map((list) => {
+										return (
+											<div className={styles.postAccordionContainer}>
+												<div className={styles.postAccordionWrapper}>
+													<Postaccordionlayout list={list} />
+												</div>
+											</div>
+										);
+									})}
+								</>
+							)}
+							{/* 회원정보란 */}
+							{isItemOpen && item.title === '회원정보' && isMypage && (
+								<Myprofile />
+							)}
+							{/* 회원정보란 */}
+							{isItemOpen && item.title === '주문내역' && isMypage && (
+								<Myorder />
+							)}
 						</div>
 					);
 				})}

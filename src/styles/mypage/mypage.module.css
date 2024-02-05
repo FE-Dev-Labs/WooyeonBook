@@ -1,5 +1,19 @@
 .container {
-	top: 20px;
 	width: clamp(500px, 90%, 1300px);
-	margin: 50px auto;
+	margin: 0px auto;
+}
+.wrapper {
+	display: flex;
+	height: 150px;
+	align-items: center;
+}
+.userName {
+	font-size: 25px;
+	font-weight: bold;
+	color: #6594e7;
+}
+.userNameText {
+	font-size: 25px;
+	font-weight: bold;
+	margin-left: 10px;
 }
