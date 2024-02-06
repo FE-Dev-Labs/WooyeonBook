@@ -3,16 +3,38 @@ import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
 import searchIcon from '../../../../../public/searchIcon.png';
 import Link from 'next/link';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
+// 옵션 버튼
+// 불필요하게 리렌더링이 되어서 밖으로 빼서 사용하는것을 채택 했습니다.
+const Select = dynamic(() => import('react-select'), {
+	ssr: false,
+	loading: () => <div className={styles.optionBtnSkeleton}></div>,
+});
+
+interface OptionBtnProps {
+	sortOptions: { value: string; label: string }[];
+}
+
+const OptionBtn = memo(({ sortOptions }: OptionBtnProps) => (
+	<>
+		<Select
+			className={styles.sortOptionBtn}
+			options={sortOptions}
+			defaultValue={sortOptions[0]}
+			isSearchable={false}
+		/>
+		<Select
+			className={styles.sortOptionBtn}
+			options={sortOptions}
+			defaultValue={sortOptions[0]}
+			isSearchable={false}
+		/>
+	</>
+));
 
 function Search() {
-	const Select = dynamic(() => import('react-select'), {
-		ssr: false,
-		loading: () => <div className={styles.optionBtnSkeleton}></div>,
-	});
-	const pathName = usePathname();
 	const [query, setQuery] = useState('');
 	const pathname = usePathname().split('/')[2];
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,31 +46,32 @@ function Search() {
 		{ value: 'Oldest', label: '오래된 순' },
 		{ value: 'View', label: '조회순' },
 	];
-	const categoriesByPage = () => {
-		const page = pathName.split('/')[2];
-		if (page === 'meeting') {
-			return [
-				{ value: 'All', label: '전체' },
-				{ value: '2', label: '모집중' },
-				{ value: '3', label: '모집완료' },
-			];
-		}
-		if (page === 'buyingBook') {
-			return [
-				{ value: 'All', label: '전체' },
-				{ value: '2', label: '삽니다' },
-				{ value: '3', label: '거래완료' },
-			];
-		}
-		if (page === 'sellingBook') {
-			return [
-				{ value: 'All', label: '전체' },
-				{ value: '2', label: '나눔' },
-				{ value: '3', label: '팝니다' },
-				{ value: '4', label: '판매완료' },
-			];
-		}
-	};
+
+	// const categoriesByPage = () => {
+	// 	const page = pathName.split('/')[2];
+	// 	if (page === 'meeting') {
+	// 		return [
+	// 			{ value: 'All', label: '전체' },
+	// 			{ value: '2', label: '모집중' },
+	// 			{ value: '3', label: '모집완료' },
+	// 		];
+	// 	}
+	// 	if (page === 'buyingBook') {
+	// 		return [
+	// 			{ value: 'All', label: '전체' },
+	// 			{ value: '2', label: '삽니다' },
+	// 			{ value: '3', label: '거래완료' },
+	// 		];
+	// 	}
+	// 	if (page === 'sellingBook') {
+	// 		return [
+	// 			{ value: 'All', label: '전체' },
+	// 			{ value: '2', label: '나눔' },
+	// 			{ value: '3', label: '팝니다' },
+	// 			{ value: '4', label: '판매완료' },
+	// 		];
+	// 	}
+	// };
 	return (
 		<div className={styles.container}>
 			<div className={styles.searchWrap}>
@@ -65,18 +88,7 @@ function Search() {
 			<Link className={styles.searchLink} href={`${pathname}?q=${query}`}>
 				검색
 			</Link>
-			<Select
-				className={styles.sortOptionBtn}
-				options={sortOptions}
-				defaultValue={sortOptions[0]}
-				isSearchable={false}
-			/>
-			<Select
-				className={styles.sortOptionBtn}
-				options={sortOptions}
-				defaultValue={sortOptions[0]}
-				isSearchable={false}
-			/>
+			<OptionBtn sortOptions={sortOptions} />
 		</div>
 	);
 }

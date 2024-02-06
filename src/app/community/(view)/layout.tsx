@@ -29,7 +29,10 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 					<div className={styles.contentWrap}>
 						<Nav />
 						<Search />
+						<hr className={styles.line} />
+						{children}
 					</div>
+
 					<div className={styles.weeklyPopularWrap}>
 						<div>
 							<h3>주간 인기글</h3>

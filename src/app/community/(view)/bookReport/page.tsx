@@ -4,6 +4,8 @@ function BookReport() {
 	return (
 		<div>
 			<ContentBox />
+			<ContentBox />
+			<ContentBox />
 		</div>
 	);
 }

@@ -43,6 +43,7 @@
 	display: flex;
 	justify-content: center;
 	margin-top: 30px;
+	/* 스크롤 따라 움직이게 */
 }
 .weeklyPopularWrap > div {
 	width: 280px;

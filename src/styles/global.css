@@ -127,7 +127,8 @@ table {
 .slick-prev:before,
 .slick-next:before {
 	display: none !important;
-	hr {
-		width: 1300px;
-	}
+}
+hr {
+	width: 100%;
+	height: 1px;
 }
