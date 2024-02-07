@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { memo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import communityPathname from '@/apis/communityPathname';
 // 옵션 버튼
 // 불필요하게 리렌더링이 되어서 밖으로 빼서 사용하는것을 채택 했습니다.
 const Select = dynamic(() => import('react-select'), {
@@ -14,30 +15,33 @@ const Select = dynamic(() => import('react-select'), {
 });
 
 interface OptionBtnProps {
+	categoriesOption: { value: string; label: string }[];
 	sortOptions: { value: string; label: string }[];
 	pathName: string;
 }
 
-const OptionBtn = memo(({ sortOptions, pathName }: OptionBtnProps) => (
-	<>
-		{pathName == 'bookReport' ? (
-			<div className={styles.optionBtn}></div>
-		) : (
+const OptionBtn = memo(
+	({ categoriesOption, sortOptions, pathName }: OptionBtnProps) => (
+		<>
+			{pathName == 'bookReport' ? (
+				<div className={styles.optionBtn}></div>
+			) : (
+				<Select
+					className={styles.sortOptionBtn}
+					options={categoriesOption}
+					defaultValue={categoriesOption[0]}
+					isSearchable={false}
+				/>
+			)}
 			<Select
 				className={styles.sortOptionBtn}
 				options={sortOptions}
 				defaultValue={sortOptions[0]}
 				isSearchable={false}
 			/>
-		)}
-		<Select
-			className={styles.sortOptionBtn}
-			options={sortOptions}
-			defaultValue={sortOptions[0]}
-			isSearchable={false}
-		/>
-	</>
-));
+		</>
+	),
+);
 
 function Search() {
 	const [query, setQuery] = useState('');
@@ -52,31 +56,32 @@ function Search() {
 		{ value: 'View', label: '조회순' },
 	];
 
-	// const categoriesByPage = () => {
-	// 	const page = pathName.split('/')[2];
-	// 	if (page === 'meeting') {
-	// 		return [
-	// 			{ value: 'All', label: '전체' },
-	// 			{ value: '2', label: '모집중' },
-	// 			{ value: '3', label: '모집완료' },
-	// 		];
-	// 	}
-	// 	if (page === 'buyingBook') {
-	// 		return [
-	// 			{ value: 'All', label: '전체' },
-	// 			{ value: '2', label: '삽니다' },
-	// 			{ value: '3', label: '거래완료' },
-	// 		];
-	// 	}
-	// 	if (page === 'sellingBook') {
-	// 		return [
-	// 			{ value: 'All', label: '전체' },
-	// 			{ value: '2', label: '나눔' },
-	// 			{ value: '3', label: '팝니다' },
-	// 			{ value: '4', label: '판매완료' },
-	// 		];
-	// 	}
-	// };
+	const categoriesOption = () => {
+		const pathname = communityPathname();
+		if (pathname === 'meeting') {
+			return [
+				{ value: 'All', label: '전체' },
+				{ value: '2', label: '모집중' },
+				{ value: '3', label: '모집완료' },
+			];
+		}
+		if (pathname === 'buyingBook') {
+			return [
+				{ value: 'All', label: '전체' },
+				{ value: '2', label: '삽니다' },
+				{ value: '3', label: '거래완료' },
+			];
+		}
+		if (pathname === 'sellingBook') {
+			return [
+				{ value: 'All', label: '전체' },
+				{ value: '2', label: '나눔' },
+				{ value: '3', label: '팝니다' },
+				{ value: '4', label: '판매완료' },
+			];
+		}
+		return [];
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.searchWrap}>
@@ -93,7 +98,11 @@ function Search() {
 			<Link className={styles.searchLink} href={`${pathname}?q=${query}`}>
 				검색
 			</Link>
-			<OptionBtn sortOptions={sortOptions} pathName={pathname} />
+			<OptionBtn
+				categoriesOption={categoriesOption()}
+				sortOptions={sortOptions}
+				pathName={pathname}
+			/>
 		</div>
 	);
 }
