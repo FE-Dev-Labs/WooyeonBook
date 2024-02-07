@@ -6,12 +6,20 @@ export default function LastestWord() {
 	return (
 		<>
 			<dl className={styles.lastesWordWrapper}>
-				<dt>최근 검색어</dt>
+				<dt className={styles.lastesWordTxt}>최근 검색어</dt>
 				<dd className={styles.lastesWordWrap}>
 					<ul className={styles.lastesUl}>
 						<li className={styles.lastesLi}>
-							<Link href="/">쇼펜하우어</Link>
-							<Image src={cancelIcon} alt="cancelIcon" />
+							<Link href={'/'} passHref legacyBehavior>
+								<a className={styles.lastesLink}>쇼펜하우어</a>
+							</Link>
+							<Image
+								src={cancelIcon}
+								alt="cancelIcon"
+								width={10}
+								height={10}
+								className={styles.cancelIcon}
+							/>
 						</li>
 					</ul>
 				</dd>

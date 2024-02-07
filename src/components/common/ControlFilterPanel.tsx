@@ -7,6 +7,7 @@ interface controlProps {
 export default function ControlFilterPanel({ state }: controlProps) {
 	const Select = dynamic(() => import('react-select'), { ssr: false });
 
+	//memo추가하기 리렌더링 최소화하기
 	const sortOptions = [
 		{ value: 'Latest', label: '최신순' },
 		{ value: 'Like', label: '인기순' },
