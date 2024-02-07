@@ -53,6 +53,11 @@
 	border-radius: 5px;
 	background-color: #e0e0e0;
 }
+.optionBtn {
+	width: 150px;
+	height: 36px;
+	background-color: inherit;
+}
 
 .line {
 	width: 100%;

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
-import searchIcon from '../../../../../public/searchIcon.png';
+import searchIcon from '../../../../public/searchIcon.png';
 import Link from 'next/link';
 import { memo, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -15,16 +15,21 @@ const Select = dynamic(() => import('react-select'), {
 
 interface OptionBtnProps {
 	sortOptions: { value: string; label: string }[];
+	pathName: string;
 }
 
-const OptionBtn = memo(({ sortOptions }: OptionBtnProps) => (
+const OptionBtn = memo(({ sortOptions, pathName }: OptionBtnProps) => (
 	<>
-		<Select
-			className={styles.sortOptionBtn}
-			options={sortOptions}
-			defaultValue={sortOptions[0]}
-			isSearchable={false}
-		/>
+		{pathName == 'bookReport' ? (
+			<div className={styles.optionBtn}></div>
+		) : (
+			<Select
+				className={styles.sortOptionBtn}
+				options={sortOptions}
+				defaultValue={sortOptions[0]}
+				isSearchable={false}
+			/>
+		)}
 		<Select
 			className={styles.sortOptionBtn}
 			options={sortOptions}
@@ -88,7 +93,7 @@ function Search() {
 			<Link className={styles.searchLink} href={`${pathname}?q=${query}`}>
 				검색
 			</Link>
-			<OptionBtn sortOptions={sortOptions} />
+			<OptionBtn sortOptions={sortOptions} pathName={pathname} />
 		</div>
 	);
 }

@@ -1,28 +1,20 @@
-import ControlPanel from '@/components/community/common/view/ControlPanel';
-import Nav from '@/components/community/common/view/Nav';
-import Search from '@/components/community/common/view/Search';
+import Nav from '@/components/community/view/Nav';
+import Search from '@/components/community/view/Search';
 import { BasicLayoutType } from '@/types/layoutType';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '@/styles/community/layout.module.css';
+import Header from '@/components/community/common/Header';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
 };
 
 export default function CommunityLayout({ children }: BasicLayoutType) {
-	const communityUrl = (to: string) => {
-		return `/community/${to}`;
-	};
 	const popularData = [1, 2, 3, 4];
 	return (
 		<>
-			<header className={styles.headerWrap}>
-				<div>
-					<h2>독후감</h2>
-					<p>글쓰기 실력을 늘려보세요</p>
-				</div>
-			</header>
+			<Header />
 			<div className={styles.container}>
 				<div></div>
 				<div className={styles.mainWrap}>
