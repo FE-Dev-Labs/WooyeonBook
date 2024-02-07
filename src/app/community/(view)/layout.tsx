@@ -16,6 +16,7 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 		<>
 			<Header />
 			<div className={styles.container}>
+				{/* 왼쪽 광고 영역 */}
 				<div></div>
 				<div className={styles.mainWrap}>
 					<div className={styles.contentWrap}>
@@ -47,28 +48,8 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 						</div>
 					</div>
 				</div>
+				{/* 오른쪽 광고 영역 */}
 				<div></div>
-				{/* <div></div>
-			<div className={styles.contentWrap}>
-				<Nav />
-				<Search />
-				<ControlPanel />
-				<hr className={styles.line} />
-				{children}
-			</div>
-			<div className={styles.popularContentWrap}>
-				<h3>인기글</h3>
-				<Link href={''}>
-					<div className={styles.popularContent}>
-						내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-					</div>
-					<div className={styles.popularContentInfoWrap}>
-						<div>작성자</div>
-						<div className={styles.dot}>●</div>
-						<div>작성일</div>
-					</div>
-				</Link>
-			</div> */}
 			</div>
 		</>
 	);

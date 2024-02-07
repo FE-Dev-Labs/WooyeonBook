@@ -4,25 +4,7 @@
 	grid-template-columns: 1fr 1300px 1fr;
 	min-height: 80vw;
 }
-/* 헤더 css */
-.headerWrap {
-	width: 100vw;
-	height: 100px;
-	background-color: #333b3d;
-}
-.headerWrap > div {
-	width: 1300px;
-	color: white;
-	margin: 0 auto;
-}
-.headerWrap > div > h2 {
-	font-size: 30px;
-	padding-top: 20px;
-	margin-bottom: 10px;
-}
-.headerWrap > div > p {
-	font-size: 15px;
-}
+
 /* mainWrap */
 .mainWrap {
 	display: grid;
