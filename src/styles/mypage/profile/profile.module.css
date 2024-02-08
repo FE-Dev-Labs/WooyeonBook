@@ -1,0 +1,45 @@
+.accordionContent {
+}
+.accordionWrapper {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-column-gap: 20px;
+}
+/* .accordionWrapper.active {
+	display: grid;
+	grid-template-columns: 2fr 2fr 2fr;
+	grid-column-gap: 10px;
+} */
+.accodionRowSelection {
+	/* margin-bottom: 50px; */
+}
+.accordionWrapperItem {
+	display: flex;
+	flex-direction: column;
+}
+.profileItemTitle {
+	line-height: 20px;
+	margin-right: 10px;
+	margin-top: 15px;
+	color: #d8d8d8;
+}
+.profileItem {
+	line-height: 20px;
+	margin-top: 10px;
+}
+.profileBtnWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+.profileEditBtn {
+	/* line-height: 5px; */
+	/* margin-right: 10px;
+	margin-top: 15px; */
+	border: 0;
+	padding: 10px 15px;
+	border-radius: 10px;
+	cursor: pointer;
+	background-color: #6594e7;
+	color: #fff;
+	height: 40px;
+}

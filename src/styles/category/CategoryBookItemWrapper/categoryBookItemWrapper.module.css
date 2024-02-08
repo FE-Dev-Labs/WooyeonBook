@@ -1,8 +1,0 @@
-.CategoryBookItemWrapper {
-	width: 1025px;
-	margin-top: 50px;
-}
-
-.CategoryBookItemWrapper > div:last-child {
-	margin-bottom: 100px;
-}

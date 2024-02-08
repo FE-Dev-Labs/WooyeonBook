@@ -17,7 +17,7 @@
 .accordionWrapper.active {
 	background-color: #ffffff;
 	border-radius: 16px;
-	padding: 0 50px;
+	padding: 0 50px 50px 50px;
 	transition:
 		0.35s ease,
 		background 0.35s ease;
@@ -33,4 +33,12 @@
 }
 .accordionTitle > h2 {
 	font-size: 25px;
+}
+.postAccordionContainer {
+	margin-bottom: 8px;
+}
+.postAccordionWrapper {
+	background-color: #f8f8f8;
+	border-radius: 16px;
+	margin-bottom: 8px;
 }

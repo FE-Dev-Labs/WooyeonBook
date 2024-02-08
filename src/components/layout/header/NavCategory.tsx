@@ -33,7 +33,7 @@ export default function NavCategory() {
 				분야 <p>▼</p>
 			</div>
 			<div className={styles.showCategoryItemBox}>
-				<Link href={``} className={styles.categoryItem}>
+				<Link href={'/category'} className={styles.categoryItem}>
 					<p>분야 전체</p>
 				</Link>
 				{category.map((item, index) => (

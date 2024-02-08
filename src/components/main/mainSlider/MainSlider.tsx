@@ -3,11 +3,12 @@
 import dynamic from 'next/dynamic';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import styles from '@/styles/main/imageSlider/imageSlider.module.css';
+import styles from '@/styles/main/mainSlider/mainSlider.module.css';
 import Image from 'next/image';
 import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
+import arrowStyles from '@/styles/main/mainSlider/customArrow.module.css';
 
 interface ArrowProps {
 	className?: string;
@@ -15,11 +16,11 @@ interface ArrowProps {
 	onClick?: () => void;
 }
 
-export default function ImageSlider() {
+export default function MainSlider() {
 	// 슬라이더 다이나믹 라우팅 적용
-	const Slider = dynamic(() => import('react-slick'), {
+	const MainSlider = dynamic(() => import('react-slick'), {
 		ssr: false,
-		loading: () => <div className={styles.container}>로딩중...</div>,
+		loading: () => <div className={styles.mainSliderWrapper}>로딩중...</div>,
 	});
 
 	// 슬라이더 세팅에 스타일링을 위한 좌우 화살표 추가
@@ -27,19 +28,7 @@ export default function ImageSlider() {
 		const { className, onClick } = props;
 		return (
 			<div
-				className={className}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					position: 'absolute',
-					left: 180,
-					width: 40,
-					height: 40,
-					borderRadius: '50%',
-					backgroundColor: '#F4F2E5',
-					zIndex: 1,
-				}}
+				className={`${className} ${arrowStyles.arrow} ${arrowStyles.arrowPrev}`}
 				onClick={onClick}>
 				<Image src={prevArrow} alt="prev" width={16} height={16} />
 			</div>
@@ -49,19 +38,7 @@ export default function ImageSlider() {
 		const { className, onClick } = props;
 		return (
 			<div
-				className={className}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-					position: 'absolute',
-					right: 180,
-					width: 40,
-					height: 40,
-					borderRadius: '50%',
-					backgroundColor: '#F4F2E5',
-					zIndex: 1,
-				}}
+				className={`${className} ${arrowStyles.arrow} ${arrowStyles.arrowNext}`}
 				onClick={onClick}>
 				<Image src={nextArrow} alt="next" width={16} height={16} />
 			</div>
@@ -86,10 +63,10 @@ export default function ImageSlider() {
 	};
 
 	return (
-		<Slider {...settings} className={styles.container}>
+		<MainSlider {...settings} className={styles.mainSliderWrapper}>
 			<SliderItem />
 			<SliderItem />
 			<SliderItem />
-		</Slider>
+		</MainSlider>
 	);
 }

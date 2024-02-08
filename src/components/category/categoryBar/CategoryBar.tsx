@@ -15,7 +15,7 @@ export default function CategoryBar() {
 		{ name: '예술·대중문화', link: '' },
 		{ name: '자연과학', link: '' },
 		{ name: '가정·살림', link: '' },
-		{ name: '건·취미·여행', link: '' },
+		{ name: '건강·취미·여행', link: '' },
 		{ name: '어린이·유아', link: '' },
 		{ name: '청소년', link: '' },
 		{ name: '국어·외국어', link: '' },

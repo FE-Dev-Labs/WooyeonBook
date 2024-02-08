@@ -53,7 +53,7 @@ export default function page() {
 			{bookInfo.map((book, index) => (
 				<div key={index}>
 					<Detaildescription bookInfo={book} />
-					<Accordionlayout {...book} />
+					<Accordionlayout {...book} isMypage={false} />
 				</div>
 			))}
 		</div>
