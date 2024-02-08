@@ -1,9 +1,18 @@
-import ContentBox from '@/components/community/common/view/ContentBox';
+import ContentBox from '@/components/community/view/ContentBox';
+import { cookies, headers } from 'next/headers';
+import { createClient } from '@/utils/supabase/server';
 
-function BookReport() {
+async function BookReport() {
+	const cookieStore = cookies();
+	const supabase = createClient(cookieStore);
+
+	const { data } = await supabase.from('bookReport').select('*');
+
 	return (
 		<div>
-			<ContentBox />
+			{data?.map((data, index) => {
+				return <ContentBox key={index} />;
+			})}
 		</div>
 	);
 }

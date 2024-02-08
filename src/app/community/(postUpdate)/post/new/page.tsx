@@ -8,7 +8,7 @@ export default function postNewPage() {
 		loading: () => <p>로딩중...</p>,
 	});
 	const Editor = dynamic(
-		() => import('@/components/community/common/post/WysiwygEditor'),
+		() => import('@/components/community/post/WysiwygEditor'),
 		{
 			ssr: false,
 			loading: () => <p>로딩중...</p>,
