@@ -1,3 +1,4 @@
+import { getBookList } from '@/apis/booklist';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';
 import PageHeader from '@/components/common/PageHeader';
@@ -5,6 +6,12 @@ import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
+
+export async function getServerSideProps() {
+	console.log('getServerSideProps is called'); // 로그 출력
+	const data = await getBookList();
+	return { props: { data } };
+}
 
 export default function newPage() {
 	return (
