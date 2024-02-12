@@ -2,19 +2,18 @@
 import dynamic from 'next/dynamic';
 import styles from '@/styles/community/post/postNewPage.module.css';
 // dynamic import loading skeleton ui
-export default function postNewPage() {
-	const Select = dynamic(() => import('react-select'), {
+const Select = dynamic(() => import('react-select'), {
+	ssr: false,
+	loading: () => <p>로딩중...</p>,
+});
+const Editor = dynamic(
+	() => import('@/components/community/post/WysiwygEditor'),
+	{
 		ssr: false,
 		loading: () => <p>로딩중...</p>,
-	});
-	const Editor = dynamic(
-		() => import('@/components/community/post/WysiwygEditor'),
-		{
-			ssr: false,
-			loading: () => <p>로딩중...</p>,
-		},
-	);
-
+	},
+);
+export default function postNewPage() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.optionWrap}>
