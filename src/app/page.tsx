@@ -8,7 +8,9 @@ import MainSlider from '@/components/main/mainSlider/MainSlider';
 
 export default async function Home() {
 	const data = await fetch(
-		'https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101',
+		`https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101`,
+
+		// 'https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttb0113byi1704001&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101',
 		{ cache: 'force-cache' },
 	).then((data) => {
 		return data.json();
