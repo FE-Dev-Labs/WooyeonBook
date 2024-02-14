@@ -1,0 +1,19 @@
+/* 헤더 css */
+.Container {
+	width: 100vw;
+	height: 100px;
+	background-color: #333b3d;
+}
+.Container > div {
+	width: 1300px;
+	color: white;
+	margin: 0 auto;
+}
+.Container > div > h2 {
+	font-size: 30px;
+	padding-top: 20px;
+	margin-bottom: 10px;
+}
+.Container > div > p {
+	font-size: 15px;
+}

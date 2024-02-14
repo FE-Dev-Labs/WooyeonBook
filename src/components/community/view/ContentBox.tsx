@@ -1,4 +1,5 @@
 import styles from '@/styles/community/contentBox.module.css';
+import Link from 'next/link';
 
 interface ContentBoxProps {
 	page?: string;
@@ -6,10 +7,10 @@ interface ContentBoxProps {
 
 export default function ContentBox({ page }: ContentBoxProps) {
 	return (
-		<div>
+		<Link href={``}>
 			<div className={styles.container}>
 				{!page ? (
-					<h2 className={styles.title}>title</h2>
+					<h2 className={styles.title}>중급자로 나아가기</h2>
 				) : (
 					<div className={styles.titleWrap}>
 						<div className={styles.contentState}>모집중</div>
@@ -19,7 +20,7 @@ export default function ContentBox({ page }: ContentBoxProps) {
 
 				{/* <h2 className={styles.title}>title</h2> */}
 				<div className={styles.content}>
-					contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent
+					contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentdksudfjkhaslk
 				</div>
 				<div className={styles.contnetInfoWrap}>
 					<div className={styles.authorAndDateWrap}>
@@ -34,6 +35,6 @@ export default function ContentBox({ page }: ContentBoxProps) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }

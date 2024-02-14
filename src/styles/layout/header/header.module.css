@@ -1,6 +1,6 @@
 /* 헤더 틀 */
 .container {
-	width: 100vw;
+	 /* width: 100vw; */ 
 	min-height: 120px;
 
 	display: flex;
