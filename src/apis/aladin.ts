@@ -1,4 +1,4 @@
-// export default async function aladinData() {
+// export default async function getAladinData() {
 // 	try {
 // 		const response = await fetch(
 // 			// 'http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewAll&SearchTarget=Book&output=js&Version=20131101',
