@@ -9,6 +9,7 @@ import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
 import arrowStyles from '@/styles/main/mainSlider/customArrow.module.css';
+import { mainBookSlider } from '@/apis/mainBookSlider';
 
 interface ArrowProps {
 	className?: string;
@@ -64,9 +65,9 @@ export default function MainSlider() {
 
 	return (
 		<MainSlider {...settings} className={styles.mainSliderWrapper}>
-			<SliderItem />
-			<SliderItem />
-			<SliderItem />
+			{mainBookSlider.map((item) => {
+				return <SliderItem key={item.id} item={item} />;
+			})}
 		</MainSlider>
 	);
 }

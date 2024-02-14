@@ -12,7 +12,7 @@ interface BookItemProp {
 	rank?: number;
 }
 
-export default async function BookItem({ rank }: BookItemProp) {
+export default function BookItem({ rank }: BookItemProp) {
 	const [isAdded, setIsAdded] = useState(false);
 
 	return (

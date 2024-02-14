@@ -7,12 +7,6 @@ import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 
-export async function getServerSideProps() {
-	console.log('getServerSideProps is called'); // 로그 출력
-	const data = await getBookList();
-	return { props: { data } };
-}
-
 export default function newPage() {
 	return (
 		<>
