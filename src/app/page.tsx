@@ -7,21 +7,35 @@ import BestSeller from '@/components/common/BestSeller';
 import MainSlider from '@/components/main/mainSlider/MainSlider';
 
 export default async function Home() {
-	const data = await fetch(
-		`https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101`,
-
+	const listData = await fetch(
 		// 'https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttb0113byi1704001&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101',
+
+		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&SearchTarget=Book&output=js&Version=20131101`,
+
 		{ cache: 'force-cache' },
 	).then((data) => {
 		return data.json();
 	});
-	console.log(data);
+
+	const newBookData = await fetch(
+		// 'https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttb0113byi1704001&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101',
+
+		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101`,
+
+		{ cache: 'force-cache' },
+	).then((data) => {
+		return data.json();
+	});
+
+	console.log(newBookData);
+	console.log(newBookData.item.length);
+
 	return (
 		<main className={styles.container}>
 			<div />
 			<div className={styles.wrapper}>
 				<MainSlider />
-				<NewBook />
+				<NewBook newBookData={newBookData} />
 				<ThemeRecommendation />
 				<BestSeller />
 				<UsedBook />

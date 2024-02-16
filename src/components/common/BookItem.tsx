@@ -10,22 +10,28 @@ import deleteBook from '../../../public/common/deleteBook.png';
 
 interface BookItemProp {
 	rank?: number;
+	newBookData: any;
 }
 
-export default function BookItem({ rank }: BookItemProp) {
+export default function BookItem({ rank, newBookData }: BookItemProp) {
 	const [isAdded, setIsAdded] = useState(false);
+
+	if (!newBookData) {
+		return null;
+	}
 
 	return (
 		<div className={styles.bookItem}>
 			{rank && <div className={styles.rank}>{rank}</div>}
 			<div className={styles.bookImage}>
-				<Link href="/">
+				<Link href={newBookData.link}>
 					<Image
-						src={bookImage}
+						src={newBookData.cover}
 						alt="new book"
 						width={200}
+						height={410}
 						// layout="fill"
-						// objectFit="cover"
+						objectFit="cover"
 					/>
 				</Link>
 			</div>
@@ -40,11 +46,11 @@ export default function BookItem({ rank }: BookItemProp) {
 				/>
 			</div>
 			<div className={styles.bookText}>
-				<Link href="/">
-					<h1>베르베르씨, 오늘은 뭘 쓰세요?</h1>
+				<Link href={newBookData.link}>
+					<h1>{newBookData.title}</h1>
 				</Link>
-				<p>베르베르 / 상상스퀘어</p>
-				<p>10,700원 [10% 할인]</p>
+				<p>{newBookData.author}</p> {/* 저자/출판사 */}
+				<p>{newBookData.priceSales}원 [10% 할인]</p>
 			</div>
 		</div>
 	);

@@ -6,11 +6,13 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
+
+	cursor: pointer;
 }
 
 .bookImage {
 	width: 200px;
-	height: 275px;
+	min-height: 275px;
 	border-radius: 10px;
 
 	position: relative;
