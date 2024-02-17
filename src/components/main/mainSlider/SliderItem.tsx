@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/main/mainSlider/sliderItem.module.css';
@@ -7,7 +8,7 @@ interface BookSliderItem {
 }
 export default function SliderItem({ item }: BookSliderItem) {
 	return (
-		<Link href="/">
+		<Link href="/" className={styles.customSliderItem}>
 			<div
 				className={styles.sliderItem}
 				style={{ backgroundColor: item.background }}>
@@ -19,6 +20,7 @@ export default function SliderItem({ item }: BookSliderItem) {
 					className={styles.sliderImg}
 				/>
 			</div>
+
 			<div className={styles.sliderTitleWrap}>
 				<p className={styles.sliderCategory}>{item.category}</p>
 				<p className={styles.sliderTitle}>{item.title}</p>
