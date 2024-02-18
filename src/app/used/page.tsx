@@ -6,6 +6,7 @@ import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/used/used.module.css';
+import { useRouter } from 'next/router';
 
 export default function usedPage() {
 	return (

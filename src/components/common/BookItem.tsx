@@ -4,7 +4,6 @@ import { useState } from 'react';
 import styles from '@/styles/common/bookItem.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import bookImage from '../../../public/main/book3.png';
 import addBook from '../../../public/common/addBook.png';
 import deleteBook from '../../../public/common/deleteBook.png';
 
@@ -14,6 +13,8 @@ interface BookItemProp {
 }
 
 export default function BookItem({ rank, newBookData }: BookItemProp) {
+	console.log(newBookData);
+
 	const [isAdded, setIsAdded] = useState(false);
 
 	if (!newBookData) {

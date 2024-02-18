@@ -5,7 +5,11 @@ import ThemItem from '@/components/common/ThemItem';
 export default function ThemeRecommendation() {
 	return (
 		<div className={styles.themeRecommendationWrapper}>
-			<CategoryTitle mainTitle="테마추천" subTitle="어떤 테마의 책이 있을까?" />
+			<CategoryTitle
+				mainTitle="테마추천"
+				subTitle="어떤 테마의 책이 있을까? "
+				page="theme"
+			/>
 			<div className={styles.themeItemWrapper}>
 				<ThemItem />
 				<ThemItem />
