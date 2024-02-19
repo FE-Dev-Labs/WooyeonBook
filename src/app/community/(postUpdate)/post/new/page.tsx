@@ -11,6 +11,7 @@ const Select = dynamic(() => import('react-select'), {
 				height: '38px',
 				backgroundColor: '#a5a5a5',
 				borderRadius: '5px',
+				marginRight: '50px',
 			}}></div>
 	),
 });
