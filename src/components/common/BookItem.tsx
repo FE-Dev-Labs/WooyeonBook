@@ -31,7 +31,6 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 						alt="new book"
 						width={200}
 						height={410}
-						// layout="fill"
 						objectFit="cover"
 					/>
 				</Link>
