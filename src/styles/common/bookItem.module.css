@@ -1,7 +1,7 @@
 /* 도서 컴포넌트 */
 .bookItem {
 	width: 200px;
-	height: 410px;
+	height: 385px;
 
 	display: flex;
 	flex-direction: column;
@@ -11,8 +11,8 @@
 }
 
 .bookImage {
-	width: 200px;
-	min-height: 275px;
+	width: inherit;
+	height: 275px;
 	border-radius: 10px;
 
 	position: relative;
@@ -34,12 +34,14 @@
 }
 .bookText {
 	width: inherit;
-	max-height: 135px;
+	height: 90px;
+
 	margin-top: 20px;
 }
+
 .bookText h1 {
-	min-height: 39px;
-	font-size: 18px;
+	height: 35px;
+	font-size: 16px;
 
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -54,23 +56,26 @@
 	text-decoration: underline;
 }
 .bookText p {
-	margin-top: 20px;
-	max-height: 16px;
+	margin-top: 10px;
+	height: 15px;
+	font-size: 12px;
 
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 .bookText p:nth-of-type(1) {
+	margin-top: 15px;
 	color: #aaaaaa;
 }
 .addDeleteBook {
 	position: absolute;
-	right: 10px;
-	bottom: 155px;
+	right: 8px;
+	bottom: 120px;
 	cursor: pointer;
 }
 
+/* 랭크 숫자 */
 .rank {
 	position: absolute;
 	top: 140px;

@@ -15,11 +15,7 @@ interface BookItemProp {
 export default function BookItem({ rank, newBookData }: BookItemProp) {
 	console.log(newBookData);
 
-	const [isAdded, setIsAdded] = useState(false);
-
-	if (!newBookData) {
-		return null;
-	}
+	const [isAdded, setIsAdded] = useState<boolean>(false);
 
 	return (
 		<div className={styles.bookItem}>
@@ -30,7 +26,7 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 						src={newBookData.cover}
 						alt="new book"
 						width={200}
-						height={410}
+						height={275}
 						objectFit="cover"
 					/>
 				</Link>
