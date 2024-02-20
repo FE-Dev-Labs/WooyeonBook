@@ -3,6 +3,8 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useRef } from 'react';
 import { supabase } from '@/utils/supabase/supabase';
+import { useSetRecoilState } from 'recoil';
+import { editorText } from '@/recoil/atom/editorAtom';
 interface WysiwygEditorProps {
 	height?: string;
 }
@@ -23,6 +25,7 @@ export default function WysiwygEditor({
 	// 전역으로 내용을 저장 할 생각
 	//
 	// console.log(editorRef.current?.getInstance().getMarkdown());
+	const setText = useSetRecoilState(editorText);
 	const onUploadImage = async (
 		blob: File,
 		callback: (imageUrl: string, fileName: string) => void,
@@ -38,6 +41,10 @@ export default function WysiwygEditor({
 			);
 		}
 	};
+	const onChangeText = () => {
+		setText(editorRef.current?.getInstance().getMarkdown());
+	};
+
 	return (
 		<>
 			<Editor
@@ -46,6 +53,7 @@ export default function WysiwygEditor({
 				height={height}
 				toolbarItems={toolbarItems}
 				hooks={{ addImageBlobHook: onUploadImage }}
+				onChange={onChangeText}
 			/>
 		</>
 	);

@@ -10,10 +10,10 @@ export default function PostLayout({ children }: BasicLayoutType) {
 			<div className={styles.container}>
 				<div className={styles.viewWrap}>
 					<div className={styles.nav}>
-						<Link href={''}>독후감</Link>
-						<Link href={''}>모임</Link>
-						<Link href={''}>삽니다</Link>
-						<Link href={''}>팝니다</Link>
+						<Link href={'/community/post/new?page=bookReport'}>독후감</Link>
+						<Link href={'/community/post/new?page=bookMeeting'}>모임</Link>
+						<Link href={'/community/post/new?page=bookBuying'}>삽니다</Link>
+						<Link href={'/community/post/new?page=bookSeling'}>팝니다</Link>
 					</div>
 					{children}
 				</div>
