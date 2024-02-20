@@ -19,8 +19,9 @@
 	overflow: hidden;
 	transition: transform 0.3s ease-in-out;
 }
+
 .bookImage::after {
-	content: '';
+	/* content: ''; */
 	position: absolute;
 	top: 0;
 	left: 0;

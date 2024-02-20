@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import { useState } from 'react';
 import styles from '@/styles/common/bookItem.module.css';
@@ -21,14 +21,13 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 		<div className={styles.bookItem}>
 			{rank && <div className={styles.rank}>{rank}</div>}
 			<div className={styles.bookImage}>
-				<Link href={newBookData.link}>
-					<Image
-						src={newBookData.cover}
-						alt="new book"
-						width={200}
-						height={275}
-						objectFit="cover"
-					/>
+				{/* <Link
+					href={{
+						pathname: `/detail/${newBookData.itemId}`,
+						query: { type: 'new' },
+					}}> */}
+				<Link href={`/detail/${newBookData.itemId}?type=new`}>
+					<Image fill src={newBookData.cover} alt="new book" />
 				</Link>
 			</div>
 			<div
@@ -42,7 +41,7 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 				/>
 			</div>
 			<div className={styles.bookText}>
-				<Link href={newBookData.link}>
+				<Link href={`/detail/${newBookData.itemId}?type=new`}>
 					<h1>{newBookData.title}</h1>
 				</Link>
 				<p>{`${newBookData.author.replace(
