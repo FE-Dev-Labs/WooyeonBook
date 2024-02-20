@@ -45,8 +45,16 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 				<Link href={newBookData.link}>
 					<h1>{newBookData.title}</h1>
 				</Link>
-				<p>{newBookData.author}</p> {/* 저자/출판사 */}
-				<p>{newBookData.priceSales}원 [10% 할인]</p>
+				<p>{`${newBookData.author.replace(
+					' (지은이)',
+					'',
+				)} / ${newBookData.publisher.replace('(방송교재)', '')}`}</p>
+				<p>
+					<span style={{ textDecoration: 'line-through' }}>
+						{`${newBookData.priceStandard.toLocaleString()}원`}
+					</span>
+					{` ${newBookData.priceSales.toLocaleString()}원`}
+				</p>
 			</div>
 		</div>
 	);
