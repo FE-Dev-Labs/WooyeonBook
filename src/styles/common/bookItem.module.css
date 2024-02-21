@@ -41,7 +41,7 @@
 }
 
 .bookText h1 {
-	height: 35px;
+	height: 34px;
 	font-size: 16px;
 
 	overflow: hidden;
@@ -66,7 +66,7 @@
 	white-space: nowrap;
 }
 .bookText p:nth-of-type(1) {
-	margin-top: 15px;
+	margin-top: 16px;
 	color: #aaaaaa;
 }
 .addDeleteBook {
