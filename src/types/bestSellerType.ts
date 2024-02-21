@@ -1,4 +1,4 @@
-export interface RootNewBookType {
+export interface RootBestSellerType {
 	version: string;
 	logo: string;
 	title: string;
@@ -10,10 +10,10 @@ export interface RootNewBookType {
 	query: string;
 	searchCategoryId: number;
 	searchCategoryName: string;
-	item: NewBookType[];
+	item: BestSellerType[];
 }
 
-export interface NewBookType {
+export interface BestSellerType {
 	title: string;
 	link: string;
 	author: string;
@@ -35,6 +35,8 @@ export interface NewBookType {
 	adult: boolean;
 	fixedPrice: boolean;
 	customerReviewRank: number;
-	seriesInfo: object;
-	subInfo: object;
+	bestDuration: string;
+	bestRank: number;
+	seriesInfo?: object;
+	subInfo: Record<string, unknown>;
 }

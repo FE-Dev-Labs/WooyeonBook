@@ -7,10 +7,11 @@ import Link from 'next/link';
 import addBook from '../../../public/common/addBook.png';
 import deleteBook from '../../../public/common/deleteBook.png';
 import { NewBookType } from '@/types/newBookType';
+import { BestSellerType } from '@/types/bestSellerType';
 
 interface BookItemProps {
 	rank?: number;
-	data: NewBookType;
+	data: NewBookType | BestSellerType;
 }
 
 export default function BookItem({ rank, data }: BookItemProps) {

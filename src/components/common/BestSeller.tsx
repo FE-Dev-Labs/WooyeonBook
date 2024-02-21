@@ -1,9 +1,10 @@
 import styles from '@/styles/common/bestSeller.module.css';
 import BookItem from '@/components/common/BookItem';
 import CategoryTitle from '../main/common/CategoryTitle';
+import { BestSellerType } from '@/types/bestSellerType';
 
 interface BestSellerProps {
-	data: any;
+	data: BestSellerType[];
 	page?: string;
 	height?: string;
 }
@@ -25,7 +26,7 @@ export default function BestSeller({ data, page, height }: BestSellerProps) {
 				// page="best"
 			/>
 			<div className={styles.bestItemWrapper}>
-				{data?.map((book: any, index: number) => (
+				{data?.map((book: BestSellerType, index: number) => (
 					<BookItem key={book.itemId} data={book} rank={index + 1} />
 				))}
 			</div>
