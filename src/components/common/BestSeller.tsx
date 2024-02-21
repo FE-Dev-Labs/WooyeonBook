@@ -17,15 +17,19 @@ export default function BestSeller({ page, height }: BestSellerProp) {
 						? '어떤 중고 책이 인기 있을까?'
 						: '어떤 책을 많이 읽을까?'
 				}
-				page={page}
+				page="best"
+				// page="best"
+				// mainTitle="베스트셀러"
+				// subTitle="어떤 책을 많이 읽을까?"
+				// page="best"
 			/>
-			<div className={styles.bestItemWrapper}>
+			{/* <div className={styles.bestItemWrapper}>
 				<BookItem rank={1} />
 				<BookItem rank={2} />
 				<BookItem rank={3} />
 				<BookItem rank={4} />
 				<BookItem rank={5} />
-			</div>
+			</div> */}
 		</div>
 	);
 }

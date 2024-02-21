@@ -18,11 +18,11 @@ export default function CategoryTitle({
 				<h1>{mainTitle}</h1>
 				<p>{subTitle}</p>
 			</div>
-			{page !== 'used' && (
-				<Link href="/">
-					<p className={styles.seeAll}>전체보기</p>
-				</Link>
-			)}
+			{/* {currentPage !== '/used' && ( */}
+			<Link href={`${page}`}>
+				<p className={styles.seeAll}>전체보기</p>
+			</Link>
+			{/* )} */}
 		</div>
 	);
 }

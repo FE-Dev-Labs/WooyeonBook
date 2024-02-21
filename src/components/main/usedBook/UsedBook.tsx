@@ -8,6 +8,7 @@ export default function UsedBook() {
 			<CategoryTitle
 				mainTitle="중고도서"
 				subTitle="지구를 위해 중고도서 어떠세요?"
+				page="used"
 			/>
 			<BookItemBox />
 		</div>

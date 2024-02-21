@@ -1,15 +1,17 @@
 /* 도서 컴포넌트 */
 .bookItem {
 	width: 200px;
-	height: 410px;
+	height: 380px;
 
 	display: flex;
 	flex-direction: column;
 	position: relative;
+
+	cursor: pointer;
 }
 
 .bookImage {
-	width: 200px;
+	width: inherit;
 	height: 275px;
 	border-radius: 10px;
 
@@ -17,8 +19,9 @@
 	overflow: hidden;
 	transition: transform 0.3s ease-in-out;
 }
+
 .bookImage::after {
-	content: '';
+	/* content: ''; */
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -32,11 +35,20 @@
 }
 .bookText {
 	width: inherit;
-	height: 135px;
+	height: 85px;
+
 	margin-top: 20px;
 }
+
 .bookText h1 {
-	font-size: 18px;
+	height: 35px;
+	font-size: 16px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 .bookText a {
 	color: #000000;
@@ -45,18 +57,26 @@
 	text-decoration: underline;
 }
 .bookText p {
-	margin-top: 20px;
+	margin-top: 5px;
+	height: 15px;
+	font-size: 12px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .bookText p:nth-of-type(1) {
+	margin-top: 15px;
 	color: #aaaaaa;
 }
 .addDeleteBook {
 	position: absolute;
-	right: 10px;
-	bottom: 155px;
+	right: 8px;
+	bottom: 120px;
 	cursor: pointer;
 }
 
+/* 랭크 숫자 */
 .rank {
 	position: absolute;
 	top: 140px;

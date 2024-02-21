@@ -1,7 +1,7 @@
 /* 부모 컴포넌트 타이틀 */
 .titleWrapper {
 	width: inherit;
-	height: 30px;
+	height: 25px;
 	margin-bottom: 30px;
 
 	display: flex;
@@ -11,18 +11,18 @@
 	display: flex;
 }
 .titleName h1 {
-	font-size: 30px;
+	font-size: 22px;
 	font-weight: bold;
 }
 .titleName p {
-	font-size: 20px;
-	margin: 10px 0 0 40px;
+	font-size: 14px;
+	margin: 8px 0 0 20px;
 
 	color: #aaaaaa;
 }
 .seeAll {
-	font-size: 16px;
-	margin-top: 14px;
+	font-size: 12px;
+	margin-top: 12px;
 
 	text-align: right;
 	cursor: pointer;
