@@ -1,3 +1,4 @@
+import { getBookList } from '@/apis/booklist';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';
 import PageHeader from '@/components/common/PageHeader';

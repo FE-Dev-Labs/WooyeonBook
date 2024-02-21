@@ -9,7 +9,8 @@ import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
 import arrowStyles from '@/styles/main/mainSlider/customArrow.module.css';
-
+import { mainBookSlider } from '@/apis/mainBookSlider';
+import { useRef } from 'react';
 interface ArrowProps {
 	className?: string;
 	style?: React.CSSProperties;
@@ -19,7 +20,7 @@ interface ArrowProps {
 export default function MainSlider() {
 	// 슬라이더 다이나믹 라우팅 적용
 	const MainSlider = dynamic(() => import('react-slick'), {
-		ssr: false,
+		// ssr: false,
 		loading: () => <div className={styles.mainSliderWrapper}>로딩중...</div>,
 	});
 
@@ -47,6 +48,7 @@ export default function MainSlider() {
 
 	// 슬라이더 세팅
 	const settings = {
+		className: 'center',
 		dots: false, // 하단 dot
 		infinite: true, // 슬라이더 무한 순환
 		speed: 1000, // 전환 속도
@@ -57,6 +59,7 @@ export default function MainSlider() {
 		autoplaySpeed: 4000, // 자동으로 넘어가는 속도
 		centerMode: true, // 현재 슬라이드를 중앙에 위치
 		centerPadding: '200px', // 중앙 슬라이드 양 옆의 패딩
+		// centerborderradius: '4px' ,
 
 		prevArrow: <CustomPrevArrow />,
 		nextArrow: <CustomNextArrow />,
@@ -64,9 +67,9 @@ export default function MainSlider() {
 
 	return (
 		<MainSlider {...settings} className={styles.mainSliderWrapper}>
-			<SliderItem />
-			<SliderItem />
-			<SliderItem />
+			{mainBookSlider.map((item) => {
+				return <SliderItem key={item.id} item={item} />;
+			})}
 		</MainSlider>
 	);
 }
