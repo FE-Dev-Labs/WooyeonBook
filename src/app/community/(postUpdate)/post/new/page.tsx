@@ -44,21 +44,59 @@ export default function postNewPage() {
 	// editor text
 	const text = useRecoilValue(editorText);
 	// title input state
-	const [title, setTitle] = useState('');
+	const [title, setTitle] = useState<string>('');
 	// title input event
 	const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTitle(e.target.value);
 	};
 	// meeting recruitment number
-	const [recruitmentNumber, setRecruitmentNumber] = useState('');
+	const [recruitmentNumber, setRecruitmentNumber] = useState<number>(0);
 	const onchangeRecruitmentNumber = (e: any) => {
 		setRecruitmentNumber(e.value);
+	};
+
+	// meeting chat url
+	const [chatUrl, setChatUrl] = useState<string>('');
+	const onchangeChatUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setChatUrl(e.target.value);
+	};
+	// meeting deadline
+	const [deadline, setDeadline] = useState<Date>(new Date());
+	const onchangeDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const date = new Date(e.target.value);
+		setDeadline(date);
+	};
+	// selling price state
+	const [sellingPrice, setSellingPrice] = useState<string>('');
+	// selling price event
+	const onchangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSellingPrice(e.target.value);
+	};
+	// selling book state onChange event
+	const [bookState, setBookState] = useState<string>('');
+	const onchangeBookState = (e: any) => {
+		setBookState(e.value);
+	};
+	// selling state onChange event
+	const [sellingState, setSellingState] = useState<string>('');
+	const onchangeSellingState = (e: any) => {
+		setSellingState(e.value);
 	};
 
 	// supabase database submit event
 	const onSubmit = async () => {
 		// page별 데이터 생성
-		const data = communityPostData({ page, title, text });
+		const data = communityPostData({
+			page,
+			title,
+			text,
+			recruitmentNumber,
+			chatUrl,
+			deadline,
+			bookState,
+			sellingState,
+			sellingPrice,
+		});
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase.from(`${page}`).insert([data]);
 		// 에러 발생시 alert
@@ -79,7 +117,7 @@ export default function postNewPage() {
 		if (page === 'bookBuying') {
 			return '중고 책을 구매해보세요.';
 		}
-		if (page === 'bookSeling') {
+		if (page === 'bookSelling') {
 			return '책을 나누고 판매해 보세요.';
 		}
 	};
@@ -100,8 +138,8 @@ export default function postNewPage() {
 			);
 		}
 		if (page === 'bookMeeting') {
-			const options = [
-				{ vlaue: '0', label: '인원을 선택해주세요.' },
+			const recruitmentOptions = [
+				{ value: '', label: '모집 인원을 선택해주세요.' },
 				{ value: '1', label: '1명' },
 				{ value: '2', label: '2명' },
 				{ value: '3', label: '3명' },
@@ -120,18 +158,24 @@ export default function postNewPage() {
 						<input
 							type="text"
 							placeholder="카카오 오픈채팅방 URL을 입력해주세요."
+							value={chatUrl || ''}
+							onChange={onchangeChatUrl}
 						/>
 					</div>
 					<div className={styles.meetingSelectWrap}>
 						<label>모집 마감일</label>
-						<input type="date" className={styles.dateInput} />
+						<input
+							type="date"
+							className={styles.dateInput}
+							onChange={onchangeDeadline}
+						/>
 					</div>
 					<div className={styles.meetingSelectWrap}>
 						<label>모집 인원</label>
 						<Select
 							className={styles.bookSelectBtn}
-							options={options}
-							defaultValue={options[0]}
+							options={recruitmentOptions}
+							defaultValue={recruitmentOptions[0]}
 							onChange={onchangeRecruitmentNumber}
 						/>
 					</div>
@@ -151,12 +195,23 @@ export default function postNewPage() {
 					</div>
 					<div className={styles.buyingSelectWrap}>
 						<label>구매하고 싶은 가격을 적어주세요.</label>
-						<input type="text" />
+						<input type="text" value={sellingPrice} onChange={onchangePrice} />
 					</div>
 				</div>
 			);
 		}
 		if (page === 'bookSelling') {
+			const bookStateOptions = [
+				{ value: '', label: '책의 상태를 선택해주세요.' },
+				{ value: '상', label: '상' },
+				{ value: '중', label: '중' },
+				{ value: '하', label: '하' },
+			];
+			const sellingStateOptions = [
+				{ value: '', label: '판매 / 나눔' },
+				{ value: '판매', label: '판매' },
+				{ value: '나눔', label: '나눔' },
+			];
 			return (
 				<div className={styles.sellingSelectContainer}>
 					<div className={styles.sellingSelectWrap}>
@@ -169,20 +224,33 @@ export default function postNewPage() {
 					</div>
 					<div className={styles.sellingSelectWrap}>
 						<label>판매하고 싶은 가격을 적어주세요.</label>
-						<input type="text" />
+						<input type="text" value={sellingPrice} onChange={onchangePrice} />
 					</div>
 					<div className={styles.sellingSelectWrap}>
 						<label>책의 상태</label>
-						<Select className={styles.bookSelectBtn} />
+						<Select
+							className={styles.bookSelectBtn}
+							options={bookStateOptions}
+							defaultValue={bookStateOptions[0]}
+							onChange={onchangeBookState}
+						/>
 					</div>
 					<div className={styles.sellingSelectWrap}>
 						<label>판매 / 나눔</label>
-						<Select className={styles.bookSelectBtn} />
+						<Select
+							className={styles.bookSelectBtn}
+							options={sellingStateOptions}
+							defaultValue={sellingStateOptions[0]}
+							onChange={onchangeSellingState}
+						/>
 					</div>
 				</div>
 			);
 		}
 	};
+	if (!page) {
+		return router.push('/error');
+	}
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>

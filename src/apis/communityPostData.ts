@@ -1,7 +1,14 @@
+// props 타입
 interface communityPostDataProps {
 	page: string | null;
 	title: string;
 	text: string;
+	recruitmentNumber: number;
+	chatUrl: string;
+	deadline: Date;
+	bookState: string;
+	sellingState: string;
+	sellingPrice: string;
 }
 //데이터 공용 타입
 interface postDataType {
@@ -19,7 +26,7 @@ interface bookReportDataType extends postDataType {
 	book_name: string;
 	book_img_url: string;
 	category: string;
-	content_img: string[];
+	content_img_url: string[];
 }
 //모임 데이터 타입
 interface bookMeetingDataType extends postDataType {
@@ -30,13 +37,23 @@ interface bookMeetingDataType extends postDataType {
 	chatting_url: string;
 }
 //삽니다, 팝니다 데이터 타입
-interface bookBuyingSellingDataType extends postDataType {
+interface bookBuyingDataType extends postDataType {
 	book_name: string;
 	book_img_url: string;
 	category: string;
-	content_img: string[];
-	price: number;
+	content_img_url: string[];
+	price: string;
 	state: boolean;
+}
+interface bookSellingDataType extends postDataType {
+	book_name: string;
+	book_img_url: string;
+	category: string;
+	content_img_url: string[];
+	price: string;
+	state: boolean;
+	book_state: string;
+	selling_state: string;
 }
 /**
  * @description
@@ -51,6 +68,12 @@ export const communityPostData = ({
 	page,
 	title,
 	text,
+	recruitmentNumber,
+	chatUrl,
+	deadline,
+	bookState,
+	sellingState,
+	sellingPrice,
 }: communityPostDataProps) => {
 	// 독후감 데이터
 	const bookReportSumitData: bookReportDataType = {
@@ -58,7 +81,7 @@ export const communityPostData = ({
 		created_user: 'user-uuid',
 		title: title,
 		content: text,
-		content_img: [],
+		content_img_url: [],
 		user_name: 'user-name',
 		book_name: 'book-name',
 		book_img_url: 'book-img',
@@ -76,29 +99,48 @@ export const communityPostData = ({
 		content_img_url: [],
 		user_name: 'user-name',
 		state: false,
-		recruitment_number: 0,
-		deadline: new Date(),
+		recruitment_number: recruitmentNumber,
+		deadline: deadline,
 		view: 0,
 		field: page,
-		chatting_url: 'chatting-url',
+		chatting_url: chatUrl,
 		like: 0,
 	};
-	// 삽니다, 팝니다 데이터
-	const bookBuyingSellingSumitData: bookBuyingSellingDataType = {
+	// 삽니다 데이터
+	const bookBuyingSumitData: bookBuyingDataType = {
 		created_at: new Date(),
 		created_user: 'user-uuid',
 		title: title,
 		content: text,
-		content_img: [],
+		content_img_url: [],
 		user_name: 'user-name',
 		book_name: 'book-name',
 		book_img_url: 'book-img',
 		field: page,
 		category: 'category',
 		view: 0,
-		price: 0,
+		price: '0',
 		like: 0,
 		state: false,
+	};
+	// 팝니다 데이터
+	const bookSellingSumitData: bookSellingDataType = {
+		created_at: new Date(),
+		created_user: 'user-uuid',
+		title: title,
+		content: text,
+		content_img_url: [],
+		user_name: 'user-name',
+		book_name: 'book-name',
+		book_img_url: 'book-img',
+		field: page,
+		category: 'category',
+		view: 0,
+		price: sellingPrice,
+		like: 0,
+		state: false,
+		book_state: bookState,
+		selling_state: sellingState,
 	};
 	// 데이터를 반환
 	if ((page = 'bookReport')) {
@@ -108,10 +150,10 @@ export const communityPostData = ({
 		return bookMeetingSumitData;
 	}
 	if ((page = 'bookBuying')) {
-		return bookBuyingSellingSumitData;
+		return bookBuyingSumitData;
 	}
-	if ((page = 'bookSeling')) {
-		return bookBuyingSellingSumitData;
+	if ((page = 'bookSelling')) {
+		return bookSellingSumitData;
 	}
 	return null;
 };
