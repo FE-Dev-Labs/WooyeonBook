@@ -1,13 +1,15 @@
 import styles from '@/styles/common/bestSeller.module.css';
 import BookItem from '@/components/common/BookItem';
 import CategoryTitle from '../main/common/CategoryTitle';
+import { BestSellerType } from '@/types/bestSellerType';
 
-interface BestSellerProp {
+interface BestSellerProps {
+	data: BestSellerType[];
 	page?: string;
 	height?: string;
 }
 
-export default function BestSeller({ page, height }: BestSellerProp) {
+export default function BestSeller({ data, page, height }: BestSellerProps) {
 	return (
 		<div className={styles.bestSellerWrapper} style={{ height }}>
 			<CategoryTitle
@@ -23,13 +25,11 @@ export default function BestSeller({ page, height }: BestSellerProp) {
 				// subTitle="어떤 책을 많이 읽을까?"
 				// page="best"
 			/>
-			{/* <div className={styles.bestItemWrapper}>
-				<BookItem rank={1} />
-				<BookItem rank={2} />
-				<BookItem rank={3} />
-				<BookItem rank={4} />
-				<BookItem rank={5} />
-			</div> */}
+			<div className={styles.bestItemWrapper}>
+				{data?.map((book: BestSellerType, index: number) => (
+					<BookItem key={book.itemId} data={book} rank={index + 1} />
+				))}
+			</div>
 		</div>
 	);
 }
