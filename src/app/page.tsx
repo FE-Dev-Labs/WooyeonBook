@@ -17,27 +17,36 @@ export default async function Home() {
 		return data.json();
 	});
 
+	// 메인 페이지에 뿌려줄 신간 리스트 (6개)
 	const newBookData = await fetch(
-		// 'https://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttb0113byi1704001&QueryType=ItemNewAll&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101',
-
 		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-
 		{ cache: 'force-cache' },
 	).then((data) => {
 		return data.json();
 	});
 
-	console.log(newBookData);
-	console.log(newBookData.item.length);
+	// 메인 페이지에 뿌려줄 베스트셀러 리스트 (5개)
+	const bestSellerData = await fetch(
+		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=Bestseller&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+		{ cache: 'force-cache' },
+	).then((data) => {
+		return data.json();
+	});
+	const bestItem = bestSellerData.item.sort(
+		(a: any, b: any) => b.item?.bestRank - a.item?.bestRank,
+	);
+
+	// console.log(newBookData);
+	// console.log(bestSellerData.item.length);
 
 	return (
 		<main className={styles.container}>
 			<div />
 			<div className={styles.wrapper}>
 				<MainSlider />
-				<NewBook newBookData={newBookData} />
+				<NewBook data={newBookData} />
 				<ThemeRecommendation />
-				<BestSeller />
+				<BestSeller data={bestItem} />
 				<UsedBook />
 			</div>
 			<div>

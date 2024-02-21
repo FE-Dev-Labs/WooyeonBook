@@ -7,13 +7,13 @@ import Link from 'next/link';
 import addBook from '../../../public/common/addBook.png';
 import deleteBook from '../../../public/common/deleteBook.png';
 
-interface BookItemProp {
+interface BookItemProps {
 	rank?: number;
-	newBookData: any;
+	data: any;
 }
 
-export default function BookItem({ rank, newBookData }: BookItemProp) {
-	console.log(newBookData);
+export default function BookItem({ rank, data }: BookItemProps) {
+	// console.log(newBookData);
 
 	const [isAdded, setIsAdded] = useState<boolean>(false);
 
@@ -26,8 +26,8 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 						pathname: `/detail/${newBookData.itemId}`,
 						query: { type: 'new' },
 					}}> */}
-				<Link href={`/detail/${newBookData.itemId}?type=new`}>
-					<Image fill src={newBookData.cover} alt="new book" />
+				<Link href={`/detail/${data.isbn13}?type=new`}>
+					<Image fill src={data.cover} alt="new book" />
 				</Link>
 			</div>
 			<div
@@ -41,18 +41,18 @@ export default function BookItem({ rank, newBookData }: BookItemProp) {
 				/>
 			</div>
 			<div className={styles.bookText}>
-				<Link href={`/detail/${newBookData.itemId}?type=new`}>
-					<h1>{newBookData.title}</h1>
+				<Link href={`/detail/${data.isbn13}?type=new`}>
+					<h1>{data.title}</h1>
 				</Link>
-				<p>{`${newBookData.author.replace(
-					' (지은이)',
+				<p>{`${data.author.replace(' (지은이)', '')} / ${data.publisher.replace(
+					'(방송교재)',
 					'',
-				)} / ${newBookData.publisher.replace('(방송교재)', '')}`}</p>
+				)}`}</p>
 				<p>
 					<span style={{ textDecoration: 'line-through' }}>
-						{`${newBookData.priceStandard.toLocaleString()}원`}
+						{`${data.priceStandard.toLocaleString()}원`}
 					</span>
-					{` ${newBookData.priceSales.toLocaleString()}원`}
+					{` ${data.priceSales.toLocaleString()}원`}
 				</p>
 			</div>
 		</div>
