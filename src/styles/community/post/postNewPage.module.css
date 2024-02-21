@@ -2,17 +2,119 @@
 	width: 1300px;
 	margin: 0 auto;
 }
-/* 옵션 */
-.optionWrap {
-	display: flex;
-	align-items: center;
-	margin-bottom: 30px;
-}
 .bookSelectBtn {
 	width: 500px;
 	margin-right: 50px;
 }
-
+/* 독후감 옵션 */
+.reportSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.reportSelectWrap {
+	display: flex;
+	flex-direction: column;
+}
+.reportSelectWrap > label {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+/* 모임 옵션 area css */
+.meetingSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.meetingSelectWrap {
+	display: flex;
+	flex-direction: column;
+}
+.meetingSelectWrap > label {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.meetingSelectWrap > input {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+/* 삽니다 옵션 area css */
+.buyingSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.buyingSelectWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.buyingSelectWrap > label {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.buyingSelectWrap > input {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+.selectBookText {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	line-height: 38px;
+}
+/* 팝니다 옵션 area css */
+.sellingSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.sellingSelectWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.sellingSelectWrap > label {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.sellingSelectWrap > input {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+.selectBookText {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	line-height: 38px;
+}
+/* 등록 취소 버튼 */
 .BtnWrap {
 	display: flex;
 	justify-content: flex-end;
