@@ -13,8 +13,6 @@ interface BookItemProps {
 }
 
 export default function BookItem({ rank, data }: BookItemProps) {
-	// console.log(newBookData);
-
 	const [isAdded, setIsAdded] = useState<boolean>(false);
 
 	return (

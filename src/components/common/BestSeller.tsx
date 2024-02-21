@@ -25,11 +25,9 @@ export default function BestSeller({ data, page, height }: BestSellerProps) {
 				// page="best"
 			/>
 			<div className={styles.bestItemWrapper}>
-				{/* <BookItem rank={1} />
-				<BookItem rank={2} />
-				<BookItem rank={3} />
-				<BookItem rank={4} />
-				<BookItem rank={5} /> */}
+				{data?.map((book: any, index: number) => (
+					<BookItem key={book.itemId} data={book} rank={index + 1} />
+				))}
 			</div>
 		</div>
 	);
