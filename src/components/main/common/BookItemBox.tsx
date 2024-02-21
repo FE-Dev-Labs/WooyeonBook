@@ -2,17 +2,16 @@
 
 import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/main/common/bookItemBox.module.css';
+import { NewBookType } from '@/types/newBookType';
 
-interface Props {
-	data: any;
+interface BookItemBoxProp {
+	data: NewBookType[];
 }
 
-export default function BookItemBox({ data }: Props) {
+export default function BookItemBox({ data }: BookItemBoxProp) {
 	return (
 		<div className={styles.bookItemWrapper}>
-			{data?.item?.map((book: any) => (
-				<BookItem key={book.itemId} data={book} />
-			))}
+			{data?.map((book) => <BookItem key={book.itemId} data={book} />)}
 		</div>
 	);
 }

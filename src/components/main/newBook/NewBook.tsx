@@ -1,12 +1,13 @@
 import styles from '@/styles/main/newBook/newBook.module.css';
 import CategoryTitle from '../common/CategoryTitle';
 import BookItemBox from '../common/BookItemBox';
+import { NewBookType } from '@/types/newBookType';
 
-interface Props {
-	data: string;
+interface newBookBoxProp {
+	data: NewBookType[];
 }
 
-export default function newBookBox({ data }: Props) {
+export default function newBookBox({ data }: newBookBoxProp) {
 	return (
 		<div className={styles.newBookWrapper}>
 			<CategoryTitle
