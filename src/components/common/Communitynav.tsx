@@ -1,3 +1,4 @@
+'use client';
 import styles from '@/styles/common/communitynav.module.css';
 import { useState } from 'react';
 import ControlFilterPanel from './ControlFilterPanel';

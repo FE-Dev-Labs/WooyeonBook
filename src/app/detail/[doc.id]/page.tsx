@@ -1,8 +1,15 @@
-import Accordionlayout from '@/components/common/Accordionlayout';
 import Detaildescription from '@/components/detail/detaildescription/Detaildescription';
 import styles from '@/styles/detail/detaildescription/detail.module.css';
+import Accordion from './../../../components/common/Accordion';
+import Detailexplanation from '@/components/detail/detaildata/Detailexplanation';
+import Detailinformation from '@/components/detail/detaildata/Detailinformation';
+import Detailsustainability from '@/components/detail/detaildata/Detailsustainability';
+import Detailcomment from '@/components/detail/detailcomments/Detailcomment';
+import AccordionWrapper from '@/components/common/AccordionWrapper';
+import { BookDataType } from '@/types/bookDateType';
+
 export default function page() {
-	const bookInfo = [
+	const bookInfo: BookDataType[] = [
 		{
 			id: '1',
 			title: '베르베르씨, 오늘은 뭘 쓰세요?',
@@ -50,10 +57,23 @@ export default function page() {
 
 	return (
 		<div className={styles.container}>
-			{bookInfo.map((book, index) => (
+			{bookInfo.map((book: BookDataType, index) => (
 				<div key={index}>
 					<Detaildescription bookInfo={book} />
-					<Accordionlayout {...book} isMypage={false} />
+					<AccordionWrapper>
+						<Accordion title={'설명'} index={0}>
+							<Detailexplanation {...book} />
+						</Accordion>
+						<Accordion title={'정보고시'} index={1}>
+							<Detailinformation {...book} />
+						</Accordion>
+						<Accordion title={'지속가능성'} index={2}>
+							<Detailsustainability {...book} />
+						</Accordion>
+						<Accordion title={'한줄평'} index={3}>
+							<Detailcomment />
+						</Accordion>
+					</AccordionWrapper>
 				</div>
 			))}
 		</div>
