@@ -29,11 +29,12 @@ export default function Accordion({
 
 	return (
 		<div
-			onClick={(e) => eventHandler(e, index)}
 			className={
 				active.includes(index) ? styles.activeStyle : styles.inactiveStyle
 			}>
-			<div className={styles.accordionTitle}>
+			<div
+				onClick={(e) => eventHandler(e, index)}
+				className={styles.accordionTitle}>
 				<h2>{title}</h2>
 
 				<Image

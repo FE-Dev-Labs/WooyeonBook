@@ -1,9 +1,8 @@
 import styles from '@/styles/detail/detaildata/detailexplanation.module.css';
 
-export default function Detailexplanation({ ...book }, active: number) {
-	console.log('여기', active);
+export default function Detailexplanation({ ...book }) {
 	return (
-		<div className={active ? 'active' : 'inactive'}>
+		<div className={styles.accordionWrappe}>
 			<div className={styles.accordionContent}>
 				<ul className={styles.accordionWrapper}>
 					<div className={styles.accodionRowSelection}>

@@ -1,12 +1,12 @@
 import Detaildescription from '@/components/detail/detaildescription/Detaildescription';
 import styles from '@/styles/detail/detaildescription/detail.module.css';
 import Accordion from './../../../components/common/Accordion';
-import Detailexplanation from '@/components/detail/detaildata/Detailexplanation';
-import Detailinformation from '@/components/detail/detaildata/Detailinformation';
 import Detailsustainability from '@/components/detail/detaildata/Detailsustainability';
 import Detailcomment from '@/components/detail/detailcomments/Detailcomment';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import { BookDataType } from '@/types/bookDateType';
+import Detailinformation from '@/components/detail/detaildata/detailinformation';
+import Detailexplanation from './../../../components/detail/detaildata/detailexplanation';
 
 export default function page() {
 	const bookInfo: BookDataType[] = [
