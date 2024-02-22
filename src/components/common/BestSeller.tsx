@@ -27,10 +27,6 @@ export default function BestSeller({
 				}
 				page="best"
 				isUsedPage={isUsedPage}
-				// page="best"
-				// mainTitle="베스트셀러"
-				// subTitle="어떤 책을 많이 읽을까?"
-				// page="best"
 			/>
 			<div className={styles.bestItemWrapper}>
 				{data?.map((book: BestSellerType, index: number) => (
