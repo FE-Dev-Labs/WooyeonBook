@@ -32,16 +32,15 @@ export default async function Home() {
 		?.sort((a: BestSellerType, b: BestSellerType) => a.bestRank - b.bestRank)
 		.slice(0, 5);
 
-	// 메인 페이지에 뿌려줄 중고책 리스트 5개
+	// 메인 페이지에 뿌려줄 중고책 리스트 6개
 	const usedBookData: RootUsedBookType = await fetch(
-		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=5&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
 		{ cache: 'force-cache' },
 	).then((data) => {
 		return data.json();
 	});
-	// 신간리스트의 item만 추출해 newItem에 할당
+	// 신간리스트의 item만 추출해 usedItem에 할당
 	const usedItem: UsedBookType[] = usedBookData?.item?.flatMap((book) => book);
-	console.log(usedItem);
 
 	return (
 		<main className={styles.container}>
@@ -51,7 +50,7 @@ export default async function Home() {
 				<NewBook data={newItem} />
 				<ThemeRecommendation />
 				<BestSeller data={bestItem} />
-				<UsedBook />
+				<UsedBook data={usedItem} />
 			</div>
 			<div>
 				<RecentlyViewedBooks />

@@ -8,10 +8,11 @@ import addBook from '../../../public/common/addBook.png';
 import deleteBook from '../../../public/common/deleteBook.png';
 import { NewBookType } from '@/types/newBookType';
 import { BestSellerType } from '@/types/bestSellerType';
+import { UsedBookType } from '@/types/UsedBookType';
 
 interface BookItemProps {
 	rank?: number;
-	data: NewBookType | BestSellerType;
+	data: NewBookType | BestSellerType | UsedBookType;
 }
 
 export default function BookItem({ rank, data }: BookItemProps) {

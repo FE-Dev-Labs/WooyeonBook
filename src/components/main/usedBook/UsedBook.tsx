@@ -1,8 +1,12 @@
 import styles from '@/styles/main/usedBook/usedBook.module.css';
 import CategoryTitle from '../common/CategoryTitle';
 import BookItemBox from '../common/BookItemBox';
+import { UsedBookType } from '@/types/UsedBookType';
 
-export default function UsedBook() {
+interface UsedBookProp {
+	data: UsedBookType[];
+}
+export default function UsedBook({ data }: UsedBookProp) {
 	return (
 		<div className={styles.usedBookWrapper}>
 			<CategoryTitle
@@ -10,7 +14,7 @@ export default function UsedBook() {
 				subTitle="지구를 위해 중고도서 어떠세요?"
 				page="used"
 			/>
-			<BookItemBox />
+			<BookItemBox data={data} />
 		</div>
 	);
 }
