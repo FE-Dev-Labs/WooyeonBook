@@ -4,12 +4,18 @@ import CategoryTitle from '../main/common/CategoryTitle';
 import { BestSellerType } from '@/types/bestSellerType';
 
 interface BestSellerProps {
-	data: BestSellerType[];
+	data?: BestSellerType[];
 	page?: string;
 	height?: string;
+	isUsedPage?: boolean;
 }
 
-export default function BestSeller({ data, page, height }: BestSellerProps) {
+export default function BestSeller({
+	data,
+	page,
+	height,
+	isUsedPage,
+}: BestSellerProps) {
 	return (
 		<div className={styles.bestSellerWrapper} style={{ height }}>
 			<CategoryTitle
@@ -20,10 +26,7 @@ export default function BestSeller({ data, page, height }: BestSellerProps) {
 						: '어떤 책을 많이 읽을까?'
 				}
 				page="best"
-				// page="best"
-				// mainTitle="베스트셀러"
-				// subTitle="어떤 책을 많이 읽을까?"
-				// page="best"
+				isUsedPage={isUsedPage}
 			/>
 			<div className={styles.bestItemWrapper}>
 				{data?.map((book: BestSellerType, index: number) => (

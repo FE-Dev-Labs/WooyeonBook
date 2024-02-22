@@ -14,7 +14,7 @@ export default function usedPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<BestSeller page="used" height="500px" />
+					<BestSeller page="used" height="500px" isUsedPage={true} />
 					<div className={styles.usedLine} />
 					{/* <Category /> */}
 					<Sort />
