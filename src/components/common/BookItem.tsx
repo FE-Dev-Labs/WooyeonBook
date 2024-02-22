@@ -16,6 +16,8 @@ interface BookItemProps {
 }
 
 export default function BookItem({ rank, data }: BookItemProps) {
+	console.log(data);
+
 	// + 버튼
 	const [isAdded, setIsAdded] = useState<boolean>(false);
 
@@ -25,7 +27,6 @@ export default function BookItem({ rank, data }: BookItemProps) {
 		const discountRate = (discountAmount / standardPrice) * 100;
 		return Math.round(discountRate);
 	};
-
 	const discountRate = calculateDiscountRate(
 		data?.priceStandard,
 		data?.priceSales,
@@ -35,13 +36,15 @@ export default function BookItem({ rank, data }: BookItemProps) {
 		<div className={styles.bookItem}>
 			{rank && <div className={styles.rank}>{rank}</div>}
 			<div className={styles.bookImage}>
-				{/* <Link
-					href={{
-						pathname: `/detail/${newBookData.itemId}`,
-						query: { type: 'new' },
-					}}> */}
-				<Link href={`/detail/${data?.isbn13}?type=new`}>
-					<Image fill src={data?.cover} alt="new book" />
+				<Link
+					href={`/detail/${data?.isbn}?type=${
+						data?.mallType === 'USED' ? 'used' : 'new'
+					}`}>
+					<Image
+						fill
+						src={data?.cover}
+						alt={data?.mallType === 'USED' ? 'used book' : 'new book'}
+					/>
 				</Link>
 			</div>
 			<div
@@ -55,7 +58,10 @@ export default function BookItem({ rank, data }: BookItemProps) {
 				/>
 			</div>
 			<div className={styles.bookText}>
-				<Link href={`/detail/${data?.isbn13}?type=new`}>
+				<Link
+					href={`/detail/${data?.isbn}?type=${
+						data?.mallType === 'USED' ? 'used' : 'new'
+					}`}>
 					<h1>{data?.title}</h1>
 				</Link>
 				<p>{`${data?.author.replace(
