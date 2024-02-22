@@ -5,12 +5,14 @@ interface CategoryTitleProps {
 	mainTitle: string;
 	subTitle: string;
 	page?: string;
+	isUsedPage?: boolean;
 }
 
 export default function CategoryTitle({
 	mainTitle,
 	subTitle,
 	page,
+	isUsedPage,
 }: CategoryTitleProps) {
 	return (
 		<div className={styles.titleWrapper}>
@@ -18,11 +20,11 @@ export default function CategoryTitle({
 				<h1>{mainTitle}</h1>
 				<p>{subTitle}</p>
 			</div>
-			{/* {currentPage !== '/used' && ( */}
-			<Link href={`${page}`}>
-				<p className={styles.seeAll}>전체보기</p>
-			</Link>
-			{/* )} */}
+			{!isUsedPage && (
+				<Link href={`${page}`}>
+					<p className={styles.seeAll}>전체보기</p>
+				</Link>
+			)}
 		</div>
 	);
 }
