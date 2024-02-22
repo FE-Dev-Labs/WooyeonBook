@@ -3,10 +3,12 @@ import dynamic from 'next/dynamic';
 import styles from '@/styles/community/post/postNewPage.module.css';
 import { RecoilValue, useRecoilValue } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { communityPostData } from '@/apis/communityPostData';
+import BookSearch from '@/components/community/post/BookSearch';
+
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => (
@@ -36,6 +38,22 @@ const Editor = dynamic(
 	},
 );
 export default function postNewPage() {
+	// search book state
+	const [searchBook, setSearchBook] = useState<string>('');
+	// search book state event
+	const onChangeSearchBook = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchBook(e.target.value);
+	};
+	// search book event api
+	// const getBooks = async () => {
+	// 	const data = await fetch(
+	// 		`${process.env.NEXT_PUBLIC_ALADIN_ITEMSEARCH_URL}Query=${searchBook}&SearchTarget=Book&output=js&Version=20131101`,
+	// 	).then((res) => res.json());
+	// 	return data;
+	// };
+	// useEffect(() => {
+	// 	getBooks();
+	// }, [searchBook]);
 	// navigation
 	const router = useRouter();
 	// page params
@@ -128,7 +146,7 @@ export default function postNewPage() {
 				<div className={styles.reportSelectContainer}>
 					<div className={styles.reportSelectWrap}>
 						<label>책을 선택해주세요.</label>
-						<Select className={styles.bookSelectBtn} />
+						<BookSearch />
 					</div>
 					<div className={styles.reportSelectWrap}>
 						<label>선택한 책</label>

@@ -6,18 +6,16 @@ import { RecoilRoot } from 'recoil';
 
 export default function PostLayout({ children }: BasicLayoutType) {
 	return (
-		<RecoilRoot>
-			<div className={styles.container}>
-				<div className={styles.viewWrap}>
-					<div className={styles.nav}>
-						<Link href={'/community/post/new?page=bookReport'}>독후감</Link>
-						<Link href={'/community/post/new?page=bookMeeting'}>모임</Link>
-						<Link href={'/community/post/new?page=bookBuying'}>삽니다</Link>
-						<Link href={'/community/post/new?page=bookSelling'}>팝니다</Link>
-					</div>
-					{children}
+		<div className={styles.container}>
+			<div className={styles.viewWrap}>
+				<div className={styles.nav}>
+					<Link href={'/community/post/new?page=bookReport'}>독후감</Link>
+					<Link href={'/community/post/new?page=bookMeeting'}>모임</Link>
+					<Link href={'/community/post/new?page=bookBuying'}>삽니다</Link>
+					<Link href={'/community/post/new?page=bookSelling'}>팝니다</Link>
 				</div>
+				<RecoilRoot>{children}</RecoilRoot>
 			</div>
-		</RecoilRoot>
+		</div>
 	);
 }

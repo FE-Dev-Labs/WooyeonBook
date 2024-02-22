@@ -61,6 +61,12 @@ interface bookSellingDataType extends postDataType {
  * @param {string} page - 게시글의 페이지
  * @param {string} title - 게시글의 제목
  * @param {string} text - 게시글의 내용
+ * @param {number} recruitmentNumber - 모임의 모집인원
+ * @param {string} chatUrl - 모임의 채팅 url
+ * @param {Date} deadline - 모임의 마감일
+ * @param {string} bookState - 책 상태
+ * @param {string} sellingState - 판매 상태
+ * @param {string} sellingPrice - 판매 가격
  * @returns {object} - 게시글 데이터
  */
 
