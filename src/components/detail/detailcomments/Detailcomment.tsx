@@ -10,9 +10,7 @@ export default function Detailcomment() {
 					placeholder="한글 기준 50자까지 작성 가능합니다."
 				/>
 
-				<button type="submit" className={styles.commnetSubmitBtn}>
-					등록
-				</button>
+				<button className={styles.commnetSubmitBtn}>등록</button>
 			</form>
 			<div>
 				<ul>

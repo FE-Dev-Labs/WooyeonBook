@@ -3,8 +3,13 @@ import Link from 'next/link';
 import Detailquantity from './Detailquantity';
 import Detailtotalquantity from './Detailtotalquantity';
 import Image from 'next/image';
+import { BookDataType } from '@/types/bookDateType';
 
-export default function Detaildescription({ bookInfo }: { bookInfo: any }) {
+export default function Detaildescription({
+	bookInfo,
+}: {
+	bookInfo: BookDataType;
+}) {
 	// 작가, 옮긴이 함수
 	// 베르베르, 이현순 (지은이), 신현호, 강경호, 김성아 (옮긴이)
 	const authorsText = bookInfo.author;

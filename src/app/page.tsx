@@ -28,7 +28,7 @@ export default async function Home() {
 	});
 
 	console.log(newBookData);
-	console.log(newBookData.item.length);
+	// console.log(newBookData.item.length);
 
 	return (
 		<main className={styles.container}>

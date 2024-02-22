@@ -11,7 +11,7 @@ export default function BookItemBox({ newBookData }: BookItemBoxProp) {
 	return (
 		<div className={styles.bookItemWrapper}>
 			{newBookData &&
-				newBookData.item.map((book: any) => (
+				newBookData.item?.map((book: any) => (
 					<BookItem key={book.itemId} newBookData={book} />
 				))}
 		</div>

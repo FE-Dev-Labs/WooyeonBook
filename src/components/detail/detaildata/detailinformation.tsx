@@ -1,11 +1,14 @@
+'use client';
+import { AccordionContext } from '@/components/common/AccordionWrapper';
 import styles from '@/styles/detail/detaildata/detailinformation.module.css';
-export default function Detailinformation({ ...book }, isItemOpen: boolean) {
+import { useContext } from 'react';
+export default function Detailinformation({ ...book }) {
+	
+	const { active } = useContext(AccordionContext);
+
 	return (
 		<div className={styles.accordionContent}>
-			<ul
-				className={
-					styles.accordionWrapper + (isItemOpen ? ' ' + styles.active : '')
-				}>
+			<ul className={active.includes(1) ? styles.accordionWrappeActive : ''}>
 				<div className={styles.accodionRowSelection}>
 					<li className={styles.accordionWrapperItem}>
 						<span className={styles.boookItemTitle}>출간일</span>
