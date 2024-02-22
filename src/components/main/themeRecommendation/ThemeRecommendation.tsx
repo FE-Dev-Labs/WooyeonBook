@@ -2,7 +2,11 @@ import styles from '@/styles/main/themeRecommendation/themeRecommendation.module
 import CategoryTitle from '../common/CategoryTitle';
 import ThemItem from '@/components/common/ThemItem';
 
-export default function ThemeRecommendation() {
+interface Props {
+	data: any;
+}
+
+export default function ThemeRecommendation({ data }: any) {
 	return (
 		<div className={styles.themeRecommendationWrapper}>
 			<CategoryTitle

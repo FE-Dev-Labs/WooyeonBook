@@ -1,12 +1,13 @@
 import styles from '@/styles/main/newBook/newBook.module.css';
 import CategoryTitle from '../common/CategoryTitle';
 import BookItemBox from '../common/BookItemBox';
+import { NewBookType } from '@/types/newBookType';
 
-interface NewBookProp {
-	newBookData: string;
+interface newBookBoxProp {
+	data: NewBookType[];
 }
 
-export default function newBookBox({ newBookData }: NewBookProp) {
+export default function newBookBox({ data }: newBookBoxProp) {
 	return (
 		<div className={styles.newBookWrapper}>
 			<CategoryTitle
@@ -14,7 +15,7 @@ export default function newBookBox({ newBookData }: NewBookProp) {
 				subTitle="새로 나온 책 뭐가 있지?"
 				page="new"
 			/>
-			<BookItemBox newBookData={newBookData} />
+			<BookItemBox data={data} />
 		</div>
 	);
 }
