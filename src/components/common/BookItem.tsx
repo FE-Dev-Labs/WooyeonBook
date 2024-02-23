@@ -8,7 +8,7 @@ import addBook from '../../../public/common/addBook.png';
 import deleteBook from '../../../public/common/deleteBook.png';
 import { NewBookType } from '@/types/newBookType';
 import { BestSellerType } from '@/types/bestSellerType';
-import { UsedBookType } from '@/types/UsedBookType';
+import { UsedBookType } from '@/types/usedBookType';
 
 interface BookItemProps {
 	rank?: number;
@@ -16,8 +16,6 @@ interface BookItemProps {
 }
 
 export default function BookItem({ rank, data }: BookItemProps) {
-	console.log(data);
-
 	// + 버튼
 	const [isAdded, setIsAdded] = useState<boolean>(false);
 

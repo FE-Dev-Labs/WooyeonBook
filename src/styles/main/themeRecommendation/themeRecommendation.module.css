@@ -1,6 +1,6 @@
 .themeRecommendationWrapper {
 	width: inherit;
-	height: 510px;
+	height: 505px;
 
 	display: flex;
 	flex-direction: column;
@@ -9,7 +9,7 @@
 .themeItemWrapper {
 	width: 1300px;
 	height: 450px;
-	gap: 47px;
+	gap: 50px;
 
 	display: flex;
 	flex-wrap: wrap;

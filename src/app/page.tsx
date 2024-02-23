@@ -7,7 +7,7 @@ import BestSeller from '@/components/common/BestSeller';
 import MainSlider from '@/components/main/mainSlider/MainSlider';
 import { NewBookType, RootNewBookType } from '@/types/newBookType';
 import { BestSellerType, RootBestSellerType } from '@/types/bestSellerType';
-import { RootUsedBookType, UsedBookType } from '@/types/UsedBookType';
+import { RootUsedBookType, UsedBookType } from '@/types/usedBookType';
 
 export default async function Home() {
 	// 메인 페이지에 뿌려줄 신간 리스트 6개
