@@ -1,22 +1,15 @@
 import styles from '@/styles/common/bookItemWrapper.module.css';
 import BookItem from '../common/BookItem';
+import { NewBookType } from '@/types/newBookType';
 
-export default function BookItemWrapper() {
+interface BookItemWrapperProp {
+	data: NewBookType[];
+}
+
+export default function BookItemWrapper({ data }: BookItemWrapperProp) {
 	return (
 		<div className={styles.bookItemWrapper}>
-			{/* {data.map((book: any) => (
-				<div key={book.id}>{book.title}</div>
-			))} */}
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
+			{data?.map((book) => <BookItem key={book.itemId} data={book} />)}
 		</div>
 	);
 }
