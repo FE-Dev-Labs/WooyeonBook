@@ -5,7 +5,7 @@ interface PageHeaderProps {
 }
 export default function PageHeader({ title }: PageHeaderProps) {
 	return (
-		<header className={styles.PageHeader}>
+		<header className={styles.pageHeader}>
 			<div className={styles.titleWrapper}>
 				<div className={styles.title}>{title}</div>
 			</div>

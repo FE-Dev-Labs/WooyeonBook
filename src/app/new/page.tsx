@@ -18,7 +18,7 @@ export default async function newPage() {
 	// 신간리스트의 item만 추출해 newItem에 할당
 	const newItem: NewBookType[] = newBookData?.item?.flatMap((book) => book);
 
-	console.log(newItem);
+	// console.log(newItem);
 
 	return (
 		<>

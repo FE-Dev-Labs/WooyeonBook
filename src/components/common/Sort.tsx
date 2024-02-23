@@ -13,9 +13,9 @@ export default function Sort({ page }: SortProps) {
 				<div style={{ visibility: 'hidden' }}></div>
 			)}
 			<div className={styles.sortItem}>
-				<div>출간일</div>
-				<div>이름순</div>
-				<div>판매순</div>
+				<span>출간일</span>
+				<span>이름순</span>
+				<span>판매순</span>
 			</div>
 		</div>
 	);
