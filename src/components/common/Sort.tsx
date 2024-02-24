@@ -13,8 +13,8 @@ export default function Sort({ page }: SortProps) {
 				<div style={{ visibility: 'hidden' }}></div>
 			)}
 			<div className={styles.sortItem}>
-				<span>출간일</span>
-				<span>이름순</span>
+				<span>출간일순</span>
+				<span>제목순</span>
 				<span>판매순</span>
 			</div>
 		</div>

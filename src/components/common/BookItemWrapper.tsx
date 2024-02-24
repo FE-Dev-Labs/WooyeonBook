@@ -7,6 +7,10 @@ interface BookItemWrapperProp {
 }
 
 export default function BookItemWrapper({ data }: BookItemWrapperProp) {
+	// const filteredData = data.filter(
+	// 	(book) => book.categoryName.split('>')[1] === selectedCategory
+	// );
+
 	return (
 		<div className={styles.bookItemWrapper}>
 			{data?.map((book) => <BookItem key={book.itemId} data={book} />)}
