@@ -15,8 +15,11 @@ export default async function newPage() {
 	).then((data) => {
 		return data.json();
 	});
-	// 신간리스트의 item만 추출해 newItem에 할당
-	const newItem: NewBookType[] = newBookData?.item?.flatMap((book) => book);
+	// 신간리스트의 item만 추출해 newItem에 할당 (* 만화 카테고리 제외)
+	const newItem: NewBookType[] = newBookData?.item?.flatMap((book) =>
+		book.categoryName.split('>')[1] !== '만화' ? [book] : [],
+	);
+	console.log(newItem);
 
 	return (
 		<>
