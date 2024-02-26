@@ -30,7 +30,7 @@
 /*제목, 저자, 옮김이, 출판소, 날짜*/
 .topRigth {
 	margin-left: auto;
-	width: 860px;
+	width: 930px;
 	text-align: left;
 }
 .inforTop {
@@ -43,11 +43,20 @@
 	font-weight: normal;
 }
 .titleName {
+	display: inline;
 	margin-right: 2px;
 	line-height: 1.2em;
 	color: #333;
 	font-size: 24px;
 	font-weight: 600;
+}
+.titleContent {
+	display: inline;
+	margin-right: 1px;
+	color: #666;
+	font-size: 16px;
+	vertical-align: 2px;
+	font-weight: normal;
 }
 .pubArea {
 	display: block;
