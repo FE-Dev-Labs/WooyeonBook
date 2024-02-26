@@ -1,6 +1,34 @@
 import styles from '@/styles/detail/detaildata/detailsustainability.module.css';
+import { Book } from '@/types/bookDetailDate';
 import Link from 'next/link';
-export default function Detailsustainability({ ...book }) {
+interface bookDetailProp {
+	bookInfo: Book;
+}
+
+export default function Detailsustainability({ bookInfo }: bookDetailProp) {
+	// 제목은 크게 - 뒤에 내용은 작게 css 주기 위한 코드
+	const modifiedTitle = bookInfo.title.split('- ')[0];
+	const modigiedContent = bookInfo.title.split('- ')[1];
+
+	// 작가, 옮긴이 함수
+	// 베르베르, 이현순 (지은이), 신현호, 강경호, 김성아 (옮긴이)
+	const authorsText = bookInfo.author;
+	// [베르베르, 이현순], [신현호,강경호,김성아 (옮긴이)]
+	const [authorsPart, translatorsPart] = authorsText.split(' (지은이), ');
+
+	// [베르베르, 이현순]
+	const authors = authorsPart.includes(', ')
+		? authorsPart.split(', ').join(',')
+		: [authorsPart];
+
+	let translators: any = [];
+	if (translatorsPart) {
+		const translatorsText = translatorsPart.split(' (옮긴이)')[0];
+		translators = translatorsText.includes(', ')
+			? translatorsText.split(', ').join(',')
+			: [translatorsText];
+	}
+
 	return (
 		<div className={styles.accordionContent}>
 			<ul className={styles.accordionWrapper}>
@@ -23,16 +51,17 @@ export default function Detailsustainability({ ...book }) {
 				</div>
 				<div className={styles.accodionRowWarningSelection}>
 					<li className={styles.accordionWrapperWarningItem}>
-						<span className={styles.bookWarningItem}>{book.title}</span>
+						<h2 className={styles.bookWarningItem}>{modifiedTitle}</h2>
+						<p className={styles.bookWarningContent}>{modigiedContent}</p>
 						<div className={styles.accodionWarningWrap}>
-							<p className={styles.bookItem}>베르베르</p>
+							<p className={styles.bookItem}>{authors}</p>
 							<em className={styles.divice}></em>
-							<p className={styles.bookItem}>{book.publisher}</p>
+							<p className={styles.bookItem}>{bookInfo.publisher}</p>
 						</div>
 						<p className={styles.bookUsedLinkQuestion}>
 							이 책의 중고 서적이 궁금하다면?
 						</p>
-						<Link href={book.usedList.aladinUsed.link}>
+						<Link href={bookInfo.subInfo.usedList.aladinUsed.link}>
 							<button className={styles.bookUsedLinkBtn}>
 								중고서적 구매하기
 							</button>
