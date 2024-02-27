@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { communityPostData } from '@/apis/communityPostData';
 import BookSearch from '@/components/community/post/BookSearch';
-
+import axios from 'axios';
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => (
@@ -38,22 +38,6 @@ const Editor = dynamic(
 	},
 );
 export default function postNewPage() {
-	// search book state
-	const [searchBook, setSearchBook] = useState<string>('');
-	// search book state event
-	const onChangeSearchBook = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchBook(e.target.value);
-	};
-	// search book event api
-	// const getBooks = async () => {
-	// 	const data = await fetch(
-	// 		`${process.env.NEXT_PUBLIC_ALADIN_ITEMSEARCH_URL}Query=${searchBook}&SearchTarget=Book&output=js&Version=20131101`,
-	// 	).then((res) => res.json());
-	// 	return data;
-	// };
-	// useEffect(() => {
-	// 	getBooks();
-	// }, [searchBook]);
 	// navigation
 	const router = useRouter();
 	// page params

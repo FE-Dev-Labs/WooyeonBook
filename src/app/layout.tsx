@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 	description: '',
 };
 
-export default function RootLayout({ children }: BasicLayoutType) {
+export default async function RootLayout({ children }: BasicLayoutType) {
 	return (
 		<html lang="kr">
 			<body className={inter.className} suppressHydrationWarning={true}>
