@@ -15,7 +15,7 @@ export const AccordionContext = createContext<AccordionProps>({
 const AccordionWrapper = (props: any) => {
 	// 기본값을 0으로 지정하여 첫번째 배열인 0번은 항상 아코디언이 열리게 0추가
 	const [active, setActive] = useState<number[]>([0]);
-	console.log(active);
+
 	return (
 		<AccordionContext.Provider
 			value={{

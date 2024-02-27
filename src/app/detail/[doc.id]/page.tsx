@@ -1,7 +1,6 @@
 import Detaildescription from '@/components/detail/detaildescription/Detaildescription';
 import styles from '@/styles/detail/detaildescription/detail.module.css';
 import Accordion from './../../../components/common/Accordion';
-import Detailsustainability from '@/components/detail/detaildata/Detailsustainability';
 import Detailcomment from '@/components/detail/detailcomments/Detailcomment';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import { BookDataType } from '@/types/bookDateType';
@@ -15,6 +14,7 @@ import {
 	SubInfo,
 	UsedList,
 } from '@/types/bookDetailDate';
+import Detailsustainability from '@/components/detail/detaildata/detailsustainability';
 
 export default async function page({
 	params,
@@ -35,14 +35,6 @@ export default async function page({
 	).then((detaildata) => {
 		return detaildata.json();
 	});
-
-	// subInfo 정보
-	// detailData.item 배열의 각 요소는 이미 Book 객체이며, subInfo 또한 객체
-	// flatMap을 사용해도 subInfo 내부의 정보를 별도로 추출할 수 없다. 별로도 map을 돌려줘야된다.
-	const subInfos: SubInfo[] = detailData.item.map((book) => book.subInfo);
-
-	// usedList 정보
-	const usedLists: UsedList[] = subInfos.map((subInfo) => subInfo.usedList);
 
 	return (
 		<div className={styles.container}>

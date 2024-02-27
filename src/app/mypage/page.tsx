@@ -18,18 +18,16 @@ export default function page() {
 				</div>
 				<AccordionWrapper>
 					<Accordion title={'내가쓴글'} index={0}>
-						<>
-							<Communitynav />
-							{testdatalist.map((list) => {
-								return (
-									<div className={styles.postAccordionContainer}>
-										<div className={styles.postAccordionWrapper}>
-											<Postaccordionlayout list={list} />
-										</div>
+						<Communitynav />
+						{testdatalist.map((list) => {
+							return (
+								<div className={styles.postAccordionContainer}>
+									<div className={styles.postAccordionWrapper}>
+										<Postaccordionlayout list={list} />
 									</div>
-								);
-							})}
-						</>
+								</div>
+							);
+						})}
 					</Accordion>
 					<Accordion title={'회원정보'} index={1}>
 						<Myprofile />

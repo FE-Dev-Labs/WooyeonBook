@@ -24,6 +24,11 @@ export default function Detailquantity() {
 					height={20}
 				/>
 			</div>
+
+			<div className={styles.quantityTotalSectionWrap}>
+				<span className={styles.quantityTotal}>총 상품 금액</span>
+				<span className={styles.quantityTotalPrice}>30,600원</span>
+			</div>
 		</div>
 	);
 }
