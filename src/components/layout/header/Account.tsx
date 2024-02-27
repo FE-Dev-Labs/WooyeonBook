@@ -16,9 +16,9 @@ export default function Account() {
 					<Link href="/my/like">
 						<Image src={loginIcon} alt="login" width={25} height={25} />
 					</Link>
-					<div>
+					<Link href="/mypage?page=bookReport">
 						<Image src={accountIcon} alt="account" width={25} height={25} />
-					</div>
+					</Link>
 					<Link href="/my/cart">
 						<Image src={cartIcon} alt="cart" width={25} height={25} />
 					</Link>
