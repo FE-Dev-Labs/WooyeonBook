@@ -1,9 +1,14 @@
+'use client';
 import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import Image from 'next/image';
 import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
+import { useRecoilState } from 'recoil';
+import { CartAtom } from '@/recoil/atom/CartAtom';
 
 export default function Detailquantity() {
+	const [count, setCount] = useRecoilState(CartAtom);
+	const IncreseQuantity = () => {};
 	return (
 		<div className={styles.quantitySelectionWrap}>
 			<div className={styles.quantityimgArea}>
@@ -13,6 +18,7 @@ export default function Detailquantity() {
 					src={minus}
 					width={20}
 					height={20}
+					onClick={IncreseQuantity}
 				/>
 				<input className={styles.quantityInput} />
 
@@ -23,11 +29,6 @@ export default function Detailquantity() {
 					width={20}
 					height={20}
 				/>
-			</div>
-
-			<div className={styles.quantityTotalSectionWrap}>
-				<span className={styles.quantityTotal}>총 상품 금액</span>
-				<span className={styles.quantityTotalPrice}>30,600원</span>
 			</div>
 		</div>
 	);

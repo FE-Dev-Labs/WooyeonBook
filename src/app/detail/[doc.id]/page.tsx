@@ -3,17 +3,9 @@ import styles from '@/styles/detail/detaildescription/detail.module.css';
 import Accordion from './../../../components/common/Accordion';
 import Detailcomment from '@/components/detail/detailcomments/Detailcomment';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
-import { BookDataType } from '@/types/bookDateType';
 import Detailinformation from '@/components/detail/detaildata/detailinformation';
 import Detailexplanation from './../../../components/detail/detaildata/detailexplanation';
-import {
-	Book,
-	Ebook,
-	Packing,
-	ResponseData,
-	SubInfo,
-	UsedList,
-} from '@/types/bookDetailDate';
+import { ResponseData } from '@/types/bookDetailDate';
 import Detailsustainability from '@/components/detail/detaildata/detailsustainability';
 
 export default async function page({
