@@ -4,7 +4,7 @@ import { Noto_Sans_KR } from 'next/font/google';
 import '@/styles/global.css';
 import Header from '@/components/layout/header/Header';
 import Footer from '@/components/layout/Footer';
-import RecoilRootWrapper from './recoilRootWrapper';
+import RecoilRootWrapper from '@/recoil/RecoilRootWrapper';
 
 const inter = Noto_Sans_KR({ subsets: ['latin'] });
 

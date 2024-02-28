@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Communitynav() {
+
 	const params = useSearchParams();
 	const page = params.get('page');
 

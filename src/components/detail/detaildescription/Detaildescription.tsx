@@ -47,7 +47,7 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 	).toFixed(0);
 
 	// props로 넘겨주기 위한 로직
-	const priceSales = bookInfo.priceSales.toLocaleString();
+	// const priceSales = bookInfo.priceSales.toLocaleString();
 
 	return (
 		<>
@@ -99,7 +99,9 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 						<dl>
 							<dt>판매가</dt>
 							<dd>
-								<span className={styles.inforPriceSales}>{priceSales}원</span>
+								<span className={styles.inforPriceSales}>
+									{bookInfo.priceSales.toLocaleString()}원
+								</span>
 								<span className={styles.inforPersent}>
 									{calculateDiscountPercentage}%
 								</span>
@@ -142,7 +144,7 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 						<Detailquantity />
 					</div>
 					{/* 총 수량 */}
-					<Detailtotalquantity priceSales={priceSales} />
+					<Detailtotalquantity bookInfo={bookInfo} />
 					{/* 장바구니, 구매하기 버튼 */}
 					<Detailorderbtn />
 				</div>
