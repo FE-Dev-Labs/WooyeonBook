@@ -39,6 +39,7 @@
 	margin-top: 5px;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 }
 .searchResultItemTitle {
 	font-size: 11px;

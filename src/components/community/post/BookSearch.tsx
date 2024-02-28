@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import styles from '@/styles/community/post/BookSearch.module.css';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
-import { bookId } from '@/recoil/atom/\bbookIdAtom';
+import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
+import { useInputState } from '@/hooks/useInputState';
 
 interface SearchData {
 	title: string;
@@ -44,42 +45,50 @@ function BookSearch() {
 	const openSearchResults = () => {
 		setOpenSearchResultsState(true);
 	};
-	// search book state
-	const [searchBook, setSearchBook] = useState<string>('');
-	// search book state event
-	const onChangeSearchBook = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSearchBook(e.target.value);
+	const closeSearchResults = () => {
+		setOpenSearchResultsState(false);
 	};
+	const searchBook = useInputState('');
+
 	// search book data
 	const [searchData, setSearchData] = useState<SearchData[]>([]);
+
 	const getdata = async () => {
 		const { data } = await axios.get(
-			`http://localhost:8080/search/book?bookName=${searchBook}`,
+			`http://localhost:8080/search/book?bookName=${
+				searchBook.value as string
+			}`,
 		);
 		setSearchData(data);
 	};
 
 	useEffect(() => {
 		const debounce = setTimeout(() => {
-			if (searchBook.length > 1) {
+			const searchbook = searchBook.value as string;
+			if (searchbook.length > 1) {
 				getdata();
 			}
-		}, 700);
+		}, 400);
 		return () => clearTimeout(debounce);
-	}, [searchBook]);
+	}, [searchBook.value]);
 
-	// book id 저장
-	const setBookId = useSetRecoilState(bookId);
+	const setSelectBookData = useSetRecoilState(selectBookData);
 
-	const selectBook = (id: string) => {
-		setBookId(id);
+	const selectBook = (name: string, cover: string, id: string) => {
+		setSelectBookData({
+			bookName: name,
+			bookImgUrl: cover,
+			bookId: id,
+		});
+		closeSearchResults();
 	};
 	return (
 		<div className={styles.container}>
 			<input
 				type="text"
 				onClick={openSearchResults}
-				onChange={onChangeSearchBook}
+				value={searchBook.value as string}
+				onChange={searchBook.onChange}
 			/>
 			<button>
 				<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
@@ -90,7 +99,7 @@ function BookSearch() {
 						return (
 							<div
 								className={styles.searchResultItemWrap}
-								onClick={() => selectBook(data.isbn)}
+								onClick={() => selectBook(data.title, data.cover, data.isbn)}
 								key={data.itemId}
 								style={{ borderBottom: '1px solid #cccccc' }}>
 								<div className={styles.searchResultItemTitle}>{data.title}</div>

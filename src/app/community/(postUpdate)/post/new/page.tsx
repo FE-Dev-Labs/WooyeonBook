@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { communityPostData } from '@/apis/communityPostData';
 import BookSearch from '@/components/community/post/BookSearch';
-import { bookId } from '@/recoil/atom/\bbookIdAtom';
+import { book_id, book_name } from '@/recoil/atom/\bbookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
@@ -55,18 +55,17 @@ export default function postNewPage() {
 	// selling price state
 	const sellingPrice = useInputState('');
 	// select book id
-	const book_Id = useRecoilValue(bookId);
-	// meeting recruitment number
+	const book_Id = useRecoilValue(book_id);
+	const bookName = useRecoilValue(book_name);
+	// select state & onchange event
 	const [recruitmentNumber, setRecruitmentNumber] = useState<number>(0);
 	const onchangeRecruitmentNumber = (e: any) => {
 		setRecruitmentNumber(e.value);
 	};
-	// selling book state onChange event
 	const [bookState, setBookState] = useState<string>('');
 	const onchangeBookState = (e: any) => {
 		setBookState(e.value);
 	};
-	// selling state onChange event
 	const [sellingState, setSellingState] = useState<string>('');
 	const onchangeSellingState = (e: any) => {
 		setSellingState(e.value);
@@ -121,7 +120,7 @@ export default function postNewPage() {
 					</div>
 					<div className={styles.reportSelectWrap}>
 						<label>선택한 책</label>
-						<div className={styles.selectBookText}></div>
+						<div className={styles.selectBookText}>{bookName}</div>
 					</div>
 				</div>
 			);
