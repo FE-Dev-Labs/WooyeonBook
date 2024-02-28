@@ -4,6 +4,7 @@ import Detailquantity from './Detailquantity';
 import Detailtotalquantity from './Detailtotalquantity';
 import Image from 'next/image';
 import { Book } from '@/types/bookDetailDate';
+import Detailorderbtn from './Detailorderbtn';
 
 interface bookDetailProp {
 	bookInfo: Book;
@@ -44,6 +45,9 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 		((originalPrice - discountedPrice) / originalPrice) *
 		100
 	).toFixed(0);
+
+	// props로 넘겨주기 위한 로직
+	// const priceSales = bookInfo.priceSales.toLocaleString();
 
 	return (
 		<>
@@ -113,6 +117,7 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 						<dl>
 							<dt className={styles.inforText}>배송비</dt>
 							<dd className={styles.inforListText}>
+								무료
 								{/* {bookInfo.delivery.toLocaleString()}원 */}
 							</dd>
 						</dl>
@@ -139,7 +144,9 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 						<Detailquantity />
 					</div>
 					{/* 총 수량 */}
-					<Detailtotalquantity />
+					<Detailtotalquantity bookInfo={bookInfo} />
+					{/* 장바구니, 구매하기 버튼 */}
+					<Detailorderbtn />
 				</div>
 			</div>
 		</>
