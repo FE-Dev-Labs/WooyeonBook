@@ -5,6 +5,8 @@ import searchIcon from '../../../../public/common/search.png';
 import { useEffect, useState } from 'react';
 import styles from '@/styles/community/post/BookSearch.module.css';
 import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { bookId } from '@/recoil/atom/\bbookIdAtom';
 
 interface SearchData {
 	title: string;
@@ -48,8 +50,8 @@ function BookSearch() {
 	const onChangeSearchBook = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchBook(e.target.value);
 	};
+	// search book data
 	const [searchData, setSearchData] = useState<SearchData[]>([]);
-	// search book event api
 	const getdata = async () => {
 		const { data } = await axios.get(
 			`http://localhost:8080/search/book?bookName=${searchBook}`,
@@ -66,6 +68,12 @@ function BookSearch() {
 		return () => clearTimeout(debounce);
 	}, [searchBook]);
 
+	// book id 저장
+	const setBookId = useSetRecoilState(bookId);
+
+	const selectBook = (id: string) => {
+		setBookId(id);
+	};
 	return (
 		<div className={styles.container}>
 			<input
@@ -82,6 +90,7 @@ function BookSearch() {
 						return (
 							<div
 								className={styles.searchResultItemWrap}
+								onClick={() => selectBook(data.isbn)}
 								key={data.itemId}
 								style={{ borderBottom: '1px solid #cccccc' }}>
 								<div className={styles.searchResultItemTitle}>{data.title}</div>

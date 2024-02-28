@@ -9,6 +9,7 @@ interface communityPostDataProps {
 	bookState: string;
 	sellingState: string;
 	sellingPrice: string;
+	book_Id: string;
 }
 //데이터 공용 타입
 interface postDataType {
@@ -27,6 +28,7 @@ interface bookReportDataType extends postDataType {
 	book_img_url: string;
 	category: string;
 	content_img_url: string[];
+	book_id: string;
 }
 //모임 데이터 타입
 interface bookMeetingDataType extends postDataType {
@@ -44,6 +46,7 @@ interface bookBuyingDataType extends postDataType {
 	content_img_url: string[];
 	price: string;
 	state: boolean;
+	book_id: string;
 }
 interface bookSellingDataType extends postDataType {
 	book_name: string;
@@ -54,6 +57,7 @@ interface bookSellingDataType extends postDataType {
 	state: boolean;
 	book_state: string;
 	selling_state: string;
+	book_id: string;
 }
 /**
  * @description
@@ -80,6 +84,7 @@ export const communityPostData = ({
 	bookState,
 	sellingState,
 	sellingPrice,
+	book_Id,
 }: communityPostDataProps) => {
 	// 독후감 데이터
 	const bookReportSumitData: bookReportDataType = {
@@ -89,6 +94,7 @@ export const communityPostData = ({
 		content: text,
 		content_img_url: [],
 		user_name: 'user-name',
+		book_id: book_Id,
 		book_name: 'book-name',
 		book_img_url: 'book-img',
 		field: page,
@@ -122,6 +128,7 @@ export const communityPostData = ({
 		user_name: 'user-name',
 		book_name: 'book-name',
 		book_img_url: 'book-img',
+		book_id: book_Id,
 		field: page,
 		category: 'category',
 		view: 0,
@@ -138,6 +145,7 @@ export const communityPostData = ({
 		content_img_url: [],
 		user_name: 'user-name',
 		book_name: 'book-name',
+		book_id: book_Id,
 		book_img_url: 'book-img',
 		field: page,
 		category: 'category',

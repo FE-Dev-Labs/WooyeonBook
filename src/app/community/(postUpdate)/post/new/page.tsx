@@ -1,14 +1,15 @@
 'use client';
 import dynamic from 'next/dynamic';
 import styles from '@/styles/community/post/postNewPage.module.css';
-import { RecoilValue, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { communityPostData } from '@/apis/communityPostData';
 import BookSearch from '@/components/community/post/BookSearch';
-import axios from 'axios';
+import { bookId } from '@/recoil/atom/\bbookIdAtom';
+import { useInputState } from '@/hooks/useInputState';
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => (
@@ -45,34 +46,20 @@ export default function postNewPage() {
 	const page = pageParams.get('page');
 	// editor text
 	const text = useRecoilValue(editorText);
-	// title input state
-	const [title, setTitle] = useState<string>('');
-	// title input event
-	const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setTitle(e.target.value);
-	};
+	// title state
+	const title = useInputState('');
+	// meeting chatUrl state
+	const chatUrl = useInputState('');
+	//  meeting deadline state
+	const deadline = useInputState(new Date());
+	// selling price state
+	const sellingPrice = useInputState('');
+	// select book id
+	const book_Id = useRecoilValue(bookId);
 	// meeting recruitment number
 	const [recruitmentNumber, setRecruitmentNumber] = useState<number>(0);
 	const onchangeRecruitmentNumber = (e: any) => {
 		setRecruitmentNumber(e.value);
-	};
-
-	// meeting chat url
-	const [chatUrl, setChatUrl] = useState<string>('');
-	const onchangeChatUrl = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setChatUrl(e.target.value);
-	};
-	// meeting deadline
-	const [deadline, setDeadline] = useState<Date>(new Date());
-	const onchangeDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const date = new Date(e.target.value);
-		setDeadline(date);
-	};
-	// selling price state
-	const [sellingPrice, setSellingPrice] = useState<string>('');
-	// selling price event
-	const onchangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setSellingPrice(e.target.value);
 	};
 	// selling book state onChange event
 	const [bookState, setBookState] = useState<string>('');
@@ -90,14 +77,15 @@ export default function postNewPage() {
 		// page별 데이터 생성
 		const data = communityPostData({
 			page,
-			title,
+			title: title.value as string,
 			text,
 			recruitmentNumber,
-			chatUrl,
-			deadline,
+			chatUrl: chatUrl.value as string,
+			deadline: deadline.value as Date,
 			bookState,
 			sellingState,
-			sellingPrice,
+			sellingPrice: sellingPrice.value as string,
+			book_Id,
 		});
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase.from(`${page}`).insert([data]);
@@ -123,7 +111,6 @@ export default function postNewPage() {
 			return '책을 나누고 판매해 보세요.';
 		}
 	};
-	// page select
 	const pageSelectArea = () => {
 		if (page === 'bookReport') {
 			return (
@@ -160,8 +147,8 @@ export default function postNewPage() {
 						<input
 							type="text"
 							placeholder="카카오 오픈채팅방 URL을 입력해주세요."
-							value={chatUrl || ''}
-							onChange={onchangeChatUrl}
+							value={(chatUrl.value as string) || ''}
+							onChange={chatUrl.onChange}
 						/>
 					</div>
 					<div className={styles.meetingSelectWrap}>
@@ -169,7 +156,7 @@ export default function postNewPage() {
 						<input
 							type="date"
 							className={styles.dateInput}
-							onChange={onchangeDeadline}
+							onChange={deadline.onChange}
 						/>
 					</div>
 					<div className={styles.meetingSelectWrap}>
@@ -197,7 +184,11 @@ export default function postNewPage() {
 					</div>
 					<div className={styles.buyingSelectWrap}>
 						<label>구매하고 싶은 가격을 적어주세요.</label>
-						<input type="text" value={sellingPrice} onChange={onchangePrice} />
+						<input
+							type="text"
+							value={sellingPrice.value as string}
+							onChange={sellingPrice.onChange}
+						/>
 					</div>
 				</div>
 			);
@@ -226,7 +217,11 @@ export default function postNewPage() {
 					</div>
 					<div className={styles.sellingSelectWrap}>
 						<label>판매하고 싶은 가격을 적어주세요.</label>
-						<input type="text" value={sellingPrice} onChange={onchangePrice} />
+						<input
+							type="text"
+							value={sellingPrice.value as string}
+							onChange={sellingPrice.onChange}
+						/>
 					</div>
 					<div className={styles.sellingSelectWrap}>
 						<label>책의 상태</label>
@@ -263,8 +258,8 @@ export default function postNewPage() {
 				type="text"
 				className={styles.title}
 				placeholder="제목을 입력해주세요."
-				value={title}
-				onChange={onChangeTitle}
+				value={title.value as string}
+				onChange={title.onChange}
 			/>
 			{pageSelectArea()}
 			<div>
