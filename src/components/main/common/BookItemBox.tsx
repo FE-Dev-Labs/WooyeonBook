@@ -9,6 +9,8 @@ interface BookItemBoxProp {
 }
 
 export default function BookItemBox({ data }: BookItemBoxProp) {
+	console.log(data);
+
 	return (
 		<div className={styles.bookItemWrapper}>
 			{data?.map((book) => <BookItem key={book.itemId} data={book} />)}

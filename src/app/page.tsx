@@ -1,3 +1,5 @@
+'use client';
+
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/main/main.module.css';
 import NewBook from '../components/main/newBook/NewBook';
@@ -5,60 +7,77 @@ import ThemeRecommendation from '@/components/main/themeRecommendation/ThemeReco
 import UsedBook from '@/components/main/usedBook/UsedBook';
 import BestSeller from '@/components/common/BestSeller';
 import MainSlider from '@/components/main/mainSlider/MainSlider';
+import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
+import { useEffect, useState } from 'react';
 import {
-	BestSellerType,
-	NewBookType,
-	RootBookType,
-	UsedBookType,
-} from '@/types/bookType';
+	getBestBookData,
+	getNewBookData,
+	getUsedBookData,
+} from '@/apis/main/main';
 
-export default async function Home() {
-	// 메인 페이지에 뿌려줄 신간 리스트 6개
-	const newBookData: RootBookType = await fetch(
-		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewSpecial&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-		{ cache: 'force-cache' },
-	).then((data) => {
-		return data.json();
-	});
-	// 신간리스트의 item만 추출해 newItem에 할당
-	const newItem: NewBookType[] = newBookData?.item?.filter(
-		(book) => book.categoryName?.split('>')[1] !== '만화',
-	) as NewBookType[];
+export default function Home() {
+	// 메인 페이지에 뿌려줄 신간도서 state
+	const [newBookItems, setNewBookItems] = useState<NewBookType[]>([]);
+	// 메인 페이지에 뿌려줄 베스트셀러 state
+	const [bestSellerItems, setBestSellerItems] = useState<BestSellerType[]>([]);
+	// 메인 페이지에 뿌려줄 중고도서 state
+	const [usedBookItems, setUsedBookItems] = useState<UsedBookType[]>([]);
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const data = await getNewBookData();
+	// 		setNewBookItems(data);
+	// 	};
 
-	// 메인 페이지에 뿌려줄 베스트셀러 리스트 5개 (MaxResults=5일 경우 4개 아이템만 받아올 수 있어 MaxResults=6으로 받아온 후 data를 잘라서 사용함)
-	const bestSellerData: RootBookType = await fetch(
-		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=Bestseller&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-		{ cache: 'force-cache' },
-	).then((data) => {
-		return data.json();
-	});
-	// 베스트셀러를 bestRank 순으로 소팅
-	const bestItem = (bestSellerData.item as BestSellerType[]).sort(
-		(a, b) => a.bestRank - b.bestRank,
-	);
+	// 	fetchData();
+	// }, []);
 
-	// 메인 페이지에 뿌려줄 중고책 리스트 6개
-	const usedBookData: RootBookType = await fetch(
-		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-		{ cache: 'force-cache' },
-	).then((data) => {
-		return data.json();
-	});
-	// 신간리스트의 item만 추출해 usedItem에 할당
-	const usedItem =
-		(usedBookData?.item?.filter(
-			(book) => book.mallType === 'USED',
-		) as UsedBookType[]) || [];
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const data = await getBestBookData();
+	// 		setBestSellerItems(data);
+	// 	};
+
+	// 	fetchData();
+	// }, []);
+
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const data = await getUsedBookData();
+	// 		setUsedBookItems(data);
+	// 	};
+
+	// 	fetchData();
+	// }, []);
+
+	// 하나의 useEffect에서 비동기 처리할지?
+	// Promise.all을 사용할지?
+	// 기존 3개의 useEffect를 사용할지? (-> 리액트 쿼리 도입 후 코드 단축?)
+
+	// 메인 페이지에 신간 도서, 베스트셀러, 중고 도서를 뿌려주기 위한 useEffect
+	useEffect(() => {
+		const fetchData = async () => {
+			const newBookData = await getNewBookData();
+			setNewBookItems(newBookData);
+
+			const bestSellerData = await getBestBookData();
+			setBestSellerItems(bestSellerData);
+
+			const usedBookData = await getUsedBookData();
+			setUsedBookItems(usedBookData);
+		};
+
+		fetchData();
+	}, []);
 
 	return (
 		<main className={styles.container}>
 			<div />
 			<div className={styles.wrapper}>
 				<MainSlider />
-				<NewBook data={newItem} />
+				<NewBook data={newBookItems} />
 				<ThemeRecommendation />
-				<BestSeller data={bestItem} />
-				<UsedBook data={usedItem} />
+				<BestSeller data={bestSellerItems} />
+				<UsedBook data={usedBookItems} />
 			</div>
 			<div>
 				<RecentlyViewedBooks />

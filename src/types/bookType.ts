@@ -41,7 +41,6 @@ export interface NewBookType {
 }
 
 // 베스트셀러
-
 export interface BestSellerType {
 	title: string;
 	link: string;
