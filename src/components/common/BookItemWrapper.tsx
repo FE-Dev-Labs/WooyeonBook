@@ -1,6 +1,6 @@
 import styles from '@/styles/common/bookItemWrapper.module.css';
 import BookItem from '../common/BookItem';
-import { NewBookType } from '@/types/newBookType';
+import { NewBookType } from '@/types/bookType';
 
 interface BookItemWrapperProp {
 	data: NewBookType[];

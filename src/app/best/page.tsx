@@ -13,7 +13,7 @@ export default function bestPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<Category />
+					{/* <Category /> */}
 					<Sort />
 					<Rank />
 					<Pagination />

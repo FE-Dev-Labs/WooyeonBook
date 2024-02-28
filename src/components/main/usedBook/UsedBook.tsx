@@ -1,7 +1,7 @@
 import styles from '@/styles/main/usedBook/usedBook.module.css';
 import CategoryTitle from '../common/CategoryTitle';
 import BookItemBox from '../common/BookItemBox';
-import { UsedBookType } from '@/types/usedBookType';
+import { UsedBookType } from '@/types/bookType';
 
 interface UsedBookProp {
 	data: UsedBookType[];

@@ -3,9 +3,12 @@
 import styles from '@/styles/common/category.module.css';
 import { useState } from 'react';
 
-export default function Category() {
-	// 카테고리 선택 상태
-	const [selectCategory, setSelectCategory] = useState<string>('전체');
+interface Props {
+	setSelectCategory: (item: string) => void;
+}
+export default function Category({ setSelectCategory }: Props) {
+	// // 카테고리 선택 상태
+	// const [selectCategory, setSelectCategory] = useState<string>('전체');
 	// 카테고리 종류
 	// const categoryItems = [
 	// 	'전체',
@@ -69,8 +72,9 @@ export default function Category() {
 	return (
 		<>
 			<div className={styles.categoryBox}>
-				{categoryItems.map((item) => (
+				{categoryItems.map((item, index) => (
 					<div
+						key={index}
 						className={styles.categoryItem}
 						onClick={() => setSelectCategory(item)}>
 						{item}
