@@ -1,3 +1,4 @@
+'use client';
 import styles from '@/styles/community/post/OptionBookReport.module.css';
 import BookSearch from './BookSearch';
 import { useRecoilValue } from 'recoil';

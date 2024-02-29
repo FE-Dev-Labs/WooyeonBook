@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import styles from '@/styles/community/post/postNewPage.module.css';
 import { useRecoilState } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
@@ -69,6 +69,14 @@ export default function PostPage() {
 	const onchangeSellingState = (e: any) => {
 		setSellingState(e.value);
 	};
+
+	useEffect(() => {
+		setSeletedBook({
+			bookName: '',
+			bookImgUrl: '',
+			bookId: '',
+		});
+	}, [page]);
 
 	const returnHeaderText = () => {
 		if (page === 'bookReport') {

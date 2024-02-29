@@ -88,6 +88,7 @@ function BookSearch() {
 
 	useEffect(() => {
 		searchBook.init();
+		setSearchData([]);
 	}, [page]);
 	return (
 		<div className={styles.container}>
