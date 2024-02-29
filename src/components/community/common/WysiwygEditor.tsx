@@ -3,7 +3,7 @@ import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { supabase } from '@/utils/supabase/supabase';
 import { useRecoilState } from 'recoil';
-import { editorText } from '@/recoil/atom/editorAtom';
+import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRef } from 'react';
 interface WysiwygEditorProps {
 	height?: string;
@@ -23,6 +23,8 @@ export default function WysiwygEditor({
 		['scrollSync'],
 	];
 	const [text, setText] = useRecoilState(editorText);
+	const [imgArr, setImgArr] = useRecoilState(editorImgArr);
+	console.log(imgArr);
 
 	const onChangeText = () => {
 		setText(ref?.current?.getInstance().getMarkdown());
@@ -40,6 +42,13 @@ export default function WysiwygEditor({
 				`https://xdbequtksxewiorzzmqg.supabase.co/storage/v1/object/public/editorImg/${data.path}`,
 				blob.name,
 			);
+			setImgArr([
+				...imgArr,
+				`https://xdbequtksxewiorzzmqg.supabase.co/storage/v1/object/public/editorImg/${data.path}`,
+			]);
+		}
+		if (error) {
+			console.error(error);
 		}
 	};
 
