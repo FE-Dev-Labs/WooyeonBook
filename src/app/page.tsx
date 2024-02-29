@@ -1,5 +1,3 @@
-'use client';
-
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/main/main.module.css';
 import NewBook from '../components/main/newBook/NewBook';
@@ -8,66 +6,26 @@ import UsedBook from '@/components/main/usedBook/UsedBook';
 import BestSeller from '@/components/common/BestSeller';
 import MainSlider from '@/components/main/mainSlider/MainSlider';
 import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
-import { useEffect, useState } from 'react';
-import {
-	getBestBookData,
-	getNewBookData,
-	getUsedBookData,
-} from '@/apis/main/main';
 
-export default function Home() {
-	// 메인 페이지에 뿌려줄 신간도서 state
-	const [newBookItems, setNewBookItems] = useState<NewBookType[]>([]);
-	// 메인 페이지에 뿌려줄 베스트셀러 state
-	const [bestSellerItems, setBestSellerItems] = useState<BestSellerType[]>([]);
-	// 메인 페이지에 뿌려줄 중고도서 state
-	const [usedBookItems, setUsedBookItems] = useState<UsedBookType[]>([]);
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const data = await getNewBookData();
-	// 		setNewBookItems(data);
-	// 	};
+export default async function Home() {
+	// // 메인 페이지 신간 도서
+	// const response = await fetch('http://localhost:8080/api/new', {
+	// 	cache: 'no-cache',
+	// });
+	// const newBookItems: NewBookType[] = await response.json();
 
-	// 	fetchData();
-	// }, []);
+	// 메인 페이지에 필요한 new, best, used api
+	const response = await Promise.all([
+		fetch('http://localhost:8080/api/new', { cache: 'no-cache' }),
+		fetch('http://localhost:8080/api/best', { cache: 'no-cache' }),
+		fetch('http://localhost:8080/api/used', { cache: 'no-cache' }),
+	]);
+	const [newBookResponse, bestSellerResponse, usedBookResponse] = response;
 
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const data = await getBestBookData();
-	// 		setBestSellerItems(data);
-	// 	};
-
-	// 	fetchData();
-	// }, []);
-
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const data = await getUsedBookData();
-	// 		setUsedBookItems(data);
-	// 	};
-
-	// 	fetchData();
-	// }, []);
-
-	// 하나의 useEffect에서 비동기 처리할지?
-	// Promise.all을 사용할지?
-	// 기존 3개의 useEffect를 사용할지? (-> 리액트 쿼리 도입 후 코드 단축?)
-
-	// 메인 페이지에 신간 도서, 베스트셀러, 중고 도서를 뿌려주기 위한 useEffect
-	useEffect(() => {
-		const fetchData = async () => {
-			const newBookData = await getNewBookData();
-			setNewBookItems(newBookData);
-
-			const bestSellerData = await getBestBookData();
-			setBestSellerItems(bestSellerData);
-
-			const usedBookData = await getUsedBookData();
-			setUsedBookItems(usedBookData);
-		};
-
-		fetchData();
-	}, []);
+	// 신간 도서(6개), 베스트셀러(5개), 중고 도서(6개) 아이템을 각 변수에 할당
+	const newBookItems: NewBookType[] = await newBookResponse.json();
+	const bestSellerItems: BestSellerType[] = await bestSellerResponse.json();
+	const usedBookItems: UsedBookType[] = await usedBookResponse.json();
 
 	return (
 		<main className={styles.container}>

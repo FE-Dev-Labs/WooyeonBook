@@ -1,6 +1,6 @@
 'use client';
 
-import { getNewBookData } from '@/apis/main/main';
+// import { getNewBookData } from '@/apis/main/main';
 import { getAllNewBookData } from '@/apis/new/new';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';

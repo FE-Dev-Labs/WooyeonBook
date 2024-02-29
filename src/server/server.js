@@ -27,9 +27,12 @@ app.get('/api/new', async (req, res) => {
 	try {
 		const response = await axios.get(
 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-			{ cache: 'force-cache' },
 		);
-		res.status(200).send(response.data);
+
+		// 신간리스트의 item만 추출해 data에 할당
+		const data = await response.data.item;
+
+		res.status(200).send(data);
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -39,10 +42,16 @@ app.get('/api/new', async (req, res) => {
 app.get('/api/best', async (req, res) => {
 	try {
 		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=Bestseller&MaxResults=6&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-			{ cache: 'force-cache' },
+			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=Bestseller&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
 		);
-		res.status(200).send(response.data);
+
+		// 베스트셀러의 item을 rank순으로 소팅해 data에 할당
+		const data = await response.data.item.sort(
+			(a, b) => a.bestRank - b.bestRank,
+		);
+		// .slice(0, -1);
+
+		res.status(200).send(data);
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -55,20 +64,13 @@ app.get('/api/used', async (req, res) => {
 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewAll&MaxResults=6&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
 			{ cache: 'force-cache' },
 		);
-		res.status(200).send(response.data);
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
 
-// new 페이지 신간 도서 (전체 리스트)
-app.get('/api/newAll', async (req, res) => {
-	try {
-		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=30&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-			{ cache: 'force-cache' },
+		// 신간리스트의 item의 중고책 데이터만 추출해 data 할당
+		const data = await response.data.item.filter(
+			(book) => book.mallType === 'USED',
 		);
-		res.status(200).send(response.data);
+
+		res.status(200).send(data);
 	} catch (err) {
 		res.status(400).send(err);
 	}
