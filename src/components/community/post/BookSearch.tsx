@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
+import { useSearchParams } from 'next/navigation';
 
 interface SearchData {
 	title: string;
@@ -39,6 +40,8 @@ interface SearchData {
 	subInfo: any; // 'any' type is used here as 'subInfo' object structure is not provided in the input
 }
 function BookSearch() {
+	const pageParams = useSearchParams();
+	const page = pageParams.get('page');
 	// 검색 결과 토글 상태
 	const [openSearchResultsState, setOpenSearchResultsState] = useState(false);
 	// 검색 결과 토글 이벤트
@@ -82,6 +85,10 @@ function BookSearch() {
 		});
 		closeSearchResults();
 	};
+
+	useEffect(() => {
+		searchBook.init();
+	}, [page]);
 	return (
 		<div className={styles.container}>
 			<input
