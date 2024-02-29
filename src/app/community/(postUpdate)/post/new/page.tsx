@@ -1,21 +1,24 @@
 'use client';
 import dynamic from 'next/dynamic';
 import styles from '@/styles/community/post/postNewPage.module.css';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { supabase } from '@/utils/supabase/supabase';
-import { communityPostData } from '@/apis/communityPostData';
-import BookSearch from '@/components/community/post/BookSearch';
-import { book_id, book_name, selectBookData } from '@/recoil/atom/\bbookIdAtom';
+import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import OptionBookReport from '@/components/community/post/OptionBookReport';
 import OptionBookMeeting from '@/components/community/post/OptionBookMeeting';
 import OptionBookBuying from '@/components/community/post/OptionBookBuying';
 import OptionBookSelling from '@/components/community/post/OptionBookSelling';
+import {
+	bookBuyingOnSubmit,
+	bookMeetingOnSubmit,
+	bookReportOnSubmit,
+	bookSellingOnSubmit,
+} from '@/apis/community/post/onSubmit';
 
-const Editor = dynamic(
+const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
 	{
 		ssr: false,
@@ -30,25 +33,29 @@ const Editor = dynamic(
 		),
 	},
 );
-export default function postNewPage() {
+export default function PostPage() {
 	// navigation
 	const router = useRouter();
 	// page params
 	const pageParams = useSearchParams();
 	const page = pageParams.get('page');
-	// editor text
-	const text = useRecoilValue(editorText);
-	// title state
+
+	// editor state area
+	const [text, setText] = useRecoilState(editorText);
+
+	// PostPage state area
 	const title = useInputState('');
-	// meeting chatUrl state
+
+	// meeting state area
 	const chatUrl = useInputState('');
-	//  meeting deadline state
 	const deadline = useInputState(new Date());
-	// selling price state
-	const sellingPrice = useInputState('');
+
+	// selling state area
+	const price = useInputState('');
+
 	// select book id
-	const book_Id = useRecoilValue(book_id);
-	const seletedBook = useSetRecoilState(selectBookData);
+	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
+
 	// select state & onchange event
 	const [recruitmentNumber, setRecruitmentNumber] = useState<number>(0);
 	const onchangeRecruitmentNumber = (e: any) => {
@@ -63,32 +70,7 @@ export default function postNewPage() {
 		setSellingState(e.value);
 	};
 
-	// supabase database submit event
-	const onSubmit = async () => {
-		// page별 데이터 생성
-		const data = communityPostData({
-			page,
-			title: title.value as string,
-			text,
-			recruitmentNumber,
-			chatUrl: chatUrl.value as string,
-			deadline: deadline.value as Date,
-			bookState,
-			sellingState,
-			sellingPrice: sellingPrice.value as string,
-			book_Id,
-		});
-		// supabase 데이터베이스에 데이터 삽입
-		const { error } = await supabase.from(`${page}`).insert([data]);
-		// 에러 발생시 alert
-		if (error) {
-			return alert('에러가 발생했습니다.');
-		}
-		// 데이터 삽입후 페이지 이동
-		return router.push(`/community/${page}`);
-	};
-	// header text by page
-	const headerText = () => {
+	const returnHeaderText = () => {
 		if (page === 'bookReport') {
 			return '독후감을 작성하고 공유해 보세요.';
 		}
@@ -102,7 +84,7 @@ export default function postNewPage() {
 			return '책을 나누고 판매해 보세요.';
 		}
 	};
-	const pageSelectArea = () => {
+	const returnOptionComponent = () => {
 		if (page === 'bookReport') {
 			return <OptionBookReport />;
 		}
@@ -129,7 +111,7 @@ export default function postNewPage() {
 			return (
 				<OptionBookBuying
 					sellingPrice={
-						sellingPrice as {
+						price as {
 							value: string;
 							onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 						}
@@ -141,7 +123,7 @@ export default function postNewPage() {
 			return (
 				<OptionBookSelling
 					sellingPrice={
-						sellingPrice as {
+						price as {
 							value: string;
 							onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 						}
@@ -152,6 +134,58 @@ export default function postNewPage() {
 			);
 		}
 	};
+	const returnOnSubmit = () => {
+		if (page === 'bookReport') {
+			return bookReportOnSubmit({
+				page,
+				title,
+				router,
+				text,
+				setText,
+				selectedBook,
+				setSeletedBook,
+			});
+		}
+		if (page === 'bookMeeting') {
+			return bookMeetingOnSubmit({
+				page,
+				title,
+				recruitmentNumber,
+				setRecruitmentNumber,
+				chatUrl,
+				deadline,
+				router,
+				text,
+				setText,
+			});
+		}
+		if (page === 'bookBuying') {
+			return bookBuyingOnSubmit({
+				page,
+				title,
+				price,
+				router,
+				text,
+				setText,
+				selectedBook,
+				setSeletedBook,
+			});
+		}
+		if (page === 'bookSelling') {
+			return bookSellingOnSubmit({
+				title,
+				text,
+				setText,
+				selectedBook,
+				setSeletedBook,
+				page,
+				price,
+				bookState,
+				sellingState,
+				router,
+			});
+		}
+	};
 	if (!page) {
 		return router.push('/error');
 	}
@@ -159,7 +193,7 @@ export default function postNewPage() {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div>📚</div>
-				<h2>{headerText()}</h2>
+				<h2>{returnHeaderText()}</h2>
 			</div>
 			<input
 				type="text"
@@ -168,13 +202,13 @@ export default function postNewPage() {
 				value={title.value as string}
 				onChange={title.onChange}
 			/>
-			{pageSelectArea()}
+			{returnOptionComponent()}
 			<div>
-				<Editor />
+				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
 				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button onClick={() => returnOnSubmit()}>등록</button>
 			</div>
 		</div>
 	);

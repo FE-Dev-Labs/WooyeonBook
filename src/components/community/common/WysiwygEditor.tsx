@@ -1,10 +1,10 @@
 'use client';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { useRef } from 'react';
 import { supabase } from '@/utils/supabase/supabase';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
+import { useRef } from 'react';
 interface WysiwygEditorProps {
 	height?: string;
 }
@@ -12,7 +12,7 @@ interface WysiwygEditorProps {
 export default function WysiwygEditor({
 	height = '600px',
 }: WysiwygEditorProps) {
-	const editorRef = useRef<Editor>(null);
+	const ref = useRef<Editor>(null);
 	const toolbarItems = [
 		['heading', 'bold', 'italic', 'strike'],
 		['hr'],
@@ -22,10 +22,11 @@ export default function WysiwygEditor({
 		['code'],
 		['scrollSync'],
 	];
-	// 전역으로 내용을 저장 할 생각
-	//
-	// console.log(editorRef.current?.getInstance().getMarkdown());
-	const setText = useSetRecoilState(editorText);
+	const [text, setText] = useRecoilState(editorText);
+
+	const onChangeText = () => {
+		setText(ref?.current?.getInstance().getMarkdown());
+	};
 	const onUploadImage = async (
 		blob: File,
 		callback: (imageUrl: string, fileName: string) => void,
@@ -41,15 +42,14 @@ export default function WysiwygEditor({
 			);
 		}
 	};
-	const onChangeText = () => {
-		setText(editorRef.current?.getInstance().getMarkdown());
-	};
 
 	return (
 		<>
 			<Editor
-				ref={editorRef}
+				ref={ref}
+				initalValue=""
 				initialEditType="markdown"
+				previewStyle="vertical"
 				height={height}
 				toolbarItems={toolbarItems}
 				hooks={{ addImageBlobHook: onUploadImage }}
