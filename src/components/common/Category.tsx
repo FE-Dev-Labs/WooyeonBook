@@ -3,47 +3,19 @@
 import styles from '@/styles/common/category.module.css';
 import { useState } from 'react';
 
-interface Props {
-	setSelectCategory: (item: string) => void;
-}
-export default function Category({ setSelectCategory }: Props) {
-	// // 카테고리 선택 상태
-	// const [selectCategory, setSelectCategory] = useState<string>('전체');
-	// 카테고리 종류
-	// const categoryItems = [
-	// 	'전체',
-	// 	'소설',
-	// 	'에세이·시',
-	// 	'경제·경영',
-	// 	'자기개발',
-	// 	'인문',
-	// 	'사회·정치',
-	// 	'역사',
-	// 	'종교',
-	// 	'예술·대중문화',
-	// 	'자연과학',
-	// 	'가정·살림',
-	// 	'건강·취미·여행',
-	// 	'어린이·유아',
-	// 	'청소년',
-	// 	'국어·외국어',
-	// 	'IT·모바일',
-	// 	'대학교재',
-	// 	'수험서·자격증',
-	// 	'잡지',
-	// 	'만화',
-	// 	'로맨스',
-	// 	'판타지/무협',
-	// ];
+// interface Props {
+// 	setSelectCategory: (item: string) => void;
+// }
+export default function Category() {
 	const categoryItems = [
 		'전체',
 		'건강/취미',
 		'경제경영',
 		'공무원 수험서',
 		'과학',
-		'달력/기타',
+		// '달력/기타',
 		'대학교재',
-		// '만화',
+		'만화',
 		'사회과학',
 		'소설/시/희곡',
 		'수험서/자격증',
@@ -73,10 +45,7 @@ export default function Category({ setSelectCategory }: Props) {
 		<>
 			<div className={styles.categoryBox}>
 				{categoryItems.map((item, index) => (
-					<div
-						key={index}
-						className={styles.categoryItem}
-						onClick={() => setSelectCategory(item)}>
+					<div key={index} className={styles.categoryItem}>
 						{item}
 					</div>
 				))}
