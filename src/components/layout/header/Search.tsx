@@ -3,43 +3,43 @@ import styles from '@/styles/layout/header/search.module.css';
 import Image from 'next/image';
 import searchIcon from '../../../../public/common/search.png';
 import RecentSearch from './History/RecentSearch';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import useOutsideClick from '@/hooks/useOutsideClick';
 
 export default function Search() {
+	const ref = useRef<HTMLInputElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [showSearchHistory, setShowSearchHistory] = useState(false);
-	// 검색어 창 닫기
-	const searchHistoryRef = useRef<HTMLDivElement>(null);
 
-	const inputHandleClick = () => {
+	useOutsideClick({
+		ref,
+		handler: (e) => {
+			if (e.target !== inputRef.current) {
+				setShowSearchHistory(false);
+			}
+		},
+	});
+
+	// const handleSearchClick = (e: React.MouseEvent<HTMLInputElement>) => {
+	// 	e.stopPropagation(); // 이벤트 버블링을 멈춤
+	// 	setShowSearchHistory(true); // 항상 true로 설정
+	// };
+	const handleSearchClick = () => {
 		setShowSearchHistory(true);
 	};
-
-	const inputHandleClickOutside = (event: any) => {
-		if (
-			searchHistoryRef.current &&
-			!searchHistoryRef.current.contains(event.target)
-		) {
-			setShowSearchHistory(false);
-		}
-	};
-
-	useEffect(() => {
-		document.addEventListener('click', inputHandleClickOutside);
-		return () => {
-			document.removeEventListener('click', inputHandleClickOutside);
-		};
-	}, []);
 	return (
-		<form className={styles.searchForm}>
-			<input
-				type="text"
-				placeholder="작가명 또는 책 제목을 입력하세요."
-				onClick={inputHandleClick}
-			/>
-			<button type="submit" className={styles.searchIcon}>
-				<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
-			</button>
-			{showSearchHistory && <RecentSearch ref={searchHistoryRef} />}
-		</form>
+		<span>
+			<form className={styles.searchForm}>
+				<input
+					type="text"
+					placeholder="작가명 또는 책 제목을 입력하세요."
+					onClick={handleSearchClick}
+				/>
+				<button type="submit" className={styles.searchIcon}>
+					<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
+				</button>
+				<RecentSearch ref={ref} show={showSearchHistory} />
+			</form>
+		</span>
 	);
 }
