@@ -1,0 +1,25 @@
+/* 독후감 옵션 */
+.reportSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.reportSelectWrap {
+	display: flex;
+	flex-direction: column;
+}
+.reportSelectWrap > label {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.selectBookText {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	line-height: 38px;
+}
