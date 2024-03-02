@@ -4,13 +4,11 @@ import arrowRightIcon from '../../../public/common/arrowRight.png';
 import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 
 interface PaginationProps {
-	currentPage: number;
 	itemLength: number;
 	handleClickPage: (page: number) => void;
 }
 
 export default function Pagination({
-	currentPage,
 	itemLength,
 	handleClickPage,
 }: PaginationProps) {

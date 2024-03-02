@@ -20,13 +20,20 @@
 	align-items: center;
 }
 .sortItem {
-	width: 200px;
+	/* width: 200px; */
 
-	display: flex;
-	justify-content: space-between;
+	/* display: flex; */
+	/* justify-content: end; */
+	/* justify-content: space-between; */
 }
 .sortItem > span {
 	font-size: 12px;
+	margin: 8px;
+
+	color: #999999;
 
 	cursor: pointer;
+}
+.sortItem > span:hover {
+	text-decoration: underline;
 }

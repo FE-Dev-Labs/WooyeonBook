@@ -34,7 +34,7 @@ app.get('/list/new', async (req, res) => {
 			// 신간리스트 data 중 일부 카테고리 제외
 			.filter(
 				(item) =>
-					!['어린이', '유아', '만화', '달력'].includes(
+					!['어린이', '유아', '만화', '달력', '역사'].includes(
 						item.categoryName.split('>')[1],
 					),
 			)
@@ -137,5 +137,3 @@ app.get('/list/newAll', async (req, res) => {
 // 		res.status(400).send(err);
 // 	}
 // });
-
-

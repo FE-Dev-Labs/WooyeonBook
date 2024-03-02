@@ -9,14 +9,14 @@ import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 export default function bestPage() {
 	return (
 		<>
-			<PageHeader title="베스트셀러" />
+			<PageHeader title="인기" />
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					{/* <Category /> */}
-					<Sort />
+					<Category />
+					<Sort page="best" />
 					<Rank />
-					<Pagination />
+					{/* <Pagination /> */}
 				</div>
 				<div>
 					<RecentlyViewedBooks />

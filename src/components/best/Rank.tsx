@@ -3,7 +3,7 @@ import styles from '@/styles/best/rank.module.css';
 
 export default function Rank() {
 	let ranks = [];
-	for (let i = 1; i <= 30; i++) {
+	for (let i = 1; i <= 24; i++) {
 		ranks.push(i);
 	}
 

@@ -3,11 +3,11 @@
 import styles from '@/styles/common/sort.module.css';
 import { useState } from 'react';
 
-interface SortProps {
+interface SortProp {
 	page?: string;
 }
 
-export default function Sort({ page }: SortProps) {
+export default function Sort({ page }: SortProp) {
 	//
 	const [selectSort, setSelectSort] = useState();
 
@@ -21,12 +21,20 @@ export default function Sort({ page }: SortProps) {
 			) : (
 				<div style={{ visibility: 'hidden' }}></div>
 			)}
-			<div className={styles.sortItem}>
-				<span>인기순</span>
-				<span>출간일순</span>
-				<span>제목순</span>
-				<span>판매순</span>
-			</div>
+			{page === 'best' ? (
+				<div className={styles.sortItem}>
+					<span>일별</span>
+					<span>주별</span>
+					<span>월별</span>
+				</div>
+			) : (
+				<div className={styles.sortItem}>
+					<span>인기순</span>
+					<span>출간일순</span>
+					<span>제목순</span>
+					<span>판매순</span>
+				</div>
+			)}
 		</div>
 	);
 }
