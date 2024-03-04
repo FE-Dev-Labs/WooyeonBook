@@ -5,17 +5,24 @@ import { supabase } from '@/utils/supabase/supabase';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useEffect, useRef } from 'react';
-interface WysiwygEditorProps {
+import { BookReportDataType } from '@/types/community/post/data';
+import uuid from 'react-uuid';
+
+interface UpdateEdiorProps {
 	height?: string;
+	data?: BookReportDataType;
 }
 
-export default function WysiwygEditor({
+export default function UpdateEdior({
 	height = '600px',
-}: WysiwygEditorProps) {
+	data,
+}: UpdateEdiorProps) {
 	const ref = useRef<Editor>(null);
 
 	useEffect(() => {
-		ref.current?.getInstance().setMarkdown('');
+		if (data) {
+			ref.current?.getInstance().setMarkdown(data.content);
+		}
 	}, []);
 	const toolbarItems = [
 		['heading', 'bold', 'italic', 'strike'],
@@ -38,7 +45,7 @@ export default function WysiwygEditor({
 	) => {
 		const { data, error } = await supabase.storage
 			.from('editorImg')
-			.upload('public/image.png', blob);
+			.upload(`public/${uuid()}.png`, blob);
 
 		if (data && data.path) {
 			callback(

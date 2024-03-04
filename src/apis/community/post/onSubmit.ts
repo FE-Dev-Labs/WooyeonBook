@@ -3,7 +3,7 @@ import {
 	bookMeetingSumitData,
 	bookReportSumitData,
 	bookSellingSumitData,
-} from './postData';
+} from '../postData';
 import { supabase } from '@/utils/supabase/supabase';
 
 interface BookReportOnSubmitProps {
