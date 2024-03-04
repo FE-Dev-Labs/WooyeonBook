@@ -8,8 +8,9 @@
 	justify-content: center;
 }
 .paginationBox {
-	width: 500px;
+	/* width: 400px; */
 	height: inherit;
+	gap: 8px;
 
 	display: flex;
 	justify-content: space-between;
@@ -17,8 +18,9 @@
 .paginationItem {
 	width: 30px;
 	height: inherit;
-	border-radius: 5px;
+	border-radius: 3px;
 	border: 1px solid #aaaaaa;
+	font-size: 12px;
 
 	display: flex;
 	align-items: center;
@@ -28,6 +30,8 @@
 	color: #aaaaaa;
 }
 .paginationItem:hover {
-	background-color: #6594e7;
-	color: ffffff;
+	background-color: #bad2eb;
+	color: #ffffff;
 }
+/* #bad2eb; */
+/* #6594e7; */

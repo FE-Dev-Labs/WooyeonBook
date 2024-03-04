@@ -42,12 +42,21 @@ export default function Pagination({
 						</div>
 					);
 				})}
-				<div className={styles.paginationItem}>
-					<Image src={arrowRightIcon} alt="arrow" />
-				</div>
-				<div className={styles.paginationItem}>
-					<Image src={arrowDoubleRightIcon} alt="arrow" />
-				</div>
+				{!page && (
+					<>
+						<div className={styles.paginationItem}>
+							<Image src={arrowRightIcon} alt="arrow" width={18} height={18} />
+						</div>
+						<div className={styles.paginationItem}>
+							<Image
+								src={arrowDoubleRightIcon}
+								alt="arrow"
+								width={18}
+								height={18}
+							/>
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);
