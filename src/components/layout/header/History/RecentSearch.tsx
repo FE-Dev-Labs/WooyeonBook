@@ -4,13 +4,10 @@ import LastestWord from './LastestWord';
 import HotWord from './HotWord';
 import Image from 'next/image';
 import cancelIcon from '../../../../../public/layout/cancel.png';
-import { RefObject } from 'react';
-interface RecentSearchProps {
-	ref: RefObject<HTMLDivElement>;
-}
-export default function RecentSearch({ ref }: RecentSearchProps) {
+
+export default function RecentSearch() {
 	return (
-		<div className={styles.recentSearchContainer} ref={ref}>
+		<div className={styles.recentSearchContainer}>
 			<div className={styles.recentSearchWrapper}>
 				<LastestWord />
 				<HotWord />
