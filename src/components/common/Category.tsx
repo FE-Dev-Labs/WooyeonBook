@@ -44,6 +44,7 @@ export default function Category() {
 
 	// 카테고리 선택 시 실행되는 함수: 각 카테고리 선택시 파라미터 변경
 	const handleClickCategory = (categoryId: number) => {
+		// 전체 시 카테고리 아이디 null로 찍힘
 		if (categoryId === 0) {
 			router.push('/new');
 		} else {

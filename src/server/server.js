@@ -78,11 +78,15 @@ app.get('/list/used', async (req, res) => {
 // new 페이지: 전체 신간 도서 api
 app.get('/list/newAll', async (req, res) => {
 	// request.query 내 categoryId 추출
-	const { categoryId } = req.query;
+	const { categoryId, page } = req.query;
+	// 추출한 page를 숫자로 변환(문자열로 넘어옴)
+	const currentPage = Number(page);
+	const start = (currentPage - 1) * 30 + 1;
+	console.log(start);
 
 	try {
 		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=30&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=30&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 		);
 
 		// 신간리스트의 해당 카테고리 item만 추출해 data에 할당

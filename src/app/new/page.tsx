@@ -18,12 +18,20 @@ export default function newPage() {
 	const categoryId = params.get('categoryId');
 	// 전체 신간 도서 state
 	const [newAllItems, setNewAllItems] = useState<NewBookType[]>([]);
+	// 현재 페이지 state
+	const [currentPage, setCurrentPage] = useState<number>(1);
+
+	// 페이지(숫자) 선택 시 실행되는 함수
+	const handleClickPage = (page: number) => {
+		setCurrentPage(page);
+	};
 
 	// data 뿌려주는 useEffect
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await fetch(
-				`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+				// `http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+				`http://localhost:8080/list/newAll?categoryId=${categoryId}&page=${currentPage}`,
 				{ cache: 'no-cache' },
 			);
 			const data = await response.json();
@@ -31,7 +39,7 @@ export default function newPage() {
 		};
 
 		fetchData();
-	}, [categoryId]);
+	}, [categoryId, currentPage]);
 
 	return (
 		<>
@@ -42,7 +50,10 @@ export default function newPage() {
 					<Category />
 					{/* <Sort /> */}
 					<BookItemWrapper data={newAllItems} />
-					<Pagination />
+					<Pagination
+						currentPage={currentPage}
+						handleClickPage={handleClickPage}
+					/>
 				</div>
 				<div>
 					<RecentlyViewedBooks />
