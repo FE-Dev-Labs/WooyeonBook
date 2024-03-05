@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 export default function Category() {
 	// useRouter 호출
 	const router = useRouter();
+
 	// 카테고리 분류
 	const categoryItems = [
 		{ name: '전체', id: 0 },
@@ -41,7 +42,7 @@ export default function Category() {
 		{ name: '고등학교참고서', id: 76001 },
 	];
 
-	// 카테고리 선택 시 실행되는 함수: 각 카테고리 별 파라미터 변경
+	// 카테고리 선택 시 실행되는 함수: 각 카테고리 선택시 파라미터 변경
 	const handleClickCategory = (categoryId: number) => {
 		if (categoryId === 0) {
 			router.push('/new');
@@ -53,9 +54,9 @@ export default function Category() {
 	return (
 		<>
 			<div className={styles.categoryBox}>
-				{categoryItems.map((item, index) => (
+				{categoryItems.map((item) => (
 					<div
-						key={index}
+						key={item.id}
 						className={styles.categoryItem}
 						onClick={() => handleClickCategory(item.id)}>
 						{item.name}

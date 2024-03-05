@@ -77,7 +77,7 @@ app.get('/list/used', async (req, res) => {
 
 // new 페이지: 전체 신간 도서 api
 app.get('/list/newAll', async (req, res) => {
-	// 카테고리명 할당
+	// request.query 내 categoryId 추출
 	const { categoryId } = req.query;
 
 	try {

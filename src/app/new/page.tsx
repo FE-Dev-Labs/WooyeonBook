@@ -1,6 +1,5 @@
 'use client';
 
-// import { getAllNewBookData } from '@/apis/new/new';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';
 import PageHeader from '@/components/common/PageHeader';
@@ -21,37 +20,18 @@ export default function newPage() {
 	const [newAllItems, setNewAllItems] = useState<NewBookType[]>([]);
 
 	// data 뿌려주는 useEffect
-	// useEffect(() => {
-	// 	const fetchData = async () => {
-	// 		const response = await fetch(
-	// 			`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
-	// 			{ cache: 'no-cache' },
-	// 		);
-	// 		const data = await response.json();
-	// 		setNewAllItems(data);
-	// 	};
-
-	// 	fetchData();
-	// }, []);
-
 	useEffect(() => {
 		const fetchData = async () => {
-			try {
-				const response = await fetch(
-					`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
-				);
-				const data = await response.json();
-				setNewAllItems(data);
-			} catch (error) {
-				console.error('Error fetching data:', error);
-				// Handle error gracefully, e.g., display an error message to the user
-			}
+			const response = await fetch(
+				`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+				{ cache: 'no-cache' },
+			);
+			const data = await response.json();
+			setNewAllItems(data);
 		};
 
 		fetchData();
 	}, [categoryId]);
-
-	// console.log(newAllItems);
 
 	return (
 		<>
@@ -60,7 +40,7 @@ export default function newPage() {
 				<div />
 				<div className={styles.wrapper}>
 					<Category />
-					<Sort />
+					{/* <Sort /> */}
 					<BookItemWrapper data={newAllItems} />
 					<Pagination />
 				</div>
