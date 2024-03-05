@@ -16,9 +16,9 @@ export default async function Home() {
 
 	// 메인 페이지에 필요한 new, best, used api
 	const response = await Promise.all([
-		fetch('http://localhost:8080/api/new', { cache: 'no-cache' }),
-		fetch('http://localhost:8080/api/best', { cache: 'no-cache' }),
-		fetch('http://localhost:8080/api/used', { cache: 'no-cache' }),
+		fetch('http://localhost:8080/list/new', { cache: 'no-cache' }),
+		fetch('http://localhost:8080/list/best', { cache: 'no-cache' }),
+		fetch('http://localhost:8080/list/used', { cache: 'no-cache' }),
 	]);
 	const [newBookResponse, bestSellerResponse, usedBookResponse] = response;
 
@@ -26,6 +26,8 @@ export default async function Home() {
 	const newBookItems: NewBookType[] = await newBookResponse.json();
 	const bestSellerItems: BestSellerType[] = await bestSellerResponse.json();
 	const usedBookItems: UsedBookType[] = await usedBookResponse.json();
+
+	// console.log(`베스트셀러 : ${JSON.stringify(bestSellerItems, null, 2)}`);
 
 	return (
 		<main className={styles.container}>

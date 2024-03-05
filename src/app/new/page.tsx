@@ -9,20 +9,50 @@ import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 import { NewBookType } from '@/types/bookType';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function newPage() {
+	// useSearchParams 호출
+	const params = useSearchParams();
+	// url 내 categoryId 추출
+	const categoryId = params.get('categoryId');
+	// 전체 신간 도서 state
 	const [newAllItems, setNewAllItems] = useState<NewBookType[]>([]);
+
+	// data 뿌려주는 useEffect
+	// useEffect(() => {
+	// 	const fetchData = async () => {
+	// 		const response = await fetch(
+	// 			`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+	// 			{ cache: 'no-cache' },
+	// 		);
+	// 		const data = await response.json();
+	// 		setNewAllItems(data);
+	// 	};
+
+	// 	fetchData();
+	// }, []);
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await fetch('http://localhost:8080/api/newAll');
-			const data = await response.json();
-			setNewAllItems(data);
+			try {
+				const response = await fetch(
+					`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+				);
+				const data = await response.json();
+				setNewAllItems(data);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+				// Handle error gracefully, e.g., display an error message to the user
+			}
 		};
 
 		fetchData();
-	}, []);
+	}, [categoryId]);
+
+	// console.log(newAllItems);
+
 	return (
 		<>
 			<PageHeader title="신간도서" />
