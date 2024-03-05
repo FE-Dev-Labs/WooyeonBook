@@ -2,7 +2,7 @@
 import styles from '@/styles/community/post/OptionBookReport.module.css';
 import BookSearch from './BookSearch';
 import { useRecoilValue } from 'recoil';
-import { book_name } from '@/recoil/atom/\bbookIdAtom';
+import { book_name } from '@/recoil/atom/bookIdAtom';
 
 const OptionBookReport = () => {
 	const bookName = useRecoilValue(book_name);

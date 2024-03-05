@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { BookReportDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { selectBookData } from '@/recoil/atom/bookIdAtom';
+import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';

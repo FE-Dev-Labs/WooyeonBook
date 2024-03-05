@@ -2,7 +2,7 @@ import styles from '@/styles/community/post/OptionBookSelling.module.css';
 import BookSearch from './BookSearch';
 import dynamic from 'next/dynamic';
 import { useRecoilValue } from 'recoil';
-import { book_name } from '@/recoil/atom/\bbookIdAtom';
+import { book_name } from '@/recoil/atom/bookIdAtom';
 
 interface OptionBookSellingProps {
 	sellingPrice: {

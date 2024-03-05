@@ -33,12 +33,57 @@ app.get('/search/book', async (req, res) => {
 	}
 });
 
-// 커뮤니티
+// 커뮤니티 update api
 
 app.get('/api/community/bookReport/:docid', async (req, res) => {
 	try {
 		const { data, error } = await supabase
 			.from('bookReport')
+			.select('*')
+			.eq('docid', req.params.docid);
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data[0]);
+	} catch (err) {
+		res.status(400).send;
+	}
+});
+
+app.get('/api/community/bookMeeting/:docid', async (req, res) => {
+	try {
+		const { data, error } = await supabase
+			.from('bookMeeting')
+			.select('*')
+			.eq('docid', req.params.docid);
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data[0]);
+	} catch (err) {
+		res.status(400).send;
+	}
+});
+
+app.get('/api/community/bookBuying/:docid', async (req, res) => {
+	try {
+		const { data, error } = await supabase
+			.from('bookBuying')
+			.select('*')
+			.eq('docid', req.params.docid);
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data[0]);
+	} catch (err) {
+		res.status(400).send;
+	}
+});
+
+app.get('/api/community/bookSelling/:docid', async (req, res) => {
+	try {
+		const { data, error } = await supabase
+			.from('bookSelling')
 			.select('*')
 			.eq('docid', req.params.docid);
 		if (error) {

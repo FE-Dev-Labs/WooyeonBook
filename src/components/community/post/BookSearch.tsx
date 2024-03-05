@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import styles from '@/styles/community/post/BookSearch.module.css';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
-import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
+import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import { useSearchParams } from 'next/navigation';
 
