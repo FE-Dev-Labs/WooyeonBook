@@ -8,7 +8,7 @@ import Category from '@/components/common/Category';
 import Rank from '@/components/best/Rank';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BestSellerType } from '@/types/bookType';
 
 export default function bestPage() {
@@ -22,10 +22,13 @@ export default function bestPage() {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
 	const [itemLength, setItemLength] = useState<number>(0);
+	// 선택된 페이지네이션 숫자 ref
+	const selectedNumRef = useRef<number>(1);
 
 	// 페이지(숫자) 선택 시 실행되는 함수
-	const handleClickPage = (page: number) => {
-		setCurrentPage(page);
+	const handleClickPage = (pageNum: number) => {
+		selectedNumRef.current = pageNum;
+		setCurrentPage(pageNum);
 	};
 
 	// server -> api 받아오는 함수
@@ -58,6 +61,7 @@ export default function bestPage() {
 					<Pagination
 						itemLength={itemLength}
 						handleClickPage={handleClickPage}
+						selectedNumRef={selectedNumRef}
 						page="best"
 					/>
 				</div>

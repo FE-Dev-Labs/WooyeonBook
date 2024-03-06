@@ -33,5 +33,11 @@
 	background-color: #bad2eb;
 	color: #ffffff;
 }
+
+/* 선택된 페이지네이션 아이템 */
+.selectedNum {
+	color: #ffffff;
+	background-color: #6594e7;
+}
 /* #bad2eb; */
 /* #6594e7; */

@@ -9,6 +9,8 @@ export default function Category() {
 	const router = useRouter();
 	// usePathname 호출
 	const pathname = usePathname();
+
+	// 선택된 카테고리 ref
 	const selectedCategoryRef = useRef<number>(0);
 
 	// 카테고리 선택 시 실행되는 함수: 각 카테고리 선택시 파라미터 변경

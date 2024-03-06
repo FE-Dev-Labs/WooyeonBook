@@ -6,17 +6,20 @@ import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 interface PaginationProps {
 	itemLength: number;
 	handleClickPage: (page: number) => void;
+	selectedNumRef: any;
 	page?: string;
 }
 
 export default function Pagination({
 	itemLength,
 	handleClickPage,
+	selectedNumRef,
 	page,
 }: PaginationProps) {
 	// 한 페이지 당 나타낼 아이템의 개수
 	// page가 'best'라면 한 페이지 당 아이템의 개수를 24로, 아니면 30으로 설정
 	const itemPerPage = page === 'best' ? 24 : 30;
+
 	// 해당 카테고리의 페이지의 개수
 	// const totalPages = Math.ceil(itemLength / itemPerPage);
 	let totalPages =
@@ -33,7 +36,7 @@ export default function Pagination({
 				{pageArr.map((num) => {
 					return (
 						<div
-							className={styles.paginationItem}
+							className={`${styles.paginationItem} ${selectedNumRef.current === num && styles.selectedNum}`}
 							key={num}
 							onClick={() => {
 								handleClickPage(num);
