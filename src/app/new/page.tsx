@@ -28,15 +28,16 @@ export default function newPage() {
 		setCurrentPage(page);
 	};
 
-	// fetch 받아오는 함수
+	// server -> api 받아오는 함수
 	const fetchData = async () => {
 		const response = await fetch(
-			// `http://localhost:8080/list/newAll?categoryId=${categoryId}`,
 			`http://localhost:8080/list/newAll?categoryId=${categoryId}&page=${currentPage}`,
 			{ cache: 'no-cache' },
 		);
 		const { data, dataLength } = await response.json();
+		// book item
 		setNewAllItems(data);
+		// book item의 총 개수
 		setItemLength(dataLength);
 	};
 

@@ -21,13 +21,6 @@ export default function Pagination({
 	// 해당 카테고리의 페이지를 배열화
 	let pageArr = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-	// console.log(
-	// 	'현재 카테고리의 아이템 total: ',
-	// 	itemLength,
-	// 	'현재 페이지: ',
-	// 	currentPage,
-	// );
-
 	return (
 		<div className={styles.paginationWrapper}>
 			<div className={styles.paginationBox}>
