@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
+import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import OptionBookReport from '@/components/community/post/OptionBookReport';
 import OptionBookMeeting from '@/components/community/post/OptionBookMeeting';

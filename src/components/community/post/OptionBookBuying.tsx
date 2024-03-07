@@ -1,4 +1,4 @@
-import { book_name } from '@/recoil/atom/\bbookIdAtom';
+import { book_name } from '@/recoil/atom/bookIdAtom';
 import styles from '@/styles/community/post/OptionBookBuying.module.css';
 import { useRecoilValue } from 'recoil';
 import BookSearch from './BookSearch';
