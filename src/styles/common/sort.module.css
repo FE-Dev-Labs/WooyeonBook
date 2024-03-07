@@ -20,20 +20,13 @@
 	align-items: center;
 }
 .sortItem {
-	width: 220px;
+	width: 200px;
 
 	display: flex;
+	justify-content: space-between;
 }
-.sortItem > div {
-	width: 100px;
-	height: 36px;
-	border-radius: 10px;
-	font-size: 14px;
+.sortItem > span {
+	font-size: 12px;
 
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	cursor: pointer;
-
-	/* border: 1px solid #aaaaaa; */
 }
