@@ -13,12 +13,7 @@ export default function ThemItem() {
 						<p># 일반소설</p>
 					</div>
 					<div className={styles.themeImage}>
-						<Image
-							src={bookImage}
-							alt="theme book"
-							layout="fill"
-							objectFit="cover"
-						/>
+						<Image src={bookImage} alt="theme book" width={150} height={200} />
 					</div>
 				</div>
 			</Link>

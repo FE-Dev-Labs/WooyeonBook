@@ -37,9 +37,11 @@ export default function BookItem({ rank, data }: BookItemProps) {
 						data?.mallType === 'USED' ? 'used' : 'new'
 					}`}>
 					<Image
-						fill
 						src={data?.cover}
 						alt={data?.mallType === 'USED' ? 'used book' : 'new book'}
+						width={200}
+						height={275}
+						priority={true}
 					/>
 				</Link>
 			</div>
