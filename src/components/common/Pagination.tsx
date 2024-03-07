@@ -5,31 +5,44 @@ import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 
 interface PaginationProps {
 	currentPage: number;
+	itemLength: number;
 	handleClickPage: (page: number) => void;
 }
 
 export default function Pagination({
 	currentPage,
+	itemLength,
 	handleClickPage,
 }: PaginationProps) {
-	console.log(currentPage);
+	// 한 페이지 당 나타낼 아이템의 개수
+	const page = 30;
+	// 해당 카테고리의 페이지의 개수
+	const totalPages = Math.ceil(itemLength / page);
+	// 해당 카테고리의 페이지를 배열화
+	let pageArr = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+	// console.log(
+	// 	'현재 카테고리의 아이템 total: ',
+	// 	itemLength,
+	// 	'현재 페이지: ',
+	// 	currentPage,
+	// );
 
 	return (
 		<div className={styles.paginationWrapper}>
 			<div className={styles.paginationBox}>
-				{/* <div className={styles.paginationItem}>1</div>
-				<div className={styles.paginationItem}>2</div>
-				<div className={styles.paginationItem}>3</div>
-				<div className={styles.paginationItem}>4</div>
-				<div className={styles.paginationItem}>5</div>
-				<div className={styles.paginationItem}>6</div>
-				<div className={styles.paginationItem}>7</div>
-				<div className={styles.paginationItem}>8</div>
-				<div className={styles.paginationItem}>9</div>
-				<div className={styles.paginationItem}>10</div> */}
-				<button onClick={() => handleClickPage(currentPage - 1)}>이전</button>
-				<span>{currentPage}</span>
-				<button onClick={() => handleClickPage(currentPage + 1)}>다음</button>
+				{pageArr.map((num, index) => {
+					return (
+						<div
+							className={styles.paginationItem}
+							key={index}
+							onClick={() => {
+								handleClickPage(num);
+							}}>
+							{num}
+						</div>
+					);
+				})}
 				<div className={styles.paginationItem}>
 					<Image src={arrowRightIcon} alt="arrow" />
 				</div>

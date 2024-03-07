@@ -79,20 +79,20 @@ app.get('/list/used', async (req, res) => {
 app.get('/list/newAll', async (req, res) => {
 	// request.query 내 categoryId 추출
 	const { categoryId, page } = req.query;
-	// 추출한 page를 숫자로 변환(문자열로 넘어옴)
-	const currentPage = Number(page);
-	const start = (currentPage - 1) * 30 + 1;
-	console.log(start);
+	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
+	const start = Number(page);
 
 	try {
 		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=30&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewAll&MaxResults=30&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 		);
 
 		// 신간리스트의 해당 카테고리 item만 추출해 data에 할당
 		const data = await response.data.item;
+		// 해당 카테고리 item의 총 갯수
+		const dataLength = await response.data.totalResults;
 
-		res.status(200).send(data);
+		res.status(200).send({ data, dataLength });
 	} catch (err) {
 		res.status(400).send(err);
 	}

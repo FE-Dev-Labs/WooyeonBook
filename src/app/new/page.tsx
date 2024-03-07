@@ -16,28 +16,32 @@ export default function newPage() {
 	const params = useSearchParams();
 	// url 내 categoryId 추출
 	const categoryId = params.get('categoryId');
-	// 전체 신간 도서 state
+	// 신간 도서 전체 아이템 state
 	const [newAllItems, setNewAllItems] = useState<NewBookType[]>([]);
-	// 현재 페이지 state
+	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
+	// 현재 카테고리 아이템의 총 갯수 state
+	const [itemLength, setItemLength] = useState<number>(0);
 
 	// 페이지(숫자) 선택 시 실행되는 함수
 	const handleClickPage = (page: number) => {
 		setCurrentPage(page);
 	};
 
-	// data 뿌려주는 useEffect
-	useEffect(() => {
-		const fetchData = async () => {
-			const response = await fetch(
-				// `http://localhost:8080/list/newAll?categoryId=${categoryId}`,
-				`http://localhost:8080/list/newAll?categoryId=${categoryId}&page=${currentPage}`,
-				{ cache: 'no-cache' },
-			);
-			const data = await response.json();
-			setNewAllItems(data);
-		};
+	// fetch 받아오는 함수
+	const fetchData = async () => {
+		const response = await fetch(
+			// `http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+			`http://localhost:8080/list/newAll?categoryId=${categoryId}&page=${currentPage}`,
+			{ cache: 'no-cache' },
+		);
+		const { data, dataLength } = await response.json();
+		setNewAllItems(data);
+		setItemLength(dataLength);
+	};
 
+	// fetchData 뿌려주는 useEffect
+	useEffect(() => {
 		fetchData();
 	}, [categoryId, currentPage]);
 
@@ -52,6 +56,7 @@ export default function newPage() {
 					<BookItemWrapper data={newAllItems} />
 					<Pagination
 						currentPage={currentPage}
+						itemLength={itemLength}
 						handleClickPage={handleClickPage}
 					/>
 				</div>
