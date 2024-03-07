@@ -1,79 +1,154 @@
+'use client';
 import styles from '@/styles/common/communitynav.module.css';
-import { useState } from 'react';
 import ControlFilterPanel from './ControlFilterPanel';
+import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Communitynav() {
-	const [state, setState] = useState<string>('bookReport');
+
+	const params = useSearchParams();
+	const page = params.get('page');
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.wrapper}>
 				<div className={styles.btnWrapper}>
-					<button
-						onClick={() => {
-							setState('bookReport');
-						}}
+					<Link
+						href={'/mypage?page=bookReport'}
 						className={
-							state === 'bookReport'
+							page === 'bookReport'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
 						독후감
-					</button>
+					</Link>
 				</div>
 				<div className={styles.btnWrapper}>
-					<button
-						onClick={() => {
-							setState('meeting');
-						}}
+					<Link
+						href={'/mypage?page=meeting'}
 						className={
-							state === 'meeting'
+							page === 'meeting'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
 						모임
-					</button>
+					</Link>
 				</div>
 				<div className={styles.btnWrapper}>
-					<button
-						onClick={() => {
-							setState('buyingBook');
-						}}
+					<Link
+						href={'/mypage?page=buyingBook'}
 						className={
-							state === 'buyingBook'
+							page === 'buyingBook'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
 						삽니다
-					</button>
+					</Link>
 				</div>
 				<div className={styles.btnWrapper}>
-					<button
-						onClick={() => {
-							setState('sellingBook');
-						}}
+					<Link
+						href={'/mypage?page=sellingBook'}
 						className={
-							state === 'sellingBook'
+							page === 'sellingBook'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
 						팝니다
-					</button>
+					</Link>
 				</div>
 				<div className={styles.btnWrapper}>
-					<button
-						onClick={() => {
-							setState('likes');
-						}}
+					<Link
+						href={'/mypage?page=likes'}
 						className={
-							state === 'likes'
+							page === 'likes'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
 						찜한 목록
-					</button>
+					</Link>
 				</div>
 			</div>
-			<ControlFilterPanel state={state} />
+			<ControlFilterPanel />
 		</div>
 	);
 }
+// 'use client';
+// import styles from '@/styles/common/communitynav.module.css';
+// import { useState } from 'react';
+// import ControlFilterPanel from './ControlFilterPanel';
+
+// export default function Communitynav() {
+// 	const [state, setState] = useState<string>('bookReport');
+// 	return (
+// 		<div className={styles.container}>
+// 			<div className={styles.wrapper}>
+// 				<div className={styles.btnWrapper}>
+// 					<button
+// 						onClick={() => {
+// 							setState('bookReport');
+// 						}}
+// 						className={
+// 							state === 'bookReport'
+// 								? styles.mypagePostBtnActive
+// 								: styles.mypagePostBtn
+// 						}>
+// 						독후감
+// 					</button>
+// 				</div>
+// 				<div className={styles.btnWrapper}>
+// 					<button
+// 						onClick={() => {
+// 							setState('meeting');
+// 						}}
+// 						className={
+// 							state === 'meeting'
+// 								? styles.mypagePostBtnActive
+// 								: styles.mypagePostBtn
+// 						}>
+// 						모임
+// 					</button>
+// 				</div>
+// 				<div className={styles.btnWrapper}>
+// 					<button
+// 						onClick={() => {
+// 							setState('buyingBook');
+// 						}}
+// 						className={
+// 							state === 'buyingBook'
+// 								? styles.mypagePostBtnActive
+// 								: styles.mypagePostBtn
+// 						}>
+// 						삽니다
+// 					</button>
+// 				</div>
+// 				<div className={styles.btnWrapper}>
+// 					<button
+// 						onClick={() => {
+// 							setState('sellingBook');
+// 						}}
+// 						className={
+// 							state === 'sellingBook'
+// 								? styles.mypagePostBtnActive
+// 								: styles.mypagePostBtn
+// 						}>
+// 						팝니다
+// 					</button>
+// 				</div>
+// 				<div className={styles.btnWrapper}>
+// 					<button
+// 						onClick={() => {
+// 							setState('likes');
+// 						}}
+// 						className={
+// 							state === 'likes'
+// 								? styles.mypagePostBtnActive
+// 								: styles.mypagePostBtn
+// 						}>
+// 						찜한 목록
+// 					</button>
+// 				</div>
+// 			</div>
+// 			<ControlFilterPanel state={state} />
+// 		</div>
+// 	);
+// }

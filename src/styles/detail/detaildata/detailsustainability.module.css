@@ -36,8 +36,12 @@
 	margin-right: 2px;
 	line-height: 1.2em;
 	color: #333;
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 600;
+	margin-bottom: 10px;
+}
+.bookWarningContent {
+	margin-bottom: 15px;
 }
 .accodionWarningWrap {
 	display: flex;

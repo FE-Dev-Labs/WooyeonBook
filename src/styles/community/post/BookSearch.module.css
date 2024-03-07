@@ -1,0 +1,46 @@
+.container {
+	width: 500px;
+	position: relative;
+}
+.container > input {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+.container > input:focus {
+	outline: none;
+}
+.container > button {
+	top: 8px;
+	right: 15px;
+	border: none;
+	position: absolute;
+	cursor: pointer;
+
+	background-color: #ffffff;
+}
+/* 검색 결과 */
+.searchResultWrap {
+	position: absolute;
+	width: 480px;
+	min-height: 240px;
+	margin-top: 5px;
+	z-index: 100;
+	border: 1px solid #cccccc;
+	border-radius: 10px;
+	background-color: #ffffff;
+	padding: 10px 10px;
+}
+.searchResultItemWrap {
+	height: 32px;
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+.searchResultItemTitle {
+	font-size: 11px;
+}

@@ -6,7 +6,7 @@
 	grid-template-columns: 2fr 2fr;
 	grid-column-gap: 10px;
 }
-.accordionWrapper.active {
+.accordionWrappeActive {
 	display: grid;
 	grid-template-columns: 2fr 2fr 2fr;
 	grid-column-gap: 10px;

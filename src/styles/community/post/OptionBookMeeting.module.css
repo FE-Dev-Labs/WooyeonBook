@@ -1,0 +1,28 @@
+/* 모임 옵션 area css */
+.meetingSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.meetingSelectWrap {
+	display: flex;
+	flex-direction: column;
+}
+.meetingSelectWrap > label {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.meetingSelectWrap > input {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+.bookSelectBtn {
+	width: 500px;
+	margin-right: 50px;
+}
