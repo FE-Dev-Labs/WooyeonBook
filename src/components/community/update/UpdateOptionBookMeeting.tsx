@@ -1,7 +1,9 @@
 import styles from '@/styles/community/post/OptionBookMeeting.module.css';
+import { BookMeetingDataType } from '@/types/community/post/data';
 import dynamic from 'next/dynamic';
 
 interface OptionBookMeetingProps {
+	data?: BookMeetingDataType;
 	chatUrl: {
 		value: string;
 		onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -27,7 +29,8 @@ const Select = dynamic(() => import('react-select'), {
 	),
 });
 
-const OptionBookMeeting = ({
+const UpdateOptionBookMeeting = ({
+	data,
 	chatUrl,
 	deadline,
 	onchangeRecruitmentNumber,
@@ -61,6 +64,7 @@ const OptionBookMeeting = ({
 				<input
 					type="date"
 					className={styles.dateInput}
+					value={deadline.value.toString()}
 					onChange={deadline.onChange}
 				/>
 			</div>
@@ -69,7 +73,10 @@ const OptionBookMeeting = ({
 				<Select
 					className={styles.bookSelectBtn}
 					options={options}
-					defaultValue={options[0]}
+					defaultValue={{
+						value: data?.recruitment_number,
+						label: `${data?.recruitment_number}명`,
+					}}
 					onChange={onchangeRecruitmentNumber}
 				/>
 			</div>
@@ -77,4 +84,4 @@ const OptionBookMeeting = ({
 	);
 };
 
-export default OptionBookMeeting;
+export default UpdateOptionBookMeeting;
