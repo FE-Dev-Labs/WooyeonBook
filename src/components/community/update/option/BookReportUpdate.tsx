@@ -1,6 +1,6 @@
 'use client';
 import styles from '@/styles/community/update/update.module.css';
-import OptionBookReport from '../post/OptionBookReport';
+import OptionBookReport from '../../post/OptionBookReport';
 import dynamic from 'next/dynamic';
 import { BookReportDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';
@@ -37,6 +37,8 @@ function Update({ data, docid }: UpdateProps) {
 	const title = useInputState('');
 	const [text, setText] = useRecoilState(editorText);
 	const [selectBook, setSelectBook] = useRecoilState(selectBookData);
+	const view = data?.view;
+	const like = data?.like;
 
 	useEffect(() => {
 		if (!data) return;
@@ -48,7 +50,7 @@ function Update({ data, docid }: UpdateProps) {
 	}, []);
 	const onSubmit = async () => {
 		const data = {
-			docid: docid,
+			doc_id: docid,
 			created_at: new Date(),
 			created_user: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bea',
 			title: title.value as string,
@@ -60,14 +62,14 @@ function Update({ data, docid }: UpdateProps) {
 			book_img_url: selectBook.bookImgUrl,
 			field: 'bookReport',
 			category: 'bookReport',
-			view: 0,
-			like: 0,
+			view: view,
+			like: like,
 		};
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase
 			.from('bookReport')
 			.update(data)
-			.eq('docid', docid)
+			.eq('doc_id', docid)
 			.select();
 		// 에러 발생시 alert
 		if (error) {

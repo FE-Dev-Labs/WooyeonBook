@@ -8,8 +8,8 @@ import { useInputState } from '@/hooks/useInputState';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
-import OptionBookMeeting from '../post/OptionBookMeeting';
-import UpdateOptionBookMeeting from './UpdateOptionBookMeeting';
+import OptionBookMeeting from '../../post/OptionBookMeeting';
+import UpdateOptionBookMeeting from '../UpdateOptionBookMeeting';
 
 interface UpdateProps {
 	data?: BookMeetingDataType;
@@ -60,7 +60,7 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 
 	const onSubmit = async () => {
 		const data = {
-			docid: docid,
+			doc_id: docid,
 			created_at: new Date(),
 			created_user: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bea',
 			title: title.value as string,
@@ -80,7 +80,7 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 		const { error } = await supabase
 			.from('bookMeeting')
 			.update(data)
-			.eq('docid', docid)
+			.eq('doc_id', docid)
 			.select();
 		// 에러 발생시 alert
 		if (error) {

@@ -6,6 +6,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useEffect, useRef } from 'react';
 import {
+	BookBuyingDataType,
 	BookMeetingDataType,
 	BookReportDataType,
 } from '@/types/community/post/data';
@@ -13,7 +14,7 @@ import uuid from 'react-uuid';
 
 interface UpdateEdiorProps {
 	height?: string;
-	data?: BookReportDataType | BookMeetingDataType;
+	data?: BookReportDataType | BookMeetingDataType | BookBuyingDataType;
 }
 
 export default function UpdateEdior({

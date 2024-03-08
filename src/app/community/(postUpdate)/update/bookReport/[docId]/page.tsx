@@ -1,4 +1,4 @@
-import BookReportUpdate from '@/components/community/update/BookReportUpdate';
+import BookReportUpdate from '@/components/community/update/option/BookReportUpdate';
 
 const UpdateBookReport = async ({
 	params,

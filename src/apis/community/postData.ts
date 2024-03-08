@@ -48,7 +48,6 @@ interface BookSellingSumitDataProps {
 	page: string | null;
 	sellingPrice: string;
 	bookState: string;
-	sellingState: string;
 }
 
 const bookReportSumitData = ({
@@ -67,7 +66,7 @@ const bookReportSumitData = ({
 		book_id: selectedBook.bookId,
 		book_name: selectedBook.bookName,
 		book_img_url: selectedBook.bookImgUrl,
-		field: page,
+		field: page as string,
 		category: 'category',
 		view: 0,
 		like: 0,
@@ -94,7 +93,7 @@ const bookMeetingSumitData = ({
 		recruitment_number: recruitmentNumber,
 		deadline: deadline,
 		view: 0,
-		field: page,
+		field: page as string,
 		chatting_url: chatUrl,
 		like: 0,
 	};
@@ -118,7 +117,7 @@ const bookBuyingSumitData = ({
 		book_name: selectedBook.bookName,
 		book_img_url: selectedBook.bookImgUrl,
 		book_id: selectedBook.bookId,
-		field: page,
+		field: page as string,
 		category: 'category',
 		view: 0,
 		price: price,
@@ -135,7 +134,6 @@ const bookSellingSumitData = ({
 	page,
 	sellingPrice,
 	bookState,
-	sellingState,
 }: BookSellingSumitDataProps) => {
 	const data: BookSellingDataType = {
 		created_at: new Date(),
@@ -147,14 +145,14 @@ const bookSellingSumitData = ({
 		book_name: selectedBook.bookName,
 		book_id: selectedBook.bookId,
 		book_img_url: selectedBook.bookImgUrl,
-		field: page,
+		field: page as string,
 		category: 'category',
 		view: 0,
 		price: sellingPrice,
 		like: 0,
 		state: false,
 		book_state: bookState,
-		selling_state: sellingState,
+		selling: false,
 	};
 };
 

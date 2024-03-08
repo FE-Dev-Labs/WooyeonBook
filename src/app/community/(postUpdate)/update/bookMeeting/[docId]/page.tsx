@@ -1,4 +1,4 @@
-import BookMeetingUpdate from '@/components/community/update/BookMeetingUpdate';
+import BookMeetingUpdate from '@/components/community/update/option/BookMeetingUpdate';
 
 const UpdateBookMeeting = async ({
 	params,

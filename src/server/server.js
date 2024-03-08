@@ -40,7 +40,7 @@ app.get('/api/community/bookReport/:docid', async (req, res) => {
 		const { data, error } = await supabase
 			.from('bookReport')
 			.select('*')
-			.eq('docid', req.params.docid);
+			.eq('doc_id', req.params.docid);
 		if (error) {
 			throw error;
 		}
@@ -55,7 +55,7 @@ app.get('/api/community/bookMeeting/:docid', async (req, res) => {
 		const { data, error } = await supabase
 			.from('bookMeeting')
 			.select('*')
-			.eq('docid', req.params.docid);
+			.eq('doc_id', req.params.docid);
 		if (error) {
 			throw error;
 		}
@@ -70,7 +70,7 @@ app.get('/api/community/bookBuying/:docid', async (req, res) => {
 		const { data, error } = await supabase
 			.from('bookBuying')
 			.select('*')
-			.eq('docid', req.params.docid);
+			.eq('doc_id', req.params.docid);
 		if (error) {
 			throw error;
 		}
@@ -85,7 +85,7 @@ app.get('/api/community/bookSelling/:docid', async (req, res) => {
 		const { data, error } = await supabase
 			.from('bookSelling')
 			.select('*')
-			.eq('docid', req.params.docid);
+			.eq('doc_id', req.params.docid);
 		if (error) {
 			throw error;
 		}
