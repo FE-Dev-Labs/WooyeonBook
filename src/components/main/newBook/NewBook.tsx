@@ -1,7 +1,7 @@
 import styles from '@/styles/main/newBook/newBook.module.css';
 import CategoryTitle from '../common/CategoryTitle';
 import BookItemBox from '../common/BookItemBox';
-import { NewBookType } from '@/types/newBookType';
+import { NewBookType } from '@/types/bookType';
 
 interface newBookBoxProp {
 	data: NewBookType[];
