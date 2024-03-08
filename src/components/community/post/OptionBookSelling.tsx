@@ -2,14 +2,13 @@ import styles from '@/styles/community/post/OptionBookSelling.module.css';
 import BookSearch from './BookSearch';
 import dynamic from 'next/dynamic';
 import { useRecoilValue } from 'recoil';
-import { book_name } from '@/recoil/atom/\bbookIdAtom';
+import { book_name } from '@/recoil/atom/bookIdAtom';
 
 interface OptionBookSellingProps {
 	sellingPrice: {
 		value: string;
 		onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	};
-	onchangeBookState: (e: any) => void;
 	onchangeSellingState: (e: any) => void;
 }
 
@@ -29,17 +28,10 @@ const Select = dynamic(() => import('react-select'), {
 
 const OptionBookSelling = ({
 	sellingPrice,
-	onchangeBookState,
 	onchangeSellingState,
 }: OptionBookSellingProps) => {
 	const bookName = useRecoilValue(book_name);
 
-	const bookStateOptions = [
-		{ value: '', label: '책의 상태를 선택해주세요.' },
-		{ value: '상', label: '상' },
-		{ value: '중', label: '중' },
-		{ value: '하', label: '하' },
-	];
 	const sellingStateOptions = [
 		{ value: '', label: '판매 / 나눔' },
 		{ value: '판매', label: '판매' },
@@ -63,15 +55,7 @@ const OptionBookSelling = ({
 					onChange={sellingPrice.onChange}
 				/>
 			</div>
-			<div className={styles.sellingSelectWrap}>
-				<label>책의 상태</label>
-				<Select
-					className={styles.bookSelectBtn}
-					options={bookStateOptions}
-					defaultValue={bookStateOptions[0]}
-					onChange={onchangeBookState}
-				/>
-			</div>
+
 			<div className={styles.sellingSelectWrap}>
 				<label>판매 / 나눔</label>
 				<Select

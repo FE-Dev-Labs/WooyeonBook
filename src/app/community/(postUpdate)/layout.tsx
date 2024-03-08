@@ -1,8 +1,6 @@
-'use client';
 import type { BasicLayoutType } from '@/types/layoutType';
 import styles from '@/styles/community/post/PostLayout.module.css';
 import Link from 'next/link';
-import { RecoilRoot } from 'recoil';
 
 export default function PostLayout({ children }: BasicLayoutType) {
 	return (
@@ -14,7 +12,7 @@ export default function PostLayout({ children }: BasicLayoutType) {
 					<Link href={'/community/post/new?page=bookBuying'}>삽니다</Link>
 					<Link href={'/community/post/new?page=bookSelling'}>팝니다</Link>
 				</div>
-				<RecoilRoot>{children}</RecoilRoot>
+				{children}
 			</div>
 		</div>
 	);

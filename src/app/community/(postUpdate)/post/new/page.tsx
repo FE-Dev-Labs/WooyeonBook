@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { selectBookData } from '@/recoil/atom/\bbookIdAtom';
+import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import OptionBookReport from '@/components/community/post/OptionBookReport';
 import OptionBookMeeting from '@/components/community/post/OptionBookMeeting';
@@ -61,10 +61,7 @@ export default function PostPage() {
 	const onchangeRecruitmentNumber = (e: any) => {
 		setRecruitmentNumber(e.value);
 	};
-	const [bookState, setBookState] = useState<string>('');
-	const onchangeBookState = (e: any) => {
-		setBookState(e.value);
-	};
+
 	const [sellingState, setSellingState] = useState<string>('');
 	const onchangeSellingState = (e: any) => {
 		setSellingState(e.value);
@@ -136,7 +133,6 @@ export default function PostPage() {
 							onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 						}
 					}
-					onchangeBookState={onchangeBookState}
 					onchangeSellingState={onchangeSellingState}
 				/>
 			);
@@ -188,8 +184,7 @@ export default function PostPage() {
 				setSeletedBook,
 				page,
 				price,
-				bookState,
-				sellingState,
+				bookState: sellingState,
 				router,
 			});
 		}
