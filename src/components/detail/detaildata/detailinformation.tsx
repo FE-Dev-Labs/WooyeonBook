@@ -8,7 +8,6 @@ interface bookDetailProp {
 }
 export default function Detailinformation({ bookInfo }: bookDetailProp) {
 	const { active } = useContext(AccordionContext);
-	console.log('확인', bookInfo);
 	return (
 		<div className={styles.accordionContent}>
 			<ul className={active.includes(1) ? styles.accordionWrappeActive : ''}>

@@ -3,7 +3,7 @@ import {
 	bookMeetingSumitData,
 	bookReportSumitData,
 	bookSellingSumitData,
-} from './postData';
+} from '../postData';
 import { supabase } from '@/utils/supabase/supabase';
 
 interface BookReportOnSubmitProps {
@@ -104,7 +104,6 @@ interface BookSellingOnSubmitProps {
 		init: () => void;
 	};
 	bookState: string;
-	sellingState: string;
 	router: any;
 }
 
@@ -216,7 +215,6 @@ const bookSellingOnSubmit = async ({
 	page,
 	price,
 	bookState,
-	sellingState,
 	router,
 }: BookSellingOnSubmitProps) => {
 	const data = bookSellingSumitData({
@@ -226,7 +224,6 @@ const bookSellingOnSubmit = async ({
 		page,
 		sellingPrice: price.value as string,
 		bookState,
-		sellingState,
 	});
 	const { error } = await supabase.from(`${page}`).insert([data]);
 	if (error) {

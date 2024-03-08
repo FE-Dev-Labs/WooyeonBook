@@ -2,8 +2,7 @@
 
 import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/main/common/bookItemBox.module.css';
-import { UsedBookType } from '@/types/UsedBookType';
-import { NewBookType } from '@/types/newBookType';
+import { NewBookType, UsedBookType } from '@/types/bookType';
 
 interface BookItemBoxProp {
 	data: NewBookType[] | UsedBookType[];

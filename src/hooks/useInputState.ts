@@ -11,5 +11,9 @@ export const useInputState = (initValue: string | number | Date) => {
 		setValue(value);
 	};
 
-	return { value, onChange, init };
+	const onChangeValue = useCallback((data: string | number | Date) => {
+		setValue(data);
+	}, []);
+
+	return { value, onChange, init, onChangeValue };
 };
