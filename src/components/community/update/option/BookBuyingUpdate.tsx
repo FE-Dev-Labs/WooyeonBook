@@ -9,7 +9,7 @@ import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
-import OptionBookBuying from '../../post/OptionBookBuying';
+import OptionBookBuying from '../../post/option/OptionBookBuying';
 
 interface UpdateProps {
 	data?: BookBuyingDataType;

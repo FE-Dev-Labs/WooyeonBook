@@ -1,7 +1,6 @@
 import {
 	bookBuyingSumitData,
 	bookMeetingSumitData,
-	bookReportSumitData,
 	bookSellingSumitData,
 } from '../postData';
 import { supabase } from '@/utils/supabase/supabase';
@@ -107,42 +106,6 @@ interface BookSellingOnSubmitProps {
 	router: any;
 }
 
-// 독후감 작성시 데이터 삽입
-const bookReportOnSubmit = async ({
-	page,
-	title,
-	router,
-	text,
-	setText,
-	selectedBook,
-	setSeletedBook,
-}: BookReportOnSubmitProps) => {
-	// page별 데이터 생성
-	const data = bookReportSumitData({
-		page,
-		title: title.value as string,
-		text,
-		selectedBook,
-	});
-	// supabase 데이터베이스에 데이터 삽입
-	const { error } = await supabase.from(`${page}`).insert([data]);
-	// 에러 발생시 alert
-	if (error) {
-		return alert('에러가 발생했습니다.');
-	}
-	// state 초기화
-	title.init();
-	setText('');
-	setSeletedBook({
-		bookName: '',
-		bookImgUrl: '',
-		bookId: '',
-	});
-	// created_user,user_name 아직 안넣음
-	// 데이터 삽입후 페이지 이동
-	return router.push(`/community/${page}`);
-};
-
 const bookMeetingOnSubmit = async ({
 	page,
 	title,
@@ -240,9 +203,4 @@ const bookSellingOnSubmit = async ({
 	return router.push(`/community/${page}`);
 };
 
-export {
-	bookReportOnSubmit,
-	bookMeetingOnSubmit,
-	bookBuyingOnSubmit,
-	bookSellingOnSubmit,
-};
+export { bookMeetingOnSubmit, bookBuyingOnSubmit, bookSellingOnSubmit };

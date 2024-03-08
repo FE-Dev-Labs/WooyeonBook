@@ -1,6 +1,6 @@
 'use client';
 import styles from '@/styles/community/update/update.module.css';
-import OptionBookReport from '../../post/OptionBookReport';
+import OptionBookReport from '../../post/option/OptionBookReport';
 import dynamic from 'next/dynamic';
 import { BookReportDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';

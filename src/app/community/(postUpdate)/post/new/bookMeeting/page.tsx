@@ -4,12 +4,12 @@ import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from '@/styles/community/post/postNewPage.module.css';
 import { useInputState } from '@/hooks/useInputState';
-import OptionBookReport from '@/components/community/post/option/OptionBookReport';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
-import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookReportDataType } from '@/types/community/post/data';
+import { BookMeetingDataType } from '@/types/community/post/data';
+import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
+import { useState } from 'react';
 
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
@@ -37,24 +37,32 @@ const bookReportPostPage = () => {
 	// text / img url arr
 	const [content, setContent] = useRecoilState(editorText);
 	const [imgArr, setImgArr] = useRecoilState(editorImgArr);
-	// 선택한 책 data
-	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
-
+	// 모집중 / 모집 완료 state
+	const [state, setState] = useState<boolean>(false);
+	// 모집 마감일
+	const deadline = useInputState(new Date());
+	// kakao chat url state
+	const chatUrl = useInputState('');
+	// 모집 인원 state
+	const [recruitmentNumber, setRecruitmentNumber] = useState<number>(0);
+	const onchangeRecruitmentNumber = (e: any) => {
+		setRecruitmentNumber(e.value);
+	};
 	const onSubmit = async () => {
-		const data: BookReportDataType = {
+		const data: BookMeetingDataType = {
 			created_at: new Date(),
 			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
 			title: title.value as string,
 			content: content,
 			content_img_url: imgArr,
 			user_name: 'user-name',
-			book_id: selectedBook.bookId,
-			book_name: selectedBook.bookName,
-			book_img_url: selectedBook.bookImgUrl,
 			field: page,
-			category: 'category',
 			view: 0,
 			like: 0,
+			state: state,
+			recruitment_number: recruitmentNumber,
+			deadline: deadline.value as Date,
+			chatting_url: chatUrl.value as string,
 		};
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase.from(`${page}`).insert([data]);
@@ -66,11 +74,11 @@ const bookReportPostPage = () => {
 		title.init('');
 		setContent('');
 		setImgArr([]);
-		setSeletedBook({
-			bookName: '',
-			bookImgUrl: '',
-			bookId: '',
-		});
+		setState(false);
+		deadline.init(new Date());
+		chatUrl.init('');
+		setRecruitmentNumber(0);
+
 		// 데이터 삽입후 페이지 이동
 		return router.push(`/community/${page}`);
 	};
@@ -79,7 +87,7 @@ const bookReportPostPage = () => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div>📚</div>
-				<h2>독후감을 작성하고 공유해 보세요.</h2>
+				<h2>모임을 만들어 보세요.</h2>
 			</div>
 			<input
 				type="text"
@@ -88,7 +96,21 @@ const bookReportPostPage = () => {
 				value={title.value as string | ''}
 				onChange={title.onChange}
 			/>
-			<OptionBookReport />
+			<OptionBookMeeting
+				chatUrl={
+					chatUrl as {
+						value: string;
+						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+					}
+				}
+				deadline={
+					deadline as {
+						value: Date;
+						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+					}
+				}
+				onchangeRecruitmentNumber={onchangeRecruitmentNumber}
+			/>
 			<div>
 				<EditorComponent />
 			</div>

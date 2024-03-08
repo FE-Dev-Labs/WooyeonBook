@@ -8,7 +8,7 @@ import { useInputState } from '@/hooks/useInputState';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
-import OptionBookMeeting from '../../post/OptionBookMeeting';
+import OptionBookMeeting from '../../post/option/OptionBookMeeting';
 import UpdateOptionBookMeeting from '../UpdateOptionBookMeeting';
 
 interface UpdateProps {

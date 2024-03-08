@@ -1,5 +1,4 @@
 import {
-	BookReportDataType,
 	BookMeetingDataType,
 	BookBuyingDataType,
 	BookSellingDataType,
@@ -49,30 +48,6 @@ interface BookSellingSumitDataProps {
 	sellingPrice: string;
 	bookState: string;
 }
-
-const bookReportSumitData = ({
-	title,
-	text,
-	selectedBook,
-	page,
-}: BookReportSumitDataProps) => {
-	const data: BookReportDataType = {
-		created_at: new Date(),
-		created_user: 'user-uuid',
-		title: title,
-		content: text,
-		content_img_url: [],
-		user_name: 'user-name',
-		book_id: selectedBook.bookId,
-		book_name: selectedBook.bookName,
-		book_img_url: selectedBook.bookImgUrl,
-		field: page as string,
-		category: 'category',
-		view: 0,
-		like: 0,
-	};
-	return data;
-};
 
 const bookMeetingSumitData = ({
 	title,
@@ -156,9 +131,4 @@ const bookSellingSumitData = ({
 	};
 };
 
-export {
-	bookReportSumitData,
-	bookMeetingSumitData,
-	bookBuyingSumitData,
-	bookSellingSumitData,
-};
+export { bookMeetingSumitData, bookBuyingSumitData, bookSellingSumitData };
