@@ -30,7 +30,6 @@ export default function BookItem({ rank, data }: BookItemProps) {
 
 	return (
 		<div className={styles.bookItem}>
-			{rank && <div className={styles.rank}>{rank}</div>}
 			<div className={styles.bookImage}>
 				<Link
 					href={`/detail/${data?.isbn}?type=${
@@ -62,15 +61,15 @@ export default function BookItem({ rank, data }: BookItemProps) {
 					}`}>
 					<h1>{data?.title}</h1>
 				</Link>
-				<p>{`${data?.author.replace(
+				<p>{`${data?.author?.replace(
 					' (지은이)',
 					'',
-				)} / ${data?.publisher.replace('(방송교재)', '')}`}</p>
+				)} / ${data?.publisher?.replace('(방송교재)', '')}`}</p>
 				<p>
 					<span style={{ textDecoration: 'line-through' }}>
-						{`${data?.priceStandard.toLocaleString()}원`}
+						{`${data?.priceStandard?.toLocaleString()}원`}
 					</span>
-					{` ${data?.priceSales.toLocaleString()}원`} [{discountRate}% 할인]
+					{` ${data?.priceSales?.toLocaleString()}원`} [{discountRate}% 할인]
 				</p>
 			</div>
 		</div>

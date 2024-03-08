@@ -1,18 +1,18 @@
 import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/best/rank.module.css';
+import { BestSellerType } from '@/types/bookType';
 
-export default function Rank() {
-	let ranks = [];
-	for (let i = 1; i <= 30; i++) {
-		ranks.push(i);
-	}
+interface RankProp {
+	data: BestSellerType[];
+}
 
+export default function Rank({ data }: RankProp) {
 	return (
 		<div className={styles.rankBox}>
-			{ranks.map((rank) => (
-				<div className={styles.itemWrapper} key={rank}>
-					<div className={styles.rank}>{rank}</div>
-					<BookItem />
+			{data.map((book) => (
+				<div className={styles.itemWrapper} key={book.itemId}>
+					<div className={styles.rank}>{book.bestRank}</div>
+					<BookItem data={book} />
 				</div>
 			))}
 		</div>

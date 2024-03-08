@@ -29,6 +29,12 @@
 	background-color: #231304;
 }
 
+/* 선택된 카테고리 아이템 */
+.selectedCategory {
+	color: #ffffff;
+	background-color: #231304;
+}
+
 /* 카테고리 박스 하단 줄 */
 
 .categoryBottom {

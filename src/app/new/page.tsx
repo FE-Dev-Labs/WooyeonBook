@@ -4,7 +4,6 @@ import BookItemWrapper from '@/components/common/BookItemWrapper';
 import Category from '@/components/common/Category';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
-import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 import { NewBookType } from '@/types/bookType';
@@ -53,10 +52,8 @@ export default function newPage() {
 				<div />
 				<div className={styles.wrapper}>
 					<Category />
-					{/* <Sort /> */}
 					<BookItemWrapper data={newAllItems} />
 					<Pagination
-						currentPage={currentPage}
 						itemLength={itemLength}
 						handleClickPage={handleClickPage}
 					/>
