@@ -87,7 +87,7 @@ function BookSearch() {
 	};
 
 	useEffect(() => {
-		searchBook.init();
+		searchBook.init('');
 		setSearchData([]);
 	}, [page]);
 	return (
