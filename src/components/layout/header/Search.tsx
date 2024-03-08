@@ -10,23 +10,23 @@ import { useInputState } from '@/hooks/useInputState';
 import SearchResult from './History/SearchResult';
 import { Book } from '@/types/bookDetailDate';
 import cancelIcon from '../../../../public/layout/cancel.png';
+import { useRouter } from 'next/navigation';
+import { useRecoilState } from 'recoil';
+
 export default function Search() {
 	// 외부 클릭 시
 	const ref = useRef<HTMLInputElement>(null);
 	// 최근 검색어, 인기 검색어
 	const [showSearchHistory, setShowSearchHistory] = useState(false);
 	// 자동 검색어
-	// const [keyword, setKeyword] = useState<string>('');
 	const keyword = useInputState('');
 	// 검색어 책 데이터 배열에 넣기
 	const [searchData, setSearchData] = useState<Book[]>([]);
-	// 검색창에 이벤트 조작을 이용하여 우리가 검색할 keyword변수
-	// const onChangData = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	setKeyword(e.target.value);
-	// };
 
 	// 자동 연관 검색어
 	const [openSearchResult, setOpenSearchResult] = useState(false);
+
+	const router = useRouter();
 
 	// useOutsideClick 훅
 	useOutsideClick({
@@ -41,7 +41,7 @@ export default function Search() {
 		// input에 글자가 있을 경우 최근 검색어, 인기 검색어 띄우지 않는 로직
 		const word = keyword.value as string;
 		if (word.length > 0) {
-			setOpenSearchResult(true); // 이 부분을 추가합니다.
+			setOpenSearchResult(true);
 		} else {
 			setShowSearchHistory(true);
 		}
@@ -68,7 +68,6 @@ export default function Search() {
 		return () => clearTimeout(debounce);
 	}, [keyword.value]);
 
-	// input에 텍스트 입력 시 최근 검색어, 인기 검색어 닫고 자동 검색어 띄어주기
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		keyword.onChange(e);
 		// 만약 input이 빈값이라면 연관검색어 끄고 최근 검색어, 인기 검색어 띄우기
@@ -76,6 +75,7 @@ export default function Search() {
 			setShowSearchHistory(true);
 			setOpenSearchResult(false);
 		} else {
+			// input에 텍스트 입력 시 최근 검색어, 인기 검색어 닫고 자동 검색어 띄어주기
 			setShowSearchHistory(false);
 			setOpenSearchResult(true);
 		}
@@ -86,15 +86,22 @@ export default function Search() {
 		setOpenSearchResult(false);
 	};
 
+	// 쿼리값 전달
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const searchUrl = `/search?keyword=${String(keyword.value)}`;
+		router.push(searchUrl);
+	};
+
 	return (
 		<span>
-			<form className={styles.searchForm}>
+			<form className={styles.searchForm} onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="작가명 또는 책 제목을 입력하세요."
 					onFocus={handleFocus}
 					onChange={handleInputChange}
-					onBlur={handleBlur} // 이 부분을 추가합니다.
+					onBlur={handleBlur}
 					ref={ref}
 				/>
 				<button type="submit" className={styles.searchIcon}>
@@ -114,7 +121,9 @@ export default function Search() {
 										/>
 									);
 								})}
-								<div className={styles.lastlestDeleteAll}>
+								<div
+									className={styles.lastlestDeleteAll}
+									onClick={() => setOpenSearchResult(false)}>
 									<div className={styles.lastlestCloseWrap}>
 										<span className={styles.lastelestCloseText}>닫기</span>
 										<Image
