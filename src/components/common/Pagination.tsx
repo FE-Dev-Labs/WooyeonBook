@@ -27,7 +27,9 @@ export default function Pagination({
 	let totalPages =
 		page === 'best'
 			? Math.min(Math.ceil(itemLength / itemPerPage), 10)
-			: Math.ceil(itemLength / itemPerPage);
+			: page === 'used'
+				? Math.min(Math.ceil(itemLength / itemPerPage), 30)
+				: Math.ceil(itemLength / itemPerPage);
 
 	// 해당 카테고리의 페이지를 배열화
 	let pageArr = Array.from({ length: totalPages }, (_, i) => i + 1);

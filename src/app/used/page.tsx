@@ -9,24 +9,65 @@ import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/used/used.module.css';
 import { UsedBookType } from '@/types/bookType';
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 export default function usedPage() {
-	// 중고 도서 전체 아이템 state
+	// useSearchParams 호출
+	const params = useSearchParams();
+	// url 내 categoryId 추출
+	const categoryId = params.get('categoryId');
+	// 중고 도서 베스트셀러 아이템 state
 	const [usedBestItems, setUsedBestItems] = useState<UsedBookType[]>([]);
+	// 전체 중고 도서 아이템 state
+	const [usedAllItems, setUsedAllItems] = useState<UsedBookType[]>([]);
+	// 현재 카테고리의 페이지 state
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	// 현재 카테고리 아이템의 총 갯수 state
+	const [itemLength, setItemLength] = useState<number>(0);
+	// 선택된 페이지네이션 숫자 ref
+	const selectedNumRef = useRef<number>(1);
 
-	const fetchData = async () => {
+	// 페이지(숫자) 선택 시 실행되는 함수
+	const handleClickPage = (pageNum: number) => {
+		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
+		if (selectedNumRef.current === pageNum) return;
+		// 현재 페이지의 숫자 스타일링을 위함
+		selectedNumRef.current = pageNum;
+		// 현재 페이지 숫자 변경
+		setCurrentPage(pageNum);
+		// 페이지 선택시 페이지 상단으로 스크롤 이동
+		window.scrollTo({ top: 804, behavior: 'smooth' });
+	};
+
+	// server -> api 받아오는 함수(중고책 - 베스트셀러 5개)
+	const fetchUsedBestData = async () => {
 		const response = await fetch('http://localhost:8080/list/used', {
 			cache: 'no-cache',
 		});
+		// book item(used best)
 		const data = await response.json();
 		setUsedBestItems(data);
 	};
 
+	// server -> api 받아오는 함수(모든 중고책)
+	const fetchUsedAllData = async () => {
+		const response = await fetch(
+			`http://localhost:8080/list/usedAll?categoryId=${categoryId}&page=${currentPage}`,
+			{ cache: 'no-cache' },
+		);
+		const { data, dataLength } = await response.json();
+		// book item(used all)
+		setUsedAllItems(data);
+		// book item의 총 개수
+		setItemLength(dataLength);
+	};
+
 	// fetchData 뿌려주는 useEffect
 	useEffect(() => {
-		fetchData();
-	}, []);
+		fetchUsedBestData();
+		fetchUsedAllData();
+	}, [categoryId, currentPage]);
 
 	return (
 		<>
@@ -36,15 +77,21 @@ export default function usedPage() {
 				<div className={styles.wrapper}>
 					<BestSeller
 						page="used"
-						height="500px"
+						// height="400px"
 						isUsedPage={true}
 						data={usedBestItems}
 					/>
 					<div className={styles.usedLine} />
-					{/* <Category /> */}
+					<Category />
 					{/* <Sort /> */}
-					{/* <BookItemWrapper /> */}
-					{/* <Pagination /> */}
+					<BookItemWrapper data={usedAllItems} />
+					<Pagination
+						itemLength={itemLength}
+						handleClickPage={handleClickPage}
+						currentPage={currentPage}
+						selectedNumRef={selectedNumRef}
+						page="used"
+					/>
 				</div>
 				<div>
 					<RecentlyViewedBooks />

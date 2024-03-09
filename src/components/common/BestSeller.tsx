@@ -16,8 +16,6 @@ export default function BestSeller({
 	height,
 	isUsedPage,
 }: BestSellerProps) {
-	console.log(data);
-
 	return (
 		<div className={styles.bestSellerWrapper} style={{ height }}>
 			<CategoryTitle
