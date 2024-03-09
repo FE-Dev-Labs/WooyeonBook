@@ -2,11 +2,13 @@ import styles from '@/styles/common/pagination.module.css';
 import Image from 'next/image';
 import arrowRightIcon from '../../../public/common/arrowRight.png';
 import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
+import { useState } from 'react';
 
 interface PaginationProps {
 	itemLength: number;
 	handleClickPage: (page: number) => void;
-	selectedNumRef: any;
+	selectedNumRef: React.RefObject<number>;
+	currentPage: number;
 	page?: string;
 }
 
@@ -45,7 +47,7 @@ export default function Pagination({
 						</div>
 					);
 				})}
-				{!page && (
+				{totalPages > 10 && (
 					<>
 						<div className={styles.paginationItem}>
 							<Image src={arrowRightIcon} alt="arrow" width={18} height={18} />

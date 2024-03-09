@@ -65,6 +65,7 @@ export default function newPage() {
 					<Pagination
 						itemLength={itemLength}
 						handleClickPage={handleClickPage}
+						currentPage={currentPage}
 						selectedNumRef={selectedNumRef}
 					/>
 				</div>

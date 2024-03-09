@@ -68,6 +68,7 @@ export default function bestPage() {
 						itemLength={itemLength}
 						handleClickPage={handleClickPage}
 						selectedNumRef={selectedNumRef}
+						currentPage={currentPage}
 						page="best"
 					/>
 				</div>
