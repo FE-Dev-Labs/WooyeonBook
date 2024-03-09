@@ -8,8 +8,8 @@ interface SortProp {
 }
 
 export default function Sort({ page }: SortProp) {
-	//
-	const [selectSort, setSelectSort] = useState();
+	// 선택ㄷ
+	const [selectedSortItem, setSelectedSortItem] = useState<string>('일별');
 
 	const handleClickSort = () => {};
 

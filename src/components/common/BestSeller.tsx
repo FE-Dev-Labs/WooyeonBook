@@ -1,10 +1,10 @@
 import styles from '@/styles/common/bestSeller.module.css';
 import BookItem from '@/components/common/BookItem';
 import CategoryTitle from '../main/common/CategoryTitle';
-import { BestSellerType } from '@/types/bookType';
+import { BestSellerType, UsedBookType } from '@/types/bookType';
 
 interface BestSellerProps {
-	data?: BestSellerType[];
+	data?: BestSellerType[] | UsedBookType[];
 	page?: string;
 	height?: string;
 	isUsedPage?: boolean;
@@ -16,6 +16,8 @@ export default function BestSeller({
 	height,
 	isUsedPage,
 }: BestSellerProps) {
+	console.log(data);
+
 	return (
 		<div className={styles.bestSellerWrapper} style={{ height }}>
 			<CategoryTitle
@@ -29,9 +31,11 @@ export default function BestSeller({
 				isUsedPage={isUsedPage}
 			/>
 			<div className={styles.bestItemWrapper}>
-				{data?.map((book: BestSellerType, index: number) => (
-					<BookItem key={book.itemId} data={book} rank={index + 1} />
-				))}
+				{data
+					?.slice(0, 5)
+					.map((book: BestSellerType | UsedBookType, index: number) => (
+						<BookItem key={book.itemId} data={book} rank={index + 1} />
+					))}
 			</div>
 		</div>
 	);

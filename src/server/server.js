@@ -21,7 +21,6 @@ const supabase = createClient(
 );
 
 // 책 검색 api
-
 app.get('/search/book', async (req, res) => {
 	const { bookName } = req.query;
 	try {
@@ -108,6 +107,8 @@ app.get('/api/community/bookSelling/:docid', async (req, res) => {
 	}
 });
 
+/** 원준 api */
+
 // 메인 페이지: 신간 도서(6개) api
 app.get('/list/new', async (req, res) => {
 	try {
@@ -160,12 +161,11 @@ app.get('/list/used', async (req, res) => {
 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewAll&MaxResults=100&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
 		);
 
-		// 신간리스트의 item만 추출해 data에 할당
+		// 중고도서 리스트의 item만 추출해 data에 할당
 		const data = await response.data.item
-			.filter(
-				// 신간리스트 데이터 중 중고책 데이터만 추출
-				(book) => book.mallType === 'USED',
-			) // 앞에서 6개만 추출
+			//중고도서 리스트의 item을 customerReviewRank 순 소팅
+			.sort((a, b) => a.customerReviewRank - b.customerReviewRank)
+			// 앞에서 6개만 추출
 			.slice(0, 6);
 
 		res.status(200).send(data);
@@ -219,3 +219,25 @@ app.get('/list/bestAll', async (req, res) => {
 		res.status(400).send(err);
 	}
 });
+
+// used 페이지: 전체 중고 도서 api
+
+// app.get('/list/usedBest', async (req, res) => {
+// 	try {
+// 		const response = await axios.get(
+// 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewAll&MaxResults=100&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+// 		);
+
+// 		// 신간리스트의 item만 추출해 data에 할당
+// 		const data = await response.data.item
+// 			.filter(
+// 				// 신간리스트 데이터 중 중고책 데이터만 추출
+// 				(book) => book.mallType === 'USED',
+// 			) // 앞에서 6개만 추출
+// 			.slice(0, 6);
+
+// 		res.status(200).send(data);
+// 	} catch (err) {
+// 		res.status(400).send(err);
+// 	}
+// });

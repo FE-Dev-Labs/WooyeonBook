@@ -53,6 +53,7 @@ export default function bestPage() {
 	// fetchData 뿌려주는 useEffect
 	useEffect(() => {
 		fetchData();
+		// 카테고리 또는 현재 페이지(페이지네이션)이 변경될 때
 	}, [categoryId, currentPage]);
 
 	return (
@@ -62,7 +63,7 @@ export default function bestPage() {
 				<div />
 				<div className={styles.wrapper}>
 					<Category />
-					<Sort page="best" />
+					{/* <Sort page="best" /> */}
 					<Rank data={bestAllItems} />
 					<Pagination
 						itemLength={itemLength}
