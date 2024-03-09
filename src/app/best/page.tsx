@@ -4,12 +4,12 @@ import PageHeader from '@/components/common/PageHeader';
 import Sort from '@/components/common/Sort';
 import styles from '@/styles/best/best.module.css';
 import Pagination from '@/components/common/Pagination';
-import Category from '@/components/common/Category';
 import Rank from '@/components/best/Rank';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { BestSellerType } from '@/types/bookType';
+import CategoryBox from '@/components/common/CategoryBox';
 
 export default function bestPage() {
 	// useSearchParams 호출
@@ -62,7 +62,7 @@ export default function bestPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<Category />
+					<CategoryBox />
 					{/* <Sort page="best" /> */}
 					<Rank data={bestAllItems} />
 					<Pagination

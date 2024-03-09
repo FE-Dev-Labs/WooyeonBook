@@ -1,7 +1,7 @@
 'use client';
 
 import BookItemWrapper from '@/components/common/BookItemWrapper';
-import Category from '@/components/common/Category';
+import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
@@ -60,7 +60,7 @@ export default function newPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<Category />
+					<CategoryBox />
 					<BookItemWrapper data={newAllItems} />
 					<Pagination
 						itemLength={itemLength}

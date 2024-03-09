@@ -2,7 +2,7 @@
 
 import BestSeller from '@/components/common/BestSeller';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
-import Category from '@/components/common/Category';
+import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
@@ -82,7 +82,7 @@ export default function usedPage() {
 						data={usedBestItems}
 					/>
 					<div className={styles.usedLine} />
-					<Category />
+					<CategoryBox />
 					{/* <Sort /> */}
 					<BookItemWrapper data={usedAllItems} />
 					<Pagination

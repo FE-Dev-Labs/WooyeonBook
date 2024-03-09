@@ -1,12 +1,11 @@
 'use client';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
-import Category from '@/components/common/Category';
+import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
 import styles from '@/styles/search/search.module.css';
 import { useSearchParams } from 'next/navigation';
-
 
 export default function searchPage() {
 	const params = useSearchParams();
@@ -18,7 +17,7 @@ export default function searchPage() {
 			<PageHeader title={`'${keyword}' 에 대한 검색 결과`} />
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
-					{/* <Category /> */}
+					{/* <CategoryBox /> */}
 					<Sort page="search" />
 					<BookItemWrapper />
 					<Pagination />
