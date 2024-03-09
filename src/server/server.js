@@ -113,18 +113,13 @@ app.get('/api/community/bookSelling/:docid', async (req, res) => {
 app.get('/list/new', async (req, res) => {
 	try {
 		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=100&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
 		);
 
 		// 신간리스트의 item만 추출해 data에 할당
 		const data = await response.data.item
-			// 신간리스트 data 중 일부 카테고리 제외
-			.filter(
-				(item) =>
-					!['어린이', '유아', '만화', '달력', '역사'].includes(
-						item.categoryName.split('>')[1],
-					),
-			)
+			// 소설/시/희곡 키워드가 포함된 아이템만 필터링
+			.filter((item) => item.categoryName.includes('소설/시/희곡'))
 			// 앞에서 6개만 추출
 			.slice(0, 6);
 
@@ -169,8 +164,6 @@ app.get('/list/used', async (req, res) => {
 			.sort((a, b) => b.salesPoint - a.salesPoint)
 			// 앞에서 6개만 추출
 			.slice(0, 6);
-
-		console.log(response);
 
 		res.status(200).send(data);
 	} catch (err) {

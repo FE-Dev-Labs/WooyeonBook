@@ -20,6 +20,7 @@
 	color: #6594e7;
 }
 
+/* 내비 아이템 선택 시 */
 .navigationWrapper > a.selectedNav {
 	color: #6594e7;
 }

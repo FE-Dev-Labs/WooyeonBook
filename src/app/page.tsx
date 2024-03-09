@@ -21,10 +21,6 @@ export default async function Home() {
 	const bestSellerItems: BestSellerType[] = await bestSellerResponse.json();
 	const usedBookItems: UsedBookType[] = await usedBookResponse.json();
 
-	console.log(bestSellerItems);
-
-	// console.log(`베스트셀러 : ${JSON.stringify(bestSellerItems, null, 2)}`);
-
 	return (
 		<main className={styles.container}>
 			<div />
