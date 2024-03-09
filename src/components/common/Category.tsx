@@ -9,7 +9,6 @@ export default function Category() {
 	const router = useRouter();
 	// usePathname 호출
 	const pathname = usePathname();
-
 	// 선택된 카테고리 ref
 	const selectedCategoryRef = useRef<number>(0);
 
@@ -18,7 +17,7 @@ export default function Category() {
 		// selectedCategoryRef.current 값 변경
 		selectedCategoryRef.current = categoryId;
 
-		// 전체 시 카테고리 아이디 null로 찍힘
+		// 카테고리: 전체 시 아이디 null로 찍힘
 		if (!categoryId) {
 			router.push(pathname);
 		} else {

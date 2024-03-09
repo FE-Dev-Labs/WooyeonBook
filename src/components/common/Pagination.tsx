@@ -2,11 +2,13 @@ import styles from '@/styles/common/pagination.module.css';
 import Image from 'next/image';
 import arrowRightIcon from '../../../public/common/arrowRight.png';
 import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
+import { useState } from 'react';
 
 interface PaginationProps {
 	itemLength: number;
 	handleClickPage: (page: number) => void;
-	selectedNumRef: any;
+	selectedNumRef: React.RefObject<number>;
+	currentPage: number;
 	page?: string;
 }
 
@@ -25,7 +27,9 @@ export default function Pagination({
 	let totalPages =
 		page === 'best'
 			? Math.min(Math.ceil(itemLength / itemPerPage), 10)
-			: Math.ceil(itemLength / itemPerPage);
+			: page === 'used'
+				? Math.min(Math.ceil(itemLength / itemPerPage), 30)
+				: Math.ceil(itemLength / itemPerPage);
 
 	// 해당 카테고리의 페이지를 배열화
 	let pageArr = Array.from({ length: totalPages }, (_, i) => i + 1);
@@ -45,7 +49,7 @@ export default function Pagination({
 						</div>
 					);
 				})}
-				{!page && (
+				{totalPages > 10 && (
 					<>
 						<div className={styles.paginationItem}>
 							<Image src={arrowRightIcon} alt="arrow" width={18} height={18} />
