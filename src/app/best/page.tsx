@@ -17,7 +17,7 @@ export default function bestPage() {
 	// url 내 categoryId 추출
 	const categoryId = params.get('categoryId');
 	// 신간 도서 전체 아이템 state
-	const [bestAllItems, setBestAllItems] = useState<BestSellerType[]>([]);
+	const [bestAllItem, setBestAllItem] = useState<BestSellerType[]>([]);
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
@@ -45,7 +45,7 @@ export default function bestPage() {
 		);
 		const { data, dataLength } = await response.json();
 		// book item
-		setBestAllItems(data);
+		setBestAllItem(data);
 		// book item의 총 개수
 		setItemLength(dataLength);
 	};
@@ -64,7 +64,7 @@ export default function bestPage() {
 				<div className={styles.wrapper}>
 					<CategoryBox />
 					{/* <Sort page="best" /> */}
-					<Rank data={bestAllItems} />
+					<Rank data={bestAllItem} />
 					<Pagination
 						itemLength={itemLength}
 						handleClickPage={handleClickPage}

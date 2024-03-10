@@ -25,7 +25,7 @@ export interface NewBookType {
 	itemId: number;
 	priceSales: number;
 	priceStandard: number;
-	mallType: string;
+	mallType: 'BOOK';
 	stockStatus: string;
 	mileage: number;
 	cover: string;
@@ -52,7 +52,7 @@ export interface BestSellerType {
 	itemId: number;
 	priceSales: number;
 	priceStandard: number;
-	mallType: string;
+	mallType: 'BOOK';
 	stockStatus: string;
 	mileage: number;
 	cover: string;

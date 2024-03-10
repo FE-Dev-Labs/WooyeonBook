@@ -1,37 +1,15 @@
 import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/category/categoryContents/categoryBookItemBox.module.css';
+import { NewBookType } from '@/types/bookType';
 
-export default function CategoryBookItemBox() {
+interface CategoryBookItemBoxProp {
+	data: NewBookType[];
+}
+
+export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
 	return (
-		<div className={styles.BookItemWrapper}>
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
-			<BookItem />
+		<div className={styles.CategorybookItemWrapper}>
+			{data?.map((book) => <BookItem key={book.itemId} data={book} />)}
 		</div>
 	);
 }

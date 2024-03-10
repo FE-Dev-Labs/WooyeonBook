@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/common/category.module.css';
+import styles from '@/styles/common/categoryBox.module.css';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef } from 'react';
 

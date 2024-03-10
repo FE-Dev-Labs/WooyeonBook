@@ -16,7 +16,7 @@ export default function newPage() {
 	// url 내 categoryId 추출
 	const categoryId = params.get('categoryId');
 	// 신간 도서 전체 아이템 state
-	const [newAllItems, setNewAllItems] = useState<NewBookType[]>([]);
+	const [newSpecialAllItem, setNewSpecialAllItem] = useState<NewBookType[]>([]);
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
@@ -39,12 +39,12 @@ export default function newPage() {
 	// server -> api 받아오는 함수
 	const fetchData = async () => {
 		const response = await fetch(
-			`http://localhost:8080/list/newAll?categoryId=${categoryId}&page=${currentPage}`,
+			`http://localhost:8080/list/newSpecialAll?categoryId=${categoryId}&page=${currentPage}`,
 			{ cache: 'no-cache' },
 		);
 		const { data, dataLength } = await response.json();
 		// book item
-		setNewAllItems(data);
+		setNewSpecialAllItem(data);
 		// book item의 총 개수
 		setItemLength(dataLength);
 	};
@@ -61,7 +61,7 @@ export default function newPage() {
 				<div />
 				<div className={styles.wrapper}>
 					<CategoryBox />
-					<BookItemWrapper data={newAllItems} />
+					<BookItemWrapper data={newSpecialAllItem} />
 					<Pagination
 						itemLength={itemLength}
 						handleClickPage={handleClickPage}

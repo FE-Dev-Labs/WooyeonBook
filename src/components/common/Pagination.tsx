@@ -2,7 +2,6 @@ import styles from '@/styles/common/pagination.module.css';
 import Image from 'next/image';
 import arrowRightIcon from '../../../public/common/arrowRight.png';
 import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
-import { useState } from 'react';
 
 interface PaginationProps {
 	itemLength: number;

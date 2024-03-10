@@ -30,11 +30,11 @@ export default function CategoryBar() {
 
 	return (
 		<div>
-			<div className={styles.categoryWrapper}>
-				<header className={styles.categoryTitle}>
+			<div className={styles.categoryBarWrapper}>
+				<header className={styles.categoryBarTitle}>
 					<h1>분야</h1>
 				</header>
-				<ol className={styles.categoryContents}>
+				<ol className={styles.categoryBarItems}>
 					{categoryItems.map((item, index) => (
 						<li key={index}>
 							<Link href={item.link}>
