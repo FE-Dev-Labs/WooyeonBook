@@ -4,13 +4,13 @@ import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from '@/styles/community/post/postNewPage.module.css';
 import { useInputState } from '@/hooks/useInputState';
-import OptionBookReport from '@/components/community/post/option/OptionBookReport';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookReportDataType } from '@/types/community/post/data';
-import { useEffect } from 'react';
+import { BookSellingDataType } from '@/types/community/post/data';
+import OptionBookSelling from '@/components/community/post/option/OptionBookSelling';
+import { useEffect, useState } from 'react';
 
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
@@ -28,7 +28,7 @@ const EditorComponent = dynamic(
 	},
 );
 
-const BookReportPostPage = () => {
+const BookSellingPostPage = () => {
 	const router = useRouter();
 	const params = usePathname();
 	// 뒤로가기, 새로고침 방지
@@ -46,7 +46,6 @@ const BookReportPostPage = () => {
 
 	// 현제 페이지 url
 	const page = params.split('/')[4];
-
 	// title
 	const title = useInputState('');
 	// text / img url arr
@@ -55,8 +54,15 @@ const BookReportPostPage = () => {
 	// 선택한 책 data
 	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
 
+	// 가격
+	const price = useInputState(0);
+	// 판매 / 나눔
+	const [sellingState, setSellingState] = useState<string>('');
+	const onchangeSellingState = (e: any) => {
+		setSellingState(e.value);
+	};
 	const onSubmit = async () => {
-		const data: BookReportDataType = {
+		const data: BookSellingDataType = {
 			created_at: new Date(),
 			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
 			title: title.value as string,
@@ -70,6 +76,9 @@ const BookReportPostPage = () => {
 			category: 'category',
 			view: 0,
 			like: 0,
+			price: price.value as number,
+			state: false,
+			selling: sellingState === '판매' ? true : false,
 		};
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase.from(`${page}`).insert([data]);
@@ -86,6 +95,7 @@ const BookReportPostPage = () => {
 			bookImgUrl: '',
 			bookId: '',
 		});
+		price.init(0);
 		// 데이터 삽입후 페이지 이동
 		return router.push(`/community/${page}`);
 	};
@@ -94,7 +104,7 @@ const BookReportPostPage = () => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div>📚</div>
-				<h2>독후감을 작성하고 공유해 보세요.</h2>
+				<h2>책을 나누고 판매해 보세요.</h2>
 			</div>
 			<input
 				type="text"
@@ -103,7 +113,16 @@ const BookReportPostPage = () => {
 				value={title.value as string | ''}
 				onChange={title.onChange}
 			/>
-			<OptionBookReport />
+			<OptionBookSelling
+				sellingPrice={
+					price as {
+						value: string;
+						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+					}
+				}
+				onchangeSellingState={onchangeSellingState}
+			/>
+
 			<div>
 				<EditorComponent />
 			</div>
@@ -115,4 +134,4 @@ const BookReportPostPage = () => {
 	);
 };
 
-export default BookReportPostPage;
+export default BookSellingPostPage;

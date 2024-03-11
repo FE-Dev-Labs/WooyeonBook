@@ -9,7 +9,7 @@ import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { supabase } from '@/utils/supabase/supabase';
 import { BookMeetingDataType } from '@/types/community/post/data';
 import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
@@ -27,9 +27,22 @@ const EditorComponent = dynamic(
 	},
 );
 
-const bookReportPostPage = () => {
+const BookMeetingPostPage = () => {
 	const router = useRouter();
 	const params = usePathname();
+	// 뒤로가기, 새로고침 방지
+	const preventClose = (e: BeforeUnloadEvent) => {
+		e.preventDefault();
+		e.returnValue = ''; //Chrome에서 동작하도록; deprecated
+	};
+
+	useEffect(() => {
+		window.addEventListener('beforeunload', preventClose);
+		return () => {
+			window.removeEventListener('beforeunload', preventClose);
+		};
+	}, []);
+
 	// 현제 페이지 url
 	const page = params.split('/')[4];
 	// title
@@ -122,4 +135,4 @@ const bookReportPostPage = () => {
 	);
 };
 
-export default bookReportPostPage;
+export default BookMeetingPostPage;
