@@ -41,7 +41,7 @@ export default function bestPage() {
 	const fetchData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/bestAll?categoryId=${categoryId}&page=${currentPage}`,
-			{ cache: 'no-cache' },
+			{ cache: 'force-cache' },
 		);
 		const { data, dataLength } = await response.json();
 		// book item

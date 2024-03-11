@@ -40,7 +40,7 @@ export default function newPage() {
 	const fetchData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/newSpecialAll?categoryId=${categoryId}&page=${currentPage}`,
-			{ cache: 'no-cache' },
+			{ cache: 'force-cache' },
 		);
 		const { data, dataLength } = await response.json();
 		// book item
@@ -80,7 +80,7 @@ export default function newPage() {
 // 서버컴포넌트시
 // // 메인 페이지 신간 도서
 // const response = await fetch('http://localhost:8080//api/newAll/:category?', {
-// 	cache: 'no-cache',
+// 	cache: 'force-cache',
 // });
 // const newAllItems: NewBookType[] = await response.json();
 

@@ -109,67 +109,66 @@ app.get('/api/community/bookSelling/:docid', async (req, res) => {
 
 /** 원준 api */
 
-// 메인 페이지: 신간 도서(6개) api
-app.get('/list/new', async (req, res) => {
-	try {
-		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-		);
+// // 메인 페이지: 신간 도서(6개) api
+// app.get('/list/new', async (req, res) => {
+// 	try {
+// 		const response = await axios.get(
+// 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+// 		);
 
-		// 신간리스트의 item만 추출해 data에 할당
-		const data = await response.data.item
-			// 소설/시/희곡 키워드가 포함된 아이템만 필터링
-			.filter((item) => item.categoryName.includes('소설/시/희곡'))
-			// 앞에서 6개만 추출
-			.slice(0, 6);
+// 		// 신간리스트의 item만 추출해 data에 할당
+// 		const data = await response.data.item
+// 			// 소설/시/희곡 키워드가 포함된 아이템만 필터링
+// 			.filter((item) => item.categoryName.includes('소설/시/희곡'))
+// 			// 앞에서 6개만 추출
+// 			.slice(0, 6);
 
-		res.status(200).send(data);
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
+// 		res.status(200).send(data);
+// 	} catch (err) {
+// 		res.status(400).send(err);
+// 	}
+// });
 
-// 메인 페이지: 베스트셀러(5개) api
-app.get('/list/best', async (req, res) => {
-	try {
-		const response = await axios.get(
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=Bestseller&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-		);
+// // 메인 페이지: 베스트셀러(5개) api
+// app.get('/list/best', async (req, res) => {
+// 	try {
+// 		const response = await axios.get(
+// 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=Bestseller&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+// 		);
 
-		// 베스트셀러의 item만 추출해 data에 할당
-		const data = await response.data.item
-			// 베스트셀러 item을 rank 낮은순 소팅
+// 		// 베스트셀러의 item만 추출해 data에 할당
+// 		const data = await response.data.item
+// 			// 베스트셀러 item을 rank 낮은순 소팅
+// 			.sort((a, b) => a.bestRank - b.bestRank)
+// 			// 앞에서 5개만 추출
+// 			.slice(0, 5);
 
-			.sort((a, b) => a.bestRank - b.bestRank)
-			// 앞에서 5개만 추출
-			.slice(0, 5);
+// 		res.status(200).send(data);
+// 	} catch (err) {
+// 		res.status(400).send(err);
+// 	}
+// });
 
-		res.status(200).send(data);
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
+// // 메인 페이지: 중고 도서(6개) api
+// app.get('/list/used', async (req, res) => {
+// 	try {
+// 		const response = await axios.get(
+// 			// `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=Bestseller&MaxResults=100&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+// 			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=itemNewAll&MaxResults=100&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+// 		);
 
-// 메인 페이지: 중고 도서(6개) api
-app.get('/list/used', async (req, res) => {
-	try {
-		const response = await axios.get(
-			// `http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=Bestseller&MaxResults=100&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-			`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbkjhhj991430001&QueryType=itemNewAll&MaxResults=100&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-		);
+// 		// 중고도서 리스트의 item만 추출해 data에 할당
+// 		const data = await response.data.item
+// 			// 중고도서 리스트의 item을 salesPoint 높은순 소팅
+// 			.sort((a, b) => b.salesPoint - a.salesPoint)
+// 			// 앞에서 6개만 추출
+// 			.slice(0, 6);
 
-		// 중고도서 리스트의 item만 추출해 data에 할당
-		const data = await response.data.item
-			// 중고도서 리스트의 item을 salesPoint 높은순 소팅
-			.sort((a, b) => b.salesPoint - a.salesPoint)
-			// 앞에서 6개만 추출
-			.slice(0, 6);
-
-		res.status(200).send(data);
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
+// 		res.status(200).send(data);
+// 	} catch (err) {
+// 		res.status(400).send(err);
+// 	}
+// });
 
 // new 페이지: 전체 신간 도서 api
 app.get('/list/newSpecialAll', async (req, res) => {
