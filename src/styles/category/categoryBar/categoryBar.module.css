@@ -10,7 +10,7 @@
 }
 .categoryBarTitle {
 	width: inherit;
-	height: 30px;
+	height: 25px;
 	font-size: 14px;
 
 	margin-top: 20px;
@@ -24,21 +24,19 @@
 }
 .categoryBarItems > li {
 	font-size: 12px;
-}
-.categoryBarItems > li > a {
-	height: 30px;
+	height: 25px;
 
 	display: flex;
 	align-items: center;
+	cursor: pointer;
+	color: #666;
+}
+.categoryBarItems > li > a {
+	display: inline;
 }
 .categoryBarItems > li > a > p {
 	font-size: 12px;
-
-	cursor: pointer;
-	display: inline;
-
-	color: #666;
 }
-.categoryBarItems > li > a > p:hover {
+.categoryBarItems > li:hover {
 	text-decoration: underline;
 }
