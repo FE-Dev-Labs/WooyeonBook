@@ -43,7 +43,7 @@ interface BookBuyingDataType {
 	book_img_url: string;
 	category: string;
 	content_img_url: string[];
-	price: string;
+	price: number;
 	state: boolean;
 	book_id: string;
 }
@@ -61,9 +61,8 @@ interface BookSellingDataType {
 	book_img_url: string;
 	category: string;
 	content_img_url: string[];
-	price: string;
+	price: number;
 	state: boolean;
-	book_state: string;
 	selling: boolean;
 	book_id: string;
 }

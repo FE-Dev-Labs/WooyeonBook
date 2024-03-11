@@ -2,13 +2,14 @@
 
 import Image from 'next/image';
 import searchIcon from '../../../../public/common/search.png';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/community/post/BookSearch.module.css';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
-import { useSearchParams } from 'next/navigation';
+import useOutsideClick from '@/hooks/useOutsideClick';
+import { usePathname } from 'next/navigation';
 
 interface SearchData {
 	title: string;
@@ -40,17 +41,8 @@ interface SearchData {
 	subInfo: any; // 'any' type is used here as 'subInfo' object structure is not provided in the input
 }
 function BookSearch() {
-	const pageParams = useSearchParams();
-	const page = pageParams.get('page');
-	// 검색 결과 토글 상태
-	const [openSearchResultsState, setOpenSearchResultsState] = useState(false);
-	// 검색 결과 토글 이벤트
-	const openSearchResults = () => {
-		setOpenSearchResultsState(true);
-	};
-	const closeSearchResults = () => {
-		setOpenSearchResultsState(false);
-	};
+	const ref = useRef<HTMLInputElement>(null);
+	const [showSearchHistory, setShowSearchHistory] = useState(false);
 	const searchBook = useInputState('');
 
 	// search book data
@@ -76,38 +68,60 @@ function BookSearch() {
 	}, [searchBook.value]);
 
 	const setSelectBookData = useSetRecoilState(selectBookData);
-
+	useEffect(() => {
+		return () => {
+			setSelectBookData({
+				bookName: '',
+				bookImgUrl: '',
+				bookId: '',
+			});
+		};
+	}, []);
 	const selectBook = (name: string, cover: string, id: string) => {
 		setSelectBookData({
 			bookName: name,
 			bookImgUrl: cover,
 			bookId: id,
 		});
-		closeSearchResults();
+		setShowSearchHistory(false);
 	};
 
-	useEffect(() => {
-		searchBook.init();
-		setSearchData([]);
-	}, [page]);
+	// useOutsideClick 훅
+	useOutsideClick({
+		ref,
+		handler: () => {
+			setShowSearchHistory(false);
+		},
+	});
+
+	const handleFocus = () => {
+		setShowSearchHistory(true);
+	};
+	const handleBlur = () => {
+		setShowSearchHistory(false);
+	};
+
 	return (
 		<div className={styles.container}>
 			<input
 				type="text"
-				onClick={openSearchResults}
 				value={searchBook.value as string}
 				onChange={searchBook.onChange}
+				onFocus={handleFocus}
+				onBlur={handleBlur}
 			/>
 			<button>
 				<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
 			</button>
-			{openSearchResultsState && (
+			{showSearchHistory && (
 				<div className={styles.searchResultWrap}>
 					{searchData.map((data) => {
 						return (
 							<div
 								className={styles.searchResultItemWrap}
-								onClick={() => selectBook(data.title, data.cover, data.isbn)}
+								onMouseDown={() =>
+									selectBook(data.title, data.cover, data.isbn)
+								}
 								key={data.itemId}
 								style={{ borderBottom: '1px solid #cccccc' }}>
 								<div className={styles.searchResultItemTitle}>{data.title}</div>

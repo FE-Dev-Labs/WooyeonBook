@@ -9,7 +9,7 @@ import { useInputState } from '@/hooks/useInputState';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
-import OptionBookSelling from '../../post/OptionBookSelling';
+import OptionBookSelling from '../../post/option/OptionBookSelling';
 
 interface UpdateProps {
 	data?: BookSellingDataType;

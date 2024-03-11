@@ -9,7 +9,7 @@ import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
-import OptionBookBuying from '../../post/OptionBookBuying';
+import OptionBookBuying from '../../post/option/OptionBookBuying';
 
 interface UpdateProps {
 	data?: BookBuyingDataType;
@@ -86,7 +86,7 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 			return alert('에러가 발생했습니다.');
 		}
 		// state 초기화
-		title.init();
+		title.init('');
 		setText('');
 		setContentArr([]);
 		setSeletedBook({
@@ -94,7 +94,7 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 			bookName: '',
 			bookImgUrl: '',
 		});
-		price.init();
+		price.init('');
 		setBuyingState(false);
 
 		return router.push('/');
@@ -114,7 +114,7 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 			<OptionBookBuying
 				sellingPrice={
 					price as {
-						value: string;
+						value: number;
 						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 					}
 				}
