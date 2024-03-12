@@ -3,6 +3,7 @@ const axios = require('axios');
 const cors = require('cors');
 
 const { createClient } = require('@supabase/supabase-js');
+const { serialize } = require('v8');
 
 const app = express();
 const port = 8080;
@@ -34,12 +35,15 @@ app.get('/search/book', async (req, res) => {
 });
 
 app.get('/search/keyword', async (req, res) => {
+	// const keyword = req.cookies.keyword; // 쿠키에서 keyword 값을 읽어옴
 	const { keyword } = req.query;
+
 	try {
 		const data = await axios.get(
 			`http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${process.env.TTB_KEY}&Query=${keyword}&SearchTarget=All&output=js&Version=20131101`,
 		);
 		res.status(200).send(data.data.item);
+		// res.setHeader('Set-Cookie', serialize('keywordhistory', keyword));
 	} catch (err) {
 		res.status(400).send(err);
 	}

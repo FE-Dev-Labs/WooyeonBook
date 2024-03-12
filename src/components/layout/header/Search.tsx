@@ -11,9 +11,10 @@ import SearchResult from './History/SearchResult';
 import { Book } from '@/types/bookDetailDate';
 import cancelIcon from '../../../../public/layout/cancel.png';
 import { useRouter } from 'next/navigation';
-import { useRecoilState } from 'recoil';
+import useModal from '@/hooks/useModal';
 
 export default function Search() {
+	const router = useRouter();
 	// 외부 클릭 시
 	const ref = useRef<HTMLInputElement>(null);
 	// 최근 검색어, 인기 검색어
@@ -24,9 +25,13 @@ export default function Search() {
 	const [searchData, setSearchData] = useState<Book[]>([]);
 
 	// 자동 연관 검색어
-	const [openSearchResult, setOpenSearchResult] = useState(false);
-
-	const router = useRouter();
+	// const [openSearchResult, setOpenSearchResult] = useState<boolean>(false);
+	const {
+		isOpen,
+		handleModalOpenChange,
+		handleModalCloseChange,
+		handleModalStateChange,
+	} = useModal(false);
 
 	// useOutsideClick 훅
 	useOutsideClick({
@@ -41,7 +46,8 @@ export default function Search() {
 		// input에 글자가 있을 경우 최근 검색어, 인기 검색어 띄우지 않는 로직
 		const word = keyword.value as string;
 		if (word.length > 0) {
-			setOpenSearchResult(true);
+			handleModalOpenChange();
+			// setOpenSearchResult(true);
 		} else {
 			setShowSearchHistory(true);
 		}
@@ -73,17 +79,20 @@ export default function Search() {
 		// 만약 input이 빈값이라면 연관검색어 끄고 최근 검색어, 인기 검색어 띄우기
 		if (e.target.value === '') {
 			setShowSearchHistory(true);
-			setOpenSearchResult(false);
+			handleModalCloseChange();
+			// setOpenSearchResult(false);
 		} else {
 			// input에 텍스트 입력 시 최근 검색어, 인기 검색어 닫고 자동 검색어 띄어주기
 			setShowSearchHistory(false);
-			setOpenSearchResult(true);
+			// setOpenSearchResult(true);
+			handleModalOpenChange();
 		}
 	};
 
 	// input에서 포커스가 사라질 때 검색 결과 숨김
 	const handleBlur = () => {
-		setOpenSearchResult(false);
+		handleModalCloseChange();
+		// setOpenSearchResult(false);
 	};
 
 	// 쿼리값 전달
@@ -92,7 +101,7 @@ export default function Search() {
 		const searchUrl = `/search?keyword=${String(keyword.value)}`;
 		router.push(searchUrl);
 	};
-
+	console.log('뭐야', isOpen);
 	return (
 		<span>
 			<form className={styles.searchForm} onSubmit={handleSubmit}>
@@ -108,7 +117,7 @@ export default function Search() {
 					<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
 				</button>
 				{showSearchHistory && <RecentSearch />}
-				{openSearchResult && (
+				{isOpen && (
 					<div>
 						<div className={styles.recentSearchWrapper}>
 							<div className={styles.searchResultWord}>
@@ -118,12 +127,14 @@ export default function Search() {
 											data={data}
 											key={data.itemId}
 											keyword={keyword.value}
+											handleModalStateChange={handleModalStateChange}
+											isOpen={isOpen}
 										/>
 									);
 								})}
 								<div
 									className={styles.lastlestDeleteAll}
-									onClick={() => setOpenSearchResult(false)}>
+									onClick={() => handleModalCloseChange()}>
 									<div className={styles.lastlestCloseWrap}>
 										<span className={styles.lastelestCloseText}>닫기</span>
 										<Image
