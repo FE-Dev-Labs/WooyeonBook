@@ -4,16 +4,35 @@ import LastestWord from './LastestWord';
 import HotWord from './HotWord';
 import Image from 'next/image';
 import cancelIcon from '../../../../../public/layout/cancel.png';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
+import useModal from '@/hooks/useModal';
 
 export default function RecentSearch() {
+	// 최근 검색어 로컬스토리지 지우는 로직
+	const { storedValue, removeAllKeywords } = useLocalStorage(
+		'searchKeywords',
+		[],
+	);
+	// useModal 훅
+	const { handleModalStateChange } = useModal(false);
+
 	return (
 		<div className={styles.recentSearchContainer}>
 			<div className={styles.recentSearchWrapper}>
 				<LastestWord />
 				<HotWord />
-				<div className={styles.lastlestDeleteAll}>
-					<span className={styles.lastelestDeleteAllText}>검색기록 삭제</span>
-					<div className={styles.lastlestCloseWrap}>
+
+				<div
+					className={styles.lastlestDeleteAll}
+					onMouseDown={() => removeAllKeywords()}>
+					{storedValue.length ? (
+						<span className={styles.lastelestDeleteAllText}>검색기록 삭제</span>
+					) : (
+						<></>
+					)}
+					<div
+						className={styles.lastlestCloseWrap}
+						onMouseDown={() => handleModalStateChange()}>
 						<span className={styles.lastelestCloseText}>닫기</span>
 						<Image
 							src={cancelIcon}

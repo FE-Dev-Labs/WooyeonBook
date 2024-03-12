@@ -12,8 +12,11 @@ import { Book } from '@/types/bookDetailDate';
 import cancelIcon from '../../../../public/layout/cancel.png';
 import { useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
+import { useLocalStorage } from './../../../hooks/useLocalStorage';
 
 export default function Search() {
+	// 검색어 로컬스토리지 저장
+	const { addKeyword } = useLocalStorage('searchKeywords', []);
 	const router = useRouter();
 	// 외부 클릭 시
 	const ref = useRef<HTMLInputElement>(null);
@@ -24,8 +27,7 @@ export default function Search() {
 	// 검색어 책 데이터 배열에 넣기
 	const [searchData, setSearchData] = useState<Book[]>([]);
 
-	// 자동 연관 검색어
-	// const [openSearchResult, setOpenSearchResult] = useState<boolean>(false);
+	// useModal 훅
 	const {
 		isOpen,
 		handleModalOpenChange,
@@ -80,11 +82,9 @@ export default function Search() {
 		if (e.target.value === '') {
 			setShowSearchHistory(true);
 			handleModalCloseChange();
-			// setOpenSearchResult(false);
 		} else {
 			// input에 텍스트 입력 시 최근 검색어, 인기 검색어 닫고 자동 검색어 띄어주기
 			setShowSearchHistory(false);
-			// setOpenSearchResult(true);
 			handleModalOpenChange();
 		}
 	};
@@ -92,16 +92,19 @@ export default function Search() {
 	// input에서 포커스가 사라질 때 검색 결과 숨김
 	const handleBlur = () => {
 		handleModalCloseChange();
-		// setOpenSearchResult(false);
 	};
 
 	// 쿼리값 전달
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const searchUrl = `/search?keyword=${String(keyword.value)}`;
+		// 로컬스토리지에 검색어 추가
+		addKeyword(String(keyword.value));
+		// 검색어 모달 닫기
+		handleModalCloseChange();
 		router.push(searchUrl);
 	};
-	console.log('뭐야', isOpen);
+
 	return (
 		<span>
 			<form className={styles.searchForm} onSubmit={handleSubmit}>
@@ -128,7 +131,6 @@ export default function Search() {
 											key={data.itemId}
 											keyword={keyword.value}
 											handleModalStateChange={handleModalStateChange}
-											isOpen={isOpen}
 										/>
 									);
 								})}
