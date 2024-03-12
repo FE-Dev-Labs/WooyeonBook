@@ -7,6 +7,9 @@ function Nav() {
 	const communityUrl = (to: string) => {
 		return `/community/${to}`;
 	};
+	const postUrl = () => {
+		return `/community/post/new/${pathname}`;
+	};
 	const linkClassName = (path: string) => {
 		return path == pathname ? styles.active : styles.linkItem;
 	};
@@ -19,22 +22,22 @@ function Nav() {
 					독후감
 				</Link>
 				<Link
-					className={linkClassName('meeting')}
-					href={communityUrl('meeting')}>
+					className={linkClassName('bookMeeting')}
+					href={communityUrl('bookMeeting')}>
 					모임
 				</Link>
 				<Link
-					className={linkClassName('buyingBook')}
-					href={communityUrl('buyingBook')}>
+					className={linkClassName('bookBuying')}
+					href={communityUrl('bookBuying')}>
 					삽니다
 				</Link>
 				<Link
-					className={linkClassName('sellingBook')}
-					href={communityUrl('sellingBook')}>
+					className={linkClassName('bookSelling')}
+					href={communityUrl('bookSelling')}>
 					팝니다
 				</Link>
 			</div>
-			<Link className={styles.writeBtn} href={``}>
+			<Link className={styles.writeBtn} href={`${postUrl()}`}>
 				글쓰기
 			</Link>
 		</nav>

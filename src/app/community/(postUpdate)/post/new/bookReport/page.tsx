@@ -9,7 +9,7 @@ import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookReportDataType } from '@/types/community/post/data';
+import { BookReportPostDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';
 
 const EditorComponent = dynamic(
@@ -56,7 +56,7 @@ const BookReportPostPage = () => {
 	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
 
 	const onSubmit = async () => {
-		const data: BookReportDataType = {
+		const data: BookReportPostDataType = {
 			created_at: new Date(),
 			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
 			title: title.value as string,

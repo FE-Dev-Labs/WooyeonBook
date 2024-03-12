@@ -29,7 +29,7 @@
 }
 .weeklyPopularWrap > div {
 	width: 280px;
-	height: 460px;
+	height: 600px;
 	display: flex;
 	flex-direction: column;
 	border: 1px solid #b5bdc4;
@@ -55,5 +55,10 @@
 	margin-bottom: 10px;
 }
 .weeklyPopularWriter {
+	margin-right: 15px;
+}
+.weeklyPopularInfoWrap {
+	display: flex;
 	margin-bottom: 15px;
+	padding-bottom: 15px;
 }

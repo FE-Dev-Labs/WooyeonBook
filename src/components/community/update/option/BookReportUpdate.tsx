@@ -2,7 +2,6 @@
 import styles from '@/styles/community/update/update.module.css';
 import OptionBookReport from '../../post/option/OptionBookReport';
 import dynamic from 'next/dynamic';
-import { BookReportDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
@@ -10,6 +9,7 @@ import { useInputState } from '@/hooks/useInputState';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
+import { BookReportDataType } from '@/types/community/view/data';
 
 interface UpdateProps {
 	data?: BookReportDataType;
@@ -76,7 +76,7 @@ function Update({ data, docid }: UpdateProps) {
 			return alert('에러가 발생했습니다.');
 		}
 		// state 초기화
-		title.init();
+		title.init('');
 		setText('');
 		setSelectBook({
 			bookName: '',

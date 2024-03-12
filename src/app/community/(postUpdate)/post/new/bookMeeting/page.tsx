@@ -7,7 +7,7 @@ import { useInputState } from '@/hooks/useInputState';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookMeetingDataType } from '@/types/community/post/data';
+import { BookMeetingPostDataType } from '@/types/community/post/data';
 import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
 import { useEffect, useState } from 'react';
 
@@ -62,7 +62,7 @@ const BookMeetingPostPage = () => {
 		setRecruitmentNumber(e.value);
 	};
 	const onSubmit = async () => {
-		const data: BookMeetingDataType = {
+		const data: BookMeetingPostDataType = {
 			created_at: new Date(),
 			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
 			title: title.value as string,

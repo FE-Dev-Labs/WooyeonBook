@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookBuyingDataType } from '@/types/community/post/data';
+import { BookBuyingPostDataType } from '@/types/community/post/data';
 import OptionBookBuying from '@/components/community/post/option/OptionBookBuying';
 import { useEffect } from 'react';
 
@@ -56,7 +56,7 @@ const BookBuyingPostPage = () => {
 	// 가격
 	const price = useInputState(0);
 	const onSubmit = async () => {
-		const data: BookBuyingDataType = {
+		const data: BookBuyingPostDataType = {
 			created_at: new Date(),
 			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
 			title: title.value as string,

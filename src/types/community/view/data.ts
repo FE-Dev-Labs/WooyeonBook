@@ -1,4 +1,5 @@
-interface BookReportPostDataType {
+interface BookReportDataType {
+	doc_id: string;
 	title: string;
 	content: string;
 	like: number;
@@ -14,7 +15,8 @@ interface BookReportPostDataType {
 	category: string;
 }
 
-interface BookMeetingPostDataType {
+interface BookMeetingDataType {
+	doc_id: string;
 	title: string;
 	content: string;
 	like: number;
@@ -30,7 +32,8 @@ interface BookMeetingPostDataType {
 	chatting_url: string;
 }
 
-interface BookBuyingPostDataType {
+interface BookBuyingDataType {
+	doc_id: string;
 	title: string;
 	content: string;
 	like: number;
@@ -48,7 +51,8 @@ interface BookBuyingPostDataType {
 	book_id: string;
 }
 
-interface BookSellingPostDataType {
+interface BookSellingDataType {
+	doc_id: string;
 	title: string;
 	content: string;
 	like: number;
@@ -66,10 +70,31 @@ interface BookSellingPostDataType {
 	selling: boolean;
 	book_id: string;
 }
-
+interface AllDataType {
+	doc_id: string;
+	created_at: Date;
+	create_user: string;
+	title: string;
+	content: string;
+	content_img_url: string[];
+	user_name: string;
+	like: number;
+	view: number;
+	filed: string;
+	book_name?: string;
+	book_id?: string;
+	book_img_url?: string;
+	price?: number;
+	state?: boolean;
+	selling?: boolean;
+	recruitment_number?: number;
+	deadline?: Date;
+	chatting_url?: string;
+}
 export type {
-	BookReportPostDataType,
-	BookMeetingPostDataType,
-	BookBuyingPostDataType,
-	BookSellingPostDataType,
+	BookReportDataType,
+	BookMeetingDataType,
+	BookBuyingDataType,
+	BookSellingDataType,
+	AllDataType,
 };

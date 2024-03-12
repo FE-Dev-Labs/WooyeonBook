@@ -5,13 +5,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '@/styles/community/layout.module.css';
 import Header from '@/components/community/common/Header';
+import { AllDataType } from '@/types/community/view/data';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
 };
 
-export default function CommunityLayout({ children }: BasicLayoutType) {
-	const popularData = [1, 2, 3, 4];
+export default async function CommunityLayout({ children }: BasicLayoutType) {
+	const popularData = await fetch(
+		'http://localhost:8080/community/popular',
+	).then((res) => res.json());
+
 	return (
 		<>
 			<Header />
@@ -29,19 +33,25 @@ export default function CommunityLayout({ children }: BasicLayoutType) {
 					<div className={styles.weeklyPopularWrap}>
 						<div>
 							<h3>주간 인기글</h3>
-							<Link href={``}>
-								<div className={styles.weeklyPopularContent}>
-									aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-								</div>
-								<div className={styles.weeklyPopularWriter}>작성자</div>
-							</Link>
-							{popularData.map((data, index) => {
+
+							{popularData.map((data: AllDataType, index: number) => {
+								const date = new Date(data.created_at);
+								const year = date.getFullYear();
+								const month = ('0' + (date.getMonth() + 1)).slice(-2);
+								const day = ('0' + date.getDate()).slice(-2);
+								const dateString = year + '년' + month + '월' + day + '일';
+
 								return (
-									<Link href={``} key={index}>
+									<Link href={`/community/detail/${data.doc_id}`} key={index}>
 										<div className={styles.weeklyPopularContent}>
-											aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+											{data.title}
 										</div>
-										<div className={styles.weeklyPopularWriter}>작성자</div>
+										<div className={styles.weeklyPopularInfoWrap}>
+											<div className={styles.weeklyPopularWriter}>
+												{data.user_name}
+											</div>
+											<div>{dateString}</div>
+										</div>
 									</Link>
 								);
 							})}

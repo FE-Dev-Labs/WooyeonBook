@@ -1,5 +1,5 @@
 import styles from '@/styles/community/post/OptionBookMeeting.module.css';
-import { BookMeetingDataType } from '@/types/community/post/data';
+import { BookMeetingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
 
 interface OptionBookMeetingProps {

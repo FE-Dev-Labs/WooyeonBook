@@ -7,8 +7,7 @@ import { memo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import communityPathname from '@/apis/communityPathname';
-// 옵션 버튼
-// 불필요하게 리렌더링이 되어서 밖으로 빼서 사용하는것을 채택 했습니다.
+
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => <div className={styles.optionBtnSkeleton}></div>,
