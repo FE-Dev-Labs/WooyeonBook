@@ -12,6 +12,8 @@ export const fetchMainPageData = async () => {
 	const bestSellerPromise = fetchData(bestSellerURL);
 	const usedBooksPromise = fetchData(usedBooksURL);
 
+	console.log(newBooksPromise);
+
 	// 3개의 Promise가 해결될 때까지 기다린 후 결과를 배열로 반환
 	const [newBookData, bestSellerData, usedBookData] = await Promise.all([
 		newBooksPromise,
@@ -25,7 +27,6 @@ export const fetchMainPageData = async () => {
 		// 소설/시/희곡 키워드가 포함된 아이템만 필터링
 		.filter((item) => item.categoryName.includes('소설/시/희곡'))
 		// 앞에서 6개만 추출
-
 		.slice(0, 6);
 
 	// 메인 - 베스트셀러

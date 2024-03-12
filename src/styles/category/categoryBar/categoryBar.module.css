@@ -31,12 +31,12 @@
 	cursor: pointer;
 	color: #666;
 }
-.categoryBarItems > li > a {
-	display: inline;
-}
-.categoryBarItems > li > a > p {
-	font-size: 12px;
-}
 .categoryBarItems > li:hover {
 	text-decoration: underline;
+}
+
+/* 선택된 카테고리 아이템 */
+.selectedCategory {
+	color: #6594e7 !important;
+	font-weight: bold;
 }
