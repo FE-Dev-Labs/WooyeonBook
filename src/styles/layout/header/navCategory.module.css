@@ -91,3 +91,8 @@
 	font-weight: bold;
 	color: #6594e7;
 }
+
+.selectedCategory {
+	color: #6594e7 !important;
+	font-weight: bold;
+}

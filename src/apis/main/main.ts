@@ -2,17 +2,29 @@ import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
 
 export const fetchMainPageData = async () => {
 	// 데이터 패치해오는 함수
+	// const fetchData = async (url: string) => {
+	// 	const response = await fetch(url, { cache: 'force-cache' });
+	// 	return response.json();
+	// };
 	const fetchData = async (url: string) => {
-		const response = await fetch(url, { cache: 'force-cache' });
-		return await response.json();
+		try {
+			const response = await fetch(url, { cache: 'force-cache' });
+			// 네트워크 응답 상태가 성공적이지 않은 경우
+			if (!response.ok) {
+				throw new Error(`Network response was not ok: ${response.statusText}`);
+			}
+			return await response.json();
+			// 에러 처리
+		} catch (error) {
+			console.error('Fetch error:', error);
+			throw error;
+		}
 	};
 
 	// 각각 신간도서, 베스트셀러, 중고도서 패치해온 데이터
 	const newBooksPromise = fetchData(newBooksURL);
 	const bestSellerPromise = fetchData(bestSellerURL);
 	const usedBooksPromise = fetchData(usedBooksURL);
-
-	console.log(newBooksPromise);
 
 	// 3개의 Promise가 해결될 때까지 기다린 후 결과를 배열로 반환
 	const [newBookData, bestSellerData, usedBookData] = await Promise.all([

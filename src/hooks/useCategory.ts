@@ -1,10 +1,10 @@
 export const useCategory = (
-	selectedCategoryRef: any,
-	router: any,
-	pathname: string,
+	selectedCategoryRef?: any,
+	router?: any,
+	pathname?: string,
 ) => {
 	// 카테고리 아이템
-	const categoryItems = [
+	const categoryItem = [
 		{ name: '전체', id: 0 },
 		{ name: '건강/취미', id: 55890 },
 		{ name: '경제경영', id: 170 },
@@ -51,5 +51,5 @@ export const useCategory = (
 		}
 	};
 
-	return { categoryItems, handleClickCategory };
+	return { categoryItem, handleClickCategory };
 };

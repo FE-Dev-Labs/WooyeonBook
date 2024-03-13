@@ -12,8 +12,8 @@ export default function CategoryBox() {
 	const pathname = usePathname();
 	// 선택된 카테고리 ref
 	const selectedCategoryRef = useRef<number>(0);
-	//	카테고리 아이템 배열, 카테고리 선택 함수 를 useCategory hook에서 가져옴
-	const { categoryItems, handleClickCategory } = useCategory(
+	// 카테고리 아이템 배열, 카테고리 선택 함수 를 useCategory hook에서 가져옴
+	const { categoryItem, handleClickCategory } = useCategory(
 		selectedCategoryRef,
 		router,
 		pathname,
@@ -22,7 +22,7 @@ export default function CategoryBox() {
 	return (
 		<>
 			<div className={styles.categoryBox}>
-				{categoryItems.map((item) => (
+				{categoryItem.map((item) => (
 					<div
 						key={item.id}
 						className={`${styles.categoryItem} ${
@@ -39,7 +39,7 @@ export default function CategoryBox() {
 }
 
 // // 카테고리 분류
-// const categoryItems = [
+// const categoryItem = [
 // 	{ name: '전체', id: 0 },
 // 	{ name: '건강/취미', id: 55890 },
 // 	{ name: '경제경영', id: 170 },
