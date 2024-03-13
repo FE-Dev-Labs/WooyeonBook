@@ -100,8 +100,7 @@ export default function Search() {
 		const searchUrl = `/search?keyword=${String(keyword.value)}`;
 		// 로컬스토리지에 검색어 추가
 		addKeyword(String(keyword.value));
-		// 검색어 모달 닫기
-		handleModalCloseChange();
+		// 검색어 모달 닫기		handleModalCloseChange();
 		router.push(searchUrl);
 	};
 
