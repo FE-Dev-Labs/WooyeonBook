@@ -30,6 +30,7 @@ export default function BookItem({ rank, data }: BookItemProps) {
 
 	return (
 		<div className={styles.bookItem}>
+			<div className={styles.rank}>{rank}</div>
 			<div className={styles.bookImage}>
 				<Link
 					href={`/detail/${data?.isbn}?type=${

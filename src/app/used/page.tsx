@@ -75,12 +75,7 @@ export default function usedPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<BestSeller
-						page="used"
-						// height="400px"
-						isUsedPage={true}
-						data={usedBestItem}
-					/>
+					<BestSeller page="used" isUsedPage={true} data={usedBestItem} />
 					<div className={styles.usedLine} />
 					<CategoryBox />
 					{/* <Sort /> */}

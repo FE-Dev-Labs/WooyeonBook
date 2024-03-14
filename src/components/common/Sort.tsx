@@ -8,11 +8,6 @@ interface SortProp {
 }
 
 export default function Sort({ page }: SortProp) {
-	// 선택ㄷ
-	const [selectedSortItem, setSelectedSortItem] = useState<string>('일별');
-
-	const handleClickSort = () => {};
-
 	return (
 		<div className={styles.sortBox}>
 			{/* search page일 시 상품 갯수 추가 */}
