@@ -31,7 +31,7 @@ export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
 
 	return (
 		<div className={styles.CategorybookItemWrapper}>
-			{sortedData()?.map((book: any) => (
+			{sortedData()?.map((book: NewBookType) => (
 				<BookItem key={book.itemId} data={book} />
 			))}
 		</div>

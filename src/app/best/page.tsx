@@ -26,7 +26,7 @@ export default function bestPage() {
 	const selectedNumRef = useRef<number>(1);
 
 	// 페이지(숫자) 선택 시 실행되는 함수
-	const handleClickPage = (pageNum: number) => {
+	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
 		if (selectedNumRef.current === pageNum) return;
 		// 현재 페이지의 숫자 스타일링을 위함
@@ -67,7 +67,7 @@ export default function bestPage() {
 					<Rank data={bestAllItem} />
 					<Pagination
 						itemLength={itemLength}
-						handleClickPage={handleClickPage}
+						handlePageNumClick={handlePageNumClick}
 						selectedNumRef={selectedNumRef}
 						currentPage={currentPage}
 						page="best"

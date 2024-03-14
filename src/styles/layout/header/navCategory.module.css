@@ -85,7 +85,7 @@
 	text-decoration: underline;
 }
 .categoryItem {
-	/* margin-bottom: 8px; */
+	margin-bottom: 5px;
 }
 .categoryItem > p {
 	font-weight: bold;

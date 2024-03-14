@@ -8,11 +8,11 @@
 	justify-content: flex-end;
 }
 .textBox {
-	width: 250px;
+	/* width: 250px; */
 	height: inherit;
 
 	display: flex;
-	flex-direction: row-reverse;
+	/* flex-direction: row-reverse; */
 	align-items: center;
 }
 .textBox > p {
@@ -21,9 +21,14 @@
 
 	cursor: pointer;
 
-	color: black;
+	color: #666666;
 	/* color: #999; */
 }
 .textBox > p:hover {
 	text-decoration: underline;
+}
+
+/* 선택된 sort item */
+.selectedSortItem {
+	font-weight: bold;
 }

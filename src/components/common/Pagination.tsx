@@ -5,7 +5,7 @@ import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 
 interface PaginationProps {
 	itemLength: number;
-	handleClickPage: (page: number) => void;
+	handlePageNumClick: (page: number) => void;
 	selectedNumRef: React.RefObject<number>;
 	currentPage: number;
 	page?: string;
@@ -13,7 +13,7 @@ interface PaginationProps {
 
 export default function Pagination({
 	itemLength,
-	handleClickPage,
+	handlePageNumClick,
 	selectedNumRef,
 	page,
 }: PaginationProps) {
@@ -42,7 +42,7 @@ export default function Pagination({
 							className={`${styles.paginationItem} ${selectedNumRef.current === num && styles.selectedNum}`}
 							key={num}
 							onClick={() => {
-								handleClickPage(num);
+								handlePageNumClick(num);
 							}}>
 							{num}
 						</div>

@@ -4,6 +4,7 @@ import CategoryBar from '@/components/category/categoryBar/CategoryBar';
 import CategoryContents from '@/components/category/categoryContents/CategoryContents';
 import PageHeader from '@/components/common/PageHeader';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
+import { useCategory } from '@/hooks/useCategory';
 import styles from '@/styles/category/category.module.css';
 import { NewBookType } from '@/types/bookType';
 import { useSearchParams } from 'next/navigation';
@@ -23,8 +24,15 @@ export default function categoryPage() {
 	// 선택된 페이지네이션 숫자 ref
 	const selectedNumRef = useRef<number>(1);
 
+	// 카테고리 아이템 배열
+	const { categoryItem } = useCategory();
+	// 현재 선택된 카테고리 아이템 찾기
+	const currentCategoryItem = categoryItem.find(
+		(item) => item.id === Number(categoryId),
+	);
+
 	// 페이지(숫자) 선택 시 실행되는 함수
-	const handleClickPage = (pageNum: number) => {
+	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
 		if (selectedNumRef.current === pageNum) return;
 		// 현재 페이지의 숫자 스타일링을 위함
@@ -55,7 +63,9 @@ export default function categoryPage() {
 
 	return (
 		<>
-			<PageHeader title="전체" />
+			<PageHeader
+				title={currentCategoryItem ? currentCategoryItem.name : '전체'}
+			/>
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
@@ -63,7 +73,7 @@ export default function categoryPage() {
 					<CategoryContents
 						data={newAllItem}
 						itemLength={itemLength}
-						handleClickPage={handleClickPage}
+						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
 						selectedNumRef={selectedNumRef}
 					/>

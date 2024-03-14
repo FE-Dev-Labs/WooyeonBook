@@ -8,7 +8,7 @@ import { NewBookType } from '@/types/bookType';
 interface CategoryConentsProp {
 	data: NewBookType[];
 	itemLength: number;
-	handleClickPage: (page: number) => void;
+	handlePageNumClick: (page: number) => void;
 	selectedNumRef: React.RefObject<number>;
 	currentPage: number;
 }
@@ -16,7 +16,7 @@ interface CategoryConentsProp {
 export default function CategoryContents({
 	data,
 	itemLength,
-	handleClickPage,
+	handlePageNumClick,
 	selectedNumRef,
 	currentPage,
 }: CategoryConentsProp) {
@@ -27,7 +27,7 @@ export default function CategoryContents({
 			<CategoryBookItemBox data={data} />
 			<Pagination
 				itemLength={itemLength}
-				handleClickPage={handleClickPage}
+				handlePageNumClick={handlePageNumClick}
 				currentPage={currentPage}
 				selectedNumRef={selectedNumRef}
 			/>

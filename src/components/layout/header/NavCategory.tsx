@@ -15,11 +15,16 @@ export default function NavCategory() {
 				<Link href={'/category'} className={styles.categoryItem}>
 					<p>분야 전체</p>
 				</Link>
-				{categoryItem.map((item, index) => (
-					<Link key={index} href={`/category?categoryId=${item.id}`}>
-						{item.name}
-					</Link>
-				))}
+				{categoryItem.map((item, index) => {
+					if (item.id === 0) {
+						return null;
+					}
+					return (
+						<Link key={index} href={`/category?categoryId=${item.id}`}>
+							{item.name}
+						</Link>
+					);
+				})}
 			</div>
 		</div>
 	);

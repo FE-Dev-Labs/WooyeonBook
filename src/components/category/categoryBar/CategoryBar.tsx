@@ -26,14 +26,19 @@ export default function CategoryBar() {
 					<h1>분야</h1>
 				</header>
 				<ol className={styles.categoryBarItems}>
-					{categoryItem.map((item) => (
-						<li
-							key={item.id}
-							className={`${selectedCategoryRef.current === item.id && styles.selectedCategory}`}
-							onClick={() => handleClickCategory(item.id)}>
-							{item.name}
-						</li>
-					))}
+					{categoryItem.map((item) => {
+						if (item.id === 0) {
+							return null;
+						}
+						return (
+							<li
+								key={item.id}
+								className={`${selectedCategoryRef.current === item.id && styles.selectedCategory}`}
+								onClick={() => handleClickCategory(item.id)}>
+								{item.name}
+							</li>
+						);
+					})}
 				</ol>
 			</div>
 		</div>
