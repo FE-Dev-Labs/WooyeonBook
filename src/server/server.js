@@ -163,8 +163,8 @@ app.get('/list/newSpecialAll', async (req, res) => {
 
 		// 신간리스트의 해당 카테고리 item만 추출해 data에 할당
 		const data = await response.data.item.filter(
-			// 책 제목이 큰글자책이 있다면 제외
-			(item) => !item.title.includes('큰글자책'),
+			// 책 제목 필터링
+			(item) => !item.title.includes('큰글자책', '빅북', '세트'),
 		);
 		// 해당 카테고리 item의 총 갯수 (약 1,700여 개(3/9 기준))
 		const dataLength = await response.data.totalResults;
