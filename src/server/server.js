@@ -9,9 +9,9 @@ const app = express();
 const port = 8080;
 require('dotenv').config();
 
-require('dotenv').config();
 app.use(cors({ origin: true, credentials: true }));
-
+// body를 읽는게 있어야된다
+app.use(express.json({ extended: true }));
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
@@ -34,8 +34,8 @@ app.get('/search/book', async (req, res) => {
 	}
 });
 
+// 키워드 api
 app.get('/search/keyword', async (req, res) => {
-	// const keyword = req.cookies.keyword; // 쿠키에서 keyword 값을 읽어옴
 	const { keyword } = req.query;
 
 	try {
@@ -43,14 +43,90 @@ app.get('/search/keyword', async (req, res) => {
 			`http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${process.env.TTB_KEY}&Query=${keyword}&SearchTarget=All&output=js&Version=20131101`,
 		);
 		res.status(200).send(data.data.item);
-		// res.setHeader('Set-Cookie', serialize('keywordhistory', keyword));
 	} catch (err) {
 		res.status(400).send(err);
 	}
 });
 
-// 커뮤니티 update api
+app.get('/supbase/popularSearch', async (req, res) => {
+	const { keyword } = req.query;
+	try {
+		const { data, error } = await supabase
+			.from('PopularSearch')
+			.select('*')
+			.eq('keyword', keyword);
+		if (error) throw error;
+		return res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error.message);
+	}
+});
+// 키워드 추가 api
+app.put('/api/updateKeywords', async (req, res) => {
+	const { keyword } = req.query;
+	const { count } = req.query;
+	try {
+		// 기존 검색어의 횟수 업데이트
+		const { data, error } = await supabase
+			.from('PopularSearch')
+			.update({ search_count: count + 1 })
+			.eq('keyword', keyword)
+			.select();
+		if (error) throw error;
+		return res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
 
+// 새 검색어 api
+app.post('/api/saveKeywords', async (req, res) => {
+	console.log(req.body);
+	try {
+		const { data, error } = await supabase
+			.from('PopularSearch')
+			.insert(req.body)
+			.select();
+		if (error) throw error;
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+// app.post('/api/saveKeywords', async (req, res) => {
+// 	const keyword = req.body.keyword;
+// 	console.log(keyword);
+// 	try {
+// 		// 먼저 해당 키워드가 이미 존재하는지 확인합니다.
+// 		let { data: existingKeywords, error: selectError } = await supabase
+// 			.from('PopularSearch')
+// 			.select('*')
+// 			.eq('keyword', keyword);
+
+// 		if (selectError) throw selectError;
+
+// 		if (existingKeywords.length === 0) {
+// 			// 키워드가 존재하지 않으면 새로 추가합니다.
+// 			const { data, error } = await supabase
+// 				.from('PopularSearch')
+// 				.insert([{ keyword, search_count: 1, created_at: new Date() }]);
+// 			if (error) throw error;
+// 			res.status(200).send(data);
+// 		} else {
+// 			// 키워드가 이미 존재하면 search_count를 업데이트합니다.
+// 			const { data, error } = await supabase
+// 				.from('PopularSearch')
+// 				.update({ search_count: existingKeywords[0].search_count + 1 })
+// 				.match({ keyword });
+// 			if (error) throw error;
+// 			res.status(200).send(data);
+// 		}
+// 	} catch (error) {
+// 		res.status(400).send(error);
+// 	}
+// });
+
+// 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {
 	try {
 		const { data, error } = await supabase

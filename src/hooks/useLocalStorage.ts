@@ -126,12 +126,17 @@ export const useLocalStorage = (
 	// 검색어를 로컬 스토리지에 추가하는 함수
 	const addKeyword = (keyword: string) => {
 		if (typeof keyword === 'string' && keyword.trim() !== '') {
-			// 새로운 키워드를 추가하기 전에 현재 저장된 키워드의 배열을 복사하고,
-			// 최신 검색어가 배열의 앞쪽에 오도록 한다.
-			// 여기서는 최대 10개의 이전 검색어만 유지하고, 새로운 검색어를 추가함으로써
-			// 총 개수가 11개를 넘지 않도록 합니다.
-			const newKeywords = [keyword, ...storedValue.slice(0, 10)];
-			setItem(newKeywords);
+			// 현재 저장된 키워드 목록에 이미 해당 키워드가 존재하는지 확인
+			if (!storedValue.includes(keyword)) {
+				// 존재하지 않는 경우, 새로운 키워드 추가
+				// 새로운 키워드를 추가하기 전에 현재 저장된 키워드의 배열을 복사하고,
+				// 최신 검색어가 배열의 앞쪽에 오도록 한다.
+				// 여기서는 최대 10개의 이전 검색어만 유지하고, 새로운 검색어를 추가함
+				const newKeywords = [keyword, ...storedValue.slice(0, 10)];
+				setItem(newKeywords);
+			} else {
+				console.error('Keyword already exists:', keyword);
+			}
 		} else {
 			console.error('Invalid keyword:', keyword);
 		}
