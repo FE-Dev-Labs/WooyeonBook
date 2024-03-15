@@ -14,20 +14,18 @@ export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
 	// 소팅한 data
 	const sortedData = () => {
 		switch (sortType) {
-			case '인기순':
-				return data.sort((a, b) => b.salesPoint - a.salesPoint);
+			// case '인기순':
+			// 	return data.sort((a, b) => a.customerReviewRank - b.customerReviewRank);
 			case '최신순':
-				return data.sort((a, b) => {
+				return data?.sort((a, b) => {
 					return new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime();
 				});
 			case '제목순':
-				return data.sort((a, b) => a.title.localeCompare(b.title));
+				return data?.sort((a, b) => a.title.localeCompare(b.title));
 			default:
 				return data;
 		}
 	};
-
-	console.log(sortedData());
 
 	return (
 		<div className={styles.CategorybookItemWrapper}>

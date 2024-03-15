@@ -1,14 +1,12 @@
 import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/best/rank.module.css';
-import { BestSellerType, UsedBookType } from '@/types/bookType';
+import { BestSellerType } from '@/types/bookType';
 
 interface RankProp {
 	data: BestSellerType[];
 }
 
 export default function Rank({ data }: RankProp) {
-	console.log(data);
-
 	return (
 		<div className={styles.rankBox}>
 			{data?.map((book) => (

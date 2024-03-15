@@ -9,7 +9,7 @@ export default function SortBar() {
 	// 소팅 state
 	const [sortType, setSortType] = useRecoilState(sortTypeState);
 	// 선택된 소팅 ref
-	const selectedSortItemRef = useRef<string>('인기순');
+	const selectedSortItemRef = useRef<string>('제목순');
 
 	// 소팅 아이템 선택시 동작하는 함수
 	const handleSortTypeChange = (newSortType: string) => {
@@ -24,11 +24,11 @@ export default function SortBar() {
 	return (
 		<div className={styles.sortBox}>
 			<div className={styles.textBox}>
-				<p
+				{/* <p
 					className={`${sortType === '인기순' ? styles.selectedSortItem : ''}`}
 					onClick={() => handleSortTypeChange('인기순')}>
 					인기순
-				</p>
+				</p> */}
 				<p
 					className={`${sortType === '제목순' ? styles.selectedSortItem : ''}`}
 					onClick={() => handleSortTypeChange('제목순')}>
