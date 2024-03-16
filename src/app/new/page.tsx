@@ -43,6 +43,7 @@ export default function newPage() {
 			{ cache: 'force-cache' },
 		);
 		const { data, dataLength } = await response.json();
+
 		// book item
 		setNewSpecialAllItem(data);
 		// book item의 총 개수
