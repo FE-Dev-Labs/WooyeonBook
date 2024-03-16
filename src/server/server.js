@@ -48,6 +48,7 @@ app.get('/search/keyword', async (req, res) => {
 	}
 });
 
+// 검색어가 supbase에 있는지 확인하는 api
 app.get('/supbase/popularSearch', async (req, res) => {
 	const { keyword } = req.query;
 	try {
@@ -61,10 +62,16 @@ app.get('/supbase/popularSearch', async (req, res) => {
 		res.status(400).send(error.message);
 	}
 });
+
 // 키워드 추가 api
 app.put('/api/updateKeywords', async (req, res) => {
 	const { keyword } = req.query;
-	const { count } = req.query;
+	let { count } = req.query;
+	console.log('count', count);
+	console.log('count2', count[0]);
+
+	// count 값을 숫자로 변환
+	count = Number(count);
 	try {
 		// 기존 검색어의 횟수 업데이트
 		const { data, error } = await supabase
@@ -81,7 +88,7 @@ app.put('/api/updateKeywords', async (req, res) => {
 
 // 새 검색어 api
 app.post('/api/saveKeywords', async (req, res) => {
-	console.log(req.body);
+	console.log('req.body', req.body);
 	try {
 		const { data, error } = await supabase
 			.from('PopularSearch')

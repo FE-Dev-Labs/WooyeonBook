@@ -26,12 +26,12 @@ export default function SearchResult({
 			`http://localhost:8080/supbase/popularSearch?keyword=${keyword}`,
 		);
 		const key = await res.json();
-		console.log(key);
 		const postdata = {
 			keyword: keyword,
-			search_count: 0,
+			search_count: 1,
 			created_at: new Date(),
 		};
+		// 검색어에 대한 기록이 서버에 이미 존재하는지를 확인
 		if (key.length > 0) {
 			await fetch(
 				`http://localhost:8080/api/updateKeywords?keyword=${keyword}&count=${key[0].search_count}`,
