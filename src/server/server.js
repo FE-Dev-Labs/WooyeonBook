@@ -3,14 +3,15 @@ const axios = require('axios');
 const cors = require('cors');
 
 const { createClient } = require('@supabase/supabase-js');
+const { serialize } = require('v8');
 
 const app = express();
 const port = 8080;
 require('dotenv').config();
 
-require('dotenv').config();
 app.use(cors({ origin: true, credentials: true }));
-
+// body를 읽는게 있어야된다
+app.use(express.json({ extended: true }));
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
@@ -33,8 +34,10 @@ app.get('/search/book', async (req, res) => {
 	}
 });
 
+// 키워드 api
 app.get('/search/keyword', async (req, res) => {
 	const { keyword } = req.query;
+
 	try {
 		const data = await axios.get(
 			`http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=${process.env.TTB_KEY}&Query=${keyword}&SearchTarget=All&output=js&Version=20131101`,
@@ -45,8 +48,82 @@ app.get('/search/keyword', async (req, res) => {
 	}
 });
 
-// 커뮤니티 update api
+// 검색어가 supbase에 있는지 확인하는 api
+app.get('/supbase/popularSearch', async (req, res) => {
+	const { keyword } = req.query;
+	try {
+		const { data, error } = await supabase
+			.from('PopularSearch')
+			.select('*')
+			.eq('keyword', keyword);
+		if (error) throw error;
+		return res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error.message);
+	}
+});
 
+// 키워드 추가 api
+app.put('/api/updateKeywords', async (req, res) => {
+	const { keyword } = req.query;
+	let { count } = req.query;
+	console.log('count', count);
+	console.log('count2', count[0]);
+
+	// count 값을 숫자로 변환
+	count = Number(count);
+	try {
+		// 기존 검색어의 횟수 업데이트
+		const { data, error } = await supabase
+			.from('PopularSearch')
+			.update({ search_count: count + 1 })
+			.eq('keyword', keyword)
+			.select();
+		if (error) throw error;
+		return res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+
+// 새 검색어 api
+app.post('/api/saveKeywords', async (req, res) => {
+	console.log('req.body', req.body);
+	try {
+		const { data, error } = await supabase
+			.from('PopularSearch')
+			.insert(req.body)
+			.select();
+		if (error) throw error;
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+
+// 검색어 가져오기 api
+app.get(`/api/getKeywords`, async (req, res) => {
+	try {
+		let { data, error } = await supabase
+			.from('PopularSearch')
+			// select('*') 하면 안됨
+			.select()
+			// db에서 몇개 가져올지 정함
+			.range(0, 10)
+			// 숫자가 높은 순으로 가져옴
+			.order('search_count', { ascending: false })
+			// 최신 순으로 가져옴
+			.order('created_at', { ascending: false });
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
+
+// 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {
 	try {
 		const { data, error } = await supabase

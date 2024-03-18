@@ -38,3 +38,9 @@
 	padding: 9px 20px 10px 7px;
 	cursor: pointer;
 }
+.lastesNoArrayText {
+	line-height: 30px;
+	font-size: 14px;
+	color: #666;
+	font-size: 13px;
+}
