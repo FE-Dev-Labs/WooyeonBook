@@ -1,6 +1,8 @@
 import { AllDataType } from '@/types/community/view/data';
 import BookReport from '@/components/community/detail/BookReport';
 import BookMeeting from '@/components/community/detail/BookMeeting';
+import BookBuying from '@/components/community/detail/BookBuying';
+import BookSelling from '@/components/community/detail/BookSelling';
 import { getDate } from '@/utils/getDate';
 
 export default async function DetailPage({
@@ -20,11 +22,11 @@ export default async function DetailPage({
 		case 'bookReport':
 			return <BookReport data={data} />;
 		case 'bookSelling':
-			return;
+			return <BookSelling data={data} />;
 		case 'bookMeeting':
 			return <BookMeeting data={data} />;
 		case 'bookBuying':
-			return;
+			return <BookBuying data={data} />;
 		default:
 	}
 }

@@ -3,14 +3,14 @@ import styles from '@/styles/community/detail/option/Option.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
-interface BookMeetingProps {
+interface BookSellingProps {
 	data: AllDataType;
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookMeeting = ({ data }: BookMeetingProps) => {
+const BookSelling = ({ data }: BookSellingProps) => {
 	return (
 		<section className={styles.container}>
 			<h2 className={styles.title}>{data.title}</h2>
@@ -31,24 +31,18 @@ const BookMeeting = ({ data }: BookMeetingProps) => {
 			{/* option */}
 			<section className={styles.optionContainer}>
 				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>카카오 오픈 채팅방</label>
-					<Link
-						href={data.chatting_url as string}
-						className={styles.optionItemContent}>
-						{data.chatting_url}
-					</Link>
-				</div>
-				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>모집 마감일</label>
+					<label className={styles.optionItemTitle}>판매 / 나눔</label>
 					<div className={styles.optionItemContent}>
-						{getDate(data.deadline as Date)}
+						{data.selling ? '판매' : '나눔'}
 					</div>
 				</div>
 				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>모집 인원</label>
-					<div className={styles.optionItemContent}>
-						{data.recruitment_number} 명
-					</div>
+					<label className={styles.optionItemTitle}>판매하는 책</label>
+					<div className={styles.optionItemContent}>{data.book_name}</div>
+				</div>
+				<div className={styles.optionItemWrap}>
+					<label className={styles.optionItemTitle}>희망 판매 가격</label>
+					<div className={styles.optionItemContent}>{data.price} 원</div>
 				</div>
 				<hr className={styles.line} />
 			</section>
@@ -60,4 +54,4 @@ const BookMeeting = ({ data }: BookMeetingProps) => {
 	);
 };
 
-export default BookMeeting;
+export default BookSelling;
