@@ -12,9 +12,10 @@ export const metadata: Metadata = {
 };
 
 export default async function CommunityLayout({ children }: BasicLayoutType) {
-	const popularData = await fetch(
-		'http://localhost:8080/community/popular',
-	).then((res) => res.json());
+	const reponse = await fetch('http://localhost:8080/popular/community', {
+		cache: 'no-store',
+	});
+	const popularData = await reponse.json();
 
 	return (
 		<>

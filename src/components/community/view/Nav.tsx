@@ -13,6 +13,7 @@ function Nav() {
 	const linkClassName = (path: string) => {
 		return path == pathname ? styles.active : styles.linkItem;
 	};
+
 	return (
 		<nav className={styles.container}>
 			<div className={styles.linkWrap}>

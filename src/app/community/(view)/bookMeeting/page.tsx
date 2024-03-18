@@ -39,7 +39,7 @@ export default async function meeting({
 	return (
 		<section>
 			{data?.map((data: AllDataType, index) => {
-				return <ContentBox key={index} data={data} />;
+				return <ContentBox key={index} data={data} page="bookMeeting" />;
 			})}
 		</section>
 	);

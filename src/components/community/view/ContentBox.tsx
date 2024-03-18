@@ -1,11 +1,5 @@
 import styles from '@/styles/community/contentBox.module.css';
-import {
-	BookReportDataType,
-	BookBuyingDataType,
-	BookMeetingDataType,
-	BookSellingDataType,
-	AllDataType,
-} from '@/types/community/view/data';
+import { AllDataType } from '@/types/community/view/data';
 import Link from 'next/link';
 
 interface ContentBoxProps {
@@ -21,7 +15,7 @@ export default function ContentBox({ data, page }: ContentBoxProps) {
 	const dateString = year + '년' + month + '월' + day + '일';
 
 	return (
-		<Link href={`/community/detail/${data.doc_id}`}>
+		<Link href={`/community/detail/${page}/${data.doc_id}`}>
 			<div className={styles.container}>
 				{!page ? (
 					<h2 className={styles.title}>{data.title}</h2>
@@ -30,7 +24,7 @@ export default function ContentBox({ data, page }: ContentBoxProps) {
 						{data.state ? (
 							<div className={styles.contentState}>모집 완료</div>
 						) : (
-							<div className={styles.contentState}>모집중</div>
+							<div className={styles.contentState}>모집 중</div>
 						)}
 
 						<h2 className={styles.title}>{data.title}</h2>

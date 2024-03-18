@@ -1,33 +1,37 @@
-import Link from 'next/link';
+import { AllDataType } from '@/types/community/view/data';
 import styles from '@/styles/community/detail/DetailPage.module.css';
+import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { getDate } from '@/utils/getDate';
+interface BookReportProps {
+	data: AllDataType;
+}
+const View = dynamic(() => import('@/components/common/Viewer'), {
+	ssr: false,
+});
 
-export default function page() {
-	const View = dynamic(() => import('@/components/common/Viewer'), {
-		ssr: false,
-	});
-
+const BookReport = ({ data }: BookReportProps) => {
 	return (
-		<div className={styles.container}>
-			<h2 className={styles.title}>title</h2>
+		<section className={styles.container}>
+			<h2 className={styles.title}>{data.title}</h2>
 			<div className={styles.infoWrap}>
 				<div className={styles.contentInfoWrap}>
-					<div>작성일</div>
+					<div>{getDate(data.created_at)}</div>
 					<div className={styles.dot}>●</div>
-					<div>조회수</div>
+					<div>조회수 : {data.view}</div>
 					<div className={styles.dot}>●</div>
-					<div>댓글</div>
+					<div>좋아요 : {data.like} </div>
 				</div>
 				<div className={styles.adimBtnWrap}>
-					<Link href={`community/edit?type=${`###`}/${`docId`}}`}>수정</Link>
+					<Link href={`/community/update/bookReport/${data.doc_id}`}>수정</Link>
 					<button>삭제</button>
 				</div>
 			</div>
 			<hr className={styles.line} />
 			<div className={styles.viewerWrap}>
-				<View />
+				<View content={data.content} />
 			</div>
-			<hr className={styles.line} />
+			{/* <hr className={styles.line} />
 			<div className={styles.commentHeader}>
 				<div className={styles.commentCount}>댓글 ##</div>
 				<div className={styles.commentSortWrap}>
@@ -73,7 +77,9 @@ export default function page() {
 					<button>공유</button>
 				</div>
 				<hr />
-			</div>
-		</div>
+			</div> */}
+		</section>
 	);
-}
+};
+
+export default BookReport;

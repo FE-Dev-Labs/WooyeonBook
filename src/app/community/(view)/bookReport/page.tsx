@@ -43,7 +43,7 @@ async function bookReport({
 	return (
 		<section>
 			{sortedData?.map((data: AllDataType) => {
-				return <ContentBox key={data.doc_id} data={data} />;
+				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
 			})}
 		</section>
 	);

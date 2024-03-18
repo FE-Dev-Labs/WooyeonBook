@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/styles/community/post/OptionBookSelling.module.css';
 import BookSearch from '../BookSearch';
 import dynamic from 'next/dynamic';
