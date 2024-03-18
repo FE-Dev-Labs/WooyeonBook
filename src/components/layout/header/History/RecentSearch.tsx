@@ -1,4 +1,3 @@
-'use client';
 import styles from '@/styles/layout/header/history/recentSearch.module.css';
 import LastestWord from './LastestWord';
 import HotWord from './HotWord';
@@ -21,7 +20,6 @@ export default function RecentSearch() {
 			<div className={styles.recentSearchWrapper}>
 				<LastestWord />
 				<HotWord />
-
 				<div
 					className={styles.lastlestDeleteAll}
 					onMouseDown={() => removeAllKeywords()}>

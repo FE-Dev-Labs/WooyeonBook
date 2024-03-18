@@ -2,17 +2,18 @@ import { Book } from '@/types/bookDetailDate';
 import styles from '@/styles/layout/header/history/searchResult.module.css';
 import { useRouter } from 'next/navigation';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
+import { useRecoilState } from 'recoil';
+import { searchKeyword } from '@/recoil/atom/searchKeyword';
 
 interface searchResultProp {
 	data: Book;
-	keyword: string | number | Date;
 	handleModalStateChange: () => void;
 }
 export default function SearchResult({
 	data,
-	keyword,
 	handleModalStateChange,
 }: searchResultProp) {
+	const [keyword, setKeyword] = useRecoilState(searchKeyword);
 	// 검색어 로컬스토리지 저장
 	const { addKeyword } = useLocalStorage('searchKeywords', []);
 
@@ -21,7 +22,7 @@ export default function SearchResult({
 	// 입력한 키워드가 리스트에 있다면 빈값으로 만들어서 텍스트 색 다르게 주는 함수
 	const titleParts = data.title.split(String(keyword));
 
-	const onSubmit = async () => {
+	const keyonSubmit = async () => {
 		const res = await fetch(
 			`http://localhost:8080/supbase/popularSearch?keyword=${keyword}`,
 		);
@@ -53,7 +54,7 @@ export default function SearchResult({
 		const goToDetailUrl = `/detail/${data.isbn}?type=new`;
 		// 로컬스토리지에 검색어 추가
 		addKeyword(String(keyword));
-		onSubmit();
+		keyonSubmit();
 		// 검색 횟수 업데이트
 		// 디테일 페이지로 넘어가면 검색창 닫아주기
 		handleModalStateChange();

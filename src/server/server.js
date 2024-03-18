@@ -100,38 +100,28 @@ app.post('/api/saveKeywords', async (req, res) => {
 		res.status(400).send(error);
 	}
 });
-// app.post('/api/saveKeywords', async (req, res) => {
-// 	const keyword = req.body.keyword;
-// 	console.log(keyword);
-// 	try {
-// 		// 먼저 해당 키워드가 이미 존재하는지 확인합니다.
-// 		let { data: existingKeywords, error: selectError } = await supabase
-// 			.from('PopularSearch')
-// 			.select('*')
-// 			.eq('keyword', keyword);
 
-// 		if (selectError) throw selectError;
-
-// 		if (existingKeywords.length === 0) {
-// 			// 키워드가 존재하지 않으면 새로 추가합니다.
-// 			const { data, error } = await supabase
-// 				.from('PopularSearch')
-// 				.insert([{ keyword, search_count: 1, created_at: new Date() }]);
-// 			if (error) throw error;
-// 			res.status(200).send(data);
-// 		} else {
-// 			// 키워드가 이미 존재하면 search_count를 업데이트합니다.
-// 			const { data, error } = await supabase
-// 				.from('PopularSearch')
-// 				.update({ search_count: existingKeywords[0].search_count + 1 })
-// 				.match({ keyword });
-// 			if (error) throw error;
-// 			res.status(200).send(data);
-// 		}
-// 	} catch (error) {
-// 		res.status(400).send(error);
-// 	}
-// });
+// 검색어 가져오기 api
+app.get(`/api/getKeywords`, async (req, res) => {
+	try {
+		let { data, error } = await supabase
+			.from('PopularSearch')
+			// select('*') 하면 안됨
+			.select()
+			// db에서 몇개 가져올지 정함
+			.range(0, 10)
+			// 숫자가 높은 순으로 가져옴
+			.order('search_count', { ascending: false })
+			// 최신 순으로 가져옴
+			.order('created_at', { ascending: false });
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send(error);
+	}
+});
 
 // 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {

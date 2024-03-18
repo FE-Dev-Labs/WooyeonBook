@@ -6,13 +6,14 @@ import RecentSearch from './History/RecentSearch';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import axios from 'axios';
-import { useInputState } from '@/hooks/useInputState';
 import SearchResult from './History/SearchResult';
 import { Book } from '@/types/bookDetailDate';
 import cancelIcon from '../../../../public/layout/cancel.png';
 import { useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
 import { useLocalStorage } from './../../../hooks/useLocalStorage';
+import { useRecoilState } from 'recoil';
+import { searchKeyword } from '@/recoil/atom/searchKeyword';
 
 export default function Search() {
 	// 검색어 로컬스토리지 저장
@@ -22,8 +23,8 @@ export default function Search() {
 	const ref = useRef<HTMLInputElement>(null);
 	// 최근 검색어, 인기 검색어
 	const [showSearchHistory, setShowSearchHistory] = useState(false);
-	// 자동 검색어
-	const keyword = useInputState('');
+	// 검색어 리코알
+	const [keyword, setKeyword] = useRecoilState(searchKeyword);
 	// 검색어 책 데이터 배열에 넣기
 	const [searchData, setSearchData] = useState<Book[]>([]);
 
@@ -46,7 +47,7 @@ export default function Search() {
 	// input 커서 시 RecentSearch 컴포넌트 나오는 로직
 	const handleFocus = () => {
 		// input에 글자가 있을 경우 최근 검색어, 인기 검색어 띄우지 않는 로직
-		const word = keyword.value as string;
+		const word = keyword as string;
 		if (word.length > 0) {
 			handleModalOpenChange();
 			// setOpenSearchResult(true);
@@ -58,7 +59,7 @@ export default function Search() {
 	const getdata = async () => {
 		try {
 			const { data } = await axios.get(
-				`http://localhost:8080/search/keyword?keyword=${keyword.value}`,
+				`http://localhost:8080/search/keyword?keyword=${keyword}`,
 			);
 			setSearchData(data);
 		} catch (err) {
@@ -68,16 +69,17 @@ export default function Search() {
 
 	useEffect(() => {
 		const debounce = setTimeout(() => {
-			const word = keyword.value as string;
+			const word = keyword as string;
 			if (word.length > 0) {
 				getdata();
 			}
 		}, 400);
 		return () => clearTimeout(debounce);
-	}, [keyword.value]);
+	}, [keyword]);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		keyword.onChange(e);
+		setKeyword(e.target.value);
+		// keyword.onChange(e);
 		// 만약 input이 빈값이라면 연관검색어 끄고 최근 검색어, 인기 검색어 띄우기
 		if (e.target.value === '') {
 			setShowSearchHistory(true);
@@ -94,12 +96,40 @@ export default function Search() {
 		handleModalCloseChange();
 	};
 
+	const keyonSubmit = async () => {
+		const res = await fetch(
+			`http://localhost:8080/supbase/popularSearch?keyword=${keyword}`,
+		);
+		const key = await res.json();
+		const postdata = {
+			keyword: keyword,
+			search_count: 1,
+			created_at: new Date(),
+		};
+		// 검색어에 대한 기록이 서버에 이미 존재하는지를 확인
+		if (key.length > 0) {
+			await fetch(
+				`http://localhost:8080/api/updateKeywords?keyword=${keyword}&count=${key[0].search_count}`,
+				{
+					method: 'PUT',
+				},
+			);
+		} else {
+			await fetch(`http://localhost:8080/api/saveKeywords`, {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(postdata),
+			});
+		}
+	};
+
 	// 쿼리값 전달
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const searchUrl = `/search?keyword=${String(keyword.value)}`;
+		const searchUrl = `/search?keyword=${String(keyword)}`;
 		// 로컬스토리지에 검색어 추가
-		addKeyword(String(keyword.value));
+		addKeyword(String(keyword));
+		keyonSubmit();
 		// 검색어 모달 닫기		handleModalCloseChange();
 		router.push(searchUrl);
 	};
@@ -128,7 +158,6 @@ export default function Search() {
 										<SearchResult
 											data={data}
 											key={data.itemId}
-											keyword={keyword.value}
 											handleModalStateChange={handleModalStateChange}
 										/>
 									);
