@@ -28,56 +28,19 @@ const BookReport = ({ data }: BookReportProps) => {
 				</div>
 			</div>
 			<hr className={styles.line} />
+			{/* option */}
+			<section className={styles.optionContainer}>
+				<div className={styles.optionItemWrap}>
+					<label className={styles.optionItemTitle}>독후감 책</label>
+					<div className={styles.optionItemContent}>{data.book_name}</div>
+				</div>
+				<hr className={styles.line} />
+			</section>
+			{/* editor */}
 			<div className={styles.viewerWrap}>
 				<View content={data.content} />
 			</div>
-			{/* <hr className={styles.line} />
-			<div className={styles.commentHeader}>
-				<div className={styles.commentCount}>댓글 ##</div>
-				<div className={styles.commentSortWrap}>
-					<button>좋아요순</button>
-					<div className={styles.dot}>●</div>
-					<button>최신순</button>
-				</div>
-			</div>
-			<div className={styles.commentCreateWrap}>
-				<button>###님, 댓글을 작성해보세요.</button>
-			</div>
-			<div className={styles.commentCreateBoxWrap}>
-				<textarea />
-				<div>
-					<button>취소</button>
-					<button>등록</button>
-				</div>
-			</div>
-			<div className={styles.commnetWrap}>
-				<div className={styles.commentInfoWrap}>
-					<div>
-						<div>작성자</div>
-						<div>작성일</div>
-					</div>
-					<div>
-						<button>수정</button>
-						<button>삭제</button>
-					</div>
-				</div>
-				<div className={styles.commentContentWrap}>
-					<p>
-						댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-						내용댓글 내용댓글 내용댓글 내용 댓글 내용댓글 내용댓글 내용댓글
-						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용
-						댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-						내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글
-						내용댓글 내용댓글 내용댓글 내용
-					</p>
-				</div>
-				<div className={styles.contentBtnWrap}>
-					<button>공유</button>
-				</div>
-				<hr />
-			</div> */}
+			<hr className={styles.line} />
 		</section>
 	);
 };
