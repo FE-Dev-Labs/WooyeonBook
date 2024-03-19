@@ -1,33 +1,15 @@
-import Link from 'next/link';
+'use client';
 import styles from '@/styles/community/detail/DetailPage.module.css';
-import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
-export default function page() {
-	const View = dynamic(() => import('@/components/common/Viewer'), {
-		ssr: false,
-	});
-
+const Comment = () => {
+	const [createState, setCreateState] = useState(false);
+	const handleState = () => {
+		setCreateState(!createState);
+	};
 	return (
-		<div className={styles.container}>
-			<h2 className={styles.title}>title</h2>
-			<div className={styles.infoWrap}>
-				<div className={styles.contentInfoWrap}>
-					<div>작성일</div>
-					<div className={styles.dot}>●</div>
-					<div>조회수</div>
-					<div className={styles.dot}>●</div>
-					<div>댓글</div>
-				</div>
-				<div className={styles.adimBtnWrap}>
-					<Link href={`community/edit?type=${`###`}/${`docId`}}`}>수정</Link>
-					<button>삭제</button>
-				</div>
-			</div>
-			<hr className={styles.line} />
-			<div className={styles.viewerWrap}>
-				<View />
-			</div>
-			<hr className={styles.line} />
+		<div>
+			{/* header */}
 			<div className={styles.commentHeader}>
 				<div className={styles.commentCount}>댓글 ##</div>
 				<div className={styles.commentSortWrap}>
@@ -36,16 +18,21 @@ export default function page() {
 					<button>최신순</button>
 				</div>
 			</div>
+			{/* create  btn*/}
 			<div className={styles.commentCreateWrap}>
-				<button>###님, 댓글을 작성해보세요.</button>
+				<button onClick={handleState}>###님, 댓글을 작성해보세요.</button>
 			</div>
-			<div className={styles.commentCreateBoxWrap}>
-				<textarea />
-				<div>
-					<button>취소</button>
-					<button>등록</button>
+			{/* create box */}
+			{createState && (
+				<div className={styles.commentCreateBoxWrap}>
+					<textarea />
+					<div>
+						<button>취소</button>
+						<button>등록</button>
+					</div>
 				</div>
-			</div>
+			)}
+			{/* comment */}
 			<div className={styles.commnetWrap}>
 				<div className={styles.commentInfoWrap}>
 					<div>
@@ -76,4 +63,6 @@ export default function page() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Comment;

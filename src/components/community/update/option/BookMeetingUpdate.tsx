@@ -1,7 +1,6 @@
 'use client';
 import styles from '@/styles/community/update/update.module.css';
 import dynamic from 'next/dynamic';
-import { BookMeetingDataType } from '@/types/community/post/data';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useInputState } from '@/hooks/useInputState';
@@ -10,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import OptionBookMeeting from '../../post/option/OptionBookMeeting';
 import UpdateOptionBookMeeting from '../UpdateOptionBookMeeting';
+import { BookMeetingDataType } from '@/types/community/view/data';
 
 interface UpdateProps {
 	data?: BookMeetingDataType;
@@ -87,11 +87,11 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 			return alert('에러가 발생했습니다.');
 		}
 		// state 초기화
-		title.init();
+		title.init('');
 		setText('');
 		setContentArr([]);
-		chatUrl.init();
-		deadline.init();
+		chatUrl.init('');
+		deadline.init(new Date());
 		setRecruitmentNumber(0);
 		setState(false);
 

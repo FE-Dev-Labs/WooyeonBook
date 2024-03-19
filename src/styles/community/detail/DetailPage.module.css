@@ -1,6 +1,7 @@
 .container {
 	display: flex;
 	flex-direction: column;
+	margin-top: 30px;
 }
 
 .title {
@@ -51,86 +52,44 @@
 
 .line {
 	width: 1300px;
-	margin: 0 auto 30px auto;
-	border-bottom: 1px solid #000;
+	margin-bottom: 30px;
 }
 
 .viewerWrap {
 	width: 1300px;
-	min-height: 400px;
+	min-height: 700px;
 	margin: 0 auto 30px auto;
 }
 
-/* ToastUIEditor viewer */
+/* option section*/
 
-.toastuiEditorContents p {
-	font-size: 1.2rem;
-	line-height: 1.8rem;
-	margin-bottom: 1rem;
+.optionContainer {
+	width: 1300px;
+	margin: 0 auto 30px auto;
+	display: flex;
+	flex-wrap: wrap;
 }
-
-.toastuiEditorContents h1,
-.toastuiEditorContents h2,
-.toastuiEditorContents h3,
-.toastuiEditorContents h4,
-.toastuiEditorContents h5,
-.toastuiEditorContents h6 {
-	padding: 2rem 0 1rem 0;
-	border-bottom: none;
-	margin: 0;
+.optionItemWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 650px;
+	height: 70px;
+	margin-bottom: 30px;
 }
-
-.toastuiEditorContents h1:first-of-type,
-.toastuiEditorContents h2:first-of-type,
-.toastuiEditorContents h3:first-of-type,
-.toastuiEditorContents h4:first-of-type,
-.toastuiEditorContents h5:first-of-type,
-.toastuiEditorContents h6:first-of-type {
-	padding-top: 0;
+.optionItemTitle {
+	font-size: 24px;
+	font-weight: bold;
+	color: #717171;
 }
-
-.toastuiEditorContents h1 {
-	font-size: 2.4rem;
+.optionItemContent {
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 10px;
+	color: #000;
 }
-.toastuiEditorContents h2 {
-	font-size: 2.1rem;
-}
-.toastuiEditorContents h3 {
-	font-size: 1.9rem;
-}
-.toastuiEditorContents h4 {
-	font-size: 1.7rem;
-}
-.toastuiEditorContents h5 {
-	font-size: 1.5rem;
-}
-.toastuiEditorContents h6 {
-	font-size: 1.3rem;
-}
-
-.toastuiEditorContents ul,
-.toastuiEditorContents ol {
-	margin-bottom: 1rem;
-	padding-left: 2rem;
-}
-
-.toastuiEditorContents li {
-	margin-bottom: 0.5rem;
-}
-
-.toastuiEditorContents li p {
-	margin-bottom: 0;
-}
-
-.toastuiEditorContents li::before {
-	content: '';
-	display: block;
-	margin-top: 0.75rem;
-	margin-left: -1.25rem;
-	width: 0.4375rem;
-	height: 0.4375rem;
-	border-radius: 100%;
-	background-color: black;
+.optionItemContent:visited {
+	color: #000;
 }
 
 /* 댓글 */
@@ -157,7 +116,7 @@
 
 .commentCreateWrap {
 	width: 1200px;
-	margin: 0 auto;
+	margin: 15px auto;
 }
 .commentCreateWrap > button {
 	width: 100%;

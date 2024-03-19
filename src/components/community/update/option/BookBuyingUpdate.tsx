@@ -1,7 +1,6 @@
 'use client';
 import styles from '@/styles/community/update/update.module.css';
 import dynamic from 'next/dynamic';
-import { BookBuyingDataType } from '@/types/community/post/data';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useInputState } from '@/hooks/useInputState';
@@ -10,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import OptionBookBuying from '../../post/option/OptionBookBuying';
+import { BookBuyingDataType } from '@/types/community/view/data';
 
 interface UpdateProps {
 	data?: BookBuyingDataType;

@@ -6,15 +6,20 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useEffect, useRef } from 'react';
 import {
-	BookBuyingDataType,
-	BookMeetingDataType,
-	BookReportDataType,
+	BookBuyingPostDataType,
+	BookMeetingPostDataType,
+	BookReportPostDataType,
+	BookSellingPostDataType,
 } from '@/types/community/post/data';
 import uuid from 'react-uuid';
 
 interface UpdateEdiorProps {
 	height?: string;
-	data?: BookReportDataType | BookMeetingDataType | BookBuyingDataType;
+	data?:
+		| BookReportPostDataType
+		| BookMeetingPostDataType
+		| BookBuyingPostDataType
+		| BookSellingPostDataType;
 }
 
 export default function UpdateEdior({

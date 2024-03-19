@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookSellingDataType } from '@/types/community/post/data';
+import { BookSellingPostDataType } from '@/types/community/post/data';
 import OptionBookSelling from '@/components/community/post/option/OptionBookSelling';
 import { useEffect, useState } from 'react';
 
@@ -62,7 +62,7 @@ const BookSellingPostPage = () => {
 		setSellingState(e.value);
 	};
 	const onSubmit = async () => {
-		const data: BookSellingDataType = {
+		const data: BookSellingPostDataType = {
 			created_at: new Date(),
 			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
 			title: title.value as string,

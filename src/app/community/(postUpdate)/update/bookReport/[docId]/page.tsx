@@ -16,7 +16,7 @@ const UpdateBookReport = async ({
 
 	return (
 		<div>
-			<BookReportUpdate data={data[0]} docid={params.docId} />
+			<BookReportUpdate data={data} docid={params.docId} />
 		</div>
 	);
 };

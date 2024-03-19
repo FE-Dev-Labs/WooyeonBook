@@ -1,8 +1,8 @@
-import { getCommunityViewData } from '@/apis/community/getCommunityViewData';
 import ContentBox from '@/components/community/view/ContentBox';
-import { AllDataType, BookReportDataType } from '@/types/community/view/data';
+import { AllDataType, BookBuyingDataType } from '@/types/community/view/data';
+import { getCommunityViewData } from '@/apis/community/getCommunityViewData';
 
-function isBookReportArray(data: any): data is BookReportDataType[] {
+function isBookMeetingArray(data: any): data is BookBuyingDataType[] {
 	return (
 		Array.isArray(data) &&
 		data.every(
@@ -21,32 +21,31 @@ function isBookReportArray(data: any): data is BookReportDataType[] {
 				'doc_id' in item &&
 				'field' in item &&
 				'book_id' in item &&
-				'created_user' in item,
+				'created_user' in item &&
+				'price' in item &&
+				'state' in item,
 		)
 	);
 }
-
-async function bookReport({
+export default async function buyingBook({
 	searchParams,
 }: {
 	searchParams: { sort?: string; q?: string };
 }) {
 	const { data, sortedData } = await getCommunityViewData({
-		page: 'bookReport',
+		page: 'bookBuying',
 		searchParams,
 	});
 
-	if (!isBookReportArray(data)) {
-		throw new Error('Data is not an array of book reports');
+	if (!isBookMeetingArray(data)) {
+		throw new Error('Data is not an array of book buying ');
 	}
 
 	return (
 		<section>
 			{sortedData?.map((data: AllDataType) => {
-				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
+				return <ContentBox key={data.doc_id} data={data} page="bookBuying" />;
 			})}
 		</section>
 	);
 }
-
-export default bookReport;

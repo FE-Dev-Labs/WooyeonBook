@@ -11,6 +11,7 @@ require('dotenv').config();
 
 app.use(cors({ origin: true, credentials: true }));
 // body를 읽는게 있어야된다
+
 app.use(express.json({ extended: true }));
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
@@ -315,6 +316,48 @@ app.get('/list/usedAll', async (req, res) => {
 		const dataLength = await response.data.totalResults;
 
 		res.status(200).send({ data, dataLength });
+	} catch (err) {
+		res.status(400).send(err);
+	}
+});
+
+app.get('/community/:page', async (req, res) => {
+	try {
+		const { data } = await supabase.from(`${req.params.page}`).select('*');
+		return res.status(200).send(data);
+	} catch (err) {
+		res.status(400).send;
+	}
+});
+
+app.get('/community/:page/:docid', async (req, res) => {
+	try {
+		const { data } = await supabase
+			.from(`${req.params.page}`)
+			.select('*')
+			.eq('doc_id', req.params.docid);
+		return res.status(200).send(data[0]);
+	} catch (err) {
+		res.status(400).send;
+	}
+});
+
+// community 주간 인기글 top6
+app.get('/popular/community', async (req, res) => {
+	try {
+		const bookReport = await supabase.from('bookReport').select('*');
+		const bookMeeting = await supabase.from('bookMeeting').select('*');
+		const bookBuying = await supabase.from('bookBuying').select('*');
+		const bookSelling = await supabase.from('bookSelling').select('*');
+
+		const data = [
+			...bookReport.data,
+			...bookMeeting.data,
+			...bookBuying.data,
+			...bookSelling.data,
+		];
+		const sortedData = data.sort((a, b) => b.like - a.like).slice(0, 6);
+		res.status(200).send(sortedData);
 	} catch (err) {
 		res.status(400).send(err);
 	}
