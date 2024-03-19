@@ -2,13 +2,60 @@ import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
 import logoIcon from '../../../../public/layout/logo.png';
 import closeIcon from '../../../../public/common/close.png';
-
+import { cookies, headers } from 'next/headers';
+import { createClient } from '@/utils/supabase/server';
+import { redirect } from 'next/navigation';
 interface SignupProps {
 	isSignupOpen?: boolean;
 	setIsSignupOpen?: (value: boolean) => void;
 }
 
 export default function SignupModal() {
+	const signUp = async (formData: FormData) => {
+		'use server';
+
+		const origin = headers().get('origin');
+		const email = formData.get('email') as string;
+		const password = formData.get('password') as string;
+		const name = formData.get('name') as string;
+		const phone = formData.get('phone') as string;
+		const address = formData.get('address') as string;
+
+		const cookieStore = cookies();
+		const supabase = createClient(cookieStore);
+
+		const { error } = await supabase.auth.signUp({
+			email,
+			password,
+			options: {
+				emailRedirectTo: `${origin}/auth/callback`,
+			},
+		});
+		if (error) throw error;
+		// const {
+		// 	data: { session },
+		// } = await supabase.auth.getSession();
+		// if (error) {
+		// 	console.log(error);
+		// }
+		// const userData = {
+		// 	uuid: session?.user.id as string,
+		// 	email: session?.user.email as string,
+		// 	name: '',
+		// 	phone: '',
+		// 	adress: '',
+		// };
+		// const { data: users } = await supabase
+		// 	.from('users')
+		// 	.insert(userData)
+		// 	.select();
+		// if (error) {
+		// 	return redirect('/?message=Could not authenticate user');
+		// }
+
+		return redirect('/');
+	};
+
 	return (
 		<div className={styles.Container}>
 			<div className={styles.modalWrapper}>
@@ -20,13 +67,14 @@ export default function SignupModal() {
 						<div className={styles.title}>
 							<span>회원가입</span>
 						</div>
-						<form className={styles.formWrapper}>
+						<form action={signUp} className={styles.formWrapper}>
 							<div className={styles.inputWrapper}>
 								<label className={styles.inputLabel}>
 									이름
 									<input
-										type="text"
+										type="name"
 										className={styles.inputField}
+										name="name"
 										placeholder="your name"
 									/>
 								</label>
@@ -34,6 +82,7 @@ export default function SignupModal() {
 									이메일
 									<input
 										type="email"
+										name="email"
 										className={styles.inputField}
 										placeholder="your e-mail"
 									/>
@@ -42,6 +91,7 @@ export default function SignupModal() {
 									비밀번호
 									<input
 										type="password"
+										name="password"
 										className={styles.inputField}
 										placeholder="your password"
 									/>
@@ -49,18 +99,17 @@ export default function SignupModal() {
 								<label className={styles.inputLabel}>
 									비밀번호확인
 									<input
-										type="password"
+										type="checkPassword"
+										name="checkPassword"
 										className={styles.inputField}
 										placeholder="your password confirm"
 									/>
 								</label>
 							</div>
 							<div className={styles.buttonWrapper}>
-								<input
-									type="button"
-									value="회원가입"
-									className={styles.signupButton}
-								/>
+								<button formAction={signUp} className={styles.signupButton}>
+									회원가입
+								</button>
 							</div>
 						</form>
 					</div>

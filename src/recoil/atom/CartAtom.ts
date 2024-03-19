@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const CartAtom = atom<string | number>({
-	key: 'CartAtom',
+export const cartAtom = atom<string | number>({
+	key: 'cartAtom',
 	default: '',
 });

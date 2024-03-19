@@ -1,5 +1,5 @@
 'use client';
-import { CartAtom } from '@/recoil/atom/CartAtom';
+import { cartAtom } from '@/recoil/atom/cartAtom';
 import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { useRecoilState } from 'recoil';
@@ -7,7 +7,7 @@ interface bookDetailProp {
 	bookInfo: Book;
 }
 export default function Detailtotalquantity({ bookInfo }: bookDetailProp) {
-	const [count, setCount] = useRecoilState<string | number>(CartAtom);
+	const [count, setCount] = useRecoilState<string | number>(cartAtom);
 	const totalPrice =
 		typeof count === 'number'
 			? (count * bookInfo.priceSales).toLocaleString()
