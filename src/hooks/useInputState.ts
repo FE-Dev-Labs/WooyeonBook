@@ -15,5 +15,5 @@ export const useInputState = (initValue: string | number | Date) => {
 		setValue(data);
 	}, []);
 
-	return { value, onChange, init, onChangeValue };
+	return { value, setValue, onChange, init, onChangeValue };
 };

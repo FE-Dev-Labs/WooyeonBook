@@ -127,7 +127,7 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 						</dl>
 						<dl>
 							<dt className={styles.inforText}>전자책</dt>
-							{bookInfo.subInfo.ebookList.map((ebook: any) => {
+							{bookInfo.subInfo.ebookList?.map((ebook: any) => {
 								return (
 									<dd className={styles.inforEbookListLink} key={ebook.itemId}>
 										<Link href={ebook.link}>

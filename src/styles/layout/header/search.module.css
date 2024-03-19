@@ -78,3 +78,6 @@
 .searchResultWord {
 	padding: 20px 0px 0px 0px;
 }
+.searchResultWrap {
+	cursor: pointer;
+}
