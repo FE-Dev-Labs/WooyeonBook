@@ -1,4 +1,4 @@
-interface BookReportDataType {
+interface BookReportPostDataType {
 	title: string;
 	content: string;
 	like: number;
@@ -14,7 +14,7 @@ interface BookReportDataType {
 	category: string;
 }
 
-interface BookMeetingDataType {
+interface BookMeetingPostDataType {
 	title: string;
 	content: string;
 	like: number;
@@ -30,7 +30,7 @@ interface BookMeetingDataType {
 	chatting_url: string;
 }
 
-interface BookBuyingDataType {
+interface BookBuyingPostDataType {
 	title: string;
 	content: string;
 	like: number;
@@ -43,12 +43,12 @@ interface BookBuyingDataType {
 	book_img_url: string;
 	category: string;
 	content_img_url: string[];
-	price: string;
+	price: number;
 	state: boolean;
 	book_id: string;
 }
 
-interface BookSellingDataType {
+interface BookSellingPostDataType {
 	title: string;
 	content: string;
 	like: number;
@@ -61,16 +61,15 @@ interface BookSellingDataType {
 	book_img_url: string;
 	category: string;
 	content_img_url: string[];
-	price: string;
+	price: number;
 	state: boolean;
-	book_state: string;
 	selling: boolean;
 	book_id: string;
 }
 
 export type {
-	BookReportDataType,
-	BookMeetingDataType,
-	BookBuyingDataType,
-	BookSellingDataType,
+	BookReportPostDataType,
+	BookMeetingPostDataType,
+	BookBuyingPostDataType,
+	BookSellingPostDataType,
 };

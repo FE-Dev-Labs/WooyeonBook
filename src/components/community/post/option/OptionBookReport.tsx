@@ -1,6 +1,6 @@
 'use client';
 import styles from '@/styles/community/post/OptionBookReport.module.css';
-import BookSearch from './BookSearch';
+import BookSearch from '../BookSearch';
 import { useRecoilValue } from 'recoil';
 import { book_name } from '@/recoil/atom/bookIdAtom';
 

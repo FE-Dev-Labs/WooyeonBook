@@ -1,7 +1,6 @@
 'use client';
 import styles from '@/styles/community/update/update.module.css';
 import dynamic from 'next/dynamic';
-import { BookSellingDataType } from '@/types/community/post/data';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
@@ -9,7 +8,8 @@ import { useInputState } from '@/hooks/useInputState';
 import { editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
-import OptionBookSelling from '../../post/OptionBookSelling';
+import OptionBookSelling from '../../post/option/OptionBookSelling';
+import { BookSellingDataType } from '@/types/community/view/data';
 
 interface UpdateProps {
 	data?: BookSellingDataType;
@@ -90,8 +90,8 @@ function Update({ data, docid }: UpdateProps) {
 			return alert('에러가 발생했습니다.');
 		}
 		// state 초기화
-		title.init();
-		price.init();
+		title.init('');
+		price.init(0);
 		setText('');
 		setState(false);
 		setSelectBook({

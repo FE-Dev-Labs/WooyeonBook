@@ -1,11 +1,11 @@
 import { book_name } from '@/recoil/atom/bookIdAtom';
 import styles from '@/styles/community/post/OptionBookBuying.module.css';
 import { useRecoilValue } from 'recoil';
-import BookSearch from './BookSearch';
+import BookSearch from '../BookSearch';
 
 interface OptionBookBuyingProps {
 	sellingPrice: {
-		value: string;
+		value: number;
 		onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	};
 }
@@ -26,7 +26,7 @@ const OptionBookBuying = ({ sellingPrice }: OptionBookBuyingProps) => {
 				<label>구매하고 싶은 가격을 적어주세요.</label>
 				<input
 					type="text"
-					value={sellingPrice.value as string}
+					placeholder="가격을 입력해주세요."
 					onChange={sellingPrice.onChange}
 				/>
 			</div>

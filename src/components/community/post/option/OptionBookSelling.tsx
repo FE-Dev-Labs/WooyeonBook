@@ -1,5 +1,7 @@
+'use client';
+
 import styles from '@/styles/community/post/OptionBookSelling.module.css';
-import BookSearch from './BookSearch';
+import BookSearch from '../BookSearch';
 import dynamic from 'next/dynamic';
 import { useRecoilValue } from 'recoil';
 import { book_name } from '@/recoil/atom/bookIdAtom';

@@ -13,7 +13,6 @@ const UpdatePage = async ({
 			cache: 'force-cache',
 		},
 	).then((res) => res.json());
-	console.log(data);
 
 	return (
 		<div>
