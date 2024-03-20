@@ -2,7 +2,6 @@
 
 import styles from '@/styles/category/categoryBar/categoryBar.module.css';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
 
 export default function CategoryBar() {
 	// useRouter 호출
@@ -12,23 +11,28 @@ export default function CategoryBar() {
 	// useSerachParams 호출
 	const params = useSearchParams();
 
-	// categoryId
+	// categoryId 추출
 	const categoryId = params.get('categoryId');
-	// 타입 불일치로 인해 숫자 타입으로 변환
+	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
 	const categoryIdNumber = Number(categoryId);
-	// 선택된 카테고리 state
-	const [selectedCategory, setSelectedCategory] =
-		useState<number>(categoryIdNumber);
+
 	// 카테고리 선택 시 동작하는 함수
-	const handleClickCategory = (categoryId: any) => {
+	const handleClickCategory = (categoryId: number) => {
 		// 카테고리 - 전체 시 아이디 null로 찍히므로 null일 시 기존 페이지로 이동
+		// !categoryId 시 기존 페이지로 이동(카테고리 전체 시 아이디 null로 찍힘)
 		if (!categoryId) {
 			router.push(pathname);
+			// categoryId = true 시 해당 경로로 push
 		} else {
 			router.push(`${pathname}?categoryId=${categoryId}`);
 		}
-		// 스타일링을 위한 setState
-		setSelectedCategory(categoryId);
+	};
+
+	// categoryId(nav item의 category number)를 파라미터로 받아 className을 바꿔주는 함수
+	const linkClassName = (categoryId: number) => {
+		return categoryId === categoryIdNumber
+			? styles.selectedCategory
+			: styles.categoryItem;
 	};
 
 	return (
@@ -37,7 +41,7 @@ export default function CategoryBar() {
 				<header className={styles.categoryBarTitle}>
 					<h1>분야</h1>
 				</header>
-				<ol className={styles.categoryBarItems}>
+				<ul className={styles.categoryBar}>
 					{categoryItem.map((item) => {
 						if (item.id === 0) {
 							return null;
@@ -45,13 +49,13 @@ export default function CategoryBar() {
 						return (
 							<li
 								key={item.id}
-								className={`${selectedCategory === item.id && styles.selectedCategory}`}
+								className={linkClassName(item.id)}
 								onClick={() => handleClickCategory(item.id)}>
 								{item.name}
 							</li>
 						);
 					})}
-				</ol>
+				</ul>
 			</div>
 		</div>
 	);

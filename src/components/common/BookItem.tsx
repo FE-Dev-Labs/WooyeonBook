@@ -67,9 +67,11 @@ export default function BookItem({ rank, data }: BookItemProps) {
 					'',
 				)} / ${data?.publisher?.replace('(방송교재)', '')}`}</p>
 				<p>
-					<span style={{ textDecoration: 'line-through' }}>
-						{`${data?.priceStandard?.toLocaleString()}원`}
-					</span>
+					{discountRate > 0 && (
+						<span style={{ textDecoration: 'line-through' }}>
+							{`${data?.priceStandard?.toLocaleString()}원`}
+						</span>
+					)}
 					{` ${data?.priceSales?.toLocaleString()}원`}
 					{discountRate > 0 && ` [${discountRate}% 할인]`}
 				</p>
