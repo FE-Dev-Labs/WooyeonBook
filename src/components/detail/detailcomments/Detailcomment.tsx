@@ -3,10 +3,22 @@
 import Detailcommentslist from './Detailcommentslist';
 import styles from '@/styles/detail/detailcomments/detailcomment.module.css';
 import { useEffect, useState } from 'react';
+import { createClient } from '@/utils/supabase/client';
+
 export default function Detailcomment() {
+	const supabase = createClient();
+
+	const getUser = async () => {
+		const {
+			data: { user },
+		} = await supabase.auth.getUser();
+		return console.log(user);
+	};
 	const [isLogin, setIsLogin] = useState(false);
 
 	useEffect(() => {
+		getUser();
+
 		if (document.cookie === null || document.cookie === '') {
 			setIsLogin(false);
 		} else {
