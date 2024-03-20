@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import OptionBookSelling from '../../post/option/OptionBookSelling';
 import { BookSellingDataType } from '@/types/community/view/data';
+import { getUser } from '@/apis/community/getUser';
 
 interface UpdateProps {
 	data?: BookSellingDataType;
@@ -60,14 +61,16 @@ function Update({ data, docid }: UpdateProps) {
 		setSellingState(data.state);
 	}, []);
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
+
 		const data = {
 			doc_id: docid,
 			created_at: new Date(),
-			created_user: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bea',
+			created_user: user_id as string,
 			title: title.value as string,
 			content: text,
 			content_img_url: [],
-			user_name: 'user',
+			user_name: user_name as string,
 			book_id: selectBook.bookId,
 			book_name: selectBook.bookName,
 			book_img_url: selectBook.bookImgUrl,
