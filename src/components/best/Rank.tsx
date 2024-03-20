@@ -9,7 +9,7 @@ interface RankProp {
 export default function Rank({ data }: RankProp) {
 	return (
 		<div className={styles.rankBox}>
-			{data.map((book) => (
+			{data?.map((book) => (
 				<div className={styles.itemWrapper} key={book.itemId}>
 					<div className={styles.rank}>{book.bestRank}</div>
 					<BookItem data={book} />

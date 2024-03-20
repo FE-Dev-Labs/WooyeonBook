@@ -4,12 +4,12 @@ import PageHeader from '@/components/common/PageHeader';
 import Sort from '@/components/common/Sort';
 import styles from '@/styles/best/best.module.css';
 import Pagination from '@/components/common/Pagination';
-import Category from '@/components/common/Category';
 import Rank from '@/components/best/Rank';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { BestSellerType } from '@/types/bookType';
+import CategoryBox from '@/components/common/CategoryBox';
 
 export default function bestPage() {
 	// useSearchParams 호출
@@ -17,7 +17,7 @@ export default function bestPage() {
 	// url 내 categoryId 추출
 	const categoryId = params.get('categoryId');
 	// 신간 도서 전체 아이템 state
-	const [bestAllItems, setBestAllItems] = useState<BestSellerType[]>([]);
+	const [bestAllItem, setBestAllItem] = useState<BestSellerType[]>([]);
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
@@ -26,7 +26,7 @@ export default function bestPage() {
 	const selectedNumRef = useRef<number>(1);
 
 	// 페이지(숫자) 선택 시 실행되는 함수
-	const handleClickPage = (pageNum: number) => {
+	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
 		if (selectedNumRef.current === pageNum) return;
 		// 현재 페이지의 숫자 스타일링을 위함
@@ -41,11 +41,11 @@ export default function bestPage() {
 	const fetchData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/bestAll?categoryId=${categoryId}&page=${currentPage}`,
-			{ cache: 'no-cache' },
+			{ cache: 'force-cache' },
 		);
 		const { data, dataLength } = await response.json();
 		// book item
-		setBestAllItems(data);
+		setBestAllItem(data);
 		// book item의 총 개수
 		setItemLength(dataLength);
 	};
@@ -62,12 +62,12 @@ export default function bestPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<Category />
+					<CategoryBox />
 					{/* <Sort page="best" /> */}
-					<Rank data={bestAllItems} />
+					<Rank data={bestAllItem} />
 					<Pagination
 						itemLength={itemLength}
-						handleClickPage={handleClickPage}
+						handlePageNumClick={handlePageNumClick}
 						selectedNumRef={selectedNumRef}
 						currentPage={currentPage}
 						page="best"

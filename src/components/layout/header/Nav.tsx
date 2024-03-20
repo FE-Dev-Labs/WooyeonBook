@@ -3,40 +3,37 @@
 import styles from '@/styles/layout/header/nav.module.css';
 import Link from 'next/link';
 import NavCategory from './NavCategory';
-import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Nav() {
-	// usePathname 호출
+	//  usePathname 호출
 	const pathname = usePathname();
-	// 선택된 내비 아이템 state
-	const [selectedNav, setSelectedNav] = useState(pathname);
 
-	// 내비 아이템 선택 시 실행되는 함수
-	const handleNavClick = (link: string) => {
-		setSelectedNav(link);
+	// link를 파라미터로 받아 className을 바꿔주는 함수
+	const linkClassName = (path: string) => {
+		// 현재 페이지 경로와 일치하거나 or 현재 페이지가 커뮤니티일 때 커뮤니티로 시작하는 모든 페이지에 스타일 적용
+		return path === pathname ||
+			(path.startsWith('/community') && pathname.startsWith('/community'))
+			? styles.selectedNav
+			: styles.navItem;
 	};
-
-	// 선택된 내비 아이템 업데이트 해주는 useEffect
-	useEffect(() => {
-		setSelectedNav(pathname);
-		// 주소가 변경될 때
-	}, [pathname]);
+	// const linkClassName = (path: string) => {
+	// 	return path === pathname ? styles.selectedNav : styles.navItem;
+	// };
 
 	return (
 		<div className={styles.navigationWrapper}>
 			<NavCategory />
-			{nav.map((item, index) => (
-				<Link
-					key={index}
-					href={item.link}
-					onClick={() => {
-						handleNavClick(item.link);
-					}}
-					className={`${(selectedNav === item.link || (selectedNav === '/community/bookReport' && item.link.startsWith('/community'))) && styles.selectedNav}`}>
-					{item.name}
-				</Link>
-			))}
+			<div className={styles.navWrap}>
+				{nav.map((item, index) => (
+					<Link
+						key={index}
+						className={linkClassName(item.link)}
+						href={item.link}>
+						{item.name}
+					</Link>
+				))}
+			</div>
 		</div>
 	);
 }
