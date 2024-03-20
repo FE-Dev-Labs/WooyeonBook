@@ -123,6 +123,14 @@ app.get(`/api/getKeywords`, async (req, res) => {
 		res.status(400).send(error);
 	}
 });
+app.get('/auth', async (req, res) => {
+	try {
+		const { data, error } = await supabase.auth.getUser();
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(400).send;
+	}
+});
 
 // 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {

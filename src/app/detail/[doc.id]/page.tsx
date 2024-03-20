@@ -7,6 +7,7 @@ import Detailinformation from '@/components/detail/detaildata/detailinformation'
 import Detailexplanation from './../../../components/detail/detaildata/detailexplanation';
 import { ResponseData } from '@/types/bookDetailDate';
 import Detailsustainability from '@/components/detail/detaildata/detailsustainability';
+import Detailcookies from '@/components/detail/detailcomments/Detailcookies';
 
 export default async function page({
 	params,
@@ -44,7 +45,8 @@ export default async function page({
 							<Detailsustainability bookInfo={book} />
 						</Accordion>
 						<Accordion title={'한줄평'} index={3}>
-							<Detailcomment />
+							<Detailcookies />
+							{/* <Detailcomment /> */}
 						</Accordion>
 					</AccordionWrapper>
 				</div>

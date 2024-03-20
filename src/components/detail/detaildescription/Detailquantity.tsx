@@ -4,11 +4,11 @@ import Image from 'next/image';
 import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
 import { useRecoilState } from 'recoil';
-import { CartAtom } from '@/recoil/atom/CartAtom';
+import { cartAtom } from '@/recoil/atom/cartAtom';
 import { useEffect } from 'react';
 
 export default function Detailquantity() {
-	const [count, setCount] = useRecoilState<string | number>(CartAtom);
+	const [count, setCount] = useRecoilState<string | number>(cartAtom);
 
 	// 수량 추가
 	const IncreaseQuantity = () => {
