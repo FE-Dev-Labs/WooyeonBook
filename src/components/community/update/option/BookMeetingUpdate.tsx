@@ -52,7 +52,7 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 		if (!data) return;
 		title.onChangeValue(data.title);
 		setText(data.content);
-		setContentArr(data.content_img_url);
+		setContentArr(data.content_img_url as string[]);
 		chatUrl.onChangeValue(data.chatting_url);
 		setRecruitmentNumber(data.recruitment_number);
 		deadline.onChangeValue(data.deadline);

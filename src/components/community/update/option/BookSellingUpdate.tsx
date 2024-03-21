@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
-import { editorText } from '@/recoil/atom/editorAtom';
+import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import OptionBookSelling from '../../post/option/OptionBookSelling';
@@ -39,6 +39,7 @@ function Update({ data, docid }: UpdateProps) {
 	const price = useInputState('');
 	const [state, setState] = useState<boolean>(false);
 	const [text, setText] = useRecoilState(editorText);
+	const [contentArr, setContentArr] = useRecoilState(editorImgArr);
 	const [selectBook, setSelectBook] = useRecoilState(selectBookData);
 	const [sellingState, setSellingState] = useState<boolean>(false);
 	const onchangeSellingState = (e: any) => {
@@ -52,6 +53,7 @@ function Update({ data, docid }: UpdateProps) {
 		title.onChangeValue(data.title);
 		price.onChangeValue(data.price);
 		setText(data.content);
+		setContentArr(data.content_img_url as string[]);
 		setState(data.state);
 		setSelectBook({
 			bookName: data.book_name,
@@ -69,7 +71,7 @@ function Update({ data, docid }: UpdateProps) {
 			created_user: user_id as string,
 			title: title.value as string,
 			content: text,
-			content_img_url: [],
+			content_img_url: contentArr as string[],
 			user_name: user_name as string,
 			book_id: selectBook.bookId,
 			book_name: selectBook.bookName,
