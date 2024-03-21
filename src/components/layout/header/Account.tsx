@@ -13,7 +13,7 @@ export default function Account() {
 		<div className={styles.accountWrapper}>
 			{isLoggedin ? (
 				<>
-					<Link href="/my/like">
+					<Link href="/login">
 						<Image src={loginIcon} alt="login" width={25} height={25} />
 					</Link>
 					<Link href="/mypage?page=bookReport">

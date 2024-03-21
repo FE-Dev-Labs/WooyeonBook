@@ -20,7 +20,7 @@ export default async function RootLayout({ children, auth }: BasicLayoutType) {
 				<RecoilRootWrapper>
 					<Header />
 					{children}
-					{/* {auth} */}
+					{auth}
 					<Footer />
 				</RecoilRootWrapper>
 			</body>
