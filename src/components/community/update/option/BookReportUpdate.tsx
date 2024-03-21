@@ -61,7 +61,7 @@ function Update({ data, docid }: UpdateProps) {
 			created_user: user_id,
 			title: title.value as string,
 			content: text,
-			content_img_url: contentArr as string[],
+			content_img_url: contentArr,
 			user_name: user_name as string,
 			book_id: selectBook.bookId,
 			book_name: selectBook.bookName,
@@ -89,6 +89,7 @@ function Update({ data, docid }: UpdateProps) {
 			bookImgUrl: '',
 			bookId: '',
 		});
+		setContentArr([]);
 		return router.push('/');
 	};
 	return (
