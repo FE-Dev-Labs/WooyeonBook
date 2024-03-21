@@ -6,7 +6,6 @@ import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 interface PaginationProps {
 	itemLength: number;
 	handlePageNumClick: (page: number) => void;
-	selectedNumRef: React.RefObject<number>;
 	currentPage: number;
 	page?: string;
 }
@@ -14,7 +13,7 @@ interface PaginationProps {
 export default function Pagination({
 	itemLength,
 	handlePageNumClick,
-	selectedNumRef,
+	currentPage,
 	page,
 }: PaginationProps) {
 	// 한 페이지 당 나타낼 아이템의 개수
@@ -39,7 +38,9 @@ export default function Pagination({
 				{pageArr.map((num) => {
 					return (
 						<div
-							className={`${styles.paginationItem} ${selectedNumRef.current === num && styles.selectedNum}`}
+							className={
+								currentPage === num ? styles.selectedNum : styles.paginationItem
+							}
 							key={num}
 							onClick={() => {
 								handlePageNumClick(num);

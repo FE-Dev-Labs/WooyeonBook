@@ -9,7 +9,6 @@ interface CategoryConentsProp {
 	data: NewBookType[];
 	itemLength: number;
 	handlePageNumClick: (page: number) => void;
-	selectedNumRef: React.RefObject<number>;
 	currentPage: number;
 }
 
@@ -17,7 +16,6 @@ export default function CategoryContents({
 	data,
 	itemLength,
 	handlePageNumClick,
-	selectedNumRef,
 	currentPage,
 }: CategoryConentsProp) {
 	return (
@@ -29,7 +27,6 @@ export default function CategoryContents({
 				itemLength={itemLength}
 				handlePageNumClick={handlePageNumClick}
 				currentPage={currentPage}
-				selectedNumRef={selectedNumRef}
 			/>
 		</div>
 	);
