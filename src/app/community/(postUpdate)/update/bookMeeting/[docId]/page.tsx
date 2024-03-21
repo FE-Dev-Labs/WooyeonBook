@@ -14,8 +14,6 @@ const UpdateBookMeeting = async ({
 		},
 	).then((res) => res.json());
 
-	console.log(data);
-
 	return (
 		<div>
 			<BookMeetingUpdate data={data} docid={params.docId} />

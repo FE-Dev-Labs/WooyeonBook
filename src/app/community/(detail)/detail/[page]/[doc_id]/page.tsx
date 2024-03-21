@@ -17,7 +17,6 @@ export default async function DetailPage({
 		},
 	);
 	const data: AllDataType = await response.json();
-	console.log(data);
 
 	switch (params.page) {
 		case 'bookReport':

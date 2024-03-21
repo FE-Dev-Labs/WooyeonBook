@@ -44,7 +44,6 @@ export default function UpdateEdior({
 	];
 	const setText = useSetRecoilState(editorText);
 	const [imgArr, setImgArr] = useRecoilState(editorImgArr);
-	console.log(imgArr);
 
 	const onChangeText = () => {
 		setText(ref?.current?.getInstance().getMarkdown());
