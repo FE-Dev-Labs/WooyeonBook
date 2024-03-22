@@ -144,6 +144,8 @@ import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { NewBookType } from '@/types/bookType';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 
 export default function newPage() {
 	// useSearchParams 호출
@@ -156,15 +158,32 @@ export default function newPage() {
 	const [dataLength, setDataLength] = useState<number>(0);
 	// 해당 카테고리 페이지 갯수 state
 	const [pageLength, setPageLength] = useState<number>(1);
+	// 현재 카테고리의 페이지 state
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	// 소팅 state(제목순, 최신순)
+	const sortType = useRecoilValue(sortTypeState);
 
 	// server -> api 받아오는 함수
 	const fetchData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/newAllTest?categoryId=${categoryId}`,
 		);
-		const { data, pageLength } = await response.json();
+		const { data, dataLength, pageLength } = await response.json();
+
+		// 필터링하고자 하는 itemId 목록
+		const excludeItemIds = [
+			336540600, 336575362, 336575314, 336736439, 336731190, 336734731,
+			336732928, 336733515, 336732928, 336616984, 336516899, 336593889,
+			336514238, 336611587, 336595673, 336429171,
+		];
+
+		// excludeItemIds에 포함되지 않은 아이템만 필터링
+		const filteredData = data.filter(
+			(item: NewBookType) => !excludeItemIds.includes(item.itemId),
+		);
+
 		// 해당 카테고리 all item
-		setNewAllItem(data);
+		setNewAllItem(filteredData);
 		// 해당 카테고리 아이템 갯수
 		setDataLength(dataLength);
 		// 해당 카테고리 페이지네이션에 필요한 숫자
@@ -176,6 +195,28 @@ export default function newPage() {
 		(item) => item.id === Number(categoryId),
 	);
 
+	// 현재 카테고리의 각 페이지(숫자) 선택 시 실행되는 함수
+	const handlePageNumClick = (pageNum: number) => {
+		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
+		if (currentPage === pageNum) return;
+		// 현재 페이지 숫자 변경
+		setCurrentPage(pageNum);
+		// 페이지 선택시 페이지 상단으로 스크롤 이동
+		window.scrollTo({ top: 300, behavior: 'smooth' });
+	};
+
+	// 소팅한 data
+	const sortedData =
+		// 제목순일 때의 sort
+		sortType === '제목순'
+			? newAllItem.sort((a, b) => a.title.localeCompare(b.title))
+			: // 제목순이 아닐 떄의 sort(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
+				newAllItem.sort(
+					(a, b) =>
+						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+				);
+
+	// fetchData 뿌려주는 useEffect
 	useEffect(() => {
 		fetchData();
 	}, [categoryId]);
@@ -189,7 +230,14 @@ export default function newPage() {
 				<div />
 				<div className={styles.wrapper}>
 					<CategoryBar />
-					<CategoryContents data={newAllItem} pageLength={pageLength} />
+					<CategoryContents
+						data={sortedData}
+						dataLength={dataLength}
+						pageLength={pageLength}
+						currentPage={currentPage}
+						handlePageNumClick={handlePageNumClick}
+						page="category"
+					/>
 				</div>
 				<div>
 					<RecentlyViewedBooks />

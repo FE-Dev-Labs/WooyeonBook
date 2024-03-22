@@ -4,33 +4,35 @@ import arrowRightIcon from '../../../public/common/arrowRight.png';
 import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 
 interface PaginationProps {
-	itemLength: number;
-	handlePageNumClick: (page: number) => void;
+	dataLength: number;
+	pageLength: number;
 	currentPage: number;
+	handlePageNumClick: (page: number) => void;
 	page?: string;
 }
 
 export default function Pagination({
-	itemLength,
-	handlePageNumClick,
+	pageLength,
+	dataLength,
 	currentPage,
+	handlePageNumClick,
 	page,
 }: PaginationProps) {
 	// 한 페이지 당 나타낼 아이템의 개수
 	// page가 'best'라면 한 페이지 당 아이템의 개수를 24로, 아니면 30으로 설정
-	const itemPerPage = page === 'best' ? 24 : 30;
+	const itemPerPage = page === 'best' || 'category' ? 24 : 30;
 
 	// 해당 카테고리의 페이지의 개수
 	// const totalPages = Math.ceil(itemLength / itemPerPage);
 	let totalPages =
 		page === 'best'
-			? Math.min(Math.ceil(itemLength / itemPerPage), 10)
+			? Math.min(Math.ceil(dataLength / itemPerPage), 10)
 			: page === 'used'
-				? Math.min(Math.ceil(itemLength / itemPerPage), 30)
-				: Math.ceil(itemLength / itemPerPage);
+				? Math.min(Math.ceil(dataLength / itemPerPage), 30)
+				: Math.ceil(dataLength / itemPerPage);
 
 	// 해당 카테고리의 페이지 갯수 배열화
-	let pageArr = Array.from({ length: totalPages }, (_, i) => i + 1);
+	let pageArr = Array.from({ length: pageLength }, (_, i) => i + 1);
 
 	return (
 		<div className={styles.paginationWrapper}>

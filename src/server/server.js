@@ -350,14 +350,14 @@ app.get('/list/newAllTest', async (req, res) => {
 	// 첫 api 요청
 	try {
 		const response = await axios.get(
-			`${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+			`${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 		);
 		// 해당 카테고리 item(최대 50개이므로 페이지네이션에 불필요)
 		// const data = await response.data.item;
 		// 해당 카테고리 item의 총 갯수
 		const dataLength = await response.data.totalResults;
 		// 해당 카테고리 페이지 총 갯수
-		const pageLength = Math.ceil(dataLength / 50);
+		const pageLength = Math.ceil(dataLength / 24);
 
 		// start 값을 동적으로 삽입하기 위한 api 재요청. 각 start 값에 대해 요청 반복
 		// 해당 카테고리의 전체 아이템을 삽입해줄 빈 배열 생성
@@ -374,7 +374,7 @@ app.get('/list/newAllTest', async (req, res) => {
 		// 해당 카테고리의 전체 데이터
 		const data = categoryAlldata;
 
-		res.status(200).send({ data, pageLength });
+		res.status(200).send({ data, dataLength, pageLength });
 	} catch (err) {
 		res.status(400).send(err);
 	}
