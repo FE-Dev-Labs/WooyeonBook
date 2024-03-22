@@ -6,6 +6,7 @@ import Link from 'next/link';
 import styles from '@/styles/community/layout.module.css';
 import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
+import { getDate } from '@/utils/getDate';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
@@ -35,15 +36,11 @@ export default async function CommunityLayout({ children }: BasicLayoutType) {
 						<div>
 							<h3>주간 인기글</h3>
 
-							{popularData.map((data: AllDataType, index: number) => {
-								const date = new Date(data.created_at);
-								const year = date.getFullYear();
-								const month = ('0' + (date.getMonth() + 1)).slice(-2);
-								const day = ('0' + date.getDate()).slice(-2);
-								const dateString = year + '년' + month + '월' + day + '일';
-
+							{popularData.map((data: AllDataType) => {
 								return (
-									<Link href={`/community/detail/${data.doc_id}`} key={index}>
+									<Link
+										href={`/community/detail/${data.doc_id}`}
+										key={data.doc_id}>
 										<div className={styles.weeklyPopularContent}>
 											{data.title}
 										</div>
@@ -51,7 +48,7 @@ export default async function CommunityLayout({ children }: BasicLayoutType) {
 											<div className={styles.weeklyPopularWriter}>
 												{data.user_name}
 											</div>
-											<div>{dateString}</div>
+											<div>{getDate(data.created_at)}</div>
 										</div>
 									</Link>
 								);
