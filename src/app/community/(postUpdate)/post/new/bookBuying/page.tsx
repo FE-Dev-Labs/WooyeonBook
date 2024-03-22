@@ -11,6 +11,7 @@ import { supabase } from '@/utils/supabase/supabase';
 import { BookBuyingPostDataType } from '@/types/community/post/data';
 import OptionBookBuying from '@/components/community/post/option/OptionBookBuying';
 import { useEffect } from 'react';
+import { getUser } from '@/apis/community/getUser';
 
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
@@ -56,13 +57,15 @@ const BookBuyingPostPage = () => {
 	// 가격
 	const price = useInputState(0);
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
+
 		const data: BookBuyingPostDataType = {
 			created_at: new Date(),
-			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
+			created_user: user_id as string,
 			title: title.value as string,
 			content: content,
 			content_img_url: imgArr,
-			user_name: 'user-name',
+			user_name: user_name as string,
 			book_id: selectedBook.bookId,
 			book_name: selectedBook.bookName,
 			book_img_url: selectedBook.bookImgUrl,

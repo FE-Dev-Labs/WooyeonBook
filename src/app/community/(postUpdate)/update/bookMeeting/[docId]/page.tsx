@@ -10,11 +10,9 @@ const UpdateBookMeeting = async ({
 	const data = await fetch(
 		`http://localhost:8080/api/community/bookMeeting/${params.docId}`,
 		{
-			cache: 'force-cache',
+			cache: 'no-store',
 		},
 	).then((res) => res.json());
-
-	console.log(data);
 
 	return (
 		<div>

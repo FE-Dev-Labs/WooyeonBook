@@ -10,6 +10,7 @@ import { supabase } from '@/utils/supabase/supabase';
 import { BookMeetingPostDataType } from '@/types/community/post/data';
 import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
 import { useEffect, useState } from 'react';
+import { getUser } from '@/apis/community/getUser';
 
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
@@ -62,13 +63,14 @@ const BookMeetingPostPage = () => {
 		setRecruitmentNumber(e.value);
 	};
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
 		const data: BookMeetingPostDataType = {
 			created_at: new Date(),
-			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
+			created_user: user_id as string,
 			title: title.value as string,
 			content: content,
 			content_img_url: imgArr,
-			user_name: 'user-name',
+			user_name: user_name as string,
 			field: page,
 			view: 0,
 			like: 0,

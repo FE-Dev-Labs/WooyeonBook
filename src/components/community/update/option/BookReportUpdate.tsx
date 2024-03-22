@@ -6,10 +6,11 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
-import { editorText } from '@/recoil/atom/editorAtom';
+import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
 import { BookReportDataType } from '@/types/community/view/data';
+import { getUser } from '@/apis/community/getUser';
 
 interface UpdateProps {
 	data?: BookReportDataType;
@@ -37,6 +38,8 @@ function Update({ data, docid }: UpdateProps) {
 	const title = useInputState('');
 	const [text, setText] = useRecoilState(editorText);
 	const [selectBook, setSelectBook] = useRecoilState(selectBookData);
+	const [contentArr, setContentArr] = useRecoilState(editorImgArr);
+
 	const view = data?.view;
 	const like = data?.like;
 
@@ -47,16 +50,19 @@ function Update({ data, docid }: UpdateProps) {
 			bookImgUrl: data.book_img_url,
 			bookId: data.book_id,
 		});
+		setContentArr(data.content_img_url as string[]);
 	}, []);
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
+
 		const data = {
 			doc_id: docid,
 			created_at: new Date(),
-			created_user: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bea',
+			created_user: user_id,
 			title: title.value as string,
 			content: text,
-			content_img_url: [],
-			user_name: 'user',
+			content_img_url: contentArr,
+			user_name: user_name as string,
 			book_id: selectBook.bookId,
 			book_name: selectBook.bookName,
 			book_img_url: selectBook.bookImgUrl,
@@ -83,6 +89,7 @@ function Update({ data, docid }: UpdateProps) {
 			bookImgUrl: '',
 			bookId: '',
 		});
+		setContentArr([]);
 		return router.push('/');
 	};
 	return (
