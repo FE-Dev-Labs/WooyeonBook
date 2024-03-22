@@ -4,30 +4,34 @@ import CategoryBookItemBox from './CategoryBookItemBox';
 import Pagination from '@/components/common/Pagination';
 import CategorySlider from './categorySlider/CategorySlider';
 import { NewBookType } from '@/types/bookType';
+import NewPagintion from '@/components/common/NewPagintion';
 
 interface CategoryConentsProp {
 	data: NewBookType[];
-	itemLength: number;
-	handlePageNumClick: (page: number) => void;
-	currentPage: number;
+	pageLength: number;
+	// 	itemLength: number;
+	// 	handlePageNumClick: (page: number) => void;
+	// 	currentPage: number;
 }
 
 export default function CategoryContents({
 	data,
-	itemLength,
-	handlePageNumClick,
-	currentPage,
+	pageLength,
+	// itemLength,
+	// handlePageNumClick,
+	// currentPage,
 }: CategoryConentsProp) {
 	return (
 		<div className={styles.categoryContents}>
 			{/* <CategorySlider /> */}
 			<SortBar />
 			<CategoryBookItemBox data={data} />
-			<Pagination
+			<NewPagintion pageLength={pageLength} />
+			{/* <Pagination
 				itemLength={itemLength}
 				handlePageNumClick={handlePageNumClick}
 				currentPage={currentPage}
-			/>
+			/> */}
 		</div>
 	);
 }

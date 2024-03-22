@@ -344,6 +344,42 @@ app.get('/list/newAll', async (req, res) => {
 	}
 });
 
+app.get('/list/newAllTest', async (req, res) => {
+	// request.query 내 categoryId 추출
+	const { categoryId } = req.query;
+	// 첫 api 요청
+	try {
+		const response = await axios.get(
+			`${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+		);
+		// 해당 카테고리 item(최대 50개이므로 페이지네이션에 불필요)
+		// const data = await response.data.item;
+		// 해당 카테고리 item의 총 갯수
+		const dataLength = await response.data.totalResults;
+		// 해당 카테고리 페이지 총 갯수
+		const pageLength = Math.ceil(dataLength / 50);
+
+		// start 값을 동적으로 삽입하기 위한 api 재요청. 각 start 값에 대해 요청 반복
+		// 해당 카테고리의 전체 아이템을 삽입해줄 빈 배열 생성
+		const categoryAlldata = [];
+		// start를 1부터 1씩 더해가며 pageLength만큼 반복
+		for (let start = 1; start <= pageLength; start++) {
+			const categoryResponse = await axios.get(
+				`${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+			);
+
+			const categoryData = await categoryResponse.data.item;
+			categoryAlldata.push(...categoryData);
+		}
+		// 해당 카테고리의 전체 데이터
+		const data = categoryAlldata;
+
+		res.status(200).send({ data, pageLength });
+	} catch (err) {
+		res.status(400).send(err);
+	}
+});
+
 app.get('/community/:page', async (req, res) => {
 	try {
 		const { data } = await supabase.from(`${req.params.page}`).select('*');

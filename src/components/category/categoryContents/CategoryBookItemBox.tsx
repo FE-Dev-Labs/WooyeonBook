@@ -14,10 +14,10 @@ export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
 
 	// 소팅한 data
 	const sortedData =
-		// 제목순일 때
+		// 제목순일 때의 sort
 		sortType === '제목순'
 			? [...data].sort((a, b) => a.title.localeCompare(b.title))
-			: // 제목순이 아닐 떄(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
+			: // 제목순이 아닐 떄의 sort(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
 				[...data].sort(
 					(a, b) =>
 						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
