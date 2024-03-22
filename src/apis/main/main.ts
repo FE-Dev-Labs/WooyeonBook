@@ -1,41 +1,68 @@
-import {
-	BestSellerType,
-	NewBookType,
-	RootBookType,
-	UsedBookType,
-} from '@/types/bookType';
+import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
 
-// 신간 도서 리스트(6개) : 메인페이지용
-// export const getNewBookData = async () => {
-// 	const response = await fetch('http://localhost:8080/api/new');
-// 	const newBookData: RootBookType = await response.json();
+export const fetchMainPageData = async () => {
+	// 데이터 패치해오는 함수
+	// const fetchData = async (url: string) => {
+	// 	const response = await fetch(url, { cache: 'force-cache' });
+	// 	return response.json();
+	// };
+	const fetchData = async (url: string) => {
+		try {
+			const response = await fetch(url, { cache: 'force-cache' });
+			// 네트워크 응답 상태가 성공적이지 않은 경우
+			if (!response.ok) {
+				throw new Error(`Network response was not ok: ${response.statusText}`);
+			}
+			return await response.json();
+			// 에러 처리
+		} catch (error) {
+			console.error('Fetch error:', error);
+			throw error;
+		}
+	};
 
-// 	// 신간리스트의 item만 추출해 data에 할당
-// 	const data: NewBookType[] = newBookData?.item as NewBookType[];
-// 	return data;
-// };
+	// 각각 신간도서, 베스트셀러, 중고도서 패치해온 데이터
+	const newBooksPromise = fetchData(newBooksURL);
+	const bestSellerPromise = fetchData(bestSellerURL);
+	const usedBooksPromise = fetchData(usedBooksURL);
 
-// 베스트셀러 리스트(5개): 메인페이지용
-// export const getBestBookData = async () => {
-// 	const response = await fetch('http://localhost:8080/api/best');
-// 	const bestsellerData: RootBookType = await response.json();
+	// 3개의 Promise가 해결될 때까지 기다린 후 결과를 배열로 반환
+	const [newBookData, bestSellerData, usedBookData] = await Promise.all([
+		newBooksPromise,
+		bestSellerPromise,
+		usedBooksPromise,
+	]);
 
-// // 베스트셀러의 item을 rank순으로 소팅해 data에 할당
-// const data = (bestsellerData.item as BestSellerType[])
-// 	.sort((a, b) => a.bestRank - b.bestRank)
-// 	.slice(0, -1);
-// 	return data;
-// };
+	// 메인 - 신간도서
+	// 신간리스트의 item만 추출해 newBookItem 할당
+	const newBookItem = (newBookData.item as NewBookType[])
+		// 소설/시/희곡 키워드가 포함된 아이템만 필터링
+		.filter((item) => item.categoryName.includes('소설/시/희곡'))
+		// 앞에서 6개만 추출
+		.slice(0, 6);
 
-// 중고 도서 리스트(5개): 메인페이지용
-// export const getUsedBookData = async () => {
-// 	const response = await fetch('http://localhost:8080/api/used');
-// 	const usedBookData: RootBookType = await response.json();
+	// 메인 - 베스트셀러
+	// 베스트셀러의 item만 추출해 bestSellerItem 할당
+	const bestSellerItem = (bestSellerData.item as BestSellerType[])
+		// 베스트셀러 item을 rank 낮은순 소팅
+		.sort((a, b) => a.bestRank - b.bestRank)
+		// 앞에서 5개만 추출
+		.slice(0, 5);
 
-// 	// 신간리스트의 item의 중고책 데이터만 추출해 data 할당
-// 	const data =
-// 		(usedBookData?.item?.filter(
-// 			(book) => book.mallType === 'USED',
-// 		) as UsedBookType[]) || [];
-// 	return data;
-// };
+	// 메인 - 중고도서
+	// 중고도서 리스트의 item만 추출해 data에 할당
+	const usedBookItem = (usedBookData.item as UsedBookType[])
+		// 중고도서 리스트의 item을 salesPoint 높은순 소팅
+		.sort((a, b) => b.salesPoint - a.salesPoint)
+		// 앞에서 6개만 추출
+		.slice(0, 6);
+
+	return { newBookItem, bestSellerItem, usedBookItem };
+};
+
+// 메인 - 신간도서 api 주소
+const newBooksURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`;
+// 메인 - 베스트셀러 api 주소
+const bestSellerURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=Bestseller&MaxResults=24&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`;
+// 메인 - 중고도서 api 주소
+const usedBooksURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=itemNewAll&MaxResults=50&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`;

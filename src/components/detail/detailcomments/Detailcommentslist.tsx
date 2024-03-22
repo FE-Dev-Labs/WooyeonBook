@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/styles/detail/detailcomments/detailcommentlist.module.css';
 export default function Detailcommentslist() {
 	return (

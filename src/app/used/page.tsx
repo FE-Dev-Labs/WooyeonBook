@@ -2,7 +2,7 @@
 
 import BestSeller from '@/components/common/BestSeller';
 import BookItemWrapper from '@/components/common/BookItemWrapper';
-import Category from '@/components/common/Category';
+import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import Sort from '@/components/common/Sort';
@@ -18,9 +18,9 @@ export default function usedPage() {
 	// url 내 categoryId 추출
 	const categoryId = params.get('categoryId');
 	// 중고 도서 베스트셀러 아이템 state
-	const [usedBestItems, setUsedBestItems] = useState<UsedBookType[]>([]);
+	const [usedBestItem, setUsedBestItem] = useState<UsedBookType[]>([]);
 	// 전체 중고 도서 아이템 state
-	const [usedAllItems, setUsedAllItems] = useState<UsedBookType[]>([]);
+	const [usedAllItem, setUsedAllItem] = useState<UsedBookType[]>([]);
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
@@ -29,7 +29,7 @@ export default function usedPage() {
 	const selectedNumRef = useRef<number>(1);
 
 	// 페이지(숫자) 선택 시 실행되는 함수
-	const handleClickPage = (pageNum: number) => {
+	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
 		if (selectedNumRef.current === pageNum) return;
 		// 현재 페이지의 숫자 스타일링을 위함
@@ -43,22 +43,22 @@ export default function usedPage() {
 	// server -> api 받아오는 함수(중고책 - 베스트셀러 5개)
 	const fetchUsedBestData = async () => {
 		const response = await fetch('http://localhost:8080/list/used', {
-			cache: 'no-cache',
+			cache: 'force-cache',
 		});
 		// book item(used best)
 		const data = await response.json();
-		setUsedBestItems(data);
+		setUsedBestItem(data);
 	};
 
 	// server -> api 받아오는 함수(모든 중고책)
 	const fetchUsedAllData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/usedAll?categoryId=${categoryId}&page=${currentPage}`,
-			{ cache: 'no-cache' },
+			{ cache: 'force-cache' },
 		);
 		const { data, dataLength } = await response.json();
 		// book item(used all)
-		setUsedAllItems(data);
+		setUsedAllItem(data);
 		// book item의 총 개수
 		setItemLength(dataLength);
 	};
@@ -75,19 +75,14 @@ export default function usedPage() {
 			<div className={styles.container}>
 				<div />
 				<div className={styles.wrapper}>
-					<BestSeller
-						page="used"
-						// height="400px"
-						isUsedPage={true}
-						data={usedBestItems}
-					/>
+					<BestSeller page="used" isUsedPage={true} data={usedBestItem} />
 					<div className={styles.usedLine} />
-					<Category />
+					<CategoryBox />
 					{/* <Sort /> */}
-					<BookItemWrapper data={usedAllItems} />
+					<BookItemWrapper data={usedAllItem} />
 					<Pagination
 						itemLength={itemLength}
-						handleClickPage={handleClickPage}
+						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
 						selectedNumRef={selectedNumRef}
 						page="used"

@@ -1,8 +1,8 @@
-.CategoryContents {
+.categoryContents {
 	width: 1025px;
 	margin-top: 50px;
 }
 
-.CategoryContents > div:last-child {
-	margin-bottom: 100px;
+.categoryContents > div:last-child {
+	margin-bottom: 60px;
 }

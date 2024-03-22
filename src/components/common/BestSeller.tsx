@@ -6,18 +6,16 @@ import { BestSellerType, UsedBookType } from '@/types/bookType';
 interface BestSellerProps {
 	data?: BestSellerType[] | UsedBookType[];
 	page?: string;
-	height?: string;
 	isUsedPage?: boolean;
 }
 
 export default function BestSeller({
 	data,
 	page,
-	height,
 	isUsedPage,
 }: BestSellerProps) {
 	return (
-		<div className={styles.bestSellerWrapper} style={{ height }}>
+		<div className={styles.bestSellerWrapper}>
 			<CategoryTitle
 				mainTitle={page === 'used' ? '중고 베스트셀러' : '베스트셀러'}
 				subTitle={
@@ -29,11 +27,9 @@ export default function BestSeller({
 				isUsedPage={isUsedPage}
 			/>
 			<div className={styles.bestItemWrapper}>
-				{data
-					?.slice(0, 5)
-					.map((book: BestSellerType | UsedBookType, index: number) => (
-						<BookItem key={book.itemId} data={book} rank={index + 1} />
-					))}
+				{data?.map((book: BestSellerType | UsedBookType, index: number) => (
+					<BookItem key={book.itemId} data={book} rank={index + 1} />
+				))}
 			</div>
 		</div>
 	);

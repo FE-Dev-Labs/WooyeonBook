@@ -4,6 +4,20 @@
 	display: flex;
 	align-items: center;
 }
+
+.navItem {
+	width: inherit;
+	height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 25px;
+
+	color: #000000;
+	text-decoration-line: none;
+
+	transition: color 0.2s;
+}
+
 .navigationWrapper > a {
 	width: inherit;
 	height: 20px;
@@ -16,11 +30,40 @@
 
 	transition: color 0.2s;
 }
-.navigationWrapper > a:hover {
+
+.navWrap > a:hover {
 	color: #6594e7;
 }
 
+.navWrap {
+	width: inherit;
+	height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 25px;
+
+	color: #000000;
+	text-decoration-line: none;
+
+	transition: color 0.2s;
+}
+
 /* 내비 아이템 선택 시 */
-.navigationWrapper > a.selectedNav {
+.selectedNav {
+	margin-right: 25px;
 	color: #6594e7;
+	cursor: pointer;
+}
+
+.navItem {
+	width: inherit;
+	height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 25px;
+
+	color: #000000;
+	text-decoration-line: none;
+
+	transition: color 0.2s;
 }
