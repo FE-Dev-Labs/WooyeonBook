@@ -154,11 +154,11 @@ export default function newPage() {
 	const categoryId = params.get('categoryId');
 	// 해당 카테고리 전체 아이템 state
 	const [newAllItem, setNewAllItem] = useState<NewBookType[]>([]);
-	// 해당 카테고리 아이템 갯수 state
+	// 해당 카테고리와 일치하는 아이템 갯수 state
 	const [dataLength, setDataLength] = useState<number>(0);
-	// 해당 카테고리 페이지 갯수 state
+	// 해당 카테고리의 페이지 갯수 state
 	const [pageLength, setPageLength] = useState<number>(1);
-	// 현재 카테고리의 페이지 state
+	// 현재 카테고리의 현재 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 소팅 state(제목순, 최신순)
 	const sortType = useRecoilValue(sortTypeState);
@@ -167,23 +167,14 @@ export default function newPage() {
 	const fetchData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/newAllTest?categoryId=${categoryId}`,
+			{
+				cache: 'force-cache',
+			},
 		);
 		const { data, dataLength, pageLength } = await response.json();
 
-		// 필터링하고자 하는 itemId 목록
-		const excludeItemIds = [
-			336540600, 336575362, 336575314, 336736439, 336731190, 336734731,
-			336732928, 336733515, 336732928, 336616984, 336516899, 336593889,
-			336514238, 336611587, 336595673, 336429171,
-		];
-
-		// excludeItemIds에 포함되지 않은 아이템만 필터링
-		const filteredData = data.filter(
-			(item: NewBookType) => !excludeItemIds.includes(item.itemId),
-		);
-
 		// 해당 카테고리 all item
-		setNewAllItem(filteredData);
+		setNewAllItem(data);
 		// 해당 카테고리 아이템 갯수
 		setDataLength(dataLength);
 		// 해당 카테고리 페이지네이션에 필요한 숫자
@@ -220,6 +211,8 @@ export default function newPage() {
 	useEffect(() => {
 		fetchData();
 	}, [categoryId]);
+
+	console.log(sortedData);
 
 	return (
 		<>
