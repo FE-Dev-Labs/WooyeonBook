@@ -44,7 +44,7 @@ export default function HotWord() {
 			</dt>
 			<dd>
 				<ol className={styles.hotWordPopularWrap}>
-					{popularSearchData.map((hotword, index) => {
+					{popularSearchData?.map((hotword, index) => {
 						return (
 							<li className={styles.hotWordPopularLi} key={index}>
 								<Link href={'/'} passHref legacyBehavior>

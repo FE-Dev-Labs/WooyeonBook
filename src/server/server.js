@@ -68,8 +68,6 @@ app.get('/supbase/popularSearch', async (req, res) => {
 app.put('/api/updateKeywords', async (req, res) => {
 	const { keyword } = req.query;
 	let { count } = req.query;
-	console.log('count', count);
-	console.log('count2', count[0]);
 
 	// count 값을 숫자로 변환
 	count = Number(count);
@@ -108,9 +106,9 @@ app.get(`/api/getKeywords`, async (req, res) => {
 		let { data, error } = await supabase
 			.from('PopularSearch')
 			// select('*') 하면 안됨
-			.select()
 			// db에서 몇개 가져올지 정함
-			.range(0, 10)
+			.select()
+			.range(0, 8)
 			// 숫자가 높은 순으로 가져옴
 			.order('search_count', { ascending: false })
 			// 최신 순으로 가져옴

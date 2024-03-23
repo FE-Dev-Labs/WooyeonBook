@@ -1,6 +1,4 @@
 'use client';
-import BookItemWrapper from '@/components/common/BookItemWrapper';
-import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Sort from '@/components/common/Sort';
 import styles from '@/styles/search/search.module.css';

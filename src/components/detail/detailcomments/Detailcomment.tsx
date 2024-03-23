@@ -5,39 +5,22 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
+import useCurrentUser from './../../../hooks/useCurrentUser';
 
 export default function Detailcomment({ bookId }: { bookId: string }) {
 	// 댓글
 	const [comment, setComment] = useState<string>('');
 	// 댓글 창
 	const [isLogin, setIsLogin] = useState<boolean>(false);
-	// 유저 이름
-	const [useName, setUseName] = useState<string>('');
-	// 유저 id
-	const [userId, setUserId] = useState<string>('');
 	// 댓글 리스트
 	const [commentsList, setCommentsList] = useState<commentsType[]>([]);
+	// 글자 실시간 표시
+	const [inputCount, setInputCount] = useState<number>(0);
 
 	const supabase = createClient();
 
-	// 현재 유저의 정보 불러오기
-	const getUser = async () => {
-		const {
-			data: { user },
-			error,
-		} = await supabase.auth.getUser();
-
-		// 사용자 ID 접근
-		if (user) {
-			const userid = user.id;
-			setUserId(userid);
-			//사용자 이름 접근
-			const username = user?.user_metadata.name;
-			setUseName(username);
-		} else {
-			console.log(error);
-		}
-	};
+	// useCurrentUser  훅
+	const { useName, userId, getUser } = useCurrentUser('');
 
 	// 로그인 유뮤 체크
 	useEffect(() => {
@@ -49,6 +32,15 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 		}
 	}, []);
 
+	const hanldeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
+		setComment(e.target.value);
+		if (e.target.value.length > 50) {
+			alert('50자 이내로 적어주세요');
+		} else {
+			setInputCount(e.target.value.length);
+		}
+	};
 	// 댓글 추가
 	const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -71,6 +63,10 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 				console.log(error);
 			} else {
 				setComment('');
+				setInputCount(0); // 댓글 글자수도 초기화
+				// 댓글이 바로 달리지 않는 현상이 있었다
+				// 댓글을 추가하면 바로 getCommentLists 함수 호출
+				getCommentLists(); // 댓글 리스트를 새로 불러와서 업데이트
 			}
 		}
 	};
@@ -80,7 +76,9 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 		const { data, error } = await supabase
 			.from('bookDetailComments')
 			.select('*')
-			.eq('book_id', bookId);
+			.eq('book_id', bookId)
+			// 최신 순으로 가져옴
+			.order('created_at', { ascending: false });
 		if (error) {
 			console.log(error);
 		} else {
@@ -101,15 +99,27 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 						className={styles.commentInput}
 						type="text"
 						placeholder="한글 기준 50자까지 작성 가능합니다."
-						onChange={(e) => setComment(e.target.value)}
+						onChange={hanldeInputChange}
+						maxLength={50}
 					/>
 					<button className={styles.commnetSubmitBtn}>등록</button>
 				</form>
 			)}
+			<div className={styles.commentInputCount}>
+				<span className={styles.commentInputCountTxt}>{inputCount}</span>
+				<span className={styles.commentCount}>/50 자</span>
+			</div>
 			<div>
 				<ul>
 					{commentsList.map((list) => {
-						return <Detailcommentslist key={list.id} list={list} />;
+						return (
+							<Detailcommentslist
+								key={list.id}
+								list={list}
+								userId={userId}
+								getCommentLists={getCommentLists}
+							/>
+						);
 					})}
 				</ul>
 			</div>
