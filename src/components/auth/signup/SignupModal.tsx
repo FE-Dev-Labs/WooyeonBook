@@ -27,6 +27,7 @@ export default function SignupModal() {
 		const { error } = await supabase.auth.signUp({
 			email,
 			password,
+
 			options: {
 				data: { name, phone, address },
 				emailRedirectTo: `${origin}/auth/callback`,
