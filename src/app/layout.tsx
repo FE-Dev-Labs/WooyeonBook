@@ -13,13 +13,14 @@ export const metadata: Metadata = {
 	description: '',
 };
 
-export default async function RootLayout({ children }: BasicLayoutType) {
+export default async function RootLayout({ children, auth }: BasicLayoutType) {
 	return (
 		<html lang="kr">
 			<body className={inter.className} suppressHydrationWarning={true}>
 				<RecoilRootWrapper>
 					<Header />
 					{children}
+					{auth}
 					<Footer />
 				</RecoilRootWrapper>
 			</body>

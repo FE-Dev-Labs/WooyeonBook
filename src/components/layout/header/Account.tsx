@@ -17,7 +17,7 @@ export default function Account() {
 			{/* <SignupModal /> */}
 			{isLoggedin ? (
 				<>
-					<Link href="/my/like">
+					<Link href="/login" scroll={false}>
 						<Image src={loginIcon} alt="login" width={25} height={25} />
 					</Link>
 					<Link href="/mypage?page=bookReport">

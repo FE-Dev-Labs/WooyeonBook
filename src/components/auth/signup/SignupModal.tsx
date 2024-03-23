@@ -29,9 +29,7 @@ export default function SignupModal() {
 			password,
 
 			options: {
-				data: {
-					name,
-				},
+				data: { name, phone, address },
 				emailRedirectTo: `${origin}/auth/callback`,
 			},
 		});

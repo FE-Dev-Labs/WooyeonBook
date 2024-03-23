@@ -10,6 +10,7 @@ import { supabase } from '@/utils/supabase/supabase';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import OptionBookBuying from '../../post/option/OptionBookBuying';
 import { BookBuyingDataType } from '@/types/community/view/data';
+import { getUser } from '@/apis/community/getUser';
 
 interface UpdateProps {
 	data?: BookBuyingDataType;
@@ -57,14 +58,16 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 	}, []);
 
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
+
 		const data = {
 			doc_id: docid,
 			created_at: new Date(),
-			created_user: 'd35c8e87-0aa7-40a0-9d2d-b1a81ebebd8a',
+			created_user: user_id as string,
 			title: title.value,
 			content: text,
 			content_img_url: contentArr,
-			user_name: 'user-name',
+			user_name: user_name as string,
 			book_name: selectedBook.bookName,
 			book_img_url: selectedBook.bookImgUrl,
 			book_id: selectedBook.bookId,

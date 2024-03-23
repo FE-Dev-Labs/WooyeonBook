@@ -10,7 +10,7 @@ const UpdatePage = async ({
 	const data = await fetch(
 		`http://localhost:8080/api/community/bookSelling/${params.docId}`,
 		{
-			cache: 'force-cache',
+			cache: 'no-store',
 		},
 	).then((res) => res.json());
 

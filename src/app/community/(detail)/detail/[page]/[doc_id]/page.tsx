@@ -13,7 +13,7 @@ export default async function DetailPage({
 	const response = await fetch(
 		`http://localhost:8080/community/${params.page}/${params.doc_id}`,
 		{
-			cache: 'force-cache',
+			cache: 'no-store',
 		},
 	);
 	const data: AllDataType = await response.json();

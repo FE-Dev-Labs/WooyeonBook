@@ -11,7 +11,8 @@ import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
 import { BookReportPostDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';
-
+import { createClient } from '@/utils/supabase/client';
+import { getUser } from '@/apis/community/getUser';
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
 	{
@@ -31,6 +32,7 @@ const EditorComponent = dynamic(
 const BookReportPostPage = () => {
 	const router = useRouter();
 	const params = usePathname();
+
 	// 뒤로가기, 새로고침 방지
 	const preventClose = (e: BeforeUnloadEvent) => {
 		e.preventDefault();
@@ -56,13 +58,14 @@ const BookReportPostPage = () => {
 	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
 
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
 		const data: BookReportPostDataType = {
 			created_at: new Date(),
-			created_user: 'ed01405e-d190-4c47-9102-f6846da6404a',
+			created_user: user_id as string,
 			title: title.value as string,
 			content: content,
 			content_img_url: imgArr,
-			user_name: 'user-name',
+			user_name: user_name as string,
 			book_id: selectedBook.bookId,
 			book_name: selectedBook.bookName,
 			book_img_url: selectedBook.bookImgUrl,

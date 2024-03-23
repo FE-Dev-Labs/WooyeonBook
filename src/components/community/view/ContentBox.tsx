@@ -1,5 +1,6 @@
 import styles from '@/styles/community/contentBox.module.css';
 import { AllDataType } from '@/types/community/view/data';
+import { getDate } from '@/utils/getDate';
 import Link from 'next/link';
 
 interface ContentBoxProps {
@@ -8,12 +9,6 @@ interface ContentBoxProps {
 }
 
 export default function ContentBox({ data, page }: ContentBoxProps) {
-	const date = new Date(data.created_at);
-	const year = date.getFullYear();
-	const month = ('0' + (date.getMonth() + 1)).slice(-2);
-	const day = ('0' + date.getDate()).slice(-2);
-	const dateString = year + '년' + month + '월' + day + '일';
-
 	return (
 		<Link href={`/community/detail/${page}/${data.doc_id}`}>
 			<div className={styles.container}>
@@ -36,7 +31,7 @@ export default function ContentBox({ data, page }: ContentBoxProps) {
 					<div className={styles.authorAndDateWrap}>
 						<div>{data.user_name}</div>
 						<div className={styles.dot}>●</div>
-						<div>{dateString}</div>
+						<div>{getDate(data.created_at)}</div>
 					</div>
 					<div className={styles.activityCounters}>
 						<div>좋아요 : {data.like}</div>

@@ -10,6 +10,7 @@ import { supabase } from '@/utils/supabase/supabase';
 import OptionBookMeeting from '../../post/option/OptionBookMeeting';
 import UpdateOptionBookMeeting from '../UpdateOptionBookMeeting';
 import { BookMeetingDataType } from '@/types/community/view/data';
+import { getUser } from '@/apis/community/getUser';
 
 interface UpdateProps {
 	data?: BookMeetingDataType;
@@ -51,7 +52,7 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 		if (!data) return;
 		title.onChangeValue(data.title);
 		setText(data.content);
-		setContentArr(data.content_img_url);
+		setContentArr(data.content_img_url as string[]);
 		chatUrl.onChangeValue(data.chatting_url);
 		setRecruitmentNumber(data.recruitment_number);
 		deadline.onChangeValue(data.deadline);
@@ -59,14 +60,16 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 	}, []);
 
 	const onSubmit = async () => {
+		const { user_id, user_name } = await getUser();
+
 		const data = {
 			doc_id: docid,
 			created_at: new Date(),
-			created_user: '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bea',
+			created_user: user_id as string,
 			title: title.value as string,
 			content: text,
 			content_img_url: contentArr,
-			user_name: 'user',
+			user_name: user_name as string,
 			state: state,
 			recruitment_number: recruitmentNumber,
 			deadline: deadline.value,
