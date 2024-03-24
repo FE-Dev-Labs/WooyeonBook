@@ -399,7 +399,7 @@ app.get('/list/newAllTest', async (req, res) => {
 			categoryAlldata.push(...categoryData);
 		}
 
-		// 중복 제거 로직 추가
+		// 중복 제거 로직 추가(data.itemId가 같은 책 다수로 인함)
 		const uniqueItemsMap = new Map();
 		categoryAlldata.forEach((item) => {
 			// item.itemId 또는 고유 식별자를 키로 사용
