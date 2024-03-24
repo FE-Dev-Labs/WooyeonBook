@@ -9,14 +9,12 @@ import { useEffect, useState } from 'react';
 // PaginationProps 인터페이스 정의
 interface PaginationProps {
 	dataLength: number;
-	pageLength: number;
 	currentPage: number;
 	handlePageNumClick: (page: number) => void;
 	page?: string;
 }
 
 export default function Pagination({
-	pageLength,
 	dataLength,
 	currentPage,
 	handlePageNumClick,

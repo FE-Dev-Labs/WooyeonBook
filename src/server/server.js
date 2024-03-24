@@ -383,19 +383,23 @@ app.get('/list/newAll', async (req, res) => {
 app.get('/list/newAllTest', async (req, res) => {
 	const { categoryId } = req.query;
 	try {
+		// 첫번째 api
 		const initialResponse = await axios.get(
 			`${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 		);
+		// 데이터 수
 		const dataLength = await initialResponse.data.totalResults;
+		// 페이지 수
 		const pageLength = Math.ceil(dataLength / 24);
-
+		// 해당 카테고리에 있는 모든 데이터를 삽입해줄 빈 배열
 		const categoryAlldata = [];
 		for (let start = 1; start <= pageLength; start++) {
 			const categoryResponse = await axios.get(
 				`${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 			);
-
+			// for문을 순회하며 들어가는 데이터
 			const categoryData = await categoryResponse.data.item;
+			// 끝까지 for문을 돌며 push
 			categoryAlldata.push(...categoryData);
 		}
 
@@ -407,15 +411,18 @@ app.get('/list/newAllTest', async (req, res) => {
 				uniqueItemsMap.set(item.itemId, item);
 			}
 		});
+		// itemId가 2개인 아이템을 제외한 하나 뿐인 데이터들
 		const uniqueData = Array.from(uniqueItemsMap.values());
+		// 하나뿐인 데이터들만 포함한 데이터 수
 		const uniqueDataLength = uniqueData.length;
-		const uniquePageLength = Math.ceil(uniqueDataLength / 24);
+		// // 하나뿐인 데이터들만 포함한 페이지 수
+		// const uniquePageLength = Math.ceil(uniqueDataLength / 24);
 
 		// 중복이 제거된 데이터를 클라이언트에 전송
 		res.status(200).send({
 			data: uniqueData,
 			dataLength: uniqueDataLength,
-			pageLength: uniquePageLength,
+			// pageLength: uniquePageLength,
 		});
 	} catch (err) {
 		res.status(400).send(err);

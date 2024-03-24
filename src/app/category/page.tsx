@@ -20,8 +20,6 @@ export default function newPage() {
 	const [newAllItem, setNewAllItem] = useState<NewBookType[]>([]);
 	// 해당 카테고리의 아이템 갯수 state
 	const [dataLength, setDataLength] = useState<number>(0);
-	// 해당 카테고리의 페이지 갯수 state
-	const [pageLength, setPageLength] = useState<number>(1);
 	// 현재 카테고리의 현재 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 소팅 state(제목순, 최신순)
@@ -35,14 +33,12 @@ export default function newPage() {
 			// 	cache: 'force-cache',
 			// },
 		);
-		const { data, dataLength, pageLength } = await response.json();
+		const { data, dataLength } = await response.json();
 
 		// 해당 카테고리 all item
 		setNewAllItem(data);
 		// 해당 카테고리 아이템 갯수
 		setDataLength(dataLength);
-		// 해당 카테고리 페이지네이션에 필요한 숫자
-		setPageLength(pageLength);
 	};
 
 	// 현재 선택된 카테고리 아이템 찾기
@@ -90,7 +86,6 @@ export default function newPage() {
 					<CategoryContents
 						data={sortedData}
 						dataLength={dataLength}
-						pageLength={pageLength}
 						currentPage={currentPage}
 						handlePageNumClick={handlePageNumClick}
 						page="category"

@@ -21,7 +21,7 @@ export default function bestPage() {
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
-	const [itemLength, setItemLength] = useState<number>(0);
+	const [dataLength, setDataLength] = useState<number>(0);
 
 	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {
@@ -43,7 +43,7 @@ export default function bestPage() {
 		// book item
 		setBestAllItem(data);
 		// book item의 총 개수
-		setItemLength(dataLength);
+		setDataLength(dataLength);
 	};
 
 	// fetchData 뿌려주는 useEffect
@@ -62,7 +62,7 @@ export default function bestPage() {
 					{/* <Sort page="best" /> */}
 					<Rank data={bestAllItem} />
 					<Pagination
-						itemLength={itemLength}
+						dataLength={dataLength}
 						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
 						page="best"

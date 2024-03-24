@@ -8,7 +8,6 @@ import { NewBookType } from '@/types/bookType';
 interface CategoryConentsProp {
 	data: NewBookType[];
 	dataLength: number;
-	pageLength: number;
 	currentPage: number;
 	handlePageNumClick: (page: number) => void;
 	page: string;
@@ -17,7 +16,6 @@ interface CategoryConentsProp {
 export default function CategoryContents({
 	data,
 	dataLength,
-	pageLength,
 	currentPage,
 	handlePageNumClick,
 	page,
@@ -36,7 +34,6 @@ export default function CategoryContents({
 			<CategoryBookItemBox data={pageData} />
 			<Pagination
 				dataLength={dataLength}
-				pageLength={pageLength}
 				handlePageNumClick={handlePageNumClick}
 				currentPage={currentPage}
 				page={page}
