@@ -36,6 +36,17 @@
 
 /* 선택된 페이지네이션 아이템 */
 .selectedNum {
+	width: 30px;
+	height: inherit;
+	border-radius: 3px;
+	border: 1px solid #aaaaaa;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
 	color: #ffffff;
 	background-color: #6594e7;
 }

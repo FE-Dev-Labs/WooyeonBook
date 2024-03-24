@@ -24,16 +24,14 @@ export default function newPage() {
 	// 선택된 페이지네이션 숫자 ref
 	const selectedNumRef = useRef<number>(1);
 
-	// 페이지(숫자) 선택 시 실행되는 함수
+	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
-		if (selectedNumRef.current === pageNum) return;
-		// 현재 페이지의 숫자 스타일링을 위함
-		selectedNumRef.current = pageNum;
+		if (currentPage === pageNum) return;
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 120, behavior: 'smooth' });
+		window.scrollTo({ top: 300, behavior: 'smooth' });
 	};
 
 	// server -> api 받아오는 함수
@@ -67,7 +65,6 @@ export default function newPage() {
 						itemLength={itemLength}
 						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
-						selectedNumRef={selectedNumRef}
 					/>
 				</div>
 				<div>

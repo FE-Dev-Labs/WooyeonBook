@@ -10,7 +10,7 @@ import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/used/used.module.css';
 import { UsedBookType } from '@/types/bookType';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function usedPage() {
 	// useSearchParams 호출
@@ -24,20 +24,16 @@ export default function usedPage() {
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
-	const [itemLength, setItemLength] = useState<number>(0);
-	// 선택된 페이지네이션 숫자 ref
-	const selectedNumRef = useRef<number>(1);
+	const [dataLength, setDataLength] = useState<number>(0);
 
-	// 페이지(숫자) 선택 시 실행되는 함수
+	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
-		if (selectedNumRef.current === pageNum) return;
-		// 현재 페이지의 숫자 스타일링을 위함
-		selectedNumRef.current = pageNum;
+		if (currentPage === pageNum) return;
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 804, behavior: 'smooth' });
+		window.scrollTo({ top: 300, behavior: 'smooth' });
 	};
 
 	// server -> api 받아오는 함수(중고책 - 베스트셀러 5개)
@@ -60,7 +56,7 @@ export default function usedPage() {
 		// book item(used all)
 		setUsedAllItem(data);
 		// book item의 총 개수
-		setItemLength(dataLength);
+		setDataLength(dataLength);
 	};
 
 	// fetchData 뿌려주는 useEffect
@@ -81,10 +77,9 @@ export default function usedPage() {
 					{/* <Sort /> */}
 					<BookItemWrapper data={usedAllItem} />
 					<Pagination
-						itemLength={itemLength}
+						dataLength={dataLength}
 						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
-						selectedNumRef={selectedNumRef}
 						page="used"
 					/>
 				</div>
