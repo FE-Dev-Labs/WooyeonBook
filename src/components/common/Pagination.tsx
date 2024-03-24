@@ -67,25 +67,27 @@ export default function Pagination({
 			<div className={styles.paginationBox}>
 				{/* 맨 처음 페이지로 이동하는 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
 				{!isFirstPageGroup && currentPage > 1 && (
-					<Image
-						src={arrowDoubleLeftIcon}
-						alt="first page button"
-						width={30}
-						height={30}
-						className={styles.paginationItem}
-						onClick={() => handlePageNumClick(1)}
-					/>
+					<div className={styles.paginationItem}>
+						<Image
+							src={arrowDoubleLeftIcon}
+							alt="first page button"
+							width={18}
+							height={18}
+							onClick={() => handlePageNumClick(1)}
+						/>
+					</div>
 				)}
 				{/* 이전 페이지 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
 				{!isFirstPageGroup && currentPage > 1 && (
-					<Image
-						src={arrowLeftIcon}
-						alt="prev button"
-						width={30}
-						height={30}
-						className={styles.paginationItem}
-						onClick={() => handlePageNumClick(currentPage - 1)}
-					/>
+					<div className={styles.paginationItem}>
+						<Image
+							src={arrowLeftIcon}
+							alt="prev button"
+							width={18}
+							height={18}
+							onClick={() => handlePageNumClick(currentPage - 1)}
+						/>
+					</div>
 				)}
 				{/* 페이지 번호 버튼 */}
 				{pageArr.map((num) => (
@@ -102,25 +104,27 @@ export default function Pagination({
 				))}
 				{/* 다음 페이지 버튼, 마지막 페이지 그룹이 아닐 때만 렌더링 */}
 				{!isLastPageGroup && currentPage < totalPages && (
-					<Image
-						src={arrowRightIcon}
-						alt="next button"
-						width={30}
-						height={30}
-						className={styles.paginationItem}
-						onClick={() => handlePageNumClick(currentPage + 1)}
-					/>
+					<div className={styles.paginationItem}>
+						<Image
+							src={arrowRightIcon}
+							alt="next button"
+							width={18}
+							height={18}
+							onClick={() => handlePageNumClick(currentPage + 1)}
+						/>
+					</div>
 				)}
 				{/* 맨 마지막 페이지로 이동하는 버튼, 마지막 페이지 그룹이 아닐 때만 렌더링 */}
 				{!isLastPageGroup && currentPage < totalPages && (
-					<Image
-						src={arrowDoubleRightIcon}
-						alt="last page button"
-						width={30}
-						height={30}
-						className={styles.paginationItem}
-						onClick={() => handlePageNumClick(totalPages)}
-					/>
+					<div className={styles.paginationItem}>
+						<Image
+							src={arrowDoubleRightIcon}
+							alt="last page button"
+							width={18}
+							height={18}
+							onClick={() => handlePageNumClick(totalPages)}
+						/>
+					</div>
 				)}
 			</div>
 		</div>
