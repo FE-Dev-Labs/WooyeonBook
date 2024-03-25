@@ -1,9 +1,9 @@
 'use client';
 
 import SortBar from '@/components/category/categoryContents/SortBar';
-import BookItemWrapper from '@/components/common/BookItemWrapper';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
+import SearchBookItemWrapper from '@/components/search/SearchBookItemWrapper';
 import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 import styles from '@/styles/search/search.module.css';
 import { NewBookType } from '@/types/bookType';
@@ -59,11 +59,17 @@ export default function searchPage() {
 						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 				);
 
-	// 검색어 데이터 이걸 사용해서 데이터 뿌리시오
+	// fetchData 뿌려주는 useEffect
 	useEffect(() => {
 		fetchData();
 	}, [keyword]);
-	console.log(keyword);
+
+	// 페이지 첫 시작 데이터의 숫자, 24 = 카테고리 페이지에 나타낼 아이템 갯수
+	const startIndex = (currentPage - 1) * 30;
+	// 앞서 보여진 데이터를 제외한 마지막 데이터의 숫자
+	const endIndex = startIndex + 30;
+	// 해당 페이지에서 보여줄 데이터
+	const pageData = sortedData.slice(startIndex, endIndex);
 
 	return (
 		<>
@@ -71,7 +77,8 @@ export default function searchPage() {
 			<div className={styles.container}>
 				<div className={styles.wrapper}>
 					<SortBar page="search" dataLength={dataLength} />
-					<BookItemWrapper data={sortedData} currentPage={currentPage} />
+					{/* <BookItemWrapper data={sortedData} currentPage={currentPage} /> */}
+					<SearchBookItemWrapper data={pageData} />
 					<Pagination
 						dataLength={dataLength}
 						currentPage={currentPage}
