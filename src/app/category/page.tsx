@@ -28,7 +28,7 @@ export default function newPage() {
 	// server -> api 받아오는 함수
 	const fetchData = async () => {
 		const response = await fetch(
-			`http://localhost:8080/list/newAllTest?categoryId=${categoryId}`,
+			`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
 			// {
 			// 	cache: 'force-cache',
 			// },
