@@ -31,7 +31,7 @@ async function bookReport({
 }: {
 	searchParams: { sort?: string; q?: string };
 }) {
-	const { data, sortedData } = await getCommunityViewData({
+	const { data, filteringData } = await getCommunityViewData({
 		page: 'bookReport',
 		searchParams,
 	});
@@ -42,7 +42,7 @@ async function bookReport({
 
 	return (
 		<section>
-			{sortedData?.map((data: AllDataType) => {
+			{filteringData?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
 			})}
 		</section>

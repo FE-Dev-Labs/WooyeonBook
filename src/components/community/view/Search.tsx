@@ -3,11 +3,11 @@ import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
 import searchIcon from '../../../../public/searchIcon.png';
 import Link from 'next/link';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import communityPathname from '@/apis/communityPathname';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => <div className={styles.optionBtnSkeleton}></div>,
@@ -53,18 +53,76 @@ const OptionBtn = memo(
 );
 
 function Search() {
+	const params = useSearchParams();
 	const router = useRouter();
 	const [query, setQuery] = useState('');
+	const [sort, setSort] = useState('');
+	const [categories, setCategories] = useState('');
 	const pathname = usePathname().split('/')[2];
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
 	};
-
+	useEffect(() => {
+		setQuery('');
+	}, [pathname]);
 	const onChangeSort = (e: any) => {
-		router.push(`/community/${pathname}?sort=${e.value}`);
+		setSort(e.value);
+		if (
+			params.has('q') &&
+			params.get('q') !== '' &&
+			params.has('categories') &&
+			params.get('categories') !== ''
+		) {
+			return router.push(
+				`/community/${pathname}?sort=${e.value}&q=${query}&categories=${categories}`,
+			);
+		}
+		if (params.has('q')) {
+			return router.push(`/community/${pathname}?sort=${e.value}&q=${query}`);
+		}
+		if (params.has('categories')) {
+			return router.push(
+				`/community/${pathname}?sort=${e.value}&categories=${categories}`,
+			);
+		}
+
+		return router.push(`/community/${pathname}?sort=${e.value}`);
 	};
 	const onChangeCategories = (e: any) => {
-		router.push(`/community/${pathname}?categories=${e.value}`);
+		setCategories(e.value);
+		if (params.has('q') && params.get('q') !== '' && params.has('sort')) {
+			return router.push(
+				`/community/${pathname}?categories=${e.value}&q=${query}&sort=${sort}`,
+			);
+		}
+		if (params.has('q') && params.get('q') !== '') {
+			return router.push(
+				`/community/${pathname}?categories=${e.value}&q=${query}`,
+			);
+		}
+		if (params.has('sort')) {
+			return router.push(
+				`/community/${pathname}?categories=${e.value}&sort=${sort}`,
+			);
+		}
+
+		return router.push(`/community/${pathname}?categories=${e.value}`);
+	};
+	const onChangeSearch = () => {
+		if (params.has('sort') && params.has('categories')) {
+			return router.push(
+				`/community/${pathname}?sort=${sort}&categories=${categories}&q=${query}`,
+			);
+		}
+		if (params.has('sort')) {
+			return router.push(`/community/${pathname}?sort=${sort}&q=${query}`);
+		}
+		if (params.has('categories')) {
+			return router.push(
+				`/community/${pathname}?categories=${categories}&q=${query}`,
+			);
+		}
+		return router.push(`/community/${pathname}?q=${query}`);
 	};
 	// 옵션 select
 	const sortOptions = [
@@ -106,14 +164,15 @@ function Search() {
 				</div>
 				<input
 					type="text"
+					value={query}
 					className={styles.searchInput}
 					placeholder="검색어를 입력해주세요"
 					onChange={onChange}
 				/>
 			</div>
-			<Link className={styles.searchLink} href={`${pathname}?q=${query}`}>
+			<button className={styles.searchLink} onClick={onChangeSearch}>
 				검색
-			</Link>
+			</button>
 			<OptionBtn
 				categoriesOption={categoriesOption()}
 				sortOptions={sortOptions}

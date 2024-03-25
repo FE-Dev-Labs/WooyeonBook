@@ -32,7 +32,7 @@ export default async function buyingBook({
 }: {
 	searchParams: { sort?: string; q?: string };
 }) {
-	const { data, sortedData } = await getCommunityViewData({
+	const { data, filteringData } = await getCommunityViewData({
 		page: 'bookBuying',
 		searchParams,
 	});
@@ -43,7 +43,7 @@ export default async function buyingBook({
 
 	return (
 		<section>
-			{sortedData?.map((data: AllDataType) => {
+			{filteringData?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookBuying" />;
 			})}
 		</section>

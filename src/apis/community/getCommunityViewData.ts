@@ -2,7 +2,7 @@ import { AllDataType } from '@/types/community/view/data';
 
 interface Props {
 	page: string;
-	searchParams: { sort?: string; q?: string };
+	searchParams: { sort?: string; q?: string; categories?: string };
 }
 
 export const getCommunityViewData = async ({ page, searchParams }: Props) => {
@@ -30,6 +30,17 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 				return 0;
 		}
 	});
+	const filteringData = sortedData.filter((report: AllDataType) => {
+		switch (searchParams?.categories) {
+			case 'true':
+				return report.state === false;
+			case 'false':
+				return report.state === true;
+			default:
+				return report;
+		}
+	});
+	console.log(filteringData);
 
-	return { data, sortedData };
+	return { data, filteringData };
 };
