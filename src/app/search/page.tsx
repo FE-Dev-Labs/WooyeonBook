@@ -71,21 +71,31 @@ export default function searchPage() {
 	// 해당 페이지에서 보여줄 데이터
 	const pageData = sortedData.slice(startIndex, endIndex);
 
+	console.log(pageData);
+
 	return (
 		<>
-			<PageHeader title={`'${keyword}' 에 대한 검색 결과`} />
-			<div className={styles.container}>
-				<div className={styles.wrapper}>
-					<SortBar page="search" dataLength={dataLength} />
-					{/* <BookItemWrapper data={sortedData} currentPage={currentPage} /> */}
-					<SearchBookItemWrapper data={pageData} />
-					<Pagination
-						dataLength={dataLength}
-						currentPage={currentPage}
-						handlePageNumClick={handlePageNumClick}
-					/>
+			{!pageData.length ? (
+				<div style={{ height: '689px' }}>
+					{keyword} 검색 결과를 찾을 수 없습니다.
 				</div>
-			</div>
+			) : (
+				<>
+					<PageHeader title={`'${keyword}' 에 대한 검색 결과`} />
+					<div className={styles.container}>
+						<div className={styles.wrapper}>
+							<SortBar page="search" dataLength={dataLength} />
+							{/* <BookItemWrapper data={sortedData} currentPage={currentPage} /> */}
+							<SearchBookItemWrapper data={pageData} />
+							<Pagination
+								dataLength={dataLength}
+								currentPage={currentPage}
+								handlePageNumClick={handlePageNumClick}
+							/>
+						</div>
+					</div>
+				</>
+			)}
 		</>
 	);
 }
