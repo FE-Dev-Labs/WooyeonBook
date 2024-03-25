@@ -15,7 +15,6 @@ import { useLocalStorage } from './../../../hooks/useLocalStorage';
 import { useRecoilState } from 'recoil';
 import { searchKeyword } from '@/recoil/atom/searchKeyword';
 
-
 export default function Search() {
 	// 검색어 로컬스토리지 저장
 	const { addKeyword } = useLocalStorage('searchKeywords', []);
