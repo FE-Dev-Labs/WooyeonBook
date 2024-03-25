@@ -43,7 +43,6 @@ export default async function meeting({
 			break;
 	}
 	const { data, error } = await filterdBookMeetings;
-	console.log(data);
 
 	if (error) {
 		throw error;

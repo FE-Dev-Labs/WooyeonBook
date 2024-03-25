@@ -40,7 +40,6 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 				return report;
 		}
 	});
-	console.log(filteringData);
 
 	return { data, filteringData };
 };

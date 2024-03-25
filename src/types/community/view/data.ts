@@ -73,7 +73,7 @@ interface BookSellingDataType {
 interface AllDataType {
 	doc_id: string;
 	created_at: Date;
-	create_user: string;
+	created_user: string;
 	title: string;
 	content: string;
 	content_img_url: string[];

@@ -1,4 +1,4 @@
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from '@/utils/supabase/client';
 
 export const getUser = async () => {
 	const supabase = createClient();
@@ -11,5 +11,5 @@ export const getUser = async () => {
 	const user_email = user?.email;
 	const user_name = user?.user_metadata.name;
 
-	return { user_id, user_email, user_name };
+	return { user_id, user_email, user_name, error };
 };

@@ -3,6 +3,8 @@ import styles from '@/styles/community/detail/DetailPage.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
+import { cookies } from 'next/headers';
+import { createClient } from '@/utils/supabase/server';
 interface BookReportProps {
 	data: AllDataType;
 }
@@ -10,7 +12,14 @@ const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookReport = ({ data }: BookReportProps) => {
+const BookReport = async ({ data }: BookReportProps) => {
+	const cookieStore = cookies();
+	const supabase = createClient(cookieStore);
+	const {
+		data: { user },
+		error,
+	} = await supabase.auth.getUser();
+
 	return (
 		<section className={styles.container}>
 			<h2 className={styles.title}>{data.title}</h2>
@@ -22,10 +31,14 @@ const BookReport = ({ data }: BookReportProps) => {
 					<div className={styles.dot}>●</div>
 					<div>좋아요 : {data.like} </div>
 				</div>
-				<div className={styles.adimBtnWrap}>
-					<Link href={`/community/update/bookReport/${data.doc_id}`}>수정</Link>
-					<button>삭제</button>
-				</div>
+				{data?.created_user === user?.id ? (
+					<div className={styles.adimBtnWrap}>
+						<Link href={`/community/update/bookReport/${data.doc_id}`}>
+							수정
+						</Link>
+						<button>삭제</button>
+					</div>
+				) : null}
 			</div>
 			<hr className={styles.line} />
 			{/* option */}

@@ -1,13 +1,10 @@
 import styles from '@/styles/layout/header/account.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import heartIcon from '../../../../public/layout/heart.png';
 import accountIcon from '../../../../public/layout/account.png';
 import cartIcon from '../../../../public/layout/cart.png';
 import loginIcon from '../../../../public/layout/login.png';
 import logoutIcon from '../../../../public/layout/logout.png';
-import LoginModal from '@/components/auth/login/LoginModal';
-import SignupModal from '@/components/auth/signup/SignupModal';
 
 export default function Account() {
 	const isLoggedin = true;

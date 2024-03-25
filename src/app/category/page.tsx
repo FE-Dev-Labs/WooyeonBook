@@ -72,8 +72,6 @@ export default function newPage() {
 		fetchData();
 	}, [categoryId]);
 
-	console.log(sortedData);
-
 	return (
 		<>
 			<PageHeader
