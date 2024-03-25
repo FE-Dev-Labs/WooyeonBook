@@ -6,10 +6,10 @@ import { useRecoilState } from 'recoil';
 
 interface SortBarProp {
 	page?: string;
-	searchDataLength?: number | null;
+	dataLength?: number | null;
 }
 
-export default function SortBar({ page, searchDataLength }: SortBarProp) {
+export default function SortBar({ page, dataLength }: SortBarProp) {
 	// 소팅 state
 	const [sortType, setSortType] = useRecoilState(sortTypeState);
 
@@ -22,7 +22,7 @@ export default function SortBar({ page, searchDataLength }: SortBarProp) {
 	return (
 		<div className={styles.sortBox}>
 			{page === 'search' ? (
-				<div className={styles.amountBox}>상품 ({searchDataLength})</div>
+				<div className={styles.amountBox}>상품 ({dataLength})</div>
 			) : (
 				<div style={{ visibility: 'hidden' }} />
 			)}

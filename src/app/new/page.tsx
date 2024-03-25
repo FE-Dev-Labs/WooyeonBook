@@ -51,8 +51,6 @@ export default function newPage() {
 		fetchData();
 	}, [categoryId, currentPage]);
 
-	console.log(newSpecialAllItem);
-
 	return (
 		<>
 			<PageHeader title="신간도서" />
