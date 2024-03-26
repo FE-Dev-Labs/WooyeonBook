@@ -82,7 +82,7 @@ export default function SignupModal() {
 	};
 
 	return (
-		<div className={styles.Container}>
+		<div className={styles.container}>
 			<div className={styles.modalWrapper}>
 				<div className={styles.modalImage}>
 					<Image src={logoIcon} alt="logo" width={350} height={65} />

@@ -4,6 +4,7 @@ export const useLocalStorage = (
 	key: string,
 	initialValue: string[], // 초기값의 타입을 string[]로 변경
 ) => {
+
 	// 로컬 스토리지에서 초기값을 불러오는 함수
 	const getItem = () => {
 		if (typeof window === 'undefined') {

@@ -8,7 +8,7 @@ import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 import { NewBookType } from '@/types/bookType';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function newPage() {
 	// useSearchParams 호출
@@ -20,9 +20,7 @@ export default function newPage() {
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
-	const [itemLength, setItemLength] = useState<number>(0);
-	// 선택된 페이지네이션 숫자 ref
-	const selectedNumRef = useRef<number>(1);
+	const [dataLength, setDataLength] = useState<number>(0);
 
 	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {
@@ -45,7 +43,7 @@ export default function newPage() {
 		// book item
 		setNewSpecialAllItem(data);
 		// book item의 총 개수
-		setItemLength(dataLength);
+		setDataLength(dataLength);
 	};
 
 	// fetchData 뿌려주는 useEffect
@@ -62,7 +60,7 @@ export default function newPage() {
 					<CategoryBox />
 					<BookItemWrapper data={newSpecialAllItem} />
 					<Pagination
-						itemLength={itemLength}
+						dataLength={dataLength}
 						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
 					/>
