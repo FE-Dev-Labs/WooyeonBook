@@ -1,6 +1,6 @@
 import styles from '@/styles/detail/detaildescription/detail.module.css';
 import { ResponseData } from '@/types/bookDetailDate';
-import DetailView from '@/components/detail/detailView';
+import DetailView from '@/components/detail/DetailView';
 // import useLocal from '@/hooks/useLocal';
 // import Detailcookies from '@/components/detail/detailcomments/Detailcookies';
 
@@ -23,11 +23,6 @@ export default async function page({
 	).then((detaildata) => {
 		return detaildata.json();
 	});
-
-	// // 최근 본 상품의 id, image 변수화 해 useLocal 훅에 전달
-	// const itemId = detailData.item[0].itemId;
-	// const itemCover = detailData.item[0].cover;
-	// useLocal({ itemId, itemCover });
 
 	return (
 		<div className={styles.container}>

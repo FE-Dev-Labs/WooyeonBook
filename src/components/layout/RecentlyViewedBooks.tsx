@@ -2,15 +2,15 @@
 
 import styles from '@/styles/layout/recentlyViewedBooks.module.css';
 import Image from 'next/image';
-import bookImage1 from '../../../public/main/book1.jpg';
-import bookImage2 from '../../../public/main/book2.jpg';
 import arrowLeftIcon from '../../../public/common/arrowLeft.png';
 import arrowRightIcon from '../../../public/common/arrowRight.png';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Item {
-	itemId: number;
+	itemIsbn: string;
 	itemCover: string;
+	itemMallType: string;
 }
 
 export default function RecentlyViewedBooks() {
@@ -33,13 +33,18 @@ export default function RecentlyViewedBooks() {
 				<div className={styles.textWrapper}>최근 본 상품</div>
 				<div className={styles.booksWrapper}>
 					{recentItems.map((item) => (
-						<Image
-							key={item.itemId}
-							src={item.itemCover}
-							alt="book"
-							width={60}
-							height={80}
-						/>
+						<Link
+							href={`/detail/${item?.itemIsbn}?type=${
+								item?.itemMallType === 'USED' ? 'used' : 'new'
+							}`}>
+							<Image
+								key={item.itemIsbn}
+								src={item.itemCover}
+								alt="book"
+								width={60}
+								height={80}
+							/>
+						</Link>
 					))}
 				</div>
 				<div className={styles.buttonWrapper}>
