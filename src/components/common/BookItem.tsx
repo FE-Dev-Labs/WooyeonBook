@@ -14,7 +14,7 @@ interface BookItemProps {
 }
 
 export default function BookItem({ rank, data }: BookItemProps) {
-	// + 버튼
+	// + 버튼 state
 	const [isAdded, setIsAdded] = useState<boolean>(false);
 
 	// 할인율 계산 함수

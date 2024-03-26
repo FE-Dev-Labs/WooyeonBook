@@ -61,4 +61,8 @@
 .buttonWrapper > p {
 	font-size: 12px;
 	font-weight: bold;
+	margin-bottom: 3px;
+}
+.buttonWrapper > div {
+	cursor: pointer;
 }
