@@ -8,7 +8,7 @@ interface CategoryBookItemBoxProp {
 
 export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
 	return (
-		<div className={styles.CategorybookItemWrapper}>
+		<div className={styles.categorybookItemWrapper}>
 			{data?.map((book: NewBookType) => (
 				<BookItem key={book.itemId} data={book} />
 			))}
