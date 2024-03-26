@@ -19,13 +19,13 @@
 /* 로그인/회원가입 모달 틀 */
 .modalWrapper {
 	width: 950px;
-	height: 550px;
+	height: 800px;
 	border-radius: 30px;
 	gap: 20px;
 
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
 
 	background-color: #f4f2e5;
 }
@@ -80,7 +80,7 @@
 }
 .inputWrapper {
 	width: inherit;
-	height: 360px;
+	/* height: 360px; */
 	gap: 20px;
 
 	display: flex;
@@ -106,10 +106,11 @@
 	border: none;
 	box-sizing: border-box;
 }
+
 .buttonWrapper {
 	width: inherit;
 	height: 50px;
-	margin-top: 15px;
+	margin-top: 80px;
 
 	display: flex;
 	justify-content: space-between;
@@ -171,4 +172,31 @@
 /* 나가기 아이콘 */
 .closeIcon {
 	cursor: pointer;
+}
+
+/* address */
+.inputAddress {
+	display: flex;
+	justify-content: space-between;
+}
+.inputFieldAddress {
+	width: 55%;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputFieldBtn {
+	width: 40%;
+	height: 36px;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: #6594e7;
 }

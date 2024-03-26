@@ -5,10 +5,8 @@ import closeIcon from '../../../../public/common/close.png';
 import { cookies, headers } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
-interface SignupProps {
-	isSignupOpen?: boolean;
-	setIsSignupOpen?: (value: boolean) => void;
-}
+import uuid from 'react-uuid';
+import SignupAddress from './SignupAddress';
 
 export default function SignupModal() {
 	const signUp = async (formData: FormData) => {
@@ -19,7 +17,9 @@ export default function SignupModal() {
 		const password = formData.get('password') as string;
 		const name = formData.get('name') as string;
 		const phone = formData.get('phone') as string;
-		const address = formData.get('address') as string;
+		// const address = formData.get('address') as string;
+		// const zipcode = formData.get('zipcode') as string;
+		// const detailaddress = formData.get('detailaddress') as string;
 
 		const cookieStore = cookies();
 		const supabase = createClient(cookieStore);
@@ -27,33 +27,32 @@ export default function SignupModal() {
 		const { error } = await supabase.auth.signUp({
 			email,
 			password,
-
 			options: {
-				data: { name, phone, address },
+				data: { name, phone },
 				emailRedirectTo: `${origin}/auth/callback`,
 			},
 		});
 		if (error) throw error;
-		// const {
-		// 	data: { session },
-		// } = await supabase.auth.getSession();
-		// if (error) {
-		// 	console.log(error);
-		// }
-		// const userData = {
-		// 	uuid: session?.user.id as string,
-		// 	email: session?.user.email as string,
-		// 	name: '',
-		// 	phone: '',
-		// 	adress: '',
-		// };
-		// const { data: users } = await supabase
-		// 	.from('users')
-		// 	.insert(userData)
-		// 	.select();
-		// if (error) {
-		// 	return redirect('/?message=Could not authenticate user');
-		// }
+		const { data } = await supabase.auth.getUser();
+		if (error) {
+			console.log(error);
+		}
+		const userData = {
+			uuid: uuid(),
+			email: email,
+			name: name,
+			phone: phone,
+			// address: address,
+			// zipcode: zipcode,
+			// detailaddress: detailaddress,
+		};
+		const { data: users } = await supabase
+			.from('users')
+			.insert(userData)
+			.select();
+		if (error) {
+			return redirect('/?message=Could not authenticate user');
+		}
 
 		return redirect('/');
 	};
@@ -74,9 +73,9 @@ export default function SignupModal() {
 								<label className={styles.inputLabel}>
 									이름
 									<input
-										type="name"
-										className={styles.inputField}
+										type="text"
 										name="name"
+										className={styles.inputField}
 										placeholder="your name"
 									/>
 								</label>
@@ -101,12 +100,22 @@ export default function SignupModal() {
 								<label className={styles.inputLabel}>
 									비밀번호확인
 									<input
-										type="checkPassword"
+										type="password"
 										name="checkPassword"
 										className={styles.inputField}
 										placeholder="your password confirm"
 									/>
 								</label>
+								<label className={styles.inputLabel}>
+									휴대폰 번호
+									<input
+										type="text"
+										name="phone"
+										className={styles.inputField}
+										placeholder="your password confirm"
+									/>
+								</label>
+								<SignupAddress />
 							</div>
 							<div className={styles.buttonWrapper}>
 								<button formAction={signUp} className={styles.signupButton}>
