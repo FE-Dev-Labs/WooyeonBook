@@ -8,7 +8,7 @@ import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 import { NewBookType } from '@/types/bookType';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function newPage() {
 	// useSearchParams 호출
