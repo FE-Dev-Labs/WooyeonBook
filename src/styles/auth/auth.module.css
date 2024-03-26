@@ -200,3 +200,39 @@
 	color: #ffffff;
 	background-color: #6594e7;
 }
+.postcodeWrapper {
+	position: relative; /* 이 부분을 추가합니다. */
+	width: 500px; /* DaumPostcode와 동일한 너비 */
+	height: 500px; /* DaumPostcode와 동일한 높이 */
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.closeBtn {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+}
+.closeBtnBackground {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+	width: 20px;
+	height: 20px;
+	background-color: black;
+}
+.postCodeStyle {
+	width: 500px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.daumPostBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+}

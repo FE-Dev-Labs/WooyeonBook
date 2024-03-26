@@ -1,20 +1,25 @@
 'use client';
-// import useAddress from '@/hooks/useAddress';
+import {
+	detailAddressAtom,
+	roadAddressAtom,
+	zipcodeAtom,
+} from '@/recoil/atom/signupAtom';
 import styles from '@/styles/auth/auth.module.css';
 import { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
+import { useRecoilState } from 'recoil';
+import closeIcon from '../../../../public/layout/closewhite.png';
+import Image from 'next/image';
 
 export default function SignupAddress() {
-	const [zipcode, setZipcode] = useState<string>('');
-	const [roadAddress, setRoadAddress] = useState<string>('');
-	const [detailAddress, setDetailAddress] = useState<string>('');
+	const [zipcode, setZipcode] = useRecoilState(zipcodeAtom);
+	const [roadAddress, setRoadAddress] = useRecoilState(roadAddressAtom);
+	const [detailaddress, setDetailAddress] = useRecoilState(detailAddressAtom);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	// const { handleComplete } = useAddress();
 	const handleComplete = (data: any) => {
 		setZipcode(data.zonecode);
 		setRoadAddress(data.roadAddress);
-		console.log(data.zonecode);
-		console.log(data.roadAddress);
 		setIsOpen(false);
 	};
 	// 검색 클릭
@@ -38,14 +43,6 @@ export default function SignupAddress() {
 						className={styles.inputFieldAddress}
 						placeholder="우편주소"
 					/>
-					{isOpen && (
-						<div>
-							<DaumPostcode
-								className={styles.postCodeStyle}
-								onComplete={handleComplete}
-							/>
-						</div>
-					)}
 					<button
 						type="button"
 						className={styles.inputFieldBtn}
@@ -62,13 +59,41 @@ export default function SignupAddress() {
 					placeholder="주소"
 				/>
 				<input
-					defaultValue={detailAddress}
+					defaultValue={detailaddress}
 					type="text"
 					name="detailaddress"
 					className={styles.inputField}
 					placeholder="상세주소"
 					onChange={changeHandler}
 				/>
+				{isOpen && (
+					<>
+						<div className={styles.daumPostBackground}>
+							<div className={styles.postcodeWrapper}>
+								<DaumPostcode
+									className={styles.postCodeStyle}
+									onComplete={handleComplete}
+									style={{
+										height: '500px',
+										width: '500px',
+									}}
+								/>
+								<div className={styles.closeIcon}>
+									<div className={styles.closeBtnBackground}>
+										<Image
+											className={styles.closeBtn}
+											src={closeIcon}
+											alt="close"
+											width={20}
+											height={20}
+											onClick={() => setIsOpen(false)}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</>
+				)}
 			</label>
 		</>
 	);
