@@ -6,15 +6,11 @@ import accountIcon from '../../../../public/layout/account.png';
 import cartIcon from '../../../../public/layout/cart.png';
 import loginIcon from '../../../../public/layout/login.png';
 import logoutIcon from '../../../../public/layout/logout.png';
-import LoginModal from '@/components/auth/login/LoginModal';
-import SignupModal from '@/components/auth/signup/SignupModal';
 
 export default function Account() {
 	const isLoggedin = true;
 	return (
 		<div className={styles.accountWrapper}>
-			{/* <LoginModal /> */}
-			{/* <SignupModal /> */}
 			{isLoggedin ? (
 				<>
 					<Link href="/login" scroll={false}>

@@ -20,7 +20,7 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 	const supabase = createClient();
 
 	// useCurrentUser  훅
-	const { useName, userId, getUser } = useCurrentUser('');
+	const { userName, userId, getUser } = useCurrentUser('');
 
 	// 로그인 유뮤 체크
 	useEffect(() => {
@@ -48,7 +48,7 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 			id: uuid(),
 			user_id: userId,
 			book_id: bookId,
-			user_name: useName,
+			user_name: userName,
 			comment: comment,
 			created_at: new Date(),
 		};
@@ -93,22 +93,24 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 	return (
 		<>
 			{isLogin && (
-				<form className={styles.commentForm} onSubmit={handleSumbit}>
-					<input
-						value={comment}
-						className={styles.commentInput}
-						type="text"
-						placeholder="한글 기준 50자까지 작성 가능합니다."
-						onChange={hanldeInputChange}
-						maxLength={50}
-					/>
-					<button className={styles.commnetSubmitBtn}>등록</button>
-				</form>
+				<>
+					<form className={styles.commentForm} onSubmit={handleSumbit}>
+						<input
+							value={comment}
+							className={styles.commentInput}
+							type="text"
+							placeholder="한글 기준 50자까지 작성 가능합니다."
+							onChange={hanldeInputChange}
+							maxLength={50}
+						/>
+						<button className={styles.commnetSubmitBtn}>등록</button>
+					</form>
+					<div className={styles.commentInputCount}>
+						<span className={styles.commentInputCountTxt}>{inputCount}</span>
+						<span className={styles.commentCount}>/50 자</span>
+					</div>
+				</>
 			)}
-			<div className={styles.commentInputCount}>
-				<span className={styles.commentInputCountTxt}>{inputCount}</span>
-				<span className={styles.commentCount}>/50 자</span>
-			</div>
 			<div>
 				<ul>
 					{commentsList.map((list) => {
