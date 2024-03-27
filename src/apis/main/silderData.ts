@@ -7,6 +7,7 @@ export const mainBookSlider = [
 		content: '가슴이 저미고 마음에 흔적을 남기는 이야기들',
 		img: '/main/thedisappeared.jpg',
 		background: '#F2CAC8',
+		link: '/detail/8954697356?type=new',
 	},
 	{
 		id: 2,
@@ -16,6 +17,7 @@ export const mainBookSlider = [
 		content: '모든 장소에 맞서는, 절대적으로 다른 공간',
 		img: '/main/pouvoiretespace.jpg',
 		background: '#C2BFDC',
+		link: 'detail/893204239X?type=new',
 	},
 	{
 		id: 3,
@@ -25,6 +27,7 @@ export const mainBookSlider = [
 		content: '듄 마니아들의 보물창고가 될 만하다.',
 		img: '/main/dune.jpg',
 		background: '#F4AE25',
+		link: '/detail/K312937531?type=new',
 	},
 	{
 		id: 4,
@@ -34,6 +37,7 @@ export const mainBookSlider = [
 		content: '성공하는 삶은 저 멀리 있는것이 아니다.',
 		img: '/main/miraclemorning.jpg',
 		background: '#00A2EA',
+		link: 'detail/K012937150?type=new',
 	},
 	{
 		id: 5,
@@ -43,6 +47,7 @@ export const mainBookSlider = [
 		content: '시간의 멈춘 방에서 사람의 의미를 생각하다',
 		img: '/main/leftatthememorial.jpg',
 		background: '#B4B9D7',
+		link: '/detail/8935214493?type=new',
 	},
 	{
 		id: 6,
@@ -52,5 +57,6 @@ export const mainBookSlider = [
 		content: '미래 100대 기술 주역 선정',
 		img: '/main/neurallink.jpg',
 		background: '#D0A325',
+		link: '/detail/8962625938?type=new',
 	},
 ];
