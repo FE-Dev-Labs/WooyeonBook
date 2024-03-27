@@ -4,8 +4,8 @@ import Image from 'next/image';
 import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
 import { useRecoilState } from 'recoil';
-import { cartAtom } from '@/recoil/atom/cartAtom';
 import { useEffect } from 'react';
+import { cartAtom } from '@/recoil/atom/CartAtom';
 
 export default function Detailquantity() {
 	const [count, setCount] = useRecoilState<string | number>(cartAtom);
