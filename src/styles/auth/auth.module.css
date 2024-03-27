@@ -19,13 +19,13 @@
 /* 로그인/회원가입 모달 틀 */
 .modalWrapper {
 	width: 950px;
-	height: 550px;
+	height: 800px;
 	border-radius: 30px;
 	gap: 20px;
 
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
 
 	background-color: #f4f2e5;
 }
@@ -80,7 +80,7 @@
 }
 .inputWrapper {
 	width: inherit;
-	height: 360px;
+	/* height: 360px; */
 	gap: 20px;
 
 	display: flex;
@@ -106,10 +106,11 @@
 	border: none;
 	box-sizing: border-box;
 }
+
 .buttonWrapper {
 	width: inherit;
 	height: 50px;
-	margin-top: 15px;
+	margin-top: 80px;
 
 	display: flex;
 	justify-content: space-between;
@@ -171,4 +172,67 @@
 /* 나가기 아이콘 */
 .closeIcon {
 	cursor: pointer;
+}
+
+/* address */
+.inputAddress {
+	display: flex;
+	justify-content: space-between;
+}
+.inputFieldAddress {
+	width: 55%;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputFieldBtn {
+	width: 40%;
+	height: 36px;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: #6594e7;
+}
+.postcodeWrapper {
+	position: relative; /* 이 부분을 추가합니다. */
+	width: 500px; /* DaumPostcode와 동일한 너비 */
+	height: 500px; /* DaumPostcode와 동일한 높이 */
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.closeBtn {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+}
+.closeBtnBackground {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+	width: 20px;
+	height: 20px;
+	background-color: black;
+}
+.postCodeStyle {
+	width: 500px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.daumPostBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
 }

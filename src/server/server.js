@@ -87,7 +87,6 @@ app.put('/api/updateKeywords', async (req, res) => {
 
 // 새 검색어 api
 app.post('/api/saveKeywords', async (req, res) => {
-	console.log('req.body', req.body);
 	try {
 		const { data, error } = await supabase
 			.from('PopularSearch')

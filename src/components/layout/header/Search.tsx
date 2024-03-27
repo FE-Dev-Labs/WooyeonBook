@@ -155,7 +155,7 @@ export default function Search() {
 					<div>
 						<div className={styles.recentSearchWrapper}>
 							<div className={styles.searchResultWord}>
-								{searchData.map((data) => {
+								{searchData?.map((data) => {
 									return (
 										<SearchResult
 											data={data}
