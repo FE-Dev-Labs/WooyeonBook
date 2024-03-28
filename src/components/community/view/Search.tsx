@@ -3,11 +3,11 @@ import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
 import searchIcon from '../../../../public/searchIcon.png';
 import Link from 'next/link';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import communityPathname from '@/apis/communityPathname';
-
+import { useRouter, useSearchParams } from 'next/navigation';
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => <div className={styles.optionBtnSkeleton}></div>,
@@ -17,10 +17,18 @@ interface OptionBtnProps {
 	categoriesOption: { value: string; label: string }[];
 	sortOptions: { value: string; label: string }[];
 	pathName: string;
+	onChangeSort?: (e: any) => void;
+	onChangeCategories?: (e: any) => void;
 }
 
 const OptionBtn = memo(
-	({ categoriesOption, sortOptions, pathName }: OptionBtnProps) => (
+	({
+		categoriesOption,
+		sortOptions,
+		pathName,
+		onChangeSort,
+		onChangeCategories,
+	}: OptionBtnProps) => (
 		<>
 			{pathName == 'bookReport' ? (
 				<div className={styles.optionBtn}></div>
@@ -30,6 +38,7 @@ const OptionBtn = memo(
 					options={categoriesOption}
 					defaultValue={categoriesOption[0]}
 					isSearchable={false}
+					onChange={onChangeCategories}
 				/>
 			)}
 			<Select
@@ -37,16 +46,83 @@ const OptionBtn = memo(
 				options={sortOptions}
 				defaultValue={sortOptions[0]}
 				isSearchable={false}
+				onChange={onChangeSort}
 			/>
 		</>
 	),
 );
 
 function Search() {
+	const params = useSearchParams();
+	const router = useRouter();
 	const [query, setQuery] = useState('');
+	const [sort, setSort] = useState('');
+	const [categories, setCategories] = useState('');
 	const pathname = usePathname().split('/')[2];
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
+	};
+	useEffect(() => {
+		setQuery('');
+	}, [pathname]);
+	const onChangeSort = (e: any) => {
+		setSort(e.value);
+		if (
+			params.has('q') &&
+			params.get('q') !== '' &&
+			params.has('categories') &&
+			params.get('categories') !== ''
+		) {
+			return router.push(
+				`/community/${pathname}?sort=${e.value}&q=${query}&categories=${categories}`,
+			);
+		}
+		if (params.has('q')) {
+			return router.push(`/community/${pathname}?sort=${e.value}&q=${query}`);
+		}
+		if (params.has('categories')) {
+			return router.push(
+				`/community/${pathname}?sort=${e.value}&categories=${categories}`,
+			);
+		}
+
+		return router.push(`/community/${pathname}?sort=${e.value}`);
+	};
+	const onChangeCategories = (e: any) => {
+		setCategories(e.value);
+		if (params.has('q') && params.get('q') !== '' && params.has('sort')) {
+			return router.push(
+				`/community/${pathname}?categories=${e.value}&q=${query}&sort=${sort}`,
+			);
+		}
+		if (params.has('q') && params.get('q') !== '') {
+			return router.push(
+				`/community/${pathname}?categories=${e.value}&q=${query}`,
+			);
+		}
+		if (params.has('sort')) {
+			return router.push(
+				`/community/${pathname}?categories=${e.value}&sort=${sort}`,
+			);
+		}
+
+		return router.push(`/community/${pathname}?categories=${e.value}`);
+	};
+	const onChangeSearch = () => {
+		if (params.has('sort') && params.has('categories')) {
+			return router.push(
+				`/community/${pathname}?sort=${sort}&categories=${categories}&q=${query}`,
+			);
+		}
+		if (params.has('sort')) {
+			return router.push(`/community/${pathname}?sort=${sort}&q=${query}`);
+		}
+		if (params.has('categories')) {
+			return router.push(
+				`/community/${pathname}?categories=${categories}&q=${query}`,
+			);
+		}
+		return router.push(`/community/${pathname}?q=${query}`);
 	};
 	// 옵션 select
 	const sortOptions = [
@@ -57,26 +133,25 @@ function Search() {
 
 	const categoriesOption = () => {
 		const pathname = communityPathname();
-		if (pathname === 'meeting') {
+		if (pathname === 'bookMeeting') {
 			return [
 				{ value: 'All', label: '전체' },
-				{ value: '2', label: '모집중' },
-				{ value: '3', label: '모집완료' },
+				{ value: 'true', label: '모집중' },
+				{ value: 'false', label: '모집완료' },
 			];
 		}
-		if (pathname === 'buyingBook') {
+		if (pathname === 'bookBuying') {
 			return [
 				{ value: 'All', label: '전체' },
-				{ value: '2', label: '삽니다' },
-				{ value: '3', label: '거래완료' },
+				{ value: 'true', label: '거래중' },
+				{ value: 'false', label: '거래완료' },
 			];
 		}
-		if (pathname === 'sellingBook') {
+		if (pathname === 'bookSelling') {
 			return [
 				{ value: 'All', label: '전체' },
-				{ value: '2', label: '나눔' },
-				{ value: '3', label: '팝니다' },
-				{ value: '4', label: '판매완료' },
+				{ value: 'true', label: '나눔' },
+				{ value: 'false', label: '팝니다' },
 			];
 		}
 		return [];
@@ -89,18 +164,21 @@ function Search() {
 				</div>
 				<input
 					type="text"
+					value={query}
 					className={styles.searchInput}
 					placeholder="검색어를 입력해주세요"
 					onChange={onChange}
 				/>
 			</div>
-			<Link className={styles.searchLink} href={`${pathname}?q=${query}`}>
+			<button className={styles.searchLink} onClick={onChangeSearch}>
 				검색
-			</Link>
+			</button>
 			<OptionBtn
 				categoriesOption={categoriesOption()}
 				sortOptions={sortOptions}
 				pathName={pathname}
+				onChangeSort={onChangeSort}
+				onChangeCategories={onChangeCategories}
 			/>
 		</div>
 	);

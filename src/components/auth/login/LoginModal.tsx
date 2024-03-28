@@ -2,7 +2,7 @@ import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
 import logoIcon from '../../../../public/layout/logo.png';
 import closeIcon from '../../../../public/common/close.png';
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';

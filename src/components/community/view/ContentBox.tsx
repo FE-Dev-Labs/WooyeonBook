@@ -1,16 +1,36 @@
 import styles from '@/styles/community/contentBox.module.css';
 import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
-import Link from 'next/link';
-
+import { createClient } from '@/utils/supabase/server';
+import { cookies } from 'next/headers';
+import NaviLab from './NaviLab';
 interface ContentBoxProps {
 	data: AllDataType;
 	page?: string;
 }
 
-export default function ContentBox({ data, page }: ContentBoxProps) {
+export default async function ContentBox({ data, page }: ContentBoxProps) {
+	const viewCount = async () => {
+		const cookieStore = cookies();
+		const supabase = createClient(cookieStore);
+
+		const { error } = await supabase
+			.from(page as string)
+			.update({
+				view: (data?.view as number) + 1,
+			})
+			.eq('doc_id', data.doc_id)
+			.select();
+
+		if (error) {
+			throw new Error('Error updating view count');
+		}
+	};
 	return (
-		<Link href={`/community/detail/${page}/${data.doc_id}`}>
+		<NaviLab
+			page={page as string}
+			doc_id={data.doc_id}
+			view={data.view as number}>
 			<div className={styles.container}>
 				{!page ? (
 					<h2 className={styles.title}>{data.title}</h2>
@@ -40,6 +60,6 @@ export default function ContentBox({ data, page }: ContentBoxProps) {
 					</div>
 				</div>
 			</div>
-		</Link>
+		</NaviLab>
 	);
 }

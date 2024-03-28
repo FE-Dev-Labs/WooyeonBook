@@ -5,7 +5,7 @@ import { AllDataType } from '@/types/community/view/data';
 export default async function meeting({
 	searchParams,
 }: {
-	searchParams: { sort?: string; q?: string };
+	searchParams: { sort?: string; q?: string; categories?: string };
 }) {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
@@ -31,6 +31,17 @@ export default async function meeting({
 			break;
 	}
 
+	switch (searchParams.categories) {
+		case 'true':
+			filterdBookMeetings.eq('state', false);
+			break;
+		case 'false':
+			filterdBookMeetings.eq('state', true);
+			break;
+		default:
+			filterdBookMeetings;
+			break;
+	}
 	const { data, error } = await filterdBookMeetings;
 
 	if (error) {

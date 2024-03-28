@@ -2,7 +2,7 @@ import { AllDataType } from '@/types/community/view/data';
 
 interface Props {
 	page: string;
-	searchParams: { sort?: string; q?: string };
+	searchParams: { sort?: string; q?: string; categories?: string };
 }
 
 export const getCommunityViewData = async ({ page, searchParams }: Props) => {
@@ -18,7 +18,17 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 			)
 		: data;
 
-	const sortedData = filterdData.sort((a: AllDataType, b: AllDataType) => {
+	const filteringData = filterdData.filter((report: AllDataType) => {
+		switch (searchParams?.categories) {
+			case 'true':
+				return report.state === false;
+			case 'false':
+				return report.state === true;
+			default:
+				return report;
+		}
+	});
+	const sortedData = filteringData.sort((a: AllDataType, b: AllDataType) => {
 		switch (searchParams?.sort) {
 			case 'Latest':
 				return b.created_at > a.created_at ? 1 : -1;
@@ -27,7 +37,7 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 			case 'View':
 				return b.view - a.view;
 			default:
-				return 0;
+				return b.created_at > a.created_at ? 1 : -1;
 		}
 	});
 

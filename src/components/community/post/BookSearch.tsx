@@ -9,7 +9,6 @@ import { useSetRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import useOutsideClick from '@/hooks/useOutsideClick';
-import { usePathname } from 'next/navigation';
 
 interface SearchData {
 	title: string;

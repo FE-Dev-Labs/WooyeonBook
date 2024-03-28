@@ -7,8 +7,10 @@ import { getDate } from '@/utils/getDate';
 
 export default async function DetailPage({
 	params,
+	searchParams,
 }: {
 	params: { page: string; doc_id: string };
+	searchParams?: { sort?: string };
 }) {
 	const response = await fetch(
 		`http://localhost:8080/community/${params.page}/${params.doc_id}`,
@@ -20,7 +22,7 @@ export default async function DetailPage({
 
 	switch (params.page) {
 		case 'bookReport':
-			return <BookReport data={data} />;
+			return <BookReport data={data} searchParams={searchParams} />;
 		case 'bookSelling':
 			return <BookSelling data={data} />;
 		case 'bookMeeting':
