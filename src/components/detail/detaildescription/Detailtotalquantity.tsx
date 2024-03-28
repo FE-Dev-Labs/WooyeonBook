@@ -3,13 +3,13 @@
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import { Book } from '@/types/bookDetailDate';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 interface bookDetailProp {
 	bookInfo: Book;
 }
 export default function Detailtotalquantity({ bookInfo }: bookDetailProp) {
 	// 장바구니 수량 state
-	const [count, setCount] = useRecoilState<number>(itemAmountAtom);
+	const count = useRecoilValue<number>(itemAmountAtom);
 
 	// 전체 금액
 	const totalPrice = (count * bookInfo.priceSales).toLocaleString();

@@ -93,3 +93,14 @@ export interface UsedBookType {
 	customerReviewRank: number;
 	subInfo: object;
 }
+
+// 장바구니에 들어갈 아이템 타입
+export interface CartItemType {
+	title: string;
+	author: string;
+	publisher: string;
+	priceSales: number;
+	priceStandard: number;
+	isbn: string;
+	cover: string;
+}

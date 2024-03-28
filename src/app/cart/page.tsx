@@ -1,7 +1,17 @@
+'use client';
+
 import styles from '@/styles/shoppingCart/shoppingCartPage.module.css';
 import Image from 'next/image';
 import bookImg from '../../../public/book.png';
+import { cartAtom } from '@/recoil/atom/cartAtom';
+import { CartItemType } from '@/types/bookType';
+import { useRecoilState } from 'recoil';
 export default function cartPage() {
+	// 카트 아이템 state
+	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
+
+	console.log(cart);
+
 	return (
 		<div className={styles.container}>
 			<header>
