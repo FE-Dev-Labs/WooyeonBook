@@ -18,19 +18,7 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 			)
 		: data;
 
-	const sortedData = filterdData.sort((a: AllDataType, b: AllDataType) => {
-		switch (searchParams?.sort) {
-			case 'Latest':
-				return b.created_at > a.created_at ? 1 : -1;
-			case 'Oldest':
-				return a.created_at > b.created_at ? 1 : -1;
-			case 'View':
-				return b.view - a.view;
-			default:
-				return 0;
-		}
-	});
-	const filteringData = sortedData.filter((report: AllDataType) => {
+	const filteringData = filterdData.filter((report: AllDataType) => {
 		switch (searchParams?.categories) {
 			case 'true':
 				return report.state === false;
@@ -40,6 +28,18 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 				return report;
 		}
 	});
+	const sortedData = filteringData.sort((a: AllDataType, b: AllDataType) => {
+		switch (searchParams?.sort) {
+			case 'Latest':
+				return b.created_at > a.created_at ? 1 : -1;
+			case 'Oldest':
+				return a.created_at > b.created_at ? 1 : -1;
+			case 'View':
+				return b.view - a.view;
+			default:
+				return b.created_at > a.created_at ? 1 : -1;
+		}
+	});
 
-	return { data, filteringData };
+	return { data, sortedData };
 };

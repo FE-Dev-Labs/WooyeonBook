@@ -5,20 +5,42 @@ import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
+import CommentCreate from './comment/CommentCreate';
+import CommentItem from './comment/CommentItem';
+
 interface BookReportProps {
 	data: AllDataType;
+	searchParams?: { sort?: string };
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookReport = async ({ data }: BookReportProps) => {
+const BookReport = async ({ searchParams, data }: BookReportProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
 		data: { user },
 		error,
 	} = await supabase.auth.getUser();
+	if (error) {
+		throw error;
+	}
+
+	const response = supabase.from('comment').select('*');
+
+	switch (searchParams?.sort) {
+		case 'like':
+			response.order('like', { ascending: false });
+		case 'lastest':
+			response.order('created_at', { ascending: false });
+		default:
+			response;
+	}
+	const { data: commnet, error: commentError } = await response;
+	if (commentError) {
+		throw commentError;
+	}
 
 	return (
 		<section className={styles.container}>
@@ -54,6 +76,29 @@ const BookReport = async ({ data }: BookReportProps) => {
 				<View content={data.content} />
 			</div>
 			<hr className={styles.line} />
+			{/* 댓글 */}
+			<section>
+				<div className={styles.commentHeader}>
+					<div className={styles.commentCount}>댓글 ##</div>
+					<div className={styles.commentSortWrap}>
+						<Link
+							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}
+							scroll={false}>
+							좋아요순
+						</Link>
+						<div className={styles.dot}>●</div>
+						<Link
+							href={`/community/detail/bookReport/${data.doc_id}?sort=lastest`}
+							scroll={false}>
+							최신순
+						</Link>
+					</div>
+				</div>
+				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
+				{commnet.map((item) => {
+					return <CommentItem data={item} key={item.id} />;
+				})}
+			</section>
 		</section>
 	);
 };

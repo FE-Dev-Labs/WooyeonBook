@@ -34,7 +34,7 @@ export default async function sellingBook({
 }: {
 	searchParams: { sort?: string; q?: string };
 }) {
-	const { data, filteringData } = await getCommunityViewData({
+	const { data, sortedData } = await getCommunityViewData({
 		page: 'bookSelling',
 		searchParams,
 	});
@@ -44,7 +44,7 @@ export default async function sellingBook({
 	}
 	return (
 		<section>
-			{filteringData?.map((data: AllDataType) => {
+			{sortedData?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookSelling" />;
 			})}
 		</section>
