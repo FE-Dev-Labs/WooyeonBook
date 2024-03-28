@@ -4,7 +4,12 @@ import styles from '@/styles/category/categoryContents/sortBar.module.css';
 import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 import { useRecoilState } from 'recoil';
 
-export default function SortBar() {
+interface SortBarProp {
+	page?: string;
+	dataLength?: number | null;
+}
+
+export default function SortBar({ page, dataLength }: SortBarProp) {
 	// 소팅 state
 	const [sortType, setSortType] = useRecoilState(sortTypeState);
 
@@ -16,6 +21,11 @@ export default function SortBar() {
 
 	return (
 		<div className={styles.sortBox}>
+			{page === 'search' ? (
+				<div className={styles.amountBox}>상품 ({dataLength})</div>
+			) : (
+				<div style={{ visibility: 'hidden' }} />
+			)}
 			<div className={styles.textBox}>
 				{/* <p
 					className={`${sortType === '인기순' ? styles.selectedSortItem : ''}`}

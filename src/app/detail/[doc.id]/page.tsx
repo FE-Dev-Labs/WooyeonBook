@@ -1,12 +1,7 @@
-import Detaildescription from '@/components/detail/detaildescription/Detaildescription';
 import styles from '@/styles/detail/detaildescription/detail.module.css';
-import Accordion from './../../../components/common/Accordion';
-import Detailcomment from '@/components/detail/detailcomments/Detailcomment';
-import AccordionWrapper from '@/components/common/AccordionWrapper';
-import Detailinformation from '@/components/detail/detaildata/detailinformation';
-import Detailexplanation from './../../../components/detail/detaildata/detailexplanation';
 import { ResponseData } from '@/types/bookDetailDate';
-import Detailsustainability from '@/components/detail/detaildata/detailsustainability';
+import DetailView from '@/components/detail/DetailView';
+// import useLocal from '@/hooks/useLocal';
 // import Detailcookies from '@/components/detail/detailcomments/Detailcookies';
 
 export default async function page({
@@ -31,25 +26,8 @@ export default async function page({
 
 	return (
 		<div className={styles.container}>
-			{detailData.item.map((book, index) => (
-				<div key={index}>
-					<Detaildescription bookInfo={book} />
-					<AccordionWrapper>
-						<Accordion title={'설명'} index={0}>
-							<Detailexplanation bookInfo={book} />
-						</Accordion>
-						<Accordion title={'정보고시'} index={1}>
-							<Detailinformation bookInfo={book} />
-						</Accordion>
-						<Accordion title={'지속가능성'} index={2}>
-							<Detailsustainability bookInfo={book} />
-						</Accordion>
-						<Accordion title={'한줄평'} index={3}>
-							{/* <Detailcookies /> */}
-							<Detailcomment bookId={id} />
-						</Accordion>
-					</AccordionWrapper>
-				</div>
+			{detailData.item.map((book) => (
+				<DetailView book={book} id={id} />
 			))}
 		</div>
 	);

@@ -5,6 +5,7 @@ import closeIcon from '../../../../public/common/close.png';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginModal() {
 	const signIn = async (formData: FormData) => {
@@ -27,7 +28,7 @@ export default function LoginModal() {
 		return redirect('/');
 	};
 	return (
-		<div className={styles.Container}>
+		<div className={styles.container}>
 			<div className={styles.modalWrapper}>
 				<div className={styles.modalImage}>
 					<Image src={logoIcon} alt="logo" width={350} height={65} />
@@ -62,7 +63,9 @@ export default function LoginModal() {
 								<button formAction={signIn} className={styles.loginLeftButton}>
 									로그인
 								</button>
-								<button className={styles.loginRightButton}>회원가입</button>
+								<Link href={'/sign'} className={styles.loginRightButton}>
+									회원가입
+								</Link>
 							</div>
 						</form>
 					</div>
