@@ -58,68 +58,13 @@ export default function RecentlyViewedBooks() {
 	useEffect(() => {
 		// 로컬 스토리지에서 'recentItems' 가져오기
 		const storedItems = localStorage.getItem('recentItems');
+		// 로컬 스토리지에 저장된 아이템이 있다면, 파싱하여 set하기
 		if (storedItems) {
-			// 로컬 스토리지에 저장된 아이템이 있다면, JSON 형태로 파싱하여 상태에 설정
 			setRecentItems(JSON.parse(storedItems));
 		}
 	}, []);
 
-	// return (
-	// 	<div className={styles.container}>
-	// 		<div className={styles.wrapper}>
-	// 			<header className={styles.textWrapper}>최근 본 상품</header>
-	// 			<div className={styles.booksWrapper}>
-	// 				{currentItems.map((item) => (
-	// 					<div key={item.itemIsbn} className={styles.itemWrapper}>
-	// 						<Link
-	// 							href={`/detail/${item?.itemIsbn}?type=${
-	// 								item?.itemMallType === 'USED' ? 'used' : 'new'
-	// 							}`}>
-	// 							<Image
-	// 								src={item.itemCover}
-	// 								alt="recently viewed book"
-	// 								width={60}
-	// 								height={79}
-	// 							/>
-	// 						</Link>
-	// 						<Image
-	// 							className={styles.deleteButton}
-	// 							src={closeButton}
-	// 							alt="close button"
-	// 							onClick={() => handleDeleteItemClick(item.itemIsbn)}
-	// 						/>
-	// 					</div>
-	// 				))}
-	// 			</div>
-	// 			<div className={styles.buttonWrapper}>
-	// 				<div>
-	// 					<Image
-	// 						src={arrowLeftIcon}
-	// 						alt="arrow"
-	// 						width={20}
-	// 						height={20}
-	// 						onClick={handlePrebBtnClick}
-	// 					/>
-	// 				</div>
-	// 				<p className={styles.buttonNumber}>
-	// 					{currentPage}/{totalPages}
-	// 				</p>
-	// 				<div>
-	// 					<Image
-	// 						src={arrowRightIcon}
-	// 						alt="arrow"
-	// 						width={20}
-	// 						height={20}
-	// 						onClick={handleNextBtnClick}
-	// 					/>
-	// 				</div>
-	// 			</div>
-	// 		</div>
-	// 	</div>
-	// );
-
 	return (
-		// <div className={styles.container}>
 		<div>
 			{recentItems.length ? (
 				<div className={styles.container}>
@@ -177,7 +122,5 @@ export default function RecentlyViewedBooks() {
 				<div />
 			)}
 		</div>
-
-		// </div>
 	);
 }

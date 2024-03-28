@@ -1,6 +1,6 @@
 'use client';
 
-import { cartAtom } from '@/recoil/atom/CartAtom';
+import { cartAtom } from '@/recoil/atom/cartAtom';
 import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { useRecoilState } from 'recoil';

@@ -1,7 +1,7 @@
 import styles from '@/styles/shoppingCart/shoppingCartPage.module.css';
 import Image from 'next/image';
 import bookImg from '../../../public/book.png';
-export default function shoppingCartPage() {
+export default function cartPage() {
 	return (
 		<div className={styles.container}>
 			<header>

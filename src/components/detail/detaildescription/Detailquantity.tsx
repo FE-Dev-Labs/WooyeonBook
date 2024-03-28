@@ -5,7 +5,7 @@ import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
-import { cartAtom } from '@/recoil/atom/CartAtom';
+import { cartAtom } from '@/recoil/atom/cartAtom';
 
 export default function Detailquantity() {
 	const [count, setCount] = useRecoilState<string | number>(cartAtom);
