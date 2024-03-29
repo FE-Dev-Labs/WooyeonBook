@@ -7,16 +7,11 @@ import arrowRightIcon from '../../../public/common/arrowRight.png';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import closeButton from '../../../public/common/close.png';
-
-interface Item {
-	itemIsbn: string;
-	itemCover: string;
-	itemMallType: string;
-}
+import { RecentlyViewedBookType } from '@/types/bookType';
 
 export default function RecentlyViewedBooks() {
 	// 최근 본 상품 목록 state
-	const [recentItems, setRecentItems] = useState<Item[]>([]);
+	const [recentItems, setRecentItems] = useState<RecentlyViewedBookType[]>([]);
 	// 현재 카테고리의 현재 페이지 state
 	const [currentPage, setCurrentPage] = useState(1);
 

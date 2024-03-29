@@ -103,5 +103,13 @@ export interface CartItemType {
 	priceSales: number;
 	isbn: string;
 	cover: string;
+	mallType: string;
 	quantity: number;
+}
+
+// 최근 본 상품 타입
+export interface RecentlyViewedBookType {
+	itemIsbn: string;
+	itemCover: string;
+	itemMallType: string;
 }

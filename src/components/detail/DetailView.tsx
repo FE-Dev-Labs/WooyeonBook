@@ -9,16 +9,11 @@ import Detailinformation from './detaildata/detailinformation';
 import Detailsustainability from './detaildata/detailsustainability';
 import Detailcomment from './detailcomments/Detailcomment';
 import { useEffect } from 'react';
+import { RecentlyViewedBookType } from '@/types/bookType';
 
 interface DetailViewProps {
 	book: Book;
 	id: string;
-}
-
-interface Item {
-	itemIsbn: string;
-	itemCover: string;
-	itemMallType: string;
 }
 
 export default function DetailView({ book, id }: DetailViewProps) {
@@ -29,7 +24,7 @@ export default function DetailView({ book, id }: DetailViewProps) {
 
 		// 이미 리스트에 같은 아이템이 있는지 필터링, 있다면 제거
 		recentItems = recentItems.filter(
-			(item: Item) => item.itemIsbn !== book.isbn,
+			(item: RecentlyViewedBookType) => item.itemIsbn !== book.isbn,
 		);
 
 		// 현재 보고 있는 상품을 최근 본 상품 목록에 맨 앞에 추가

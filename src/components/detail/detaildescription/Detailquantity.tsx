@@ -7,23 +7,37 @@ import pluse from '../../../../public/detail/BsPlusCircle.png';
 import { useRecoilState } from 'recoil';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import { useEffect } from 'react';
+import { Book } from '@/types/bookDetailDate';
 
-export default function Detailquantity() {
+interface DetailquantityProp {
+	bookInfo: Book;
+}
+
+export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 	// 장바구니 수량 state
 	const [count, setCount] = useRecoilState<number>(itemAmountAtom);
 
 	// 아이템 수량 감소 험수
-	const decreaseCount = () => {
+	const handleDecreaseCountClick = () => {
 		setCount((prev) => Math.max(1, prev - 1));
 	};
 
 	// 아이템 수량 증가 함수
-	const increaseCount = () => {
+	const handleIncreaseCountClick = () => {
+		// 중고책인 경우 1개 이상 수량 증가 못하게 alert 후 함수 종료
+		if (bookInfo.mallType === 'USED') {
+			alert('중고 도서는 수량 조절이 불가능합니다.');
+			return;
+		}
+
 		setCount((prev) => prev + 1);
 	};
 
 	// input으로 수량을 조절하는 함수
 	const handleInputChange = (e: any) => {
+		// 중고책인 경우 함수 종료
+		if (bookInfo.mallType === 'USED') return;
+
 		const value = parseInt(e.target.value, 10);
 		if (!isNaN(value)) {
 			if (value > 100) {
@@ -35,8 +49,8 @@ export default function Detailquantity() {
 		}
 	};
 
+	// count를 1로 초기화시켜주는 useEffect
 	useEffect(() => {
-		// 컴포넌트가 마운트될 때 count를 1로 초기화
 		setCount(1);
 	}, [setCount]);
 
@@ -49,7 +63,7 @@ export default function Detailquantity() {
 					src={minus}
 					width={20}
 					height={20}
-					onClick={decreaseCount}
+					onClick={handleDecreaseCountClick}
 				/>
 				<input
 					className={styles.quantityInput}
@@ -63,7 +77,7 @@ export default function Detailquantity() {
 					src={pluse}
 					width={20}
 					height={20}
-					onClick={increaseCount}
+					onClick={handleIncreaseCountClick}
 				/>
 			</div>
 		</div>
