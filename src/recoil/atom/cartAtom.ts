@@ -10,5 +10,5 @@ const { persistAtom } = recoilPersist({
 export const cartAtom = atom<CartItemType[]>({
 	key: 'cartAtom',
 	default: [],
-	effects_UNSTABLE: [persistAtom], // atom 상태를 로컬 스토리지에 저장(recoil-persist 설치 후 )
+	effects_UNSTABLE: [persistAtom], // atom 상태를 로컬 스토리지에 저장(recoil-persist 설치 후)
 });

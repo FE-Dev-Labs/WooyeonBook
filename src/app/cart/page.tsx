@@ -42,6 +42,7 @@ export default function cartPage() {
 
 	// 선택한 아이템을 삭제하는 함수
 	const handleDeleteCheckedItemClick = () => {
+		// 컨펌
 		const isConfirmed = confirm('선택 상품을 장바구니에서 삭제하시겠습니까?');
 		// 사용자가 '예'를 선택한 경우
 		if (isConfirmed) {
