@@ -47,8 +47,6 @@ export default function DetailView({ book, id }: DetailViewProps) {
 
 		// 변경된 최근 본 상품 목록을 로컬 스토리지에 저장
 		localStorage.setItem('recentItems', JSON.stringify(recentItems));
-
-		console.log(localStorage.getItem('recentItems'));
 	}, [book, id]);
 
 	return (

@@ -44,9 +44,23 @@
 	align-items: center;
 	justify-content: flex-start;
 }
-.booksWrapper > div {
+
+.itemWrapper {
 	width: 60px;
 	height: 80px;
+
+	position: relative;
+}
+
+.deleteButton {
+	width: 20px;
+	height: 20px;
+	top: 0px;
+	right: 0px;
+
+	position: absolute;
+
+	cursor: pointer;
 }
 
 .buttonWrapper {

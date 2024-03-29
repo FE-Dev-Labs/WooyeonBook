@@ -18,19 +18,19 @@ export default function Account() {
 					<Link href="/mypage?page=bookReport">
 						<Image src={accountIcon} alt="account" width={25} height={25} />
 					</Link>
-					<Link href="/my/cart">
+					<Link href="/cart">
 						<Image src={cartIcon} alt="cart" width={25} height={25} />
 					</Link>
 				</>
 			) : (
 				<>
-					<Link href="/my/like">
+					<Link href="/">
 						<Image src={logoutIcon} alt="logout" width={25} height={25} />
 					</Link>
 					<div>
 						<Image src={accountIcon} alt="account" width={25} height={25} />
 					</div>
-					<Link href="/my/cart">
+					<Link href="/cart">
 						<Image src={cartIcon} alt="cart" width={25} height={25} />
 					</Link>
 				</>

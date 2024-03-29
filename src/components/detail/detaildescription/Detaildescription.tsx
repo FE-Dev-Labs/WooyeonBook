@@ -146,7 +146,7 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 					{/* 총 수량 */}
 					<Detailtotalquantity bookInfo={bookInfo} />
 					{/* 장바구니, 구매하기 버튼 */}
-					<Detailorderbtn />
+					<Detailorderbtn bookInfo={bookInfo} />
 				</div>
 			</div>
 		</>
