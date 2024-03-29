@@ -5,10 +5,52 @@ import Image from 'next/image';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { CartItemType } from '@/types/bookType';
 import { useRecoilState } from 'recoil';
+import { useState } from 'react';
 
 export default function cartPage() {
 	// 카트 아이템 state
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
+	// 선택한 아이템 state
+	const [checkedItem, setCheckedItem] = useState<string[]>([]);
+	// 전체 선택 체크박스 state
+	const [selectAll, setSelectAll] = useState<boolean>(false);
+
+	// 아이템 체크박스를 선택하면 동작하는 함수
+	const handleCheckboxClick = (isbn: string) => {
+		if (checkedItem.includes(isbn)) {
+			setCheckedItem(checkedItem.filter((item) => item !== isbn));
+		} else {
+			setCheckedItem([...checkedItem, isbn]);
+		}
+	};
+
+	// 전체 아이템 체크박스를 선택하면 동작하는 함수
+	const handleAllItemClick = () => {
+		const isAllSelected = cart.every((item) => checkedItem.includes(item.isbn));
+
+		if (isAllSelected) {
+			setCheckedItem([]);
+			// 모두 선택 해제
+			setSelectAll(false);
+		} else {
+			const allItemIsbns = cart.map((item) => item.isbn);
+			setCheckedItem(allItemIsbns);
+			// 모두 선택
+			setSelectAll(true);
+		}
+	};
+
+	// 선택한 아이템을 삭제하는 함수
+	const handleDeleteCheckedItemClick = () => {
+		const isConfirmed = confirm('선택 상품을 장바구니에서 삭제하시겠습니까?');
+		// 사용자가 '예'를 선택한 경우
+		if (isConfirmed) {
+			// 선택된 아이템을 삭제하는 로직을 실행
+			setCart(cart.filter((item) => !checkedItem.includes(item.isbn)));
+		}
+		// 전체 선택 체크박스 해제
+		setSelectAll(false);
+	};
 
 	// 아이템 수량 감소 험수
 	const decreaseCount = (isbn: string) => {
@@ -49,7 +91,6 @@ export default function cartPage() {
 	const deliveryCharge = totalPrice >= 15000 ? 0 : 3000;
 	// 장바구니 내 아이템 최종 가격
 	const finalAmount = totalPrice - totalDiscountPrice + deliveryCharge;
-	console.log(cart);
 
 	return (
 		<div className={styles.container}>
@@ -59,7 +100,11 @@ export default function cartPage() {
 			<div>
 				<hr />
 				<div className={styles.cartHeader}>
-					<input type="checkbox" />
+					<input
+						type="checkbox"
+						onChange={handleAllItemClick}
+						checked={selectAll}
+					/>
 					<div>상품 정보</div>
 					<div>정가</div>
 					<div>판매가</div>
@@ -69,7 +114,14 @@ export default function cartPage() {
 				<hr />
 				{cart.map((item: CartItemType) => (
 					<div key={item.isbn} className={styles.cartBody}>
-						<input className={styles.cartBodyCheckbox} type="checkbox" />
+						<input
+							className={styles.cartBodyCheckbox}
+							type="checkbox"
+							checked={checkedItem.includes(item.isbn)}
+							onChange={() => {
+								handleCheckboxClick(item.isbn);
+							}}
+						/>
 						<div className={styles.itemInfoWrap}>
 							<Image
 								src={item.cover}
@@ -111,12 +163,12 @@ export default function cartPage() {
 				))}
 				<hr />
 				<div className={styles.cartFooter}>
-					<button>선택 상품 삭제</button>
+					<button onClick={handleDeleteCheckedItemClick}>선택 상품 삭제</button>
 				</div>
 				<hr />
 				<div className={styles.orderHistoryWrap}>
 					<div className={styles.orderHistoryHeader}>총 주문금액</div>
-					{/* <div>asd</div> */}
+					<div>{}</div>
 					<div className={styles.orderHistoryBody}>
 						<div className={styles.orderHistoryItemNumberWrap}>
 							<div>주문상품 수</div>
