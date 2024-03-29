@@ -36,6 +36,8 @@ export default function MyprofileAddress({
 		userInfor[0]?.detailaddress,
 	);
 	const supabase = createClient();
+
+	// 사용자 정보 변경으로 외부 데이터 변경을 감지해서 상태를 업데이트해야된다.
 	useEffect(() => {
 		if (userInfor.length > 0) {
 			setIsEditingZipcode(userInfor[0].zipcode);
