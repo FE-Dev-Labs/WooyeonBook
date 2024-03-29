@@ -4,12 +4,11 @@ import { createClient } from '@/utils/supabase/client';
 import { useEffect, useState } from 'react';
 import MyprofileAddress from './MyprofileAddress';
 import { useInforDateType } from '@/types/userInforDate';
-import Update from './../../community/update/option/BookSellingUpdate';
 
-interface useridprops {
+interface userIdProps {
 	userId: string;
 }
-export default function Myprofile({ userId }: useridprops) {
+export default function Myprofile({ userId }: userIdProps) {
 	// 현재 유저 정보 배열
 	const [userInfor, setUserInfor] = useState<useInforDateType[]>([]);
 	// 수정 버튼
@@ -54,6 +53,7 @@ export default function Myprofile({ userId }: useridprops) {
 		}
 	}, [userInfor]); // userInfor 상태가 변경될 때마다 실행
 
+	// 회원정보 수정
 	const changeUser = async () => {
 		const { data, error } = await supabase.auth.updateUser({
 			email: isEditingEmail,
@@ -185,7 +185,15 @@ export default function Myprofile({ userId }: useridprops) {
 						)}
 					</div>
 				))}
-				<MyprofileAddress userInfor={userInfor} />
+				<MyprofileAddress
+					userInfor={userInfor}
+					getUserInfor={getUserInfor}
+					isEditingName={isEditingName}
+					setIsEditingName={setIsEditingName}
+					setIsEditingPhone={setIsEditingPhone}
+					isEditingPhone={isEditingPhone}
+					userId={userId}
+				/>
 			</ul>
 		</div>
 	);
