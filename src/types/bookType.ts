@@ -99,8 +99,9 @@ export interface CartItemType {
 	title: string;
 	author: string;
 	publisher: string;
-	priceSales: number;
 	priceStandard: number;
+	priceSales: number;
 	isbn: string;
 	cover: string;
+	quantity: number;
 }

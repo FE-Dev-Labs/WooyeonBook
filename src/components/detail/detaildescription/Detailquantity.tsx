@@ -6,6 +6,7 @@ import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
 import { useRecoilState } from 'recoil';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
+import { useEffect } from 'react';
 
 export default function Detailquantity() {
 	// 장바구니 수량 state
@@ -33,6 +34,12 @@ export default function Detailquantity() {
 			}
 		}
 	};
+
+	useEffect(() => {
+		// 컴포넌트가 마운트될 때 count를 1로 초기화
+		setCount(1);
+	}, [setCount]);
+
 	return (
 		<div className={styles.quantitySelectionWrap}>
 			<div className={styles.quantityimgArea}>
