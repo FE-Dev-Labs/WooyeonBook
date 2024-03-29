@@ -10,8 +10,6 @@ export default function Account() {
 	const isLoggedin = true;
 	return (
 		<div className={styles.accountWrapper}>
-			{/* <LoginModal /> */}
-			{/* <SignupModal /> */}
 			{isLoggedin ? (
 				<>
 					<Link href="/login" scroll={false}>
