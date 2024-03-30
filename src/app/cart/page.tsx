@@ -1,19 +1,56 @@
 'use client';
 
-import styles from '@/styles/shoppingCart/shoppingCartPage.module.css';
+import styles from '@/styles/cart/cart.module.css';
 import Image from 'next/image';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { CartItemType } from '@/types/bookType';
 import { useRecoilState } from 'recoil';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import PageHeader from '@/components/common/PageHeader';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { getUser } from '@/apis/community/getUser';
 
 export default function cartPage() {
+	// useRouter 호출
+	const router = useRouter();
 	// 카트 아이템 state
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// 선택한 아이템 state
-	const [checkedItem, setCheckedItem] = useState<string[]>([]);
+	const [checkedItem, setCheckedItem] = useState(() =>
+		cart.map((item) => item.isbn),
+	);
+	// 유저 state
+	const [isLoggedIn, setIsLoggedIn] = useState<string | null>(null);
+
 	// 전체 선택 체크박스 state
-	const [selectAll, setSelectAll] = useState<boolean>(false);
+	const [selectAll, setSelectAll] = useState<boolean>(true);
+
+	// 체크된 아이템들만 필터링하는 함수
+	const checkedCartItems = cart.filter((item) =>
+		checkedItem.includes(item.isbn),
+	);
+
+	//장바구니 내 체크된 아이템 개수 합산
+	const totalItems = checkedCartItems.reduce(
+		(total, item) => total + item.quantity,
+		0,
+	);
+	// 장바구니 내 체크된 아이템 가격 합산
+	const totalPrice = checkedCartItems.reduce(
+		(total, item) => total + item.priceStandard * item.quantity,
+		0,
+	);
+	// 징바구니 내 체크된 아이템 할인금액 합산
+	const totalDiscountPrice = checkedCartItems.reduce(
+		(total, item) =>
+			total + (item.priceStandard - item.priceSales) * item.quantity,
+		0,
+	);
+	// 배송비 15,000원 미만이면 배송비 3,000원, 그 이상이면 무료
+	const deliveryCharge = totalPrice >= 15000 ? 0 : 3000;
+	// 장바구니 내 아이템 최종 가격
+	const finalAmount = totalPrice - totalDiscountPrice + deliveryCharge;
 
 	// 아이템 체크박스를 선택하면 동작하는 함수
 	const handleCheckboxClick = (isbn: string) => {
@@ -42,9 +79,7 @@ export default function cartPage() {
 
 	// 선택한 아이템을 삭제하는 함수
 	const handleDeleteCheckedItemClick = () => {
-		const isConfirmed = confirm('선택 상품을 장바구니에서 삭제하시겠습니까?');
-		// 사용자가 '예'를 선택한 경우
-		if (isConfirmed) {
+		if (confirm('선택 상품을 장바구니에서 삭제하시겠습니까?')) {
 			// 선택된 아이템을 삭제하는 로직을 실행
 			setCart(cart.filter((item) => !checkedItem.includes(item.isbn)));
 		}
@@ -53,7 +88,8 @@ export default function cartPage() {
 	};
 
 	// 아이템 수량 감소 험수
-	const decreaseCount = (isbn: string) => {
+	const handleDecreaseCountClick = (isbn: string) => {
+		// 아이템 수량 1 초과일 경우 quantity -1
 		const updateCount = cart.map((item) => {
 			if (item.isbn === isbn && item.quantity > 1) {
 				return { ...item, quantity: item.quantity - 1 };
@@ -63,10 +99,15 @@ export default function cartPage() {
 		setCart(updateCount);
 	};
 
-	// 아이템 수량 증가 함수
-	const increaseCount = (isbn: string) => {
+	const handleIncreaseCountClick = (isbn: string) => {
+		// 아이템 수량 quantity +1
 		const updateCount = cart.map((item) => {
 			if (item.isbn === isbn) {
+				// 중고책인 경우 1개 이상 수량 증가 못하게 alert 후 함수 종료
+				if (item.mallType === 'USED') {
+					alert('중고 도서는 수량 조절이 불가능합니다.');
+					return item;
+				}
 				return { ...item, quantity: item.quantity + 1 };
 			}
 			return item;
@@ -74,139 +115,190 @@ export default function cartPage() {
 		setCart(updateCount);
 	};
 
-	// 장바구니 내 아이템 개수 합산
-	const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-	// 장바구니 내 아이템 가격 합산
-	const totalPrice = cart.reduce(
-		(total, item) => total + item.priceStandard * item.quantity,
-		0,
-	);
-	// 징바구니 내 아이템 할인금액 합산
-	const totalDiscountPrice = cart.reduce(
-		(total, item) =>
-			total + (item.priceStandard - item.priceSales) * item.quantity,
-		0,
-	);
-	// 배송비 15,000원 미만이면 배송비 3,000원, 그 이상이면 무료
-	const deliveryCharge = totalPrice >= 15000 ? 0 : 3000;
-	// 장바구니 내 아이템 최종 가격
-	const finalAmount = totalPrice - totalDiscountPrice + deliveryCharge;
+	// 주문하기 버튼 클릭 시 동작하는 함수
+	const handleOrderButtonClick = () => {
+		// 로그인 상태가 아닐 경우
+		if (!isLoggedIn) {
+			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
+				// 로그인 페이지로 이동
+				router.push('/login');
+				// 취소 시 함수 종료
+				return;
+			}
+		}
+		// 체크된 아이템이 없을 경우
+		if (checkedItem.length === 0) {
+			alert('주문할 상품을 선택해주세요.');
+			return; // 함수를 여기서 종료
+		}
+		// 주문 확인
+		if (confirm('상품을 주문하시겠습니까?')) {
+			// cart 초기화
+			setCart([]);
+			// 주문 완료 페이지로 이동
+			router.push('/orderComplete');
+		}
+	};
+
+	// 로그인 상태 변경해주는 useEffect
+	useEffect(() => {
+		const fetchUser = async () => {
+			const { user_id } = await getUser();
+			setIsLoggedIn(user_id ?? null);
+		};
+
+		fetchUser();
+	}, []);
 
 	return (
-		<div className={styles.container}>
-			<header>
-				<h1>장바구니</h1>
-			</header>
-			<div>
-				<hr />
-				<div className={styles.cartHeader}>
-					<input
-						type="checkbox"
-						onChange={handleAllItemClick}
-						checked={selectAll}
-					/>
-					<div>상품 정보</div>
-					<div>정가</div>
-					<div>판매가</div>
-					<div>수량</div>
-					<div>합계</div>
-				</div>
-				<hr />
-				{cart.map((item: CartItemType) => (
-					<div key={item.isbn} className={styles.cartBody}>
-						<input
-							className={styles.cartBodyCheckbox}
-							type="checkbox"
-							checked={checkedItem.includes(item.isbn)}
-							onChange={() => {
-								handleCheckboxClick(item.isbn);
-							}}
-						/>
-						<div className={styles.itemInfoWrap}>
-							<Image
-								src={item.cover}
-								alt="cart item"
-								width={155}
-								height={200}
+		<>
+			<PageHeader title="장바구니" />
+			{cart.length > 0 ? (
+				<div className={styles.container}>
+					<div className={styles.wrapper}>
+						{/* 카트 헤더 */}
+						<div className={styles.cartHeader}>
+							<input
+								type="checkbox"
+								onChange={handleAllItemClick}
+								checked={selectAll}
 							/>
-							<div>
-								<div className={styles.itemName}>{item.title}</div>
-								<div className={styles.itemWriter}>{item.author}</div>
-								<div className={styles.itemTranslator}>{item.publisher}</div>
+							<p>상품 정보</p>
+							<p>정가</p>
+							<p>판매가</p>
+							<p>수량</p>
+							<p>합계</p>
+						</div>
+						{/* 카트 바디 */}
+						<div className={styles.cartBody}>
+							{cart.map((item: CartItemType) => (
+								<div key={item?.isbn} className={styles.cartItem}>
+									<input
+										className={styles.cartBodyCheckbox}
+										type="checkbox"
+										checked={checkedItem.includes(item?.isbn)}
+										onChange={() => {
+											handleCheckboxClick(item?.isbn);
+										}}
+									/>
+									<div className={styles.itemInfoWrap}>
+										<Link
+											href={`/detail/${item?.isbn}?type=${
+												item?.mallType === 'USED' ? 'used' : 'new'
+											}`}>
+											<Image
+												src={item?.cover}
+												alt="cart item"
+												width={80}
+												height={110}
+											/>
+										</Link>
+
+										<div className={styles.itemInfoTextWrap}>
+											<Link
+												href={`/detail/${item?.isbn}?type=${
+													item?.mallType === 'USED' ? 'used' : 'new'
+												}`}>
+												<p className={styles.itemTitle}>{item?.title}</p>
+											</Link>
+
+											<p className={styles.itemAuther}>{item?.author}</p>
+											<p className={styles.itemPublisher}>{item?.publisher}</p>
+										</div>
+									</div>
+									<div className={styles.itemPriceStandard}>
+										{item?.priceStandard}원
+									</div>
+									<div className={styles.itemPriceSales}>
+										{item?.priceSales}원
+									</div>
+									<div className={styles.quantityWrap}>
+										<button
+											className={styles.quantityMinusPlusBtn}
+											onClick={() => {
+												handleDecreaseCountClick(item?.isbn);
+											}}>
+											-
+										</button>
+										<div className={styles.quantity}>{item?.quantity}</div>
+										<button
+											className={styles.quantityMinusPlusBtn}
+											onClick={() => {
+												handleIncreaseCountClick(item?.isbn);
+											}}>
+											+
+										</button>
+									</div>
+									<div className={styles.itemSumPrice}>
+										{item?.priceSales * item?.quantity}원
+									</div>
+								</div>
+							))}
+						</div>
+						{/* 카트 푸터 */}
+						<div className={styles.cartFooter}>
+							<div className={styles.cartDeleteBtn}>
+								<button onClick={handleDeleteCheckedItemClick}>삭제</button>
 							</div>
 						</div>
-						<div className={styles.cartBodyPrice}>{item.priceStandard}원</div>
-						<div className={styles.cartBodySellingPrice}>
-							{item.priceSales}원
-						</div>
-						<div className={styles.quantityWrap}>
-							<button
-								className={styles.quantityMinusPlusBtn}
-								onClick={() => {
-									decreaseCount(item.isbn);
-								}}>
-								-
-							</button>
-							<div className={styles.quantity}>{item.quantity}</div>
-							<button
-								className={styles.quantityMinusPlusBtn}
-								onClick={() => {
-									increaseCount(item.isbn);
-								}}>
-								+
-							</button>
-						</div>
-						<div className={styles.cartBodySumPrice}>
-							{item.priceSales * item.quantity}원
-						</div>
-					</div>
-				))}
-				<hr />
-				<div className={styles.cartFooter}>
-					<button onClick={handleDeleteCheckedItemClick}>선택 상품 삭제</button>
-				</div>
-				<hr />
-				<div className={styles.orderHistoryWrap}>
-					<div className={styles.orderHistoryHeader}>총 주문금액</div>
-					<div>{}</div>
-					<div className={styles.orderHistoryBody}>
-						<div className={styles.orderHistoryItemNumberWrap}>
-							<div>주문상품 수</div>
-							<div>{totalItems}</div>
-						</div>
-						<div className={styles.orderHistoryItemAmountWrap}>
-							<div>주문금액</div>
-							<div>{totalPrice}</div>
-						</div>
-						<div className={styles.orderHistoryDiscountAmountWrap}>
-							<div>할인금액</div>
-							<div>{totalDiscountPrice}</div>
-						</div>
-						<div className={styles.orderHistoryDeliveryChargeWrap}>
-							<div>
-								<div>배송비</div>
-								<div className={styles.orderHistoryDeliveryChargeInfo}>
-									15,000원 이상 구매시 무료 배송
+						{/* 주문 내역 */}
+						<div className={styles.orderHistoryWrap}>
+							<div />
+							<div className={styles.orderHistoryBody}>
+								<div className={styles.orderHistoryItemNumberWrap}>
+									<p>주문상품 수</p>
+									<p className={styles.orderHistoryBodyText}>{totalItems}</p>
+								</div>
+								<div className={styles.orderHistoryItemAmountWrap}>
+									<p>주문금액</p>
+									<p className={styles.orderHistoryBodyText}>{totalPrice}</p>
+								</div>
+								<div className={styles.orderHistoryDiscountAmountWrap}>
+									<p>할인금액</p>
+									<p className={styles.orderHistoryBodyText}>
+										{totalDiscountPrice}
+									</p>
+								</div>
+								<div className={styles.orderHistoryDeliveryChargeWrap}>
+									<div>
+										<p>배송비 </p>
+										<p className={styles.orderHistoryBodySubText}>
+											* 15,000원 이상 구매시 무료 배송
+										</p>
+									</div>
+									<p className={styles.orderHistoryBodyText}>
+										{deliveryCharge}
+									</p>
+								</div>
+								<hr className={styles.orderHistoryBodyLine} />
+								<div className={styles.orderHistoryFinalPaymentAmountWrap}>
+									<div className={styles.orderHistoryFinalPaymentAmountTitle}>
+										최종결제금액
+									</div>
+									<div className={styles.orderHistoryFinalPaymentAmount}>
+										<p>{finalAmount}</p>원
+									</div>
 								</div>
 							</div>
-							<div>{deliveryCharge}</div>
 						</div>
-						<hr className={styles.orderHistoryBodyLine} />
-						<div className={styles.orderHistoryFinalPaymentAmountWrap}>
-							<div className={styles.orderHistoryFinalPaymentAmountTitle}>
-								최종결제금액
-							</div>
-							<div className={styles.orderHistoryFinalPaymentAmount}>
-								<p>{finalAmount}</p>원
-							</div>
+						{/* 결제 */}
+						<div className={styles.footerBtnWrap}>
+							<Link href={'/'}>
+								<button>상품 추가</button>
+							</Link>
+							<button onClick={handleOrderButtonClick}>결제하기</button>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div className={styles.footerBtnWrap}>
-				<button>상품 추가</button>
-				<button>결제하기</button>
-			</div>
-		</div>
+			) : (
+				// 장바구니가 비었을 떄
+				<div className={styles.emptyCartWrapper}>
+					<div>장바구니가 비어있습니다.</div>
+					<Link href={'/'}>
+						<button>상품 구경하러 가기</button>
+					</Link>
+				</div>
+			)}
+		</>
 	);
 }
