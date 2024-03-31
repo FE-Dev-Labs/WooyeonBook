@@ -1,7 +1,7 @@
 /* 헤더 틀 */
 .container {
-	 /* width: 100vw; */ 
-	min-height: 120px;
+	/* width: 100vw; */
+	min-height: 140px;
 
 	display: flex;
 	justify-content: center;
@@ -18,17 +18,39 @@
 
 /* 헤더 상단 */
 .topWrapper {
-	min-height: 60px;
+	/* min-height: 60px; */
+	min-height: 80px;
 
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
-.logo {
-	width: 250px;
-	height: 60px;
 
-	background-color: yellow;
+	/* border: 3px solid black; */
+}
+.logoWrapper {
+	height: 80px;
+
+	display: flex;
+	align-items: center;
+}
+.inputWrapper {
+	width: 400px;
+	height: 80px;
+}
+.loginWrapper {
+	width: inherit;
+	height: 30px;
+	gap: 12px;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: end;
+
+	cursor: pointer;
+}
+.loginWrapper > :first-child {
+	color: #6892e8;
 }
 
 /* 헤더 하단 */
