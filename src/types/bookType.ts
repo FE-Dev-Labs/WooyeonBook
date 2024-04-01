@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 export interface RootBookType {
 	version: string;
 	logo: string;
@@ -112,4 +114,14 @@ export interface RecentlyViewedBookType {
 	itemIsbn: string;
 	itemCover: string;
 	itemMallType: string;
+}
+
+// 추천 상품 타입
+export interface RecommendedDataType {
+	id: number;
+	artistName: string;
+	tag: string;
+	color: string;
+	image: StaticImageData;
+	book: any;
 }

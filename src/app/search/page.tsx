@@ -71,8 +71,6 @@ export default function searchPage() {
 	// 해당 페이지에서 보여줄 데이터
 	const pageData = sortedData.slice(startIndex, endIndex);
 
-	console.log(pageData);
-
 	return (
 		<>
 			{!pageData.length ? (
