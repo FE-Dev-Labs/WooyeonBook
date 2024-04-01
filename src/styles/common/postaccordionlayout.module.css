@@ -2,23 +2,25 @@
 	display: flex;
 }
 .postImgArea {
-	padding: 18px 16px;
+	padding: 18px 0px;
 }
 .postImg {
-	width: 80px;
-	height: 110px;
+	width: 85px;
+	height: 120px;
 	border-radius: 10px;
 	background-color: #eeeeee;
 }
 .postdataWrapper {
+	width: 100%;
 	padding: 18px 16px;
+	border-bottom: 1px solid #dee2e6;
 }
 .postTitle {
 	font-size: 20px;
-	margin-bottom: 10px;
+	/* margin-bottom: 10px; */
 }
 .postContent {
-	eight: 24px;
+	height: inherit;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -29,7 +31,8 @@
 	word-break: break-all;
 	color: #495057;
 	font-size: 15px;
-	margin-bottom: 40px;
+	margin-bottom: 20px;
+	/* margin-bottom: 40px; */
 }
 .postWrapper {
 	display: flex;

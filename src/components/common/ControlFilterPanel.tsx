@@ -14,21 +14,21 @@ export default function ControlFilterPanel() {
 		{ value: 'View', label: '조회순' },
 	];
 	const categoriesByPage = () => {
-		if (page === 'meeting') {
+		if (page === 'bookMeeting') {
 			return [
 				{ value: 'All', label: '전체' },
 				{ value: '2', label: '모집중' },
 				{ value: '3', label: '모집완료' },
 			];
 		}
-		if (page === 'buyingBook') {
+		if (page === 'bookBuying') {
 			return [
 				{ value: 'All', label: '전체' },
 				{ value: '2', label: '삽니다' },
 				{ value: '3', label: '거래완료' },
 			];
 		}
-		if (page === 'sellingBook') {
+		if (page === 'bookSelling') {
 			return [
 				{ value: 'All', label: '전체' },
 				{ value: '2', label: '나눔' },

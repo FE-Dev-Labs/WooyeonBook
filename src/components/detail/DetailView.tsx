@@ -65,7 +65,6 @@ export default function DetailView({ book, id }: DetailViewProps) {
 					<Detailsustainability bookInfo={book} />
 				</Accordion>
 				<Accordion title={'한줄평'} index={3}>
-					{/* <Detailcookies /> */}
 					<Detailcomment bookId={id} />
 				</Accordion>
 			</AccordionWrapper>
