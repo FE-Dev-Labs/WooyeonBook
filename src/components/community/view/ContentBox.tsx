@@ -3,7 +3,7 @@ import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
-import NaviLab from './NaviLab';
+import NaviLab from './nav/NaviLab';
 interface ContentBoxProps {
 	data: AllDataType;
 	page?: string;

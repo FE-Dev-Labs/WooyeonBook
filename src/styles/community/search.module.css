@@ -21,7 +21,7 @@
 	height: 100%;
 	padding-left: 60px;
 	border-radius: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid #e0e0e0;
 }
 
 .iconContainer {
@@ -36,6 +36,7 @@
 	height: 36px;
 	background-color: #6594e7;
 	color: #ffffff;
+	border: none;
 	border-radius: 5px;
 	text-align: center;
 	line-height: 36px;
