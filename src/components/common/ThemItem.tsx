@@ -1,19 +1,23 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import styles from '@/styles/common/themeItem.module.css';
-import bookImage from '../../../public/main/book2.jpg';
 
-export default function ThemItem() {
+interface ThemItemProp {
+	tag: string;
+	image: StaticImageData;
+	color: string;
+}
+export default function ThemItem({ tag, image, color }: ThemItemProp) {
 	return (
 		<div>
 			<Link href={'/'}>
-				<div className={styles.themeItem}>
+				<div className={styles.themeItem} style={{ backgroundColor: color }}>
 					<div className={styles.themeText}>
-						<p>끝없는 상상의 바다</p>
-						<p># 일반소설</p>
+						<p># {tag}</p>
+						<p>의 추천도서</p>
 					</div>
 					<div className={styles.themeImage}>
-						<Image src={bookImage} alt="theme book" width={150} height={200} />
+						<Image src={image} alt="theme image" width={150} height={200} />
 					</div>
 				</div>
 			</Link>

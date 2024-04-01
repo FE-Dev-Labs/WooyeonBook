@@ -74,14 +74,13 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 			router.push('/cart');
 		}
 	};
+	const fetchUser = async () => {
+		const { user_id } = await getUser();
+		setIsLoggedIn(user_id ?? null);
+	};
 
 	// 로그인 상태 변경해주는 useEffect
 	useEffect(() => {
-		const fetchUser = async () => {
-			const { user_id } = await getUser();
-			setIsLoggedIn(user_id ?? null);
-		};
-
 		fetchUser();
 	}, []);
 
