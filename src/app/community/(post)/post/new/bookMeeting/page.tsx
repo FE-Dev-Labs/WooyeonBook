@@ -31,6 +31,9 @@ const EditorComponent = dynamic(
 const BookMeetingPostPage = () => {
 	const router = useRouter();
 	const params = usePathname();
+
+	const goback = () => router.back();
+
 	// 뒤로가기, 새로고침 방지
 	const preventClose = (e: BeforeUnloadEvent) => {
 		e.preventDefault();
@@ -130,7 +133,9 @@ const BookMeetingPostPage = () => {
 				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button className={styles.cancelBtn}>취소</button>
+				<button onClick={goback} className={styles.cancelBtn}>
+					취소
+				</button>
 				<button onClick={onSubmit} className={styles.submitBtn}>
 					등록
 				</button>

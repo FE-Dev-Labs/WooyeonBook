@@ -33,7 +33,7 @@ const BookBuying = async ({ data }: BookBuyingProps) => {
 				</div>
 				{data?.created_user === user?.id ? (
 					<div className={styles.adimBtnWrap}>
-						<Link href={`/community/update/bookbuying/${data.doc_id}`}>
+						<Link href={`/community/update/bookBuying/${data.doc_id}`}>
 							수정
 						</Link>
 						<button>삭제</button>
