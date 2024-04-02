@@ -21,10 +21,19 @@ export default function RecentSearch() {
 				<LastestWord />
 				<HotWord />
 				<div
-					className={styles.lastlestDeleteAll}
-					onMouseDown={() => removeAllKeywords()}>
+					className={styles.lastlestDeleteAllWrap}
+					style={{
+						justifyContent:
+							storedValue.length === 0 ? 'flex-end' : 'space-between',
+					}}>
 					{storedValue.length ? (
-						<span className={styles.lastelestDeleteAllText}>검색기록 삭제</span>
+						<div
+							className={styles.lastlestDeleteAll}
+							onMouseDown={() => removeAllKeywords()}>
+							<span className={styles.lastelestDeleteAllText}>
+								검색기록 삭제
+							</span>
+						</div>
 					) : (
 						<></>
 					)}

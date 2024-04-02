@@ -52,9 +52,9 @@ export default function searchPage() {
 	const sortedData =
 		// 제목순일 때의 sort
 		sortType === '제목순'
-			? data.sort((a, b) => a.title.localeCompare(b.title))
+			? data?.sort((a, b) => a.title.localeCompare(b.title))
 			: // 제목순이 아닐 떄의 sort(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
-				data.sort(
+				data?.sort(
 					(a, b) =>
 						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 				);
@@ -69,13 +69,11 @@ export default function searchPage() {
 	// 앞서 보여진 데이터를 제외한 마지막 데이터의 숫자
 	const endIndex = startIndex + 30;
 	// 해당 페이지에서 보여줄 데이터
-	const pageData = sortedData.slice(startIndex, endIndex);
-
-	console.log(pageData);
+	const pageData = sortedData?.slice(startIndex, endIndex);
 
 	return (
 		<>
-			{!pageData.length ? (
+			{!pageData?.length ? (
 				<div style={{ height: '689px' }}>
 					{keyword} 검색 결과를 찾을 수 없습니다.
 				</div>

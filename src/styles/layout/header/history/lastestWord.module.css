@@ -28,8 +28,7 @@
 	line-height: 30px;
 	font-size: 14px;
 	color: #666;
-	/* white-space: nowrap;
-	text-overflow: ellipsis; */
+	cursor: pointer;
 }
 .cancelIcon {
 	position: absolute;
