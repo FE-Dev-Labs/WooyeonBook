@@ -1,12 +1,12 @@
 import Nav from '@/components/community/view/nav/Nav';
 import Search from '@/components/community/view/Search';
-import { BasicLayoutType } from '@/types/layoutType';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '@/styles/community/ViewLayout.module.css';
 import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
+
 export const metadata: Metadata = {
 	title: '',
 	description: '',
@@ -14,7 +14,9 @@ export const metadata: Metadata = {
 
 export default async function CommunityViewLayout({
 	children,
-}: BasicLayoutType) {
+}: {
+	children: React.ReactNode;
+}) {
 	const reponse = await fetch('http://localhost:8080/popular/community', {
 		cache: 'no-store',
 	});
@@ -41,16 +43,13 @@ export default async function CommunityViewLayout({
 							{popularData.map((data: AllDataType) => {
 								return (
 									<Link
-										href={`/community/detail/${data.doc_id}`}
+										href={`/community/detail/${data.field as string}/${data.doc_id as string}`}
 										key={data.doc_id}>
 										<div className={styles.weeklyPopularContent}>
 											{data.title}
 										</div>
-										<div className={styles.weeklyPopularInfoWrap}>
-											<div className={styles.weeklyPopularWriter}>
-												{data.user_name}
-											</div>
-											<div>{getDate(data.created_at)}</div>
+										<div className={styles.weeklyPopularWriter}>
+											🌱 {data.user_name}
 										</div>
 									</Link>
 								);

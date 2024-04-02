@@ -27,7 +27,7 @@ export default async function meeting({
 			filterdBookMeetings.order('view', { ascending: false });
 			break;
 		default:
-			filterdBookMeetings;
+			filterdBookMeetings.order('created_at', { ascending: false });
 			break;
 	}
 
