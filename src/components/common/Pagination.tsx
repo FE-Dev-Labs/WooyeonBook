@@ -6,7 +6,6 @@ import arrowLeftIcon from '../../../public/common/arrowLeft.png';
 import arrowDoubleLeftIcon from '../../../public/common/arrowDoubleLeft.png';
 import { useEffect, useState } from 'react';
 
-// PaginationProps 인터페이스 정의
 interface PaginationProps {
 	dataLength: number;
 	currentPage: number;
