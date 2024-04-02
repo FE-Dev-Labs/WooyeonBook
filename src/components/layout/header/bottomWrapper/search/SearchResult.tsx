@@ -1,5 +1,5 @@
 import { Book } from '@/types/bookDetailDate';
-import styles from '@/styles/layout/header/history/searchResult.module.css';
+import styles from '@/styles/layout/header/bottomWrapper/search/searchResult.module.css';
 import { useRouter } from 'next/navigation';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useRecoilState } from 'recoil';

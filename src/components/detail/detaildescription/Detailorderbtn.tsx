@@ -19,7 +19,7 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 	// 현재 카트 아이템의 수량
 	const itemQuantity = useRecoilValue(itemAmountAtom);
 	// useUser에서 호출한 로그인 상태
-	const user = useUser();
+	const { isLoggedIn } = useUser();
 
 	// 카트페이지에서 필요한 요소들
 	const newCartItem = {
@@ -52,7 +52,7 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 
 	// 주문하기 선택 시 동작하는 함수
 	const handleOrderClick = async () => {
-		if (!user) {
+		if (!isLoggedIn) {
 			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
 				// 로그인 페이지로 이동
 				router.push('/login');

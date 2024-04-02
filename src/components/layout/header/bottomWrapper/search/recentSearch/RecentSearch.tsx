@@ -1,8 +1,8 @@
-import styles from '@/styles/layout/header/history/recentSearch.module.css';
+import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/recentSearch.module.css';
 import LastestWord from './LastestWord';
 import HotWord from './HotWord';
 import Image from 'next/image';
-import cancelIcon from '../../../../../public/layout/cancel.png';
+import cancelIcon from '../../../../../../../public/layout/cancel.png';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 

@@ -1,4 +1,5 @@
-import styles from '@/styles/layout/header/navCategory.module.css';
+// import styles from '@/styles/layout/header/navCategory.module.css';
+import styles from '@/styles/layout/header/bottomWrapper/nav/navCategory.module.css';
 import Link from 'next/link';
 
 export default function NavCategory() {

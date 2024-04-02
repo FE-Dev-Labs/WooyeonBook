@@ -1,7 +1,7 @@
 'use client';
-import styles from '@/styles/layout/header/history/hotWord.module.css';
+import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/hotWord.module.css';
 import Image from 'next/image';
-import lineIcon from '../../../../../public/layout/line.png';
+import lineIcon from '../../../../../../../public/layout/line.png';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 interface popularKeywords {

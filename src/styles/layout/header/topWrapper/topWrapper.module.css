@@ -1,0 +1,16 @@
+/* 헤더 상단 */
+.topWrapper {
+	height: 30px;
+	gap: 5px;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.topWrapper > a {
+	color: #000000;
+}
+.userName {
+	color: #6594e7;
+}
