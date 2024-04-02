@@ -1,11 +1,10 @@
-import { getUser } from '@/apis/community/getUser';
+import { useUser } from '@/hooks/useUser';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import styles from '@/styles/detail/detaildescription/detailorderbtn.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { CartItemType } from '@/types/bookType';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 interface DetailOrderBtnProp {
@@ -19,8 +18,8 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// 현재 카트 아이템의 수량
 	const itemQuantity = useRecoilValue(itemAmountAtom);
-	// 유저 state
-	const [isLoggedIn, setIsLoggedIn] = useState<string | null>(null);
+	// useUser에서 호출한 로그인 상태
+	const { isLoggedIn } = useUser();
 
 	// 카트페이지에서 필요한 요소들
 	const newCartItem = {
@@ -74,15 +73,6 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 			router.push('/cart');
 		}
 	};
-	const fetchUser = async () => {
-		const { user_id } = await getUser();
-		setIsLoggedIn(user_id ?? null);
-	};
-
-	// 로그인 상태 변경해주는 useEffect
-	useEffect(() => {
-		fetchUser();
-	}, []);
 
 	return (
 		<div className={styles.btnWrapper}>

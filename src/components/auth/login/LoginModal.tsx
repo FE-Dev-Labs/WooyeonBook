@@ -63,7 +63,7 @@ export default function LoginModal() {
 								<button formAction={signIn} className={styles.loginLeftButton}>
 									로그인
 								</button>
-								<Link href={'/sign'} className={styles.loginRightButton}>
+								<Link href={'/signup'} className={styles.loginRightButton}>
 									회원가입
 								</Link>
 							</div>

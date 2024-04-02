@@ -1,0 +1,19 @@
+.accountWrapper {
+	height: inherit;
+
+	display: flex;
+	align-items: center;
+}
+.accountWrapper > a {
+	width: inherit;
+	margin-left: 25px;
+
+	color: #000000;
+}
+.accountWrapper > div {
+	width: inherit;
+	margin-left: 25px;
+	cursor: pointer;
+
+	color: #000000;
+}

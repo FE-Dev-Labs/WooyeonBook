@@ -8,7 +8,7 @@ export const fetchMainPageData = async () => {
 	// };
 	const fetchData = async (url: string) => {
 		try {
-			const response = await fetch(url, { cache: 'force-cache' });
+			const response = await fetch(url, { cache: 'no-store' });
 			// 네트워크 응답 상태가 성공적이지 않은 경우
 			if (!response.ok) {
 				throw new Error(`Network response was not ok: ${response.statusText}`);

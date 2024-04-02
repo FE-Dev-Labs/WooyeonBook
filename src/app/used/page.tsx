@@ -5,7 +5,6 @@ import BookItemWrapper from '@/components/common/BookItemWrapper';
 import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
-import Sort from '@/components/common/Sort';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/used/used.module.css';
 import { UsedBookType } from '@/types/bookType';
@@ -33,7 +32,7 @@ export default function usedPage() {
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 300, behavior: 'smooth' });
+		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
 
 	// server -> api 받아오는 함수(중고책 - 베스트셀러 5개)
@@ -74,7 +73,6 @@ export default function usedPage() {
 					<BestSeller page="used" isUsedPage={true} data={usedBestItem} />
 					<div className={styles.usedLine} />
 					<CategoryBox />
-					{/* <Sort /> */}
 					<BookItemWrapper data={usedAllItem} />
 					<Pagination
 						dataLength={dataLength}

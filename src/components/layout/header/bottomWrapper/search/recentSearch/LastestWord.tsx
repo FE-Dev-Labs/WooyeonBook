@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import cancelIcon from '../../../../../public/layout/cancel.png';
-import styles from '@/styles/layout/header/history/lastestWord.module.css';
+import cancelIcon from '../../../../../../../public/layout/cancel.png';
+import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/lastestWord.module.css';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useRouter } from 'next/navigation';
 
