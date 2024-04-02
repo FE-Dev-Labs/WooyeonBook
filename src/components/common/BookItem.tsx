@@ -15,7 +15,9 @@ interface BookItemProps {
 
 export default function BookItem({ rank, data }: BookItemProps) {
 	// + 버튼 state
-	const [isAdded, setIsAdded] = useState<boolean>(false);
+	// const [isAdded, setIsAdded] = useState<boolean>(false);
+
+	console.log(data);
 
 	// 할인율 계산 함수
 	const calculateDiscountRate = (standardPrice: number, salesPrice: number) => {
@@ -30,7 +32,7 @@ export default function BookItem({ rank, data }: BookItemProps) {
 
 	return (
 		<div className={styles.bookItem}>
-			<div className={styles.rank}>{rank}</div>
+			{rank && <div className={styles.rank}>{rank}</div>}
 			<div className={styles.bookImage}>
 				<Link
 					href={`/detail/${data?.isbn}?type=${
@@ -45,7 +47,7 @@ export default function BookItem({ rank, data }: BookItemProps) {
 					/>
 				</Link>
 			</div>
-			<div
+			{/* <div
 				className={styles.addDeleteBook}
 				onClick={() => setIsAdded(!isAdded)}>
 				<Image
@@ -54,7 +56,7 @@ export default function BookItem({ rank, data }: BookItemProps) {
 					width={30}
 					height={30}
 				/>
-			</div>
+			</div> */}
 			<div className={styles.bookText}>
 				<Link
 					href={`/detail/${data?.isbn}?type=${

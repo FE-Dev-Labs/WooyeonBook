@@ -1,0 +1,294 @@
+/* cart page wrapper */
+.container {
+	display: flex;
+	justify-content: center;
+}
+.wrapper {
+	width: 1300px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+/* cart header */
+.cartHeader {
+	height: 40px;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	text-align: center;
+
+	border-top: 1px solid #a9a9a9;
+	border-bottom: 1px solid #a9a9a9;
+
+	margin-top: 21px;
+}
+.cartHeader :nth-child(1) {
+	width: 53px;
+}
+.cartHeader :nth-child(2) {
+	width: 546px;
+}
+.cartHeader :nth-child(3) {
+	width: 173px;
+}
+.cartHeader :nth-child(4) {
+	width: 173px;
+}
+.cartHeader :nth-child(5) {
+	width: 173px;
+}
+.cartHeader :nth-child(6) {
+	width: 173px;
+}
+
+/* cart body */
+.cartBody {
+	gap: 15px;
+
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid #a9a9a9;
+}
+.cartItem {
+	height: 110px;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+.cartBody .cartItem:first-child {
+	margin-top: 10px;
+}
+.cartBody .cartItem:last-child {
+	margin-bottom: 10px;
+}
+.cartBodyCheckbox {
+	width: 53px;
+}
+.itemInfoWrap {
+	width: 546px;
+	display: flex;
+	text-align: start;
+}
+.itemInfoWrap > a > img {
+	margin: 0 50px 0 50px;
+	border-radius: 10px;
+}
+.itemInfoTextWrap {
+	width: 386px;
+}
+.itemTitle {
+	font-size: 16px;
+	font-weight: 400;
+	margin-bottom: 12px;
+
+	cursor: pointer;
+	color: #000000;
+}
+.itemTitle:hover {
+	text-decoration: underline;
+}
+.itemAuther {
+	font-size: 11px;
+	margin-bottom: 6px;
+
+	color: #9c9c9c;
+}
+.itemPublisher {
+	font-size: 11px;
+
+	color: #9c9c9c;
+}
+.itemPriceStandard,
+.itemPriceSales,
+.quantityWrap,
+.itemSumPrice {
+	width: 173px;
+}
+.itemPriceStandard {
+	text-decoration: line-through;
+}
+
+/* cart footer */
+.cartFooter {
+	height: 40px;
+
+	border-bottom: 1px solid #a9a9a9;
+}
+.cartDeleteBtn {
+	width: 59px;
+	height: inherit;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.cartDeleteBtn > button {
+	width: 50px;
+	height: 20px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-size: 11px;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	background-color: #f8f8f8;
+}
+.cartDeleteBtn > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}
+.quantityWrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.quantityMinusPlusBtn {
+	width: 20px;
+	height: 20px;
+	border: 1px solid #9c9c9c;
+	border-radius: 50%;
+
+	cursor: pointer;
+}
+.quantity {
+	width: 40px;
+}
+
+/* order History */
+.orderHistoryWrap {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	border-bottom: 1px solid #a9a9a9;
+}
+.orderHistoryBody {
+	width: 30%;
+	margin: 25px 0 25px 0;
+	gap: 15px;
+
+	display: flex;
+	flex-direction: column;
+}
+.orderHistoryItemNumberWrap,
+.orderHistoryItemAmountWrap,
+.orderHistoryDiscountAmountWrap,
+.orderHistoryDeliveryChargeWrap {
+	font-size: 13px;
+	font-weight: bold;
+
+	display: flex;
+	justify-content: space-between;
+	color: #9c9c9c;
+}
+.orderHistoryDeliveryChargeWrap > div {
+	gap: 8px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.orderHistoryBodyText {
+	font-weight: 400;
+	color: #000000;
+}
+.orderHistoryBodySubText {
+	font-size: 9px;
+	font-weight: 400;
+}
+.orderHistoryBodyLine {
+	border-style: dotted;
+	color: #9c9c9c;
+}
+.orderHistoryFinalPaymentAmountWrap {
+	display: flex;
+	justify-content: space-between;
+}
+.orderHistoryFinalPaymentAmountTitle {
+	font-size: 14px;
+
+	font-weight: bold;
+}
+.orderHistoryFinalPaymentAmount {
+	font-size: 14px;
+
+	display: flex;
+	align-items: center;
+}
+.orderHistoryFinalPaymentAmount > p {
+	font-size: 14px;
+	font-weight: bold;
+
+	margin-right: 3px;
+	color: red;
+}
+
+/* payment button */
+.footerBtnWrap {
+	height: 70px;
+	gap: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-bottom: 1px solid #a9a9a9;
+
+	margin-bottom: 22px;
+}
+.footerBtnWrap > a > button {
+	width: 125px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: bold;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	background-color: #f8f8f8;
+}
+.footerBtnWrap > button {
+	width: 125px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: bold;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	background-color: #f8f8f8;
+}
+.footerBtnWrap > a > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}
+.footerBtnWrap > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}
+
+/* 장바구니가 비었을 떄 */
+.emptyCartWrapper {
+	height: 539px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

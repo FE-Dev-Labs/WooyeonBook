@@ -1,0 +1,22 @@
+.themeHeader {
+	height: 300px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.titleWrapper {
+	width: 1300px;
+	height: inherit;
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.title {
+	font-size: 30px;
+	font-weight: bold;
+}
+.artistImage {
+}

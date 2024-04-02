@@ -5,7 +5,7 @@ import ThemeRecommendation from '@/components/main/themeRecommendation/ThemeReco
 import UsedBook from '@/components/main/usedBook/UsedBook';
 import BestSeller from '@/components/common/BestSeller';
 import MainSlider from '@/components/main/mainSlider/MainSlider';
-import { fetchMainPageData } from '@/apis/main/main';
+import { fetchMainPageData } from '@/apis/main/getBook';
 
 export default async function Home() {
 	// api 폴더에서 import 해온 신간도서, 베스트셀러, 중고도서 아이템

@@ -53,7 +53,7 @@ export default function bestPage() {
 	}, [categoryId, currentPage]);
 
 	return (
-		<>
+		<div>
 			<PageHeader title="인기" />
 			<div className={styles.container}>
 				<div />
@@ -72,6 +72,6 @@ export default function bestPage() {
 					<RecentlyViewedBooks />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

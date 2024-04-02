@@ -141,12 +141,12 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 					{/* 수량 */}
 					<div className={styles.inforTopArea3}>
 						<span>수량</span>
-						<Detailquantity />
+						<Detailquantity bookInfo={bookInfo} />
 					</div>
 					{/* 총 수량 */}
 					<Detailtotalquantity bookInfo={bookInfo} />
 					{/* 장바구니, 구매하기 버튼 */}
-					<Detailorderbtn />
+					<Detailorderbtn bookInfo={bookInfo} />
 				</div>
 			</div>
 		</>

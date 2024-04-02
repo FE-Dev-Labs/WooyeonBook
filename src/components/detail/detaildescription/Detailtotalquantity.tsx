@@ -1,17 +1,19 @@
 'use client';
-import { cartAtom } from '@/recoil/atom/cartAtom';
+
+import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import { Book } from '@/types/bookDetailDate';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 interface bookDetailProp {
 	bookInfo: Book;
 }
 export default function Detailtotalquantity({ bookInfo }: bookDetailProp) {
-	const [count, setCount] = useRecoilState<string | number>(cartAtom);
-	const totalPrice =
-		typeof count === 'number'
-			? (count * bookInfo.priceSales).toLocaleString()
-			: '';
+	// 장바구니 수량 state
+	const count = useRecoilValue<number>(itemAmountAtom);
+
+	// 전체 금액
+	const totalPrice = (count * bookInfo.priceSales).toLocaleString();
+
 	return (
 		<div className={styles.quantityTotalSectionWrap}>
 			<span className={styles.quantityTotal}>총 상품 금액</span>
@@ -20,3 +22,7 @@ export default function Detailtotalquantity({ bookInfo }: bookDetailProp) {
 		</div>
 	);
 }
+// const totalPrice =
+// 	typeof count === 'number'
+// 		? (count * bookInfo.priceSales).toLocaleString()
+// 		: '';

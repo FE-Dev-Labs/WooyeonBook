@@ -1,3 +1,5 @@
+import { StaticImageData } from 'next/image';
+
 export interface RootBookType {
 	version: string;
 	logo: string;
@@ -92,4 +94,34 @@ export interface UsedBookType {
 	adult: false;
 	customerReviewRank: number;
 	subInfo: object;
+}
+
+// 장바구니에 들어갈 아이템 타입
+export interface CartItemType {
+	title: string;
+	author: string;
+	publisher: string;
+	priceStandard: number;
+	priceSales: number;
+	isbn: string;
+	cover: string;
+	mallType: string;
+	quantity: number;
+}
+
+// 최근 본 상품 타입
+export interface RecentlyViewedBookType {
+	itemIsbn: string;
+	itemCover: string;
+	itemMallType: string;
+}
+
+// 추천 상품 타입
+export interface RecommendedDataType {
+	id: number;
+	artistName: string;
+	tag: string;
+	color: string;
+	image: StaticImageData;
+	book: any;
 }
