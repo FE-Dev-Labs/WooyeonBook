@@ -1,0 +1,31 @@
+/* cart header */
+.cartHeader {
+	height: 40px;
+	display: flex;
+	align-items: center;
+	font-size: 14px;
+	text-align: center;
+
+	border-top: 1px solid #a9a9a9;
+	border-bottom: 1px solid #a9a9a9;
+
+	margin-top: 21px;
+}
+.cartHeader :nth-child(1) {
+	width: 53px;
+}
+.cartHeader :nth-child(2) {
+	width: 546px;
+}
+.cartHeader :nth-child(3) {
+	width: 173px;
+}
+.cartHeader :nth-child(4) {
+	width: 173px;
+}
+.cartHeader :nth-child(5) {
+	width: 173px;
+}
+.cartHeader :nth-child(6) {
+	width: 173px;
+}
