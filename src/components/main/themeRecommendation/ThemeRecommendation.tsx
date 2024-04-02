@@ -15,12 +15,12 @@ export default function ThemeRecommendation({ data }: any) {
 				page="theme"
 			/>
 			<div className={styles.themeItemWrapper}>
+				{/* <ThemItem />
 				<ThemItem />
 				<ThemItem />
 				<ThemItem />
 				<ThemItem />
-				<ThemItem />
-				<ThemItem />
+				<ThemItem /> */}
 			</div>
 		</div>
 	);

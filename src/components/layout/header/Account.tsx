@@ -7,34 +7,15 @@ import loginIcon from '../../../../public/layout/login.png';
 import logoutIcon from '../../../../public/layout/logout.png';
 
 export default function Account() {
-	const isLoggedin = true;
+	const isLoggedin = false;
 	return (
 		<div className={styles.accountWrapper}>
-			{isLoggedin ? (
-				<>
-					<Link href="/login" scroll={false}>
-						<Image src={loginIcon} alt="login" width={25} height={25} />
-					</Link>
-					<Link href="/mypage?page=bookReport">
-						<Image src={accountIcon} alt="account" width={25} height={25} />
-					</Link>
-					<Link href="/cart">
-						<Image src={cartIcon} alt="cart" width={25} height={25} />
-					</Link>
-				</>
-			) : (
-				<>
-					<Link href="/">
-						<Image src={logoutIcon} alt="logout" width={25} height={25} />
-					</Link>
-					<div>
-						<Image src={accountIcon} alt="account" width={25} height={25} />
-					</div>
-					<Link href="/cart">
-						<Image src={cartIcon} alt="cart" width={25} height={25} />
-					</Link>
-				</>
-			)}
+			<Link href={isLoggedin ? '/mypage?page=bookReport' : '/login'}>
+				<Image src={accountIcon} alt="account" width={25} height={25} />
+			</Link>
+			<Link href="/cart">
+				<Image src={cartIcon} alt="cart" width={25} height={25} />
+			</Link>
 		</div>
 	);
 }
