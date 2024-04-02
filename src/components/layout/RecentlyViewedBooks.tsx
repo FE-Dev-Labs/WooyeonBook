@@ -49,7 +49,7 @@ export default function RecentlyViewedBooks() {
 		localStorage.setItem('recentItems', JSON.stringify(updatedItems));
 	};
 
-	// 로컬 스토리지에서 가져온 최근 본 상품을 렌더링해줄 useEffect
+	// 로컬 스토리지에서 가져온 최근 본 상품을 뿌려줄 useEffect
 	useEffect(() => {
 		// 로컬 스토리지에서 'recentItems' 가져오기
 		const storedItems = localStorage.getItem('recentItems');
@@ -60,14 +60,14 @@ export default function RecentlyViewedBooks() {
 	}, []);
 
 	return (
-		<div>
+		<>
 			{recentItems.length ? (
 				<div className={styles.container}>
 					<div className={styles.wrapper}>
 						<header className={styles.textWrapper}>최근 본 상품</header>
 						<div className={styles.booksWrapper}>
-							{currentItems.map((item) => (
-								<div key={item.itemIsbn} className={styles.itemWrapper}>
+							{currentItems.map((item, index) => (
+								<div key={index} className={styles.itemWrapper}>
 									<Link
 										href={`/detail/${item?.itemIsbn}?type=${
 											item?.itemMallType === 'USED' ? 'used' : 'new'
@@ -116,6 +116,6 @@ export default function RecentlyViewedBooks() {
 			) : (
 				<div />
 			)}
-		</div>
+		</>
 	);
 }

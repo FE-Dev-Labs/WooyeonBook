@@ -29,9 +29,9 @@ export default function newPage() {
 	const fetchData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
-			// {
-			// 	cache: 'force-cache',
-			// },
+			{
+				cache: 'force-cache',
+			},
 		);
 		const { data, dataLength } = await response.json();
 
@@ -53,7 +53,7 @@ export default function newPage() {
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 300, behavior: 'smooth' });
+		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
 
 	// 소팅한 data
