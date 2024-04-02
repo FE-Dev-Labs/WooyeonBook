@@ -17,7 +17,7 @@
 	z-index: 1;
 	height: 40px;
 	line-height: 40px;
-	border-top: solid 1px #ebebeb;
+	/* border-top: solid 1px #ebebeb; */
 	cursor: pointer;
 }
 .lastelestDeleteAllText {
@@ -28,12 +28,13 @@
 	color: #666;
 }
 .lastlestCloseWrap {
-	position: absolute;
+	/* position: absolute;
 	right: 0;
-	top: 0;
+	top: 0; */
 	padding: 0 20px 0 30px;
 	height: 40px;
 	line-height: 40px;
+	cursor: pointer;
 }
 .lastelestCloseText {
 	padding: 0 10px 0 0px;
@@ -44,4 +45,9 @@
 }
 .cancelIcon {
 	margin: 15px 0 0 4px;
+}
+.lastlestDeleteAllWrap {
+	display: flex;
+	justify-content: space-between;
+	border-top: solid 1px #ebebeb;
 }

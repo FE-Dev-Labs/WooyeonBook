@@ -129,6 +129,23 @@ app.get('/auth', async (req, res) => {
 	}
 });
 
+// 마이페이지 내가 쓴글
+app.get('/api/mypage', async (req, res) => {
+	const { page, userId } = req.query;
+	try {
+		const { data, error } = await supabase
+			.from(`${page}`)
+			.select('*')
+			.eq('created_user', userId);
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(500).send({ error: error.message });
+	}
+});
+
 // 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {
 	try {

@@ -1,9 +1,9 @@
 'use client';
-import Link from 'next/link';
 import styles from '@/styles/layout/header/history/hotWord.module.css';
 import Image from 'next/image';
 import lineIcon from '../../../../../public/layout/line.png';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 interface popularKeywords {
 	id: string;
 	keyword: string | number | Date;
@@ -11,6 +11,9 @@ interface popularKeywords {
 	created_at: Date;
 }
 export default function HotWord() {
+	// useRouter 호출
+	const router = useRouter();
+
 	const [popularSearchData, setPopularSearchData] = useState<popularKeywords[]>(
 		[],
 	);
@@ -36,6 +39,10 @@ export default function HotWord() {
 
 	const dateString = year + '-' + month + '-' + day;
 
+	// 인기 검색어 클릭 시 동작하는 함수
+	const handleValueClick = (value: string) => {
+		router.push(`/search?keyword=${value}`);
+	};
 	return (
 		<dl className={styles.hotWordWrapper}>
 			<dt className={styles.hotWordTxt}>
@@ -47,21 +54,23 @@ export default function HotWord() {
 					{popularSearchData?.map((hotword, index) => {
 						return (
 							<li className={styles.hotWordPopularLi} key={index}>
-								<Link href={'/'} passHref legacyBehavior>
-									<a className={styles.hotWordLink}>
-										<span className={styles.hotWordNum}>{index + 1}</span>
-										<span className={styles.hotWordTitle}>
-											{hotword.keyword as string}
-										</span>
-										<Image
-											src={lineIcon}
-											alt="lineIcon"
-											className={styles.lineIcon}
-											width={15}
-											height={2}
-										/>
-									</a>
-								</Link>
+								<span
+									className={styles.hotWordLink}
+									onMouseDown={() => {
+										handleValueClick(hotword.keyword as string);
+									}}>
+									<span className={styles.hotWordNum}>{index + 1}</span>
+									<span className={styles.hotWordTitle}>
+										{hotword.keyword as string}
+									</span>
+									<Image
+										src={lineIcon}
+										alt="lineIcon"
+										className={styles.lineIcon}
+										width={15}
+										height={2}
+									/>
+								</span>
 							</li>
 						);
 					})}

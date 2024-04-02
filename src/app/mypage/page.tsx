@@ -4,18 +4,17 @@ import styles from '@/styles/mypage/mypage.module.css';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import Accordion from '@/components/common/Accordion';
 import Communitynav from '@/components/common/Communitynav';
-import Postaccordionlayout from '@/components/common/Postaccordionlayout';
-import { testdatalist } from '@/apis/testdatalist';
 import Myprofile from '@/components/mypage/profile/Myprofile';
 import Myorder from '@/components/mypage/myorder/Myorder';
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { useEffect, useState } from 'react';
+import Mypost from '@/components/mypage/mypost/Mypost';
 export default function page() {
 	const [isLogin, setIsLogin] = useState(false);
-	// useCurrentUser  훅
+	// // useCurrentUser  훅
 	const { userName, userId, getUser } = useCurrentUser('');
 
-	// 로그인 유뮤 체크
+	// // 로그인 유뮤 체크
 	useEffect(() => {
 		getUser();
 		if (document.cookie === null || document.cookie === '') {
@@ -40,15 +39,7 @@ export default function page() {
 						<AccordionWrapper>
 							<Accordion title={'내가쓴글'} index={0}>
 								<Communitynav />
-								{testdatalist.map((list) => {
-									return (
-										<div className={styles.postAccordionContainer}>
-											<div className={styles.postAccordionWrapper}>
-												<Postaccordionlayout list={list} />
-											</div>
-										</div>
-									);
-								})}
+								<Mypost userId={userId} />
 							</Accordion>
 							<Accordion title={'회원정보'} index={1}>
 								<Myprofile userId={userId} />
