@@ -35,7 +35,7 @@ const BookBuyingPostPage = () => {
 	// 뒤로가기, 새로고침 방지
 	const preventClose = (e: BeforeUnloadEvent) => {
 		e.preventDefault();
-		e.returnValue = ''; //Chrome에서 동작하도록; deprecated
+		e.returnValue = '';
 	};
 
 	useEffect(() => {
@@ -122,8 +122,10 @@ const BookBuyingPostPage = () => {
 				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button className={styles.cancelBtn}>취소</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);

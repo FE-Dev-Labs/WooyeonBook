@@ -130,8 +130,10 @@ const BookSellingPostPage = () => {
 				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button className={styles.cancelBtn}>취소</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);
