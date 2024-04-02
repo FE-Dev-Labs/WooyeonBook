@@ -10,6 +10,7 @@ import PageHeader from '@/components/common/PageHeader';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getUser } from '@/apis/community/getUser';
+import { useUser } from '@/hooks/useUser';
 
 export default function cartPage() {
 	// useRouter 호출
@@ -20,8 +21,8 @@ export default function cartPage() {
 	const [checkedItem, setCheckedItem] = useState(() =>
 		cart.map((item) => item.isbn),
 	);
-	// 유저 state
-	const [isLoggedIn, setIsLoggedIn] = useState<string | null>(null);
+	// useUser에서 호출한 로그인 상태
+	const user = useUser();
 
 	// 전체 선택 체크박스 state
 	const [selectAll, setSelectAll] = useState<boolean>(true);
@@ -118,7 +119,7 @@ export default function cartPage() {
 	// 주문하기 버튼 클릭 시 동작하는 함수
 	const handleOrderButtonClick = () => {
 		// 로그인 상태가 아닐 경우
-		if (!isLoggedIn) {
+		if (!user) {
 			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
 				// 로그인 페이지로 이동
 				router.push('/login');
@@ -139,16 +140,6 @@ export default function cartPage() {
 			router.push('/orderComplete');
 		}
 	};
-
-	// 로그인 상태 변경해주는 useEffect
-	useEffect(() => {
-		const fetchUser = async () => {
-			const { user_id } = await getUser();
-			setIsLoggedIn(user_id ?? null);
-		};
-
-		fetchUser();
-	}, []);
 
 	return (
 		<>

@@ -6,9 +6,10 @@ import Search from './Search';
 import Account from './Account';
 import Nav from './bottomWrapper/Nav';
 import verticalLineIcon from '../../../../public/layout/verticalline.png';
+import { useUser } from '@/hooks/useUser';
 
 export default function Header() {
-	const isLoggedIn = true;
+	const user = useUser();
 
 	return (
 		<header className={styles.container}>
@@ -21,7 +22,18 @@ export default function Header() {
 					</div>
 					<div className={styles.inputWrapper}>
 						<div className={styles.loginWrapper}>
-							{isLoggedIn ? (
+							{user ? (
+								<>
+									<p>박진양님</p>
+									<Image
+										src={verticalLineIcon}
+										alt="vertical line"
+										width={2}
+										height={15}
+									/>
+									<p>로그아웃</p>
+								</>
+							) : (
 								<>
 									<Link href={'/sign'}>
 										<p>회원가입</p>
@@ -35,17 +47,6 @@ export default function Header() {
 									<Link href={'/login'}>
 										<p>로그인</p>
 									</Link>
-								</>
-							) : (
-								<>
-									<p>박진양님</p>
-									<Image
-										src={verticalLineIcon}
-										alt="vertical line"
-										width={2}
-										height={15}
-									/>
-									<p>로그아웃</p>
 								</>
 							)}
 						</div>
