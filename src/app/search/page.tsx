@@ -25,19 +25,6 @@ export default function searchPage() {
 	// 소팅 state(제목순, 최신순)
 	const sortType = useRecoilValue(sortTypeState);
 
-	// server -> api 받아오는 함수
-	const fetchData = async () => {
-		const response = await fetch(
-			`http://localhost:8080/list/search?query=${keyword}`,
-			// {
-			// 	cache: 'force-cache',
-			// },
-		);
-		const { data, dataLength } = await response.json();
-		setData(data);
-		setDataLength(dataLength);
-	};
-
 	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
@@ -45,23 +32,36 @@ export default function searchPage() {
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 300, behavior: 'smooth' });
+		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
 
 	// 소팅한 data
 	const sortedData =
 		// 제목순일 때의 sort
 		sortType === '제목순'
-			? data.sort((a, b) => a.title.localeCompare(b.title))
+			? data?.sort((a, b) => a.title.localeCompare(b.title))
 			: // 제목순이 아닐 떄의 sort(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
-				data.sort(
+				data?.sort(
 					(a, b) =>
 						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 				);
 
+	// server -> api 받아오는 함수
+	const fetchSearchData = async () => {
+		const response = await fetch(
+			`http://localhost:8080/list/search?query=${keyword}`,
+			{
+				cache: 'force-cache',
+			},
+		);
+		const { data, dataLength } = await response.json();
+		setData(data);
+		setDataLength(dataLength);
+	};
+
 	// fetchData 뿌려주는 useEffect
 	useEffect(() => {
-		fetchData();
+		fetchSearchData();
 	}, [keyword]);
 
 	// 페이지 첫 시작 데이터의 숫자, 24 = 카테고리 페이지에 나타낼 아이템 갯수
@@ -69,13 +69,11 @@ export default function searchPage() {
 	// 앞서 보여진 데이터를 제외한 마지막 데이터의 숫자
 	const endIndex = startIndex + 30;
 	// 해당 페이지에서 보여줄 데이터
-	const pageData = sortedData.slice(startIndex, endIndex);
-
-	console.log(pageData);
+	const pageData = sortedData?.slice(startIndex, endIndex);
 
 	return (
 		<>
-			{!pageData.length ? (
+			{!pageData?.length ? (
 				<div style={{ height: '689px' }}>
 					{keyword} 검색 결과를 찾을 수 없습니다.
 				</div>
@@ -85,7 +83,6 @@ export default function searchPage() {
 					<div className={styles.container}>
 						<div className={styles.wrapper}>
 							<SortBar page="search" dataLength={dataLength} />
-							{/* <BookItemWrapper data={sortedData} currentPage={currentPage} /> */}
 							<SearchBookItemWrapper data={pageData} />
 							<Pagination
 								dataLength={dataLength}

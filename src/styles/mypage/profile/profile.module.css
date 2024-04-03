@@ -16,6 +16,7 @@
 .accordionWrapperItem {
 	display: flex;
 	flex-direction: column;
+	width: 90%;
 }
 .profileItemTitle {
 	line-height: 20px;
@@ -32,9 +33,7 @@
 	justify-content: space-between;
 }
 .profileEditBtn {
-	/* line-height: 5px; */
-	/* margin-right: 10px;
-	margin-top: 15px; */
+	width: 25%;
 	border: 0;
 	padding: 10px 15px;
 	border-radius: 10px;
@@ -42,4 +41,109 @@
 	background-color: #6594e7;
 	color: #fff;
 	height: 40px;
+}
+.profileItemZipcode {
+	line-height: 20px;
+	margin-top: 10px;
+	margin-right: 8px;
+}
+.profileItemAddress {
+	line-height: 20px;
+	margin-top: 10px;
+	margin-right: 8px;
+}
+.profileInput {
+	width: 100%;
+	height: 30px;
+	border-radius: 10px;
+	padding: 0 12px;
+	border: none;
+	box-sizing: border-box;
+	background-color: #eeeeee;
+	margin-top: 10px;
+}
+.profilepasswordWrapper {
+	display: flex;
+}
+.profileInputpassword {
+	width: 80%;
+	height: 30px;
+	border-radius: 10px;
+	padding: 0 12px;
+	border: none;
+	box-sizing: border-box;
+	background-color: #eeeeee;
+	margin-top: 10px;
+}
+.addressdelivery {
+	border: 1px solid #6594e7;
+	padding: 5px;
+	background-color: transparent;
+	color: #6594e7;
+	cursor: pointer;
+	margin-left: 10px;
+	border-radius: 50px;
+	font-size: 12px;
+}
+.inputAddress {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.inputFieldBtn {
+	width: 40%;
+	padding: 10px 15px;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: #6594e7;
+	margin-top: 10px;
+	margin-left: 60px;
+}
+.inputField {
+	width: 100%;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.postcodeWrapper {
+	position: relative; /* 이 부분을 추가합니다. */
+	width: 500px; /* DaumPostcode와 동일한 너비 */
+	height: 500px; /* DaumPostcode와 동일한 높이 */
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.closeBtn {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+}
+.closeBtnBackground {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+	width: 20px;
+	height: 20px;
+	background-color: black;
+}
+.postCodeStyle {
+	width: 500px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.daumPostBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
 }

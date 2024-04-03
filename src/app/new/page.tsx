@@ -29,11 +29,11 @@ export default function newPage() {
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 300, behavior: 'smooth' });
+		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
 
 	// server -> api 받아오는 함수
-	const fetchData = async () => {
+	const fetchNewAllData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/newSpecialAll?categoryId=${categoryId}&page=${currentPage}`,
 			{ cache: 'force-cache' },
@@ -48,7 +48,7 @@ export default function newPage() {
 
 	// fetchData 뿌려주는 useEffect
 	useEffect(() => {
-		fetchData();
+		fetchNewAllData();
 	}, [categoryId, currentPage]);
 
 	return (

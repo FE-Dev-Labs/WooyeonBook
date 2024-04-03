@@ -1,0 +1,51 @@
+.orderButtonWrap {
+	height: 70px;
+	gap: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	border-bottom: 1px solid #a9a9a9;
+
+	margin-bottom: 22px;
+}
+.orderButtonWrap > a > button {
+	width: 125px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: bold;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	background-color: #f8f8f8;
+}
+.orderButtonWrap > button {
+	width: 125px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-size: 13px;
+	font-weight: bold;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	background-color: #f8f8f8;
+}
+.orderButtonWrap > a > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}
+.orderButtonWrap > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}

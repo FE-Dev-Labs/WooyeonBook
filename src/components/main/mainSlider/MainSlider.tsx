@@ -9,8 +9,8 @@ import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
 import arrowStyles from '@/styles/main/mainSlider/customArrow.module.css';
-import { mainBookSlider } from '@/apis/mainBookSlider';
-import { useRef } from 'react';
+import { mainBookSlider } from '@/apis/main/silderData';
+import { useRouter } from 'next/navigation';
 interface ArrowProps {
 	className?: string;
 	style?: React.CSSProperties;
@@ -18,6 +18,16 @@ interface ArrowProps {
 }
 
 export default function MainSlider() {
+	// useRouter 호출
+	const router = useRouter();
+
+	// // 슬라이더 선택 시 동작하는 함수
+	//   const handleClick = () => {
+	// 		// 여기에 원하는 경로를 설정하세요. 예: `/details/${item.id}`
+	// 		const path = `/details/${item.id}`;
+	// 		router.push(path);
+	// 	};
+
 	// 슬라이더 다이나믹 라우팅 적용
 	const MainSlider = dynamic(() => import('react-slick'), {
 		// ssr: false,
@@ -67,8 +77,12 @@ export default function MainSlider() {
 
 	return (
 		<MainSlider {...settings} className={styles.mainSliderWrapper}>
-			{mainBookSlider.map((item) => {
-				return <SliderItem key={item.id} item={item} />;
+			{mainBookSlider.map((item, index) => {
+				return (
+					<div onClick={() => router.push(item.link)} key={index}>
+						<SliderItem item={item} />
+					</div>
+				);
 			})}
 		</MainSlider>
 	);

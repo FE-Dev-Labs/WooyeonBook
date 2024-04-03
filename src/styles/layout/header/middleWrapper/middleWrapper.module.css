@@ -1,0 +1,7 @@
+/* 헤더 중앙 */
+.middleWrapper {
+	height: 80px;
+
+	display: flex;
+	align-items: center;
+}

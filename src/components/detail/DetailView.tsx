@@ -9,16 +9,11 @@ import Detailinformation from './detaildata/detailinformation';
 import Detailsustainability from './detaildata/detailsustainability';
 import Detailcomment from './detailcomments/Detailcomment';
 import { useEffect } from 'react';
+import { RecentlyViewedBookType } from '@/types/bookType';
 
 interface DetailViewProps {
 	book: Book;
 	id: string;
-}
-
-interface Item {
-	itemIsbn: string;
-	itemCover: string;
-	itemMallType: string;
 }
 
 export default function DetailView({ book, id }: DetailViewProps) {
@@ -29,7 +24,7 @@ export default function DetailView({ book, id }: DetailViewProps) {
 
 		// 이미 리스트에 같은 아이템이 있는지 필터링, 있다면 제거
 		recentItems = recentItems.filter(
-			(item: Item) => item.itemIsbn !== book.isbn,
+			(item: RecentlyViewedBookType) => item.itemIsbn !== book.isbn,
 		);
 
 		// 현재 보고 있는 상품을 최근 본 상품 목록에 맨 앞에 추가
@@ -47,8 +42,6 @@ export default function DetailView({ book, id }: DetailViewProps) {
 
 		// 변경된 최근 본 상품 목록을 로컬 스토리지에 저장
 		localStorage.setItem('recentItems', JSON.stringify(recentItems));
-
-		console.log(localStorage.getItem('recentItems'));
 	}, [book, id]);
 
 	return (
@@ -65,7 +58,6 @@ export default function DetailView({ book, id }: DetailViewProps) {
 					<Detailsustainability bookInfo={book} />
 				</Accordion>
 				<Accordion title={'한줄평'} index={3}>
-					{/* <Detailcookies /> */}
 					<Detailcomment bookId={id} />
 				</Accordion>
 			</AccordionWrapper>

@@ -129,6 +129,23 @@ app.get('/auth', async (req, res) => {
 	}
 });
 
+// 마이페이지 내가 쓴글
+app.get('/api/mypage', async (req, res) => {
+	const { page, userId } = req.query;
+	try {
+		const { data, error } = await supabase
+			.from(`${page}`)
+			.select('*')
+			.eq('created_user', userId);
+		if (error) {
+			throw error;
+		}
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(500).send({ error: error.message });
+	}
+});
+
 // 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {
 	try {
@@ -329,7 +346,7 @@ app.get('/list/usedAll', async (req, res) => {
 app.get('/list/used', async (req, res) => {
 	try {
 		const response = await axios.get(
-			`${process.env.ASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=itemNewAll&MaxResults=50&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=itemNewAll&MaxResults=50&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
 		);
 
 		// 중고도서 리스트의 item만 추출해 data에 할당

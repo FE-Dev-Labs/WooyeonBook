@@ -1,7 +1,6 @@
 /* 헤더 틀 */
 .container {
-	 /* width: 100vw; */ 
-	min-height: 120px;
+	height: 170px;
 
 	display: flex;
 	justify-content: center;
@@ -14,27 +13,4 @@
 
 	display: flex;
 	flex-direction: column;
-}
-
-/* 헤더 상단 */
-.topWrapper {
-	min-height: 60px;
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-.logo {
-	width: 250px;
-	height: 60px;
-
-	background-color: yellow;
-}
-
-/* 헤더 하단 */
-.bottomWrapper {
-	min-height: 60px;
-
-	display: flex;
-	justify-content: space-between;
 }

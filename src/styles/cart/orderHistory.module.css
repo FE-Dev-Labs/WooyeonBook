@@ -1,0 +1,68 @@
+/* order History */
+.orderHistoryWrap {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	border-bottom: 1px solid #a9a9a9;
+}
+.orderHistoryBody {
+	width: 30%;
+	margin: 25px 0 25px 0;
+	gap: 15px;
+
+	display: flex;
+	flex-direction: column;
+}
+.orderHistoryItemNumberWrap,
+.orderHistoryItemAmountWrap,
+.orderHistoryDiscountAmountWrap,
+.orderHistoryDeliveryChargeWrap {
+	font-size: 13px;
+	font-weight: bold;
+
+	display: flex;
+	justify-content: space-between;
+	color: #9c9c9c;
+}
+.orderHistoryDeliveryChargeWrap > div {
+	gap: 8px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.orderHistoryBodyText {
+	font-weight: 400;
+	color: #000000;
+}
+.orderHistoryBodySubText {
+	font-size: 9px;
+	font-weight: 400;
+}
+.orderHistoryBodyLine {
+	border-style: dotted;
+	color: #9c9c9c;
+}
+.orderHistoryFinalPaymentAmountWrap {
+	display: flex;
+	justify-content: space-between;
+}
+.orderHistoryFinalPaymentAmountTitle {
+	font-size: 14px;
+
+	font-weight: bold;
+}
+.orderHistoryFinalPaymentAmount {
+	font-size: 14px;
+
+	display: flex;
+	align-items: center;
+}
+.orderHistoryFinalPaymentAmount > p {
+	font-size: 14px;
+	font-weight: bold;
+
+	margin-right: 3px;
+	color: red;
+}

@@ -62,7 +62,7 @@ export default function SignupModal() {
 			console.log(error);
 		}
 		const userData = {
-			uuid: user?.id,
+			id: user?.id,
 			email: email,
 			name: name,
 			phone: phone,

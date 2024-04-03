@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Communitynav() {
-
 	const params = useSearchParams();
 	const page = params.get('page');
 
@@ -25,9 +24,9 @@ export default function Communitynav() {
 				</div>
 				<div className={styles.btnWrapper}>
 					<Link
-						href={'/mypage?page=meeting'}
+						href={'/mypage?page=bookMeeting'}
 						className={
-							page === 'meeting'
+							page === 'bookMeeting'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
@@ -36,9 +35,9 @@ export default function Communitynav() {
 				</div>
 				<div className={styles.btnWrapper}>
 					<Link
-						href={'/mypage?page=buyingBook'}
+						href={'/mypage?page=bookBuying'}
 						className={
-							page === 'buyingBook'
+							page === 'bookBuying'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>
@@ -47,9 +46,9 @@ export default function Communitynav() {
 				</div>
 				<div className={styles.btnWrapper}>
 					<Link
-						href={'/mypage?page=sellingBook'}
+						href={'/mypage?page=bookSelling'}
 						className={
-							page === 'sellingBook'
+							page === 'bookSelling'
 								? styles.mypagePostBtnActive
 								: styles.mypagePostBtn
 						}>

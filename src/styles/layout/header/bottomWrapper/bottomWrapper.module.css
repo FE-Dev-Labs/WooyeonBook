@@ -1,0 +1,7 @@
+/* 헤더 하단 */
+.bottomWrapper {
+	height: 60px;
+
+	display: flex;
+	justify-content: space-between;
+}
