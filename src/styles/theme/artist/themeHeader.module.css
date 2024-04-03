@@ -1,9 +1,9 @@
 .themeHeader {
-	height: 300px;
-
+	height: 150px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: #f8f8f8;
 }
 .titleWrapper {
 	width: 1300px;
