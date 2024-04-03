@@ -64,16 +64,16 @@ const BookBuying = async ({ searchParams, data }: BookBuyingProps) => {
 			{/* 댓글 */}
 			<section>
 				<div className={styles.commentHeader}>
-					<div className={styles.commentCount}>댓글 ##</div>
+					<div className={styles.commentCount}>댓글 {comments.length}</div>
 					<div className={styles.commentSortWrap}>
 						<Link
-							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}
+							href={`/community/detail/bookBuying/${data.doc_id}?sort=like`}
 							scroll={false}>
 							좋아요순
 						</Link>
 						<div className={styles.dot}>●</div>
 						<Link
-							href={`/community/detail/bookReport/${data.doc_id}?sort=lastest`}
+							href={`/community/detail/bookBuying/${data.doc_id}?sort=lastest`}
 							scroll={false}>
 							최신순
 						</Link>

@@ -72,22 +72,22 @@ const BookSelling = async ({ searchParams, data }: BookSellingProps) => {
 			{/* 댓글 */}
 			<section>
 				<div className={styles.commentHeader}>
-					<div className={styles.commentCount}>댓글 ##</div>
+					<div className={styles.commentCount}>댓글 {comments.length}</div>
 					<div className={styles.commentSortWrap}>
 						<Link
-							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}
+							href={`/community/detail/bookSelling/${data.doc_id}?sort=like`}
 							scroll={false}>
 							좋아요순
 						</Link>
 						<div className={styles.dot}>●</div>
 						<Link
-							href={`/community/detail/bookReport/${data.doc_id}?sort=lastest`}
+							href={`/community/detail/bookSelling/${data.doc_id}?sort=lastest`}
 							scroll={false}>
 							최신순
 						</Link>
 					</div>
 				</div>
-				<CommentCreate page={'bookBuying'} doc_id={data.doc_id} />
+				<CommentCreate page={'bookSelling'} doc_id={data.doc_id} />
 				{comments.map((item) => {
 					return <CommentItem data={item} key={item.id} />;
 				})}

@@ -63,7 +63,7 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 			{/* 댓글 */}
 			<section>
 				<div className={styles.commentHeader}>
-					<div className={styles.commentCount}>댓글 ##</div>
+					<div className={styles.commentCount}>댓글 {comments.length}</div>
 					<div className={styles.commentSortWrap}>
 						<Link
 							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}

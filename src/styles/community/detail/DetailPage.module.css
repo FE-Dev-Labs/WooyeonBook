@@ -123,10 +123,17 @@
 	display: flex;
 	align-items: center;
 }
-.commentSortWrap > button {
+.commentSortWrap > a {
 	border: none;
+	color: black;
 	background-color: white;
 	cursor: pointer;
+}
+.commentSortWrap > a:hover {
+	color: #6594e7;
+}
+.commentSortWrap > a:visited {
+	color: black;
 }
 
 .commentCreateWrap {
