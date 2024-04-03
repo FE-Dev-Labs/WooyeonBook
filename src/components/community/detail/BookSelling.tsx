@@ -5,20 +5,26 @@ import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
+import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
+import CommentCreate from './comment/CommentCreate';
+import CommentItem from './comment/CommentItem';
 interface BookSellingProps {
 	data: AllDataType;
+	searchParams?: { sort?: string };
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookSelling = async ({ data }: BookSellingProps) => {
+const BookSelling = async ({ searchParams, data }: BookSellingProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
 		data: { user },
 		error,
 	} = await supabase.auth.getUser();
+
+	const { comments } = await getDetailCommentData({ data, searchParams });
 
 	return (
 		<section className={styles.container}>
@@ -63,6 +69,29 @@ const BookSelling = async ({ data }: BookSellingProps) => {
 			<div className={styles.viewerWrap}>
 				<View content={data.content} />
 			</div>
+			{/* 댓글 */}
+			<section>
+				<div className={styles.commentHeader}>
+					<div className={styles.commentCount}>댓글 ##</div>
+					<div className={styles.commentSortWrap}>
+						<Link
+							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}
+							scroll={false}>
+							좋아요순
+						</Link>
+						<div className={styles.dot}>●</div>
+						<Link
+							href={`/community/detail/bookReport/${data.doc_id}?sort=lastest`}
+							scroll={false}>
+							최신순
+						</Link>
+					</div>
+				</div>
+				<CommentCreate page={'bookBuying'} doc_id={data.doc_id} />
+				{comments.map((item) => {
+					return <CommentItem data={item} key={item.id} />;
+				})}
+			</section>
 		</section>
 	);
 };

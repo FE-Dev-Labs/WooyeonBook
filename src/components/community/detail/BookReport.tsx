@@ -7,6 +7,7 @@ import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
+import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
 
 interface BookReportProps {
 	data: AllDataType;
@@ -23,25 +24,8 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 		data: { user },
 		error,
 	} = await supabase.auth.getUser();
-	if (error) {
-		throw error;
-	}
 
-	const response = supabase.from('comment').select('*');
-
-	switch (searchParams?.sort) {
-		case 'like':
-			response.order('like', { ascending: false });
-		case 'lastest':
-			response.order('created_at', { ascending: false });
-		default:
-			response;
-	}
-	const { data: commnet, error: commentError } = await response;
-	if (commentError) {
-		throw commentError;
-	}
-
+	const { comments } = await getDetailCommentData({ data, searchParams });
 	return (
 		<section className={styles.container}>
 			<h2 className={styles.title}>{data.title}</h2>
@@ -95,7 +79,7 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 					</div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
-				{commnet.map((item) => {
+				{comments.map((item) => {
 					return <CommentItem data={item} key={item.id} />;
 				})}
 			</section>
