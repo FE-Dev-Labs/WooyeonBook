@@ -8,9 +8,9 @@ import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookBuyingPostDataType } from '@/types/community/post/data';
-import OptionBookBuying from '@/components/community/post/option/OptionBookBuying';
-import { useEffect } from 'react';
+import { BookSellingPostDataType } from '@/types/community/post/data';
+import OptionBookSelling from '@/components/community/post/option/OptionBookSelling';
+import { useEffect, useState } from 'react';
 import { getUser } from '@/apis/community/getUser';
 
 const EditorComponent = dynamic(
@@ -29,9 +29,10 @@ const EditorComponent = dynamic(
 	},
 );
 
-const BookBuyingPostPage = () => {
+const BookSellingPostPage = () => {
 	const router = useRouter();
 	const params = usePathname();
+	const goback = () => router.back();
 	// 뒤로가기, 새로고침 방지
 	const preventClose = (e: BeforeUnloadEvent) => {
 		e.preventDefault();
@@ -54,12 +55,18 @@ const BookBuyingPostPage = () => {
 	const [imgArr, setImgArr] = useRecoilState(editorImgArr);
 	// 선택한 책 data
 	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
+
 	// 가격
 	const price = useInputState(0);
+	// 판매 / 나눔
+	const [sellingState, setSellingState] = useState<string>('');
+	const onchangeSellingState = (e: any) => {
+		setSellingState(e.value);
+	};
 	const onSubmit = async () => {
 		const { user_id, user_name } = await getUser();
 
-		const data: BookBuyingPostDataType = {
+		const data: BookSellingPostDataType = {
 			created_at: new Date(),
 			created_user: user_id as string,
 			title: title.value as string,
@@ -75,6 +82,7 @@ const BookBuyingPostPage = () => {
 			like: 0,
 			price: price.value as number,
 			state: false,
+			selling: sellingState === '판매' ? true : false,
 		};
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase.from(`${page}`).insert([data]);
@@ -100,7 +108,7 @@ const BookBuyingPostPage = () => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div>📚</div>
-				<h2>중고 책을 구매해보세요.</h2>
+				<h2>책을 나누고 판매해 보세요.</h2>
 			</div>
 			<input
 				type="text"
@@ -109,24 +117,29 @@ const BookBuyingPostPage = () => {
 				value={title.value as string | ''}
 				onChange={title.onChange}
 			/>
-			<OptionBookBuying
+			<OptionBookSelling
 				sellingPrice={
 					price as {
-						value: number;
+						value: string;
 						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 					}
 				}
+				onchangeSellingState={onchangeSellingState}
 			/>
 
 			<div>
 				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button onClick={goback} className={styles.cancelBtn}>
+					취소
+				</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);
 };
 
-export default BookBuyingPostPage;
+export default BookSellingPostPage;

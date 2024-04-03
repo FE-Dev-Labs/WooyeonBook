@@ -4,14 +4,15 @@ import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import styles from '@/styles/community/post/postNewPage.module.css';
 import { useInputState } from '@/hooks/useInputState';
+import OptionBookReport from '@/components/community/post/option/OptionBookReport';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
+import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { supabase } from '@/utils/supabase/supabase';
-import { BookMeetingPostDataType } from '@/types/community/post/data';
-import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
-import { useEffect, useState } from 'react';
+import { BookReportPostDataType } from '@/types/community/post/data';
+import { useEffect } from 'react';
+import { createClient } from '@/utils/supabase/client';
 import { getUser } from '@/apis/community/getUser';
-
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
 	{
@@ -28,9 +29,10 @@ const EditorComponent = dynamic(
 	},
 );
 
-const BookMeetingPostPage = () => {
+const BookReportPostPage = () => {
 	const router = useRouter();
 	const params = usePathname();
+	const goback = () => router.back();
 	// 뒤로가기, 새로고침 방지
 	const preventClose = (e: BeforeUnloadEvent) => {
 		e.preventDefault();
@@ -46,38 +48,31 @@ const BookMeetingPostPage = () => {
 
 	// 현제 페이지 url
 	const page = params.split('/')[4];
+
 	// title
 	const title = useInputState('');
 	// text / img url arr
 	const [content, setContent] = useRecoilState(editorText);
 	const [imgArr, setImgArr] = useRecoilState(editorImgArr);
-	// 모집중 / 모집 완료 state
-	const [state, setState] = useState<boolean>(false);
-	// 모집 마감일
-	const deadline = useInputState(new Date());
-	// kakao chat url state
-	const chatUrl = useInputState('');
-	// 모집 인원 state
-	const [recruitmentNumber, setRecruitmentNumber] = useState<number>(0);
-	const onchangeRecruitmentNumber = (e: any) => {
-		setRecruitmentNumber(e.value);
-	};
+	// 선택한 책 data
+	const [selectedBook, setSeletedBook] = useRecoilState(selectBookData);
+
 	const onSubmit = async () => {
 		const { user_id, user_name } = await getUser();
-		const data: BookMeetingPostDataType = {
+		const data: BookReportPostDataType = {
 			created_at: new Date(),
 			created_user: user_id as string,
 			title: title.value as string,
 			content: content,
 			content_img_url: imgArr,
 			user_name: user_name as string,
+			book_id: selectedBook.bookId,
+			book_name: selectedBook.bookName,
+			book_img_url: selectedBook.bookImgUrl,
 			field: page,
+			category: 'category',
 			view: 0,
 			like: 0,
-			state: state,
-			recruitment_number: recruitmentNumber,
-			deadline: deadline.value as Date,
-			chatting_url: chatUrl.value as string,
 		};
 		// supabase 데이터베이스에 데이터 삽입
 		const { error } = await supabase.from(`${page}`).insert([data]);
@@ -89,11 +84,11 @@ const BookMeetingPostPage = () => {
 		title.init('');
 		setContent('');
 		setImgArr([]);
-		setState(false);
-		deadline.init(new Date());
-		chatUrl.init('');
-		setRecruitmentNumber(0);
-
+		setSeletedBook({
+			bookName: '',
+			bookImgUrl: '',
+			bookId: '',
+		});
 		// 데이터 삽입후 페이지 이동
 		return router.push(`/community/${page}`);
 	};
@@ -102,7 +97,7 @@ const BookMeetingPostPage = () => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<div>📚</div>
-				<h2>모임을 만들어 보세요.</h2>
+				<h2>독후감을 작성하고 공유해 보세요.</h2>
 			</div>
 			<input
 				type="text"
@@ -111,30 +106,20 @@ const BookMeetingPostPage = () => {
 				value={title.value as string | ''}
 				onChange={title.onChange}
 			/>
-			<OptionBookMeeting
-				chatUrl={
-					chatUrl as {
-						value: string;
-						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-					}
-				}
-				deadline={
-					deadline as {
-						value: Date;
-						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-					}
-				}
-				onchangeRecruitmentNumber={onchangeRecruitmentNumber}
-			/>
+			<OptionBookReport />
 			<div>
 				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button onClick={goback} className={styles.cancelBtn}>
+					취소
+				</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);
 };
 
-export default BookMeetingPostPage;
+export default BookReportPostPage;

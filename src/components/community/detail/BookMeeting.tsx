@@ -5,20 +5,26 @@ import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
+import CommentCreate from './comment/CommentCreate';
+import CommentItem from './comment/CommentItem';
+import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
 interface BookMeetingProps {
 	data: AllDataType;
+	searchParams?: { sort?: string };
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookMeeting = async ({ data }: BookMeetingProps) => {
+const BookMeeting = async ({ searchParams, data }: BookMeetingProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
 		data: { user },
 		error,
 	} = await supabase.auth.getUser();
+
+	const { comments } = await getDetailCommentData({ data, searchParams });
 
 	return (
 		<section className={styles.container}>
@@ -69,6 +75,29 @@ const BookMeeting = async ({ data }: BookMeetingProps) => {
 			<div className={styles.viewerWrap}>
 				<View content={data.content} />
 			</div>
+			{/* 댓글 */}
+			<section>
+				<div className={styles.commentHeader}>
+					<div className={styles.commentCount}>댓글 {comments.length}</div>
+					<div className={styles.commentSortWrap}>
+						<Link
+							href={`/community/detail/bookMeeting/${data.doc_id}?sort=like`}
+							scroll={false}>
+							좋아요순
+						</Link>
+						<div className={styles.dot}>●</div>
+						<Link
+							href={`/community/detail/bookMeeting/${data.doc_id}?sort=lastest`}
+							scroll={false}>
+							최신순
+						</Link>
+					</div>
+				</div>
+				<CommentCreate page={'bookMeeting'} doc_id={data.doc_id} />
+				{comments.map((item) => {
+					return <CommentItem data={item} key={item.id} />;
+				})}
+			</section>
 		</section>
 	);
 };

@@ -1,0 +1,54 @@
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #b5bdc4;
+}
+/* Link button */
+.linkWrap {
+	display: flex;
+	align-items: center;
+	position: relative;
+	height: 60px;
+}
+
+.linkItem {
+	margin-right: 10px;
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.linkItem:visited {
+	color: #b5bdc4;
+}
+.linkItem:hover {
+	color: #000000;
+	font-weight: bold;
+	border-radius: 10px;
+}
+.active {
+	margin-right: 5px;
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	color: #000000;
+	border-bottom: 2px solid #000000;
+	font-weight: bold;
+	cursor: pointer;
+}
+/* write button */
+.writeBtn {
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	color: #000000;
+}
+.writeBtn:hover {
+	color: #000000;
+	font-weight: bold;
+}

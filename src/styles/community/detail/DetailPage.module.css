@@ -30,6 +30,8 @@
 	margin: 0 5px;
 }
 
+/* 수정 삭제 */
+
 .adimBtnWrap {
 	display: flex;
 }
@@ -39,17 +41,30 @@
 	width: 100px;
 	height: 24px;
 	line-height: 24px;
-	border: 1px solid #000;
+	border: none;
 	color: black;
 	text-align: center;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+}
+.adimBtnWrap > a:hover {
+	color: #6594e7;
 }
 .adimBtnWrap > button {
-	margin-right: 50px;
+	margin-right: 20px;
 	width: 100px;
 	height: 24px;
+	line-height: 24px;
 	cursor: pointer;
+	border: none;
+	background-color: white;
+	font-size: 18px;
+	font-weight: bold;
 }
-
+.adimBtnWrap > button:hover {
+	color: red;
+}
 .line {
 	width: 1300px;
 	margin-bottom: 30px;
@@ -108,10 +123,17 @@
 	display: flex;
 	align-items: center;
 }
-.commentSortWrap > button {
+.commentSortWrap > a {
 	border: none;
+	color: black;
 	background-color: white;
 	cursor: pointer;
+}
+.commentSortWrap > a:hover {
+	color: #6594e7;
+}
+.commentSortWrap > a:visited {
+	color: black;
 }
 
 .commentCreateWrap {

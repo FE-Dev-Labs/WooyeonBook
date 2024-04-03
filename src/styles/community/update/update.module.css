@@ -10,12 +10,33 @@
 	margin-top: 50px;
 	margin-bottom: 30px;
 }
-.BtnWrap > button {
-	margin-left: 20px;
+.cancelBtn {
+	margin-right: 20px;
 	width: 100px;
-	height: 34px;
+	height: 36px;
 	font-size: 24px;
-	line-height: 24px;
+	line-height: 36px;
+	background-color: #e0e0e0;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.cancelBtn:hover {
+	background-color: rgba(224, 224, 224, 0.5);
+}
+.submitBtn {
+	width: 100px;
+	height: 36px;
+	font-size: 24px;
+	line-height: 36px;
+	background-color: #6594e7;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+}
+.submitBtn:hover {
+	background-color: rgba(101, 148, 231, 0.5);
 }
 /* header 영역 */
 .header {

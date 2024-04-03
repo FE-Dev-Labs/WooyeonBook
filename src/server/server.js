@@ -171,7 +171,7 @@ app.get('/api/community/bookMeeting/:docid', async (req, res) => {
 		if (error) {
 			throw error;
 		}
-		res.status(200).send(data[0]);
+		res.status(200).send(data);
 	} catch (err) {
 		res.status(400).send;
 	}

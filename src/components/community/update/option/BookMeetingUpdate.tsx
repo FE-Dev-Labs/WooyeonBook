@@ -7,7 +7,6 @@ import { useInputState } from '@/hooks/useInputState';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/supabase/supabase';
-import OptionBookMeeting from '../../post/option/OptionBookMeeting';
 import UpdateOptionBookMeeting from '../UpdateOptionBookMeeting';
 import { BookMeetingDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
@@ -47,6 +46,10 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 	};
 	const view = data?.view;
 	const like = data?.like;
+
+	const goback = () => {
+		return router.back();
+	};
 
 	useEffect(() => {
 		if (!data) return;
@@ -132,8 +135,12 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 				<EditorComponent data={data} />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button onClick={goback} className={styles.cancelBtn}>
+					취소
+				</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);

@@ -37,7 +37,7 @@ const CommentItem = async ({
 					<div>{getDate(data.created_at)}</div>
 				</div>
 				{/* client */}
-				{isAdmin && <CommentAdminBtn id={data.id} />}
+				{isAdmin && <CommentAdminBtn data={data} id={data.id} />}
 			</div>
 			<Comment id={data.id} comment={data.comment} />
 			{/* <div className={styles.contentBtnWrap}>

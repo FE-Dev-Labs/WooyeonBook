@@ -2,12 +2,12 @@
 import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
 import searchIcon from '../../../../public/searchIcon.png';
-import Link from 'next/link';
 import { memo, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import communityPathname from '@/apis/communityPathname';
 import { useRouter, useSearchParams } from 'next/navigation';
+
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => <div className={styles.optionBtnSkeleton}></div>,
@@ -62,9 +62,11 @@ function Search() {
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
 	};
+
 	useEffect(() => {
 		setQuery('');
 	}, [pathname]);
+
 	const onChangeSort = (e: any) => {
 		setSort(e.value);
 		if (

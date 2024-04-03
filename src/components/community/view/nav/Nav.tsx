@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import styles from '@/styles/community/nav.module.css';
+import styles from '@/styles/community/LayoutNav.module.css';
 import communityPathname from '@/apis/communityPathname';
 function Nav() {
 	const pathname = communityPathname();

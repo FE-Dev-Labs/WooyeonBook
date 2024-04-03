@@ -67,6 +67,7 @@ function BookSearch() {
 	}, [searchBook.value]);
 
 	const setSelectBookData = useSetRecoilState(selectBookData);
+
 	useEffect(() => {
 		return () => {
 			setSelectBookData({
@@ -76,10 +77,19 @@ function BookSearch() {
 			});
 		};
 	}, []);
+
+	const coverReplace = (cover: string) => {
+		if (cover.indexOf('/coversum/') !== -1) {
+			return cover.replace('/coversum/', '/cover500/');
+		} else {
+			return cover.replace('/cover/', '/cover500/');
+		}
+	};
+
 	const selectBook = (name: string, cover: string, id: string) => {
 		setSelectBookData({
 			bookName: name,
-			bookImgUrl: cover,
+			bookImgUrl: coverReplace(cover),
 			bookId: id,
 		});
 		setShowSearchHistory(false);

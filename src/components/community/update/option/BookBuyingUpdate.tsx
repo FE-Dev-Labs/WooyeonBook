@@ -43,6 +43,9 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 	const [buyingState, setBuyingState] = useState<boolean>(false);
 	const view = data?.view;
 	const like = data?.like;
+	const goback = () => {
+		return router.back();
+	};
 	useEffect(() => {
 		if (!data) return;
 		title.onChangeValue(data.title as string);
@@ -102,6 +105,7 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 
 		return router.push('/');
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
@@ -126,8 +130,12 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 				<EditorComponent data={data} />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button onClick={goback} className={styles.cancelBtn}>
+					취소
+				</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);

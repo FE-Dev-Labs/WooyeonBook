@@ -39,9 +39,12 @@ function Update({ data, docid }: UpdateProps) {
 	const [text, setText] = useRecoilState(editorText);
 	const [selectBook, setSelectBook] = useRecoilState(selectBookData);
 	const [contentArr, setContentArr] = useRecoilState(editorImgArr);
-
 	const view = data?.view;
 	const like = data?.like;
+
+	const goback = () => {
+		return router.back();
+	};
 
 	useEffect(() => {
 		if (!data) return;
@@ -109,8 +112,12 @@ function Update({ data, docid }: UpdateProps) {
 				<EditorComponent data={data} />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button>취소</button>
-				<button onClick={onSubmit}>등록</button>
+				<button onClick={goback} className={styles.cancelBtn}>
+					취소
+				</button>
+				<button onClick={onSubmit} className={styles.submitBtn}>
+					등록
+				</button>
 			</div>
 		</div>
 	);

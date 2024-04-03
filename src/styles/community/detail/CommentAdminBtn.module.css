@@ -1,0 +1,21 @@
+.adminBtnWrap {
+	width: 90px;
+	display: flex;
+	justify-content: space-between;
+}
+.updateBtn {
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}
+.updateBtn:hover {
+	color: #6594e7;
+}
+.deleteBtn {
+	background-color: white;
+	border: none;
+	cursor: pointer;
+}
+.deleteBtn:hover {
+	color: red;
+}

@@ -19,13 +19,24 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 		: data;
 
 	const filteringData = filterdData.filter((report: AllDataType) => {
-		switch (searchParams?.categories) {
-			case 'true':
-				return report.state === false;
-			case 'false':
-				return report.state === true;
-			default:
-				return report;
+		if (page === 'bookSelling') {
+			switch (searchParams?.categories) {
+				case 'true':
+					return report.selling === true;
+				case 'false':
+					return report.selling === false;
+				default:
+					return report;
+			}
+		} else {
+			switch (searchParams?.categories) {
+				case 'true':
+					return report.state === false;
+				case 'false':
+					return report.state === true;
+				default:
+					return report;
+			}
 		}
 	});
 	const sortedData = filteringData.sort((a: AllDataType, b: AllDataType) => {

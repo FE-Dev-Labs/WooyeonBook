@@ -80,7 +80,7 @@ interface AllDataType {
 	user_name: string;
 	like: number;
 	view: number;
-	filed: string;
+	field: string;
 	book_name?: string;
 	book_id?: string;
 	book_img_url?: string;
