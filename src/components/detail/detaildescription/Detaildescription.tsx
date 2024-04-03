@@ -10,8 +10,15 @@ interface bookDetailProp {
 	bookInfo: Book;
 }
 export default function Detaildescription({ bookInfo }: bookDetailProp) {
+	const modifiedCover = (cover: string) => {
+		if (cover.indexOf('/coversum/') !== -1) {
+			return cover.replace('/coversum/', '/cover500/');
+		} else {
+			return cover.replace('/cover/', '/cover500/');
+		}
+	};
 	// replace는 /cover/를 /cover500/ 특정 부분을 다른 값으로 변환
-	const modifiedCover = bookInfo.cover.replace('/cover/', '/cover500/');
+	// const modifiedCover = bookInfo.cover.replace('/cover/', '/cover500/');
 
 	// 제목은 크게 - 뒤에 내용은 작게 css 주기 위한 코드
 	const modifiedTitle = bookInfo.title.split('- ')[0];
@@ -56,7 +63,7 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 					<div className={styles.imgArea}>
 						<Image
 							className={styles.img}
-							src={modifiedCover}
+							src={modifiedCover(bookInfo.cover)}
 							alt="메인이미지"
 							width={302}
 							height={430}

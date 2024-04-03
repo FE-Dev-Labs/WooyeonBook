@@ -12,7 +12,7 @@
 	transform: scale(1.05);
 }
 .themeText {
-	width: 225px;
+	width: 265px;
 	height: 200px;
 	font-size: 14px;
 	gap: 10px;
@@ -24,13 +24,26 @@
 
 	color: #ffffff;
 }
-.themeText > p:first-child {
-	font-size: 18px;
+.themeTitle {
+	position: absolute;
+	left: 25px;
+	top: 30px;
+	line-height: 16px;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 12px;
+	font-weight: 700;
+}
+.tagText {
+	margin-top: 20px;
+	font-size: 22px;
 	font-weight: bold;
 }
+.themeRecommended {
+	font-size: 18px;
+}
 .themeImage {
-	top: 50px;
-	left: 225px;
+	top: 20px;
+	left: 250px;
 	border-radius: 10px;
 
 	position: absolute;
