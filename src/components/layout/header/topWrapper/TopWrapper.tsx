@@ -25,7 +25,7 @@ export default function TopWrapper() {
 			) : (
 				<>
 					<Link href={'/login'}>
-						<p>로그인</p>
+						<p className={styles.userName}>로그인</p>
 					</Link>
 					<Image
 						src={verticalLineIcon}

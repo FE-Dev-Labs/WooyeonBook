@@ -18,3 +18,12 @@
 .wrapper > :last-child {
 	margin-bottom: 50px;
 }
+
+.loadingContainer {
+	height: calc(100vh - 290px);
+	font-size: 20px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

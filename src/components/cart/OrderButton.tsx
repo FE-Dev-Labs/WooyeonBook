@@ -5,7 +5,7 @@ import { CartItemType } from '@/types/bookType';
 import { supabase } from '@/utils/supabase/supabase';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import uuid from 'react-uuid';
 import { useRecoilState } from 'recoil';
 
@@ -20,6 +20,8 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// useUser에서 호출한 로그인 상태(user_id)
 	const { isLoggedIn } = useIsLoggedIn();
+	// 로딩 state
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	// 주문하기 버튼 클릭 시 동작하는 함수
 	const handleOrderButtonClick = async () => {
@@ -39,6 +41,8 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 		}
 		// 주문 확인
 		if (confirm('상품을 주문하시겠습니까?')) {
+			// 주문 처리 시작 시 로딩 상태 true
+			setIsLoading(true);
 			// 테이블에 넣을 데이터(유저 아이디, 생성 일시, 주문 내역)
 			const orderData = {
 				id: uuid(),
@@ -57,25 +61,33 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 					console.log('supabase error: ', error);
 					alert('주문 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
 				} else {
-					console.log('주문 완료', data);
 					// cart 초기화
 					setCart([]);
 					// 주문 완료 페이지로 이동
 					router.push('/orderComplete');
+					console.log('주문 완료', data);
 				}
 			} catch (error) {
 				console.error('주문 중 오류 발생', error);
 				alert('주문 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
+			} finally {
+				// 주문 완료 시 로딩 상태 false
+				setIsLoading(false);
 			}
 		}
 	};
 
 	return (
-		<div className={styles.orderButtonWrap}>
-			<Link href={'/'}>
-				<button>상품 추가</button>
-			</Link>
-			<button onClick={handleOrderButtonClick}>결제하기</button>
-		</div>
+		<>
+			<div className={styles.orderButtonWrap}>
+				<Link href={'/'}>
+					<button>상품 추가</button>
+				</Link>
+				<button onClick={handleOrderButtonClick}>결제하기</button>
+			</div>
+			{isLoading && (
+				<div className={styles.loadingContainer}>주문이 진행중입니다. 😎</div>
+			)}
+		</>
 	);
 }

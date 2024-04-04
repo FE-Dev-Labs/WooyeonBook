@@ -24,6 +24,8 @@ export default function searchPage() {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 소팅 state(제목순, 최신순)
 	const sortType = useRecoilValue(sortTypeState);
+	// 로딩 state
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {
@@ -33,6 +35,28 @@ export default function searchPage() {
 		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
 		window.scrollTo({ top: 320, behavior: 'smooth' });
+	};
+
+	// server -> api 받아오는 함수
+	const fetchSearchData = async () => {
+		// 검색 시작 시 로딩 상태 true
+		setIsLoading(true);
+		try {
+			const response = await fetch(
+				`http://localhost:8080/list/search?query=${keyword}`,
+				{
+					cache: 'no-store',
+				},
+			);
+			const { data, dataLength } = await response.json();
+			setData(data);
+			setDataLength(dataLength);
+		} catch (error) {
+			console.error('검색 데이터를 가져오는 중 오류가 발생했습니다.', error);
+		} finally {
+			// 검색 완료 시 로딩 상태 false
+			setIsLoading(false);
+		}
 	};
 
 	// 소팅한 data
@@ -46,24 +70,6 @@ export default function searchPage() {
 						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 				);
 
-	// server -> api 받아오는 함수
-	const fetchSearchData = async () => {
-		const response = await fetch(
-			`http://localhost:8080/list/search?query=${keyword}`,
-			{
-				cache: 'no-store',
-			},
-		);
-		const { data, dataLength } = await response.json();
-		setData(data);
-		setDataLength(dataLength);
-	};
-
-	// fetchData 뿌려주는 useEffect
-	useEffect(() => {
-		fetchSearchData();
-	}, [keyword]);
-
 	// 페이지 첫 시작 데이터의 숫자, 24 = 카테고리 페이지에 나타낼 아이템 갯수
 	const startIndex = (currentPage - 1) * 30;
 	// 앞서 보여진 데이터를 제외한 마지막 데이터의 숫자
@@ -71,15 +77,24 @@ export default function searchPage() {
 	// 해당 페이지에서 보여줄 데이터
 	const pageData = sortedData?.slice(startIndex, endIndex);
 
+	// fetchData 뿌려주는 useEffect
+	useEffect(() => {
+		fetchSearchData();
+	}, [keyword]);
+
 	return (
 		<>
-			{!pageData?.length ? (
-				<div style={{ height: '689px' }}>
-					{keyword} 검색 결과를 찾을 수 없습니다.
+			{isLoading ? (
+				<div className={styles.loadingContainer}>
+					'{keyword}'에 대한 검색 결과를 찾는 중입니다. 😎
+				</div>
+			) : !pageData?.length ? (
+				<div className={styles.loadingContainer}>
+					'{keyword}'에 대한 검색 결과를 찾을 수 없습니다. 🤔
 				</div>
 			) : (
 				<>
-					<PageHeader title={`'${keyword}' 에 대한 검색 결과`} />
+					<PageHeader title={`'${keyword}' 검색 결과`} />
 					<div className={styles.container}>
 						<div className={styles.wrapper}>
 							<SortBar page="search" dataLength={dataLength} />
