@@ -18,56 +18,41 @@
 
 /* 로그인/회원가입 모달 틀 */
 .modalWrapper {
-	width: 950px;
-	height: 800px;
+	position: relative;
+	width: 550px;
+	height: 430px;
 	border-radius: 30px;
-	gap: 20px;
-
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
-
 	background-color: #f4f2e5;
 }
-
-/* 로그인/회원가입 모달 좌측 이미지(로고) */
-.modalImage {
-	width: 450px;
-	height: 500px;
-	border-radius: 10px;
-
+.modalSignupWrapper {
+	position: relative;
+	width: 650px;
+	height: 600px;
+	border-radius: 30px;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-
-	background-color: #ffffff;
+	background-color: #f4f2e5;
+}
+.signupContents {
+	width: 520px;
+	height: inherit;
 }
 
-/* 로그인/회원가입 모달 우측 컨텐츠 랩퍼(이메일, 비밀번호 입력 칸 및 로그인, 가입 버튼 등) */
-.modalContents {
-	width: 450px;
-	height: 500px;
-	border-radius: 10px;
-
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
 .contents {
 	width: 400px;
 	height: inherit;
 }
 .title {
+	margin-top: 50px;
 	width: inherit;
-	height: 50px;
-
 	display: flex;
 	justify-content: space-between;
 }
 .title > span {
 	font-size: 32px;
 	font-weight: bold;
-
 	display: flex;
 	align-items: center;
 }
@@ -75,21 +60,43 @@
 /* 컨텐츠 랩퍼 내 가입 폼 랩퍼 */
 .formWrapper {
 	width: inherit;
-	height: 425px;
 	margin-top: 25px;
 }
 .inputWrapper {
 	width: inherit;
-	/* height: 360px; */
 	gap: 20px;
 
 	display: flex;
 	flex-direction: column;
 }
+.inputSignupWrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* 두 개의 컬럼을 같은 크기로 설정 */
+	gap: 20px; /* 컬럼 사이의 간격 */
+}
+.inputLeftWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.inputrightWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
 .inputLabel {
 	width: inherit;
 	height: 70px;
-	font-size: 20px;
+	font-size: 16px;
+	font-weight: bold;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.inputAddressLabel {
+	width: inherit;
+	font-size: 16px;
 	font-weight: bold;
 
 	display: flex;
@@ -110,7 +117,7 @@
 .buttonWrapper {
 	width: inherit;
 	height: 50px;
-	margin-top: 80px;
+	margin-top: 50px;
 
 	display: flex;
 	justify-content: space-between;
@@ -130,47 +137,49 @@
 	color: #ffffff;
 	background-color: #6594e7;
 }
-.signupButton:hover {
-	background-color: #3464b9;
-}
 
 /* 로그인 시 로그인 버튼 */
 .loginLeftButton {
-	width: 290px;
+	width: 80%;
+	margin-right: 10px;
 	height: inherit;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 10px;
-
 	border: none;
 	cursor: pointer;
-
 	color: #ffffff;
 	background-color: #6594e7;
 }
-.loginLeftButton:hover {
+/* .loginLeftButton:hover {
 	background-color: #3464b9;
-}
+} */
 .loginRightButton {
-	width: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	margin-left: 10px;
 	height: inherit;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 10px;
-
 	border: none;
 	cursor: pointer;
-
-	color: #000000;
-	background-color: #f4f2e5;
+	color: #6594e7;
+	background-color: transparent;
+	border: 1px solid #6594e7;
 }
-.loginRightButton:hover {
+/* .loginRightButton:hover {
 	color: #ffffff;
 	background-color: #6594e7;
-}
+} */
 
 /* 나가기 아이콘 */
 .closeIcon {
+	position: absolute;
+	right: 10px;
+	top: 10px;
 	cursor: pointer;
 }
 
@@ -180,7 +189,30 @@
 	justify-content: space-between;
 }
 .inputFieldAddress {
-	width: 55%;
+	width: 64%;
+	margin-right: 15px;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputRoadAddress {
+	width: 100%;
+	margin-top: 20px;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputDetailRoadAddress {
+	width: 100%;
+	margin-top: 20px;
 	height: 36px;
 	border-radius: 10px;
 	font-size: 16px;
@@ -190,9 +222,9 @@
 	box-sizing: border-box;
 }
 .inputFieldBtn {
-	width: 40%;
+	width: 30%;
 	height: 36px;
-	font-size: 18px;
+	font-size: 12px;
 	font-weight: bold;
 	border-radius: 10px;
 	border: none;
@@ -235,4 +267,7 @@
 	bottom: 0;
 	right: 0;
 	background: rgba(0, 0, 0, 0.8);
+}
+.addressZipcodeWrapper {
+	margin-top: 20px;
 }
