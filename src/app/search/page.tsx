@@ -51,7 +51,7 @@ export default function searchPage() {
 		const response = await fetch(
 			`http://localhost:8080/list/search?query=${keyword}`,
 			{
-				cache: 'force-cache',
+				cache: 'no-store',
 			},
 		);
 		const { data, dataLength } = await response.json();

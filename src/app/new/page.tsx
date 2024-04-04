@@ -36,7 +36,7 @@ export default function newPage() {
 	const fetchNewAllData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/newSpecialAll?categoryId=${categoryId}&page=${currentPage}`,
-			{ cache: 'force-cache' },
+			{ cache: 'no-store' },
 		);
 		const { data, dataLength } = await response.json();
 
@@ -72,24 +72,3 @@ export default function newPage() {
 		</>
 	);
 }
-
-// 서버컴포넌트시
-// // 메인 페이지 신간 도서
-// const response = await fetch('http://localhost:8080//api/newAll/:category?', {
-// 	cache: 'force-cache',
-// });
-// const newAllItems: NewBookType[] = await response.json();
-
-// 클라컴포넌트시(카테고리X)
-// new 페이지에 뿌려줄 신간 도서 전체 state
-
-// // 클라 컴포넌트시
-// // new 페이지에 신간 도서를 뿌려주기 위한 useEffect
-// useEffect(() => {
-// 	const fetchData = async () => {
-// 		const data = await getAllNewBookData();
-// 		setNewAllItems(data);
-// 	};
-
-// 	fetchData();
-// }, []);

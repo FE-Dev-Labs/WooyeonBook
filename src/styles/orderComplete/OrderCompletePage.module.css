@@ -1,26 +1,21 @@
 .container {
-	height: 75dvh;
+	height: calc(100vh - 290px);
+	gap: 50px;
+
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
-.container > a {
-	background-size: cover;
-}
-.text {
-	margin: 40px 0;
-	font-size: 30px;
-}
-.btnWrap {
+.orderCompleteWrapper {
+	font-size: 20px;
+	gap: 20px;
+
 	display: flex;
-	justify-content: space-between;
+	flex-direction: row;
 }
-.btnWrap > button {
-	font-size: 24px;
-	background-color: inherit;
-	border: none;
-}
-.btnWrap :nth-child(1) {
-	margin-right: 50px;
+
+.orderCompleteWrapper > a > p {
+	color: #000000;
+	text-decoration: underline;
 }
