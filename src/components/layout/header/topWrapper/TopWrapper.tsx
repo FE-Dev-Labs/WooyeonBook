@@ -1,14 +1,14 @@
 'use client';
 
-import { useUser } from '@/hooks/useUser';
 import Image from 'next/image';
 import Link from 'next/link';
 import verticalLineIcon from '../../../../../public/layout/verticalline.png';
 import styles from '@/styles/layout/header/topWrapper/topWrapper.module.css';
+import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 
 export default function TopWrapper() {
-	// useUser에서 호출한 로그인상태 및 유저네임
-	const { isLoggedIn, userName } = useUser();
+	// useIsLoggedIn에서 호출한 로그인상태 및 유저네임
+	const { isLoggedIn, userName } = useIsLoggedIn();
 	return (
 		<div className={styles.topWrapper}>
 			{isLoggedIn ? (

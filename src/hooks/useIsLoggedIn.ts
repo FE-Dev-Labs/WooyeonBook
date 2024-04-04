@@ -3,7 +3,7 @@
 import { getUser } from '@/apis/community/getUser';
 import { useEffect, useState } from 'react';
 
-export const useUser = () => {
+export const useIsLoggedIn = () => {
 	// 유저 state
 	const [isLoggedIn, setIsLoggedIn] = useState<string | null>(null);
 	// 유저 name state

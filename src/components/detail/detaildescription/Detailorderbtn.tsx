@@ -1,4 +1,4 @@
-import { useUser } from '@/hooks/useUser';
+import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import styles from '@/styles/detail/detaildescription/detailorderbtn.module.css';
@@ -18,8 +18,8 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// 현재 카트 아이템의 수량
 	const itemQuantity = useRecoilValue(itemAmountAtom);
-	// useUser에서 호출한 로그인 상태
-	const { isLoggedIn } = useUser();
+	// useIsLoggedIn 호출한 로그인 상태
+	const { isLoggedIn } = useIsLoggedIn();
 
 	// 카트페이지에서 필요한 요소들
 	const newCartItem = {
