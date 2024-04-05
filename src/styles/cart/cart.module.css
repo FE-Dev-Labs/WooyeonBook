@@ -14,7 +14,7 @@
 
 /* 장바구니가 비었을 떄 */
 .emptyCartWrapper {
-	height: 489px;
+	height: calc(100vh - 440px);
 
 	display: flex;
 	align-items: center;

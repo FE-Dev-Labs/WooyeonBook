@@ -1,6 +1,6 @@
 import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
 
-export const fetchMainPageData = async () => {
+export const getMainPageData = async () => {
 	const fetchData = async (url: string) => {
 		try {
 			const response = await fetch(url, { cache: 'no-store' });

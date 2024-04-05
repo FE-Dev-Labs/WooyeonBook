@@ -1,4 +1,4 @@
-import styles from '@/styles/orderComplete/OrderCompletePage.module.css';
+import styles from '@/styles/orderComplete/OrderComplete.module.css';
 import Image from 'next/image';
 import Img from '../../../public/orderComplete.png';
 import Link from 'next/link';
