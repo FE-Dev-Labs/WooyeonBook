@@ -1,5 +1,5 @@
 /* Pagination */
-.paginationWrapper {
+.paginationContainer {
 	width: inherit;
 	height: 30px;
 
@@ -7,7 +7,7 @@
 	align-items: center;
 	justify-content: center;
 }
-.paginationBox {
+.paginationWrappper {
 	/* width: 400px; */
 	height: inherit;
 	gap: 8px;

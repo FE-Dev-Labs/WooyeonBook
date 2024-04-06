@@ -1,16 +1,20 @@
-import styles from '@/styles/orderComplete/OrderComplete.module.css';
+import styles from '@/styles/orderComplete/orderComplete.module.css';
 import Image from 'next/image';
-import Img from '../../../public/orderComplete.png';
-import Link from 'next/link';
+import orderCompleteImage from '../../../public/orderComplete.png';
+import TextWrapper from '@/components/orderComplete/TextWrapper';
+
 export default function OrderCompletePage() {
 	return (
 		<div className={styles.container}>
-			<Image src={Img} alt="img" width={400} height={200} />
-			<div className={styles.orderCompleteWrapper}>
-				<p>주문이 완료되었습니다. 😎</p>
-				<Link href={'/mypage?page=bookMeeting'}>
-					<p>마이페이지에서 주문 내역을 확인하세요!</p>
-				</Link>
+			<div className={styles.wrapper}>
+				<Image
+					src={orderCompleteImage}
+					alt="order complete image"
+					width={400}
+					height={200}
+					priority={true}
+				/>
+				<TextWrapper />
 			</div>
 		</div>
 	);

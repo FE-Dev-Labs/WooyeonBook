@@ -8,7 +8,7 @@ import Image from 'next/image';
 import prevArrow from '../../../../public/main/prevArrow.png';
 import nextArrow from '../../../../public/main/nextArrow.png';
 import SliderItem from './SliderItem';
-import arrowStyles from '@/styles/main/mainSlider/customArrow.module.css';
+import arrowStyles from '@/styles/main/slider/customArrow.module.css';
 import { mainBookSlider } from '@/apis/main/silderData';
 import { useRouter } from 'next/navigation';
 import { SliderSkeleton } from './SliderSkeleton';

@@ -46,7 +46,7 @@ export default function CategoryBox() {
 					</li>
 				))}
 			</ul>
-			<div className={styles.categoryBottom}></div>
+			<div className={styles.categoryBottom} />
 		</>
 	);
 }

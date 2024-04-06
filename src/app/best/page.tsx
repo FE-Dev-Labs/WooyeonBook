@@ -15,12 +15,12 @@ export default function bestPage() {
 	const params = useSearchParams();
 	// url 내 categoryId 추출
 	const categoryId = params.get('categoryId');
-	// 신간 도서 전체 아이템 state
-	const [bestAllItem, setBestAllItem] = useState<BestSellerType[]>([]);
-	// 현재 카테고리의 페이지 state
-	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 현재 카테고리 아이템의 총 갯수 state
 	const [dataLength, setDataLength] = useState<number>(0);
+	// 현재 카테고리의 페이지 state
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	// 신간 도서 전체 아이템 state
+	const [bestAllItem, setBestAllItem] = useState<BestSellerType[]>([]);
 
 	// 각 페이지(숫자) 선택 시 실행되는 함수(페이지네이션)
 	const handlePageNumClick = (pageNum: number) => {

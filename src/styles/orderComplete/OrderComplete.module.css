@@ -1,21 +1,16 @@
 .container {
 	height: calc(100vh - 290px);
+
+	display: flex;
+	justify-content: center;
+}
+.wrapper {
+	width: 1300px;
+	height: inherit;
 	gap: 50px;
 
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-}
-.orderCompleteWrapper {
-	font-size: 20px;
-	gap: 20px;
-
-	display: flex;
-	flex-direction: row;
-}
-
-.orderCompleteWrapper > a > p {
-	color: #000000;
-	text-decoration: underline;
 }
