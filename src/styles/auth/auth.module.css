@@ -125,8 +125,6 @@
 
 /* 회원가입 시 회원가입 버튼 */
 .signupButton {
-	width: inherit;
-	height: inherit;
 	font-size: 18px;
 	font-weight: bold;
 	border-radius: 10px;
@@ -136,6 +134,13 @@
 
 	color: #ffffff;
 	background-color: #6594e7;
+	width: inherit;
+	height: 50px;
+	margin-top: 50px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* 로그인 시 로그인 버튼 */

@@ -25,16 +25,17 @@ export default function LoginModal() {
 			return redirect('/?message=Could not authenticate user');
 		}
 
-		const { access_token, refresh_token } = data.session;
-		Cookies.set('sb-access-token', access_token, {
-			path: '/',
-		});
-		Cookies.set('sb-refresh-token', refresh_token, {
-			path: '/',
-		});
+		// const { access_token, refresh_token } = data.session;
+		// Cookies.set('sb-access-token', access_token, {
+		// 	path: '/',
+		// });
+		// Cookies.set('sb-refresh-token', refresh_token, {
+		// 	path: '/',
+		// });
 
 		// return window.location.reload();
-		return redirect('/');
+		return router.push('/');
+		// return redirect('/');
 	};
 
 	return (
@@ -71,7 +72,7 @@ export default function LoginModal() {
 								</label>
 							</div>
 							<div className={styles.buttonWrapper}>
-								<button formAction={signIn} className={styles.loginLeftButton}>
+								<button onClick={signIn} className={styles.loginLeftButton}>
 									로그인
 								</button>
 								<Link href={'/signup'} className={styles.loginRightButton}>

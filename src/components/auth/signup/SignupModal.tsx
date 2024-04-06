@@ -12,6 +12,8 @@ import {
 } from '@/recoil/atom/signupAtom';
 import { createClient } from '@/utils/supabase/client';
 import useAuth from '@/hooks/useAuth';
+import { FormEvent, useState } from 'react';
+import { headers } from 'next/headers';
 
 export default function SignupModal() {
 	const router = useRouter();
@@ -23,6 +25,7 @@ export default function SignupModal() {
 	const detailaddress = useRecoilValue(detailAddressAtom);
 
 	const signUp = async () => {
+		// event.preventDefault(); // 폼의 기본 제출 동작 방지
 		if (!auth.checkValidation()) return;
 		const { error } = await supabase.auth.signUp({
 			email: auth.email,
@@ -32,13 +35,9 @@ export default function SignupModal() {
 				emailRedirectTo: `/auth/callback`,
 			},
 		});
-		if (error) throw error;
 		const {
 			data: { user },
 		} = await supabase.auth.getUser();
-		if (error) {
-			console.log(error);
-		}
 		const userData = {
 			id: user?.id,
 			email: auth.email,
@@ -55,7 +54,9 @@ export default function SignupModal() {
 		if (error) {
 			return redirect('/?message=Could not authenticate user');
 		}
-		return redirect('/');
+		return redirect(
+			`/confirm?message=Check email(${auth.email}) to continue sign in process`,
+		);
 	};
 
 	return (
@@ -129,11 +130,10 @@ export default function SignupModal() {
 									<SignupAddress />
 								</div>
 							</div>
-							<div className={styles.buttonWrapper}>
-								<button formAction={signUp} className={styles.signupButton}>
-									회원가입
-								</button>
-							</div>
+							{/* <div className={styles.buttonWrapper}> */}
+							<button className={styles.signupButton}>회원가입</button>
+							{/* </div> */}
+							{/* {searchParams?.message && <p>{searchParams.message}</p>} */}
 						</form>
 					</div>
 					<div className={styles.closeIcon} onClick={() => router.back()}>
