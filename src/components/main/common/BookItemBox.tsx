@@ -1,6 +1,6 @@
 'use client';
 
-import BookItem from '@/components/common/BookItem';
+import BookItem from '@/components/common/bookItem/BookItem';
 import styles from '@/styles/main/common/bookItemBox.module.css';
 import { NewBookType, UsedBookType } from '@/types/bookType';
 

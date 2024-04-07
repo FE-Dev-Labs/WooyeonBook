@@ -1,9 +1,9 @@
 'use client';
 
-import BookItemWrapper from '@/components/common/BookItemWrapper';
 import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
+import BookItemWrapper from '@/components/common/bookItem/BookItemWrapper';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 import { NewBookType } from '@/types/bookType';

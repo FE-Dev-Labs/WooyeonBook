@@ -1,6 +1,6 @@
+import BookItem from '@/components/common/bookItem/BookItem';
 import styles from '@/styles/category/categoryContents/categoryBookItemBox.module.css';
 import { NewBookType } from '@/types/bookType';
-import BookItem from '@/components/common/BookItem';
 
 interface CategoryBookItemBoxProp {
 	data: NewBookType[];

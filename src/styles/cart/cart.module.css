@@ -1,26 +1,5 @@
 /* cart page wrapper */
 .container {
-	/* height: calc(100vh - 290px); */
-
-	display: flex;
-	justify-content: center;
-}
-.wrapper {
-	width: 1300px;
-
 	display: flex;
 	flex-direction: column;
-}
-
-/* 장바구니가 비었을 떄 */
-.emptyCartWrapper {
-	height: calc(100vh - 440px);
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
-.emptyCartWrapper > p {
-	font-size: 20px;
 }

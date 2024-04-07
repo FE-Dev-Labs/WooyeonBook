@@ -31,7 +31,7 @@ export default function DetailQuantity({ bookInfo }: DetailQuantityProp) {
 			return;
 		} else if (count >= 100) {
 			//이미 100개일 때 추가 증가 시도 시 경고
-			alert('수량은 최대 100개까지 주문 가능합니다.');
+			alert('100권 이상 주문할 수 없습니다.');
 			return;
 		} else {
 			setCount((prev) => prev + 1);
@@ -46,7 +46,7 @@ export default function DetailQuantity({ bookInfo }: DetailQuantityProp) {
 		const value = parseInt(e.target.value);
 		if (!isNaN(value)) {
 			if (value > 100) {
-				alert('수량은 최대 100개까지 주문 가능합니다.');
+				alert('100권 이상 주문할 수 없습니다.');
 				setCount(100);
 			} else if (value >= 1) {
 				setCount(value);

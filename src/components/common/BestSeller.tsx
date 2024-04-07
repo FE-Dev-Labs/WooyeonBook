@@ -1,7 +1,7 @@
 import styles from '@/styles/common/bestSeller.module.css';
-import BookItem from '@/components/common/BookItem';
 import CategoryTitle from '../main/common/CategoryTitle';
 import { BestSellerType, UsedBookType } from '@/types/bookType';
+import BookItem from './bookItem/BookItem';
 
 interface BestSellerProps {
 	data?: BestSellerType[] | UsedBookType[];

@@ -1,6 +1,6 @@
 import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
-import styles from '@/styles/cart/orderButton.module.css';
+import styles from '@/styles/cart/cartView/orderButton/orderButton.module.css';
 import { CartItemType } from '@/types/bookType';
 import { supabase } from '@/utils/supabase/supabase';
 import Link from 'next/link';
