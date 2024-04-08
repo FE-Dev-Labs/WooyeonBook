@@ -14,3 +14,7 @@
 .userName {
 	color: #6594e7;
 }
+.logoutButton {
+	all: unset;
+	cursor: pointer;
+}
