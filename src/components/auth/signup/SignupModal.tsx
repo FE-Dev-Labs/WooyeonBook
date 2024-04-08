@@ -53,12 +53,14 @@ export default function SignupModal() {
 			.select();
 		if (error) {
 			return redirect('/?message=Could not authenticate user');
-		}
-		return redirect(
-			`/confirm?message=Check email(${auth.email}) to continue sign in process`,
-		);
-	};
+		} else {
+			alert('Success');
+			return redirect('/');
 
+			// return redirect('/login');
+			// return redirect(`/confirm?email=${auth.email}`);
+		}
+	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.modalSignupWrapper}>

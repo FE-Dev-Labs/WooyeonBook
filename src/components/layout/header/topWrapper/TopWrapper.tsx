@@ -15,6 +15,8 @@ export default function TopWrapper() {
 	// useUser에서 호출한 로그인상태 및 유저네임
 	const { isLoggedIn, userName } = useUser();
 
+	console.log(isLoggedIn);
+	console.log(userName);
 	const handleLogout = async () => {
 		const { error } = await supabase.auth.signOut();
 		if (error) {
@@ -25,8 +27,8 @@ export default function TopWrapper() {
 			// Cookies.remove('sb-refresh-token');
 
 			// 홈페이지로 리디렉션
-			// return window.location.reload();
-			return router.push('/login');
+			return window.location.reload();
+			// return router.push('/login');
 		}
 	};
 	// useEffect(()=> {

@@ -13,7 +13,17 @@ export default function LoginModal() {
 	const router = useRouter();
 	const supabase = createClient();
 
-	const signIn = async () => {
+	// const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	// 	event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
+	// 	await signIn(); // 비동기 로그인 함수 호출
+	// };
+
+	const signIn = async (
+		event:
+			| React.FormEvent<HTMLFormElement>
+			| React.MouseEvent<HTMLButtonElement>,
+	) => {
+		event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
 		if (!auth.checkLoginValidation()) return;
 
 		const { data, error } = await supabase.auth.signInWithPassword({
@@ -22,20 +32,13 @@ export default function LoginModal() {
 		});
 
 		if (error) {
-			return redirect('/?message=Could not authenticate user');
+			// 에러 처리를 위한 변경
+			// 경고창 대신 사용자에게 보여줄 수 있는 방식을 고려해보세요.
+			console.log('error');
 		}
 
-		// const { access_token, refresh_token } = data.session;
-		// Cookies.set('sb-access-token', access_token, {
-		// 	path: '/',
-		// });
-		// Cookies.set('sb-refresh-token', refresh_token, {
-		// 	path: '/',
-		// });
-
-		// return window.location.reload();
-		return router.push('/');
-		// return redirect('/');
+		// 성공적인 로그인 후의 처리
+		router.push('/cart');
 	};
 
 	return (
@@ -46,7 +49,7 @@ export default function LoginModal() {
 						<div className={styles.title}>
 							<span>로그인</span>
 						</div>
-						<form action={signIn} className={styles.formWrapper}>
+						<form onSubmit={signIn} className={styles.formWrapper}>
 							<div className={styles.inputWrapper}>
 								<label className={styles.inputLabel}>
 									이메일
