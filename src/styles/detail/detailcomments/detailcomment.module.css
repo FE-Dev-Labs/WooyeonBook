@@ -9,7 +9,7 @@
 }
 .commentInput {
 	width: 90%;
-	height: 50px;
+	height: 30px;
 	padding: 0px 20px 0px 20px;
 	border: none;
 	background-color: #ffffff;
@@ -29,9 +29,9 @@
 }
 .commnetSubmitBtn {
 	width: 15%;
-	height: 75px;
-	padding: 0px 50px;
-	border-radius: 16px;
+	height: 60px;
+	padding: 0px 40px;
+	border-radius: 14px;
 	border: none;
 	background-color: #6594e7;
 	color: #fff;

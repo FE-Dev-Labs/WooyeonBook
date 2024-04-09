@@ -28,9 +28,13 @@ export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 		if (bookInfo.mallType === 'USED') {
 			alert('중고 도서는 수량 조절이 불가능합니다.');
 			return;
+		} else if (count >= 100) {
+			//이미 100개일 때 추가 증가 시도 시 경고
+			alert('수량은 최대 100개까지 주문 가능합니다.');
+			return;
+		} else {
+			setCount((prev) => prev + 1);
 		}
-
-		setCount((prev) => prev + 1);
 	};
 
 	// input으로 수량을 조절하는 함수
@@ -38,7 +42,7 @@ export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 		// 중고책인 경우 함수 종료
 		if (bookInfo.mallType === 'USED') return;
 
-		const value = parseInt(e.target.value, 10);
+		const value = parseInt(e.target.value);
 		if (!isNaN(value)) {
 			if (value > 100) {
 				alert('수량은 최대 100개까지 주문 가능합니다.');
@@ -61,8 +65,8 @@ export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 					className={styles.quantityMinusImg}
 					alt="Minus"
 					src={minus}
-					width={20}
-					height={20}
+					width={15}
+					height={15}
 					onClick={handleDecreaseCountClick}
 				/>
 				<input
@@ -75,8 +79,8 @@ export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 					className={styles.quantityPlusImg}
 					alt="Pluse"
 					src={pluse}
-					width={20}
-					height={20}
+					width={15}
+					height={15}
 					onClick={handleIncreaseCountClick}
 				/>
 			</div>

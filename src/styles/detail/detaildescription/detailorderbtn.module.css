@@ -6,13 +6,12 @@
 .addToCartBtn {
 	display: block;
 	cursor: pointer;
-	line-height: 40px;
-	width: 191px;
+	width: 160px;
 	height: 60px;
 	background-color: #fff;
 	text-align: center;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	border: 2px solid #6594e7;
 	border-radius: 10px;
 	margin-right: 20px;
@@ -20,13 +19,12 @@
 .orderBtn {
 	display: block;
 	cursor: pointer;
-	line-height: 40px;
-	width: 191px;
+	width: 160px;
 	height: 60px;
 	background: #6594e7;
 	text-align: center;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	border-radius: 10px;
 	border: 2px solid #6594e7;
 	color: #fff;
