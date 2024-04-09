@@ -1,3 +1,7 @@
+// const bookListRouter = require('./bookList');
+// app.use(bookListRouter);
+// app.use('./bookList', bookListRouter);
+
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
