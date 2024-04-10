@@ -3,7 +3,8 @@ import BookReport from '@/components/community/detail/BookReport';
 import BookMeeting from '@/components/community/detail/BookMeeting';
 import BookBuying from '@/components/community/detail/BookBuying';
 import BookSelling from '@/components/community/detail/BookSelling';
-import { getDate } from '@/utils/getDate';
+import styles from '@/styles/community/detail/DetailLayout.module.css';
+import LikeBtn from '@/components/community/detail/LikeBtn';
 
 export default async function DetailPage({
 	params,
@@ -20,15 +21,33 @@ export default async function DetailPage({
 	);
 	const data: AllDataType = await response.json();
 
-	switch (params.page) {
-		case 'bookReport':
-			return <BookReport data={data} searchParams={searchParams} />;
-		case 'bookSelling':
-			return <BookSelling data={data} />;
-		case 'bookMeeting':
-			return <BookMeeting data={data} />;
-		case 'bookBuying':
-			return <BookBuying data={data} />;
-		default:
-	}
+	const page = () => {
+		switch (params.page) {
+			case 'bookReport':
+				return <BookReport data={data} searchParams={searchParams} />;
+			case 'bookSelling':
+				return <BookSelling data={data} searchParams={searchParams} />;
+			case 'bookMeeting':
+				return <BookMeeting data={data} searchParams={searchParams} />;
+			case 'bookBuying':
+				return <BookBuying data={data} searchParams={searchParams} />;
+			default:
+				null;
+		}
+	};
+
+	return (
+		<div className={styles.container}>
+			<aside></aside>
+			<article className={styles.mainWrap}>{page()}</article>
+			<aside className={styles.optionWrap}>
+				<LikeBtn
+					page={params.page}
+					doc_id={params.doc_id}
+					like={data.like_users}
+				/>
+				<button>공유</button>
+			</aside>
+		</div>
+	);
 }

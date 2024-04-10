@@ -1,5 +1,6 @@
 import { getCommunityViewData } from '@/apis/community/getCommunityViewData';
 import ContentBox from '@/components/community/view/ContentBox';
+import PageNation from '@/components/community/view/PageNation';
 import { AllDataType, BookReportDataType } from '@/types/community/view/data';
 
 function isBookReportArray(data: any): data is BookReportDataType[] {
@@ -45,6 +46,9 @@ async function bookReport({
 			{sortedData?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
 			})}
+			<footer>
+				<PageNation sortedData={sortedData} />
+			</footer>
 		</section>
 	);
 }

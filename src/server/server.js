@@ -130,6 +130,47 @@ app.get('/auth', async (req, res) => {
 });
 
 // 마이페이지 내가 쓴글
+// const getReportData = async () => {
+// 	const { data, error } = await supabase
+// 		.from('bookReport')
+// 		.select('*')
+// 		.eq('created_user', userId);
+// };
+// const getMeetingData=()=>{}
+// const getBuyingData=()=>{}
+// const getSellingData=()=>{}
+app.get('/mylike', async (req, res) => {
+	const { user_id } = req.query;
+	try {
+		const { data: bookReport } = await supabase.from('bookReport').select();
+		const bookReportData = bookReport.filter((item) =>
+			item.like_users.includes(user_id),
+		);
+		const { data: bookMeeting } = await supabase.from('bookMeeting').select();
+		const bookMeetingData = bookMeeting.filter((item) =>
+			item.like_users.includes(user_id),
+		);
+		const { data: bookSelling } = await supabase.from('bookSelling').select();
+		const bookSellingData = bookSelling.filter((item) =>
+			item.like_users.includes(user_id),
+		);
+		const { data: bookBuying } = await supabase.from('bookBuying').select();
+		const bookBuyingData = bookBuying.filter((item) =>
+			item.like_users.includes(user_id),
+		);
+
+		const data = [
+			...bookReportData,
+			...bookMeetingData,
+			...bookSellingData,
+			...bookBuyingData,
+		];
+		res.status(200).send(data);
+	} catch (error) {
+		res.status(500).send({ error: error.message });
+	}
+});
+
 app.get('/api/mypage', async (req, res) => {
 	const { page, userId } = req.query;
 	try {
@@ -413,8 +454,14 @@ app.get('/list/newAll', async (req, res) => {
 });
 
 app.get('/community/:page', async (req, res) => {
+	const { num } = req.query;
+	const limit = 9;
+	const offset = (num - 1) * limit;
 	try {
-		const { data } = await supabase.from(`${req.params.page}`).select('*');
+		const { data } = await supabase
+			.from(`${req.params.page}`)
+			.select('*')
+			.range(offset, offset + limit);
 		return res.status(200).send(data);
 	} catch (err) {
 		res.status(400).send;
