@@ -1,9 +1,35 @@
 import styles from '@/styles/mypage/order/order.module.css';
-// import imageCover from '../../../public/detail/bookImage.jpg';
+import MyOderList from './MyOderList';
+import { createClient } from '@/utils/supabase/client';
+import { getUser } from '@/apis/community/getUser';
+import useCurrentUser from '@/hooks/useCurrentUser';
+import { useEffect, useState } from 'react';
+import { BookOrderList } from '@/types/orderList';
 
-import Myoderlist from './Myorderlist';
+export default function MyOrder() {
+	const [orderList, setOrderList] = useState<BookOrderList[]>([]);
+	const supabase = createClient();
+	const { userId } = useCurrentUser();
+	// 주문 목록 불러오기
+	const getOrderList = async () => {
+		const { data, error } = await supabase
+			.from('orderList')
+			.select('cart')
+			.eq('user_id', userId)
+			// 최신 순으로 가져옴
+			.order('created_at', { ascending: false });
+		if (error) {
+			console.log(error);
+		} else if (data && data.length > 0) {
+			// setOrderList(data[0].cart);
+			setOrderList(data.map((item) => item.cart));
+		}
+	};
+	useEffect(() => {
+		getOrderList();
+	}, []);
 
-export default function Myorder() {
+	console.log('사이즈', orderList);
 	return (
 		<>
 			<div className={styles.orderDateContainer}>
@@ -19,7 +45,7 @@ export default function Myorder() {
 						<li>수량</li>
 						<li>합계</li>
 					</ul>
-					<Myoderlist />
+					<MyOderList />
 				</div>
 			</div>
 		</>

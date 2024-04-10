@@ -9,9 +9,9 @@ import { AllDataType } from '@/types/community/view/data';
 interface userIdProps {
 	userId: string;
 }
-export default function Mypost({ userId }: userIdProps) {
+export default function MyPost({ userId }: userIdProps) {
 	const [postData, setPostData] = useState<AllDataType[]>([]);
-
+	console.log(postData);
 	const getpostdata = async () => {
 		const { user_id } = await getUser();
 		const response = await fetch(

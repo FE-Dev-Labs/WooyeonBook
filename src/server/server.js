@@ -146,19 +146,23 @@ app.get('/auth', async (req, res) => {
 app.get('/mylike', async (req, res) => {
 	const { user_id } = req.query;
 	try {
-		const { data: bookReport } = await supabase.from('bookReport').select();
+		const { data: bookReport } = await supabase.from('bookReport').select('*');
 		const bookReportData = bookReport.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookMeeting } = await supabase.from('bookMeeting').select();
+		const { data: bookMeeting } = await supabase
+			.from('bookMeeting')
+			.select('*');
 		const bookMeetingData = bookMeeting.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookSelling } = await supabase.from('bookSelling').select();
+		const { data: bookSelling } = await supabase
+			.from('bookSelling')
+			.select('*');
 		const bookSellingData = bookSelling.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookBuying } = await supabase.from('bookBuying').select();
+		const { data: bookBuying } = await supabase.from('bookBuying').select('*');
 		const bookBuyingData = bookBuying.filter((item) =>
 			item.like_users.includes(user_id),
 		);

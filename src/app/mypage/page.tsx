@@ -4,11 +4,13 @@ import styles from '@/styles/mypage/mypage.module.css';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import Accordion from '@/components/common/Accordion';
 import Communitynav from '@/components/common/Communitynav';
-import Myprofile from '@/components/mypage/profile/Myprofile';
-import Myorder from '@/components/mypage/myorder/Myorder';
+
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { useEffect, useState } from 'react';
-import Mypost from '@/components/mypage/mypost/Mypost';
+import MyPost from '@/components/mypage/mypost/MyPost';
+import MyOrder from '@/components/mypage/myorder/MyOrder';
+import MyProfile from '@/components/mypage/profile/MyProfile';
+
 export default function page() {
 	const [isLogin, setIsLogin] = useState(false);
 	// // useCurrentUser  훅
@@ -39,13 +41,13 @@ export default function page() {
 						<AccordionWrapper>
 							<Accordion title={'내가쓴글'} index={0}>
 								<Communitynav />
-								<Mypost userId={userId} />
+								<MyPost userId={userId} />
 							</Accordion>
 							<Accordion title={'회원정보'} index={1}>
-								<Myprofile userId={userId} />
+								<MyProfile userId={userId} />
 							</Accordion>
 							<Accordion title={'주문내역'} index={2}>
-								<Myorder />
+								<MyOrder />
 							</Accordion>
 						</AccordionWrapper>
 					</div>

@@ -7,7 +7,7 @@ interface profileDaumPorps {
 	setIsEditingZipcode: any;
 	setIsEditingAddress: any;
 }
-export default function MyprofileDaumApi({
+export default function MyProfileDaumApi({
 	setIsOpen,
 	setIsEditingZipcode,
 	setIsEditingAddress,

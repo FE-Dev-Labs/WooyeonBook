@@ -9,6 +9,7 @@ interface postdataProps {
 	list: any;
 }
 export default function Postaccordionlayout({ list }: postdataProps) {
+	console.log(list);
 	// 숫자가 문자열로 넘어옴 객체로 변환해서 toLocalDateString()메소드를 사용할 수 변환
 	const listdate = new Date(list.created_at);
 	return (
@@ -20,8 +21,8 @@ export default function Postaccordionlayout({ list }: postdataProps) {
 							className={styles.postImg}
 							src={list.book_img_url}
 							alt="메인이미지"
-							width={50}
-							height={70}
+							width={200}
+							height={200}
 						/>
 					</div>
 				) : null}

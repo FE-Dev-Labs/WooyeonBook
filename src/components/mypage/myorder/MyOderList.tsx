@@ -2,7 +2,7 @@ import styles from '@/styles/mypage/order/orderlist.module.css';
 import imageCover from '../../../../public/detail/bookImage.jpg';
 import Image from 'next/image';
 
-export default function Myoderlist() {
+export default function MyOderList() {
 	return (
 		<>
 			<div className={styles.orderWrapper}>

@@ -12,8 +12,6 @@ import {
 } from '@/recoil/atom/signupAtom';
 import { createClient } from '@/utils/supabase/client';
 import useAuth from '@/hooks/useAuth';
-import { FormEvent, useState } from 'react';
-import { headers } from 'next/headers';
 
 export default function SignupModal() {
 	const router = useRouter();
