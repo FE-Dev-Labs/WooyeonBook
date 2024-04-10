@@ -13,6 +13,7 @@ interface BookReportDataType {
 	book_img_url: string;
 	book_id: string;
 	category: string;
+	like_users: string[];
 }
 
 interface BookMeetingDataType {
@@ -30,6 +31,7 @@ interface BookMeetingDataType {
 	recruitment_number: number;
 	deadline: Date;
 	chatting_url: string;
+	like_users: string[];
 }
 
 interface BookBuyingDataType {
@@ -49,6 +51,7 @@ interface BookBuyingDataType {
 	price: number;
 	state: boolean;
 	book_id: string;
+	like_users: string[];
 }
 
 interface BookSellingDataType {
@@ -69,6 +72,7 @@ interface BookSellingDataType {
 	state: boolean;
 	selling: boolean;
 	book_id: string;
+	like_users: string[];
 }
 interface AllDataType {
 	doc_id: string;
@@ -90,6 +94,7 @@ interface AllDataType {
 	recruitment_number?: number;
 	deadline?: Date;
 	chatting_url?: string;
+	like_users: string[];
 }
 export type {
 	BookReportDataType,

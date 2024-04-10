@@ -62,9 +62,8 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 						<div>{getDate(data.created_at)}</div>
 					</div>
 					<div className={styles.activityCounters}>
-						<div>좋아요 : {data.like}</div>
+						<div>좋아요 : {data.like_users.length}</div>
 						<div>조회수 : {data.view}</div>
-						<div>댓글</div>
 					</div>
 				</div>
 			</div>

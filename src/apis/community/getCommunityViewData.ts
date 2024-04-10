@@ -2,13 +2,21 @@ import { AllDataType } from '@/types/community/view/data';
 
 interface Props {
 	page: string;
-	searchParams: { sort?: string; q?: string; categories?: string };
+	searchParams: {
+		sort?: string;
+		q?: string;
+		categories?: string;
+		num?: number;
+	};
 }
 
 export const getCommunityViewData = async ({ page, searchParams }: Props) => {
-	const response = await fetch(`http://localhost:8080/community/${page}`, {
-		cache: 'no-store',
-	});
+	const response = await fetch(
+		`http://localhost:8080/community/${page}?num=${searchParams.num || 1}`,
+		{
+			cache: 'no-store',
+		},
+	);
 
 	const data: AllDataType[] = await response.json();
 

@@ -33,7 +33,7 @@ const BookBuying = async ({ searchParams, data }: BookBuyingProps) => {
 					<div className={styles.dot}>●</div>
 					<div>조회수 : {data.view}</div>
 					<div className={styles.dot}>●</div>
-					<div>좋아요 : {data.like} </div>
+					<div>좋아요 : {data.like_users.length} </div>
 				</div>
 				{data?.created_user === user?.id ? (
 					<div className={styles.adimBtnWrap}>
