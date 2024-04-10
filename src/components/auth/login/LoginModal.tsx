@@ -18,27 +18,24 @@ export default function LoginModal() {
 	// 	await signIn(); // 비동기 로그인 함수 호출
 	// };
 
-	const signIn = async (
-		event:
-			| React.FormEvent<HTMLFormElement>
-			| React.MouseEvent<HTMLButtonElement>,
-	) => {
+	const signIn = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
+
+		// validation 통과 하지 못할 시 함수 종료
 		if (!auth.checkLoginValidation()) return;
 
+		// 로그인
 		const { data, error } = await supabase.auth.signInWithPassword({
 			email: auth.email,
 			password: auth.password,
 		});
-
 		if (error) {
-			// 에러 처리를 위한 변경
-			// 경고창 대신 사용자에게 보여줄 수 있는 방식을 고려해보세요.
-			console.log('error');
+			console.error('로그인 실패:', error.message);
 		}
 
-		// 성공적인 로그인 후의 처리
-		router.push('/cart');
+		// 성공적인 로그인 후 처리
+		alert('환영합니다!');
+		router.back();
 	};
 
 	return (
@@ -75,10 +72,11 @@ export default function LoginModal() {
 								</label>
 							</div>
 							<div className={styles.buttonWrapper}>
-								<button onClick={signIn} className={styles.loginLeftButton}>
-									로그인
-								</button>
-								<Link href={'/signup'} className={styles.loginRightButton}>
+								<button className={styles.loginLeftButton}>로그인</button>
+								<Link
+									href={'/signup'}
+									scroll={false}
+									className={styles.loginRightButton}>
 									회원가입
 								</Link>
 							</div>

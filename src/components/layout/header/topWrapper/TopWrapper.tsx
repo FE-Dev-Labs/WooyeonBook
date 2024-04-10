@@ -5,24 +5,30 @@ import Link from 'next/link';
 import verticalLineIcon from '../../../../../public/layout/verticalline.png';
 import styles from '@/styles/layout/header/topWrapper/topWrapper.module.css';
 import { createClient } from '@/utils/supabase/client';
-import { useRouter } from 'next/navigation';
 import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
+import { useEffect } from 'react';
 
 export default function TopWrapper() {
+	// supabase 선언
 	const supabase = createClient();
-	const router = useRouter();
 	// useUser에서 호출한 로그인상태 및 유저네임
 	const { isLoggedIn, userName } = useIsLoggedIn();
 
+	// 로그아웃 함수
 	const handleLogout = async () => {
+		// 로그아웃
 		const { error } = await supabase.auth.signOut();
 		if (error) {
 			console.error('로그아웃 실패:', error.message);
-
-			// 홈페이지로 리디렉션
-			return window.location.reload();
 		}
+
+		// alert
+		alert('로그아웃되었습니다.');
+		// 새로고침
+		window.location.reload();
 	};
+
+	useEffect(() => {}, []);
 
 	return (
 		<div className={styles.topWrapper}>
