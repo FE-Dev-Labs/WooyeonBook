@@ -1,4 +1,4 @@
-import styles from '@/styles/detail/detaildescription/detail.module.css';
+import styles from '@/styles/detail/detail.module.css';
 import { ResponseData } from '@/types/bookDetailDate';
 import DetailView from '@/components/detail/DetailView';
 // import useLocal from '@/hooks/useLocal';

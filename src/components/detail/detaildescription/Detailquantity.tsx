@@ -1,6 +1,7 @@
 'use client';
 
-import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+// import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+import styles from '@/styles/detail/detailDescription/detailQuantity.module.css';
 import Image from 'next/image';
 import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
@@ -9,11 +10,11 @@ import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import { useEffect } from 'react';
 import { Book } from '@/types/bookDetailDate';
 
-interface DetailquantityProp {
+interface DetailQuantityProp {
 	bookInfo: Book;
 }
 
-export default function Detailquantity({ bookInfo }: DetailquantityProp) {
+export default function DetailQuantity({ bookInfo }: DetailQuantityProp) {
 	// 장바구니 수량 state
 	const [count, setCount] = useRecoilState<number>(itemAmountAtom);
 

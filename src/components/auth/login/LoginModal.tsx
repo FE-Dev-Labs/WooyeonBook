@@ -5,7 +5,7 @@ import closeIcon from '../../../../public/common/close.png';
 import { createClient } from '@/utils/supabase/client';
 import { redirect, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import useAuth from '@/hooks/useAuth';
 
 export default function LoginModal() {

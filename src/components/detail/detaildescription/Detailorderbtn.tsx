@@ -1,7 +1,7 @@
 import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
-import styles from '@/styles/detail/detaildescription/detailorderbtn.module.css';
+import styles from '@/styles/detail/detailDescription/detailOrderBtn.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { CartItemType } from '@/types/bookType';
 import { useRouter } from 'next/navigation';
@@ -11,7 +11,7 @@ interface DetailOrderBtnProp {
 	bookInfo: Book;
 }
 
-export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
+export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 	// useRouter 호출
 	const router = useRouter();
 	// 카트 아이템 state

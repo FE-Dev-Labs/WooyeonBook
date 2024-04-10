@@ -1,15 +1,15 @@
 'use client';
 
 import { Book } from '@/types/bookDetailDate';
-import Detaildescription from './detaildescription/Detaildescription';
 import AccordionWrapper from '../common/AccordionWrapper';
 import Accordion from '../common/Accordion';
-import Detailexplanation from './detaildata/detailexplanation';
-import Detailinformation from './detaildata/detailinformation';
-import Detailsustainability from './detaildata/detailsustainability';
-import Detailcomment from './detailcomments/Detailcomment';
 import { useEffect } from 'react';
 import { RecentlyViewedBookType } from '@/types/bookType';
+import DetailDescription from './detailDescription/DetailDescription';
+import DetailExplanation from './detailData/DetailExplanation';
+import DetailInformation from './detailData/DetailInformation';
+import DetailSustainability from './detailData/DetailSustainability';
+import DetailComment from './detailComments/DetailComment';
 
 interface DetailViewProps {
 	book: Book;
@@ -46,22 +46,22 @@ export default function DetailView({ book, id }: DetailViewProps) {
 
 	return (
 		<div>
-			<Detaildescription bookInfo={book} />
+			<DetailDescription bookInfo={book} />
 			<AccordionWrapper>
 				<Accordion title={'설명'} index={0}>
-					<Detailexplanation bookInfo={book} />
+					<DetailExplanation bookInfo={book} />
 				</Accordion>
 				<Accordion title={'정보고시'} index={1}>
-					<Detailinformation bookInfo={book} />
+					<DetailInformation bookInfo={book} />
 				</Accordion>
 				{book?.mallType === 'BOOK' ? (
 					<Accordion title={'지속가능성'} index={2}>
-						<Detailsustainability bookInfo={book} />
+						<DetailSustainability bookInfo={book} />
 					</Accordion>
 				) : null}
 
 				<Accordion title={'한줄평'} index={3}>
-					<Detailcomment bookId={id} />
+					<DetailComment bookId={id} />
 				</Accordion>
 			</AccordionWrapper>
 		</div>

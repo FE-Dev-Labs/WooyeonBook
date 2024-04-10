@@ -1,11 +1,11 @@
-import styles from '@/styles/detail/detaildata/detailsustainability.module.css';
+import styles from '@/styles/detail/detailData/detailSustainability.module.css';
 import { Book } from '@/types/bookDetailDate';
 import Link from 'next/link';
 interface bookDetailProp {
 	bookInfo: Book;
 }
 
-export default function Detailsustainability({ bookInfo }: bookDetailProp) {
+export default function DetailSustainability({ bookInfo }: bookDetailProp) {
 	// 제목은 크게 - 뒤에 내용은 작게 css 주기 위한 코드
 	const modifiedTitle = bookInfo.title.split('- ')[0];
 	const modigiedContent = bookInfo.title.split('- ')[1];

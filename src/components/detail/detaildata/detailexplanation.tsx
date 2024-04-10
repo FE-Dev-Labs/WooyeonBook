@@ -1,10 +1,10 @@
-import styles from '@/styles/detail/detaildata/detailexplanation.module.css';
+import styles from '@/styles/detail/detailData/detailExplanation.module.css';
 import { Book } from '@/types/bookDetailDate';
 
 interface bookDetailProp {
 	bookInfo: Book;
 }
-export default function Detailexplanation({ bookInfo }: bookDetailProp) {
+export default function DetailExplanation({ bookInfo }: bookDetailProp) {
 	return (
 		<div className={styles.accordionWrappe}>
 			<div className={styles.accordionContent}>

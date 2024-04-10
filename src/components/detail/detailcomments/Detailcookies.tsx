@@ -6,7 +6,7 @@
 
 // const supabase = createClientComponentClient();
 
-// export default async function Detailcookies() {
+// export default async function DetailCookies() {
 // 	const cookieStore = cookies();
 // 	const supabase = createClient(cookieStore);
 
