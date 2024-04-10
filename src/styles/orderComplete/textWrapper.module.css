@@ -1,0 +1,12 @@
+.textWrapper {
+	font-size: 20px;
+	gap: 20px;
+
+	display: flex;
+	flex-direction: row;
+}
+
+.textWrapper > a > p {
+	color: #000000;
+	text-decoration: underline;
+}

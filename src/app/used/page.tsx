@@ -38,7 +38,7 @@ export default function usedPage() {
 	// server -> api 받아오는 함수(중고책 - 베스트셀러 5개)
 	const fetchUsedBestData = async () => {
 		const response = await fetch('http://localhost:8080/list/used', {
-			cache: 'force-cache',
+			cache: 'no-store',
 		});
 		// book item(used best)
 		const data = await response.json();
@@ -49,7 +49,7 @@ export default function usedPage() {
 	const fetchUsedAllData = async () => {
 		const response = await fetch(
 			`http://localhost:8080/list/usedAll?categoryId=${categoryId}&page=${currentPage}`,
-			{ cache: 'force-cache' },
+			{ cache: 'no-store' },
 		);
 		const { data, dataLength } = await response.json();
 		// book item(used all)

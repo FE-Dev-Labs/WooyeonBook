@@ -30,7 +30,7 @@ export default function newPage() {
 		const response = await fetch(
 			`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
 			{
-				cache: 'force-cache',
+				cache: 'no-store',
 			},
 		);
 		const { data, dataLength } = await response.json();

@@ -20,11 +20,11 @@ export default function Pagination({
 	page,
 }: PaginationProps) {
 	// 페이지 그룹 state
-	const [pageGroup, setPageGroup] = useState(
+	const [pageGroup, setPageGroup] = useState<number>(
 		Math.floor((currentPage - 1) / 10),
 	);
 
-	// 한 페이지 당 나타낼 아이템의 개수 설정. page가 'best' 또는 'category'일 경우 24, 그 외는 30으로 설정
+	// 한 페이지 당 나타낼 아이템의 개수 설정. page가 'best' 또는 'category'일 경우 24, 그 외는 30
 	const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
 	// 전체 페이지 수 계산
 	let totalPages =
@@ -62,8 +62,8 @@ export default function Pagination({
 	}, [currentPage]);
 
 	return (
-		<div className={styles.paginationWrapper}>
-			<div className={styles.paginationBox}>
+		<div className={styles.paginationContainer}>
+			<div className={styles.paginationWrappper}>
 				{/* 맨 처음 페이지로 이동하는 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
 				{!isFirstPageGroup && currentPage > 1 && (
 					<div className={styles.paginationItem}>

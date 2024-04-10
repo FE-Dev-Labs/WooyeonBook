@@ -1,11 +1,6 @@
 import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
 
-export const fetchMainPageData = async () => {
-	// 데이터 패치해오는 함수
-	// const fetchData = async (url: string) => {
-	// 	const response = await fetch(url, { cache: 'force-cache' });
-	// 	return response.json();
-	// };
+export const getMainPageData = async () => {
 	const fetchData = async (url: string) => {
 		try {
 			const response = await fetch(url, { cache: 'no-store' });
