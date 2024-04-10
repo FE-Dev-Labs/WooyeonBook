@@ -30,24 +30,32 @@ export default function Detailinformation({ bookInfo }: bookDetailProp) {
 						<span className={styles.boookItemTitle}>ISBN</span>
 						<span className={styles.bookItem}>{bookInfo.isbn}</span>
 					</li>
-
 					<li className={styles.accordionWrapperItem}>
 						<span className={styles.boookItemTitle}>크기</span>
 						<span className={styles.bookItem}>
-							{bookInfo.subInfo.packing.sizeWidth}*
-							{bookInfo.subInfo.packing.sizeHeight}mm
+							{bookInfo.subInfo && bookInfo.subInfo.packing
+								? `${bookInfo.subInfo.packing.sizeWidth}*${bookInfo.subInfo.packing.sizeHeight}mm`
+								: '정보 없음'}
 						</span>
 					</li>
 					<li className={styles.accordionWrapperItem}>
 						<span className={styles.boookItemTitle}>쪽수</span>
-						<span className={styles.bookItem}>{bookInfo.subInfo.itemPage}</span>
+						<span className={styles.bookItem}>
+							{bookInfo.subInfo && bookInfo.subInfo.itemPage
+								? bookInfo.subInfo.itemPage
+								: '정보 없음'}
+						</span>
 					</li>
 				</div>
 				<div className={styles.accodionRowSelection}>
 					<li className={styles.accordionWrapperItem}>
 						<span className={styles.boookItemTitle}>판형</span>
 						<span className={styles.bookItem}>
-							{bookInfo.subInfo.packing.styleDesc}
+							{bookInfo.subInfo &&
+							bookInfo.subInfo.packing &&
+							bookInfo.subInfo.packing.styleDesc
+								? bookInfo.subInfo.packing.styleDesc
+								: '정보 없음'}
 						</span>
 					</li>
 				</div>

@@ -122,7 +122,7 @@ const BookBuyingPostPage = () => {
 				<EditorComponent />
 			</div>
 			<div className={styles.BtnWrap}>
-				<button onClick={goback} className={styles.cancelBtn}>
+				<button ={goback} className={styles.cancelBtn}>
 					취소
 				</button>
 				<button onClick={onSubmit} className={styles.submitBtn}>

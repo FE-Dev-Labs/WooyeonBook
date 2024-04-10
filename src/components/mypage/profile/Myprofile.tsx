@@ -22,6 +22,7 @@ export default function Myprofile({ userId }: userIdProps) {
 		useState<string>('');
 	const supabase = createClient();
 
+	console.log(userInfor);
 	// 유저 정보 불러오기
 	const getUserInfor = async () => {
 		const { data, error } = await supabase

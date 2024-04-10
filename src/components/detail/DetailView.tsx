@@ -54,9 +54,12 @@ export default function DetailView({ book, id }: DetailViewProps) {
 				<Accordion title={'정보고시'} index={1}>
 					<Detailinformation bookInfo={book} />
 				</Accordion>
-				<Accordion title={'지속가능성'} index={2}>
-					<Detailsustainability bookInfo={book} />
-				</Accordion>
+				{book?.mallType === 'BOOK' ? (
+					<Accordion title={'지속가능성'} index={2}>
+						<Detailsustainability bookInfo={book} />
+					</Accordion>
+				) : null}
+
 				<Accordion title={'한줄평'} index={3}>
 					<Detailcomment bookId={id} />
 				</Accordion>

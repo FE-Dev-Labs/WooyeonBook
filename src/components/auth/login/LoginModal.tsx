@@ -1,44 +1,55 @@
+'use client';
 import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
-import logoIcon from '../../../../public/layout/logo.png';
 import closeIcon from '../../../../public/common/close.png';
-import { cookies } from 'next/headers';
-import { createClient } from '@/utils/supabase/server';
-import { redirect } from 'next/navigation';
+import { createClient } from '@/utils/supabase/client';
+import { redirect, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
+import useAuth from '@/hooks/useAuth';
 
 export default function LoginModal() {
-	const signIn = async (formData: FormData) => {
-		'use server';
+	const auth = useAuth();
+	const router = useRouter();
+	const supabase = createClient();
 
-		const email = formData.get('email') as string;
-		const password = formData.get('password') as string;
-		const cookieStore = cookies();
-		const supabase = createClient(cookieStore);
+	// const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+	// 	event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
+	// 	await signIn(); // 비동기 로그인 함수 호출
+	// };
 
-		const { error } = await supabase.auth.signInWithPassword({
-			email,
-			password,
+	const signIn = async (
+		event:
+			| React.FormEvent<HTMLFormElement>
+			| React.MouseEvent<HTMLButtonElement>,
+	) => {
+		event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
+		if (!auth.checkLoginValidation()) return;
+
+		const { data, error } = await supabase.auth.signInWithPassword({
+			email: auth.email,
+			password: auth.password,
 		});
 
 		if (error) {
-			return redirect('/?message=Could not authenticate user');
+			// 에러 처리를 위한 변경
+			// 경고창 대신 사용자에게 보여줄 수 있는 방식을 고려해보세요.
+			console.log('error');
 		}
 
-		return redirect('/');
+		// 성공적인 로그인 후의 처리
+		router.push('/cart');
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.modalWrapper}>
-				<div className={styles.modalImage}>
-					<Image src={logoIcon} alt="logo" width={350} height={65} />
-				</div>
 				<div className={styles.modalContents}>
 					<div className={styles.contents}>
 						<div className={styles.title}>
 							<span>로그인</span>
 						</div>
-						<form action={signIn} className={styles.formWrapper}>
+						<form onSubmit={signIn} className={styles.formWrapper}>
 							<div className={styles.inputWrapper}>
 								<label className={styles.inputLabel}>
 									이메일
@@ -46,7 +57,9 @@ export default function LoginModal() {
 										type="email"
 										name="email"
 										className={styles.inputField}
-										placeholder="your e-mail"
+										onChange={auth.changeEmail}
+										ref={auth.emailRef}
+										placeholder="이메일을 입력해주세요"
 									/>
 								</label>
 								<label className={styles.inputLabel}>
@@ -55,12 +68,14 @@ export default function LoginModal() {
 										type="password"
 										name="password"
 										className={styles.inputField}
-										placeholder="your password"
+										placeholder="비밀번호를 입력해주세요"
+										onChange={auth.changePassword}
+										ref={auth.passwordRef}
 									/>
 								</label>
 							</div>
 							<div className={styles.buttonWrapper}>
-								<button formAction={signIn} className={styles.loginLeftButton}>
+								<button onClick={signIn} className={styles.loginLeftButton}>
 									로그인
 								</button>
 								<Link href={'/signup'} className={styles.loginRightButton}>
@@ -69,7 +84,7 @@ export default function LoginModal() {
 							</div>
 						</form>
 					</div>
-					<div className={styles.closeIcon}>
+					<div className={styles.closeIcon} onClick={() => router.back()}>
 						<Image src={closeIcon} alt="close" width={40} height={40} />
 					</div>
 				</div>

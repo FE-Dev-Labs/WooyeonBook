@@ -13,7 +13,7 @@ export default function page() {
 	const [isLogin, setIsLogin] = useState(false);
 	// // useCurrentUser  훅
 	const { userName, userId, getUser } = useCurrentUser('');
-
+	console.log(userId);
 	// // 로그인 유뮤 체크
 	useEffect(() => {
 		getUser();
