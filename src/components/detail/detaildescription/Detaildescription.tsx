@@ -17,8 +17,6 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 			return cover.replace('/cover/', '/cover500/');
 		}
 	};
-	// replace는 /cover/를 /cover500/ 특정 부분을 다른 값으로 변환
-	// const modifiedCover = bookInfo.cover.replace('/cover/', '/cover500/');
 
 	// 제목은 크게 - 뒤에 내용은 작게 css 주기 위한 코드
 	const modifiedTitle = bookInfo.title.split('- ')[0];
@@ -52,9 +50,6 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 		((originalPrice - discountedPrice) / originalPrice) *
 		100
 	).toFixed(0);
-
-	// props로 넘겨주기 위한 로직
-	// const priceSales = bookInfo.priceSales.toLocaleString();
 
 	return (
 		<>
@@ -117,34 +112,36 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 					</div>
 					{/* ISBN,중고책 */}
 					<div className={styles.inforTopArea2}>
-						<dl>
-							<dt>마일리지</dt>
-							<dd>{bookInfo.mileage}</dd>
-						</dl>
+						{bookInfo.mileage > 0 && (
+							<dl>
+								<dt>마일리지</dt>
+								<dd>{bookInfo.mileage}</dd>
+							</dl>
+						)}
 						<dl>
 							<dt className={styles.inforText}>배송비</dt>
-							<dd className={styles.inforListText}>
-								무료
-								{/* {bookInfo.delivery.toLocaleString()}원 */}
-							</dd>
+							<dd className={styles.inforListText}>무료</dd>
 						</dl>
 						<dl>
 							<dt className={styles.inforText}>ISBN</dt>
 							<dd className={styles.inforListText}>{bookInfo.isbn}</dd>
 						</dl>
-						<dl>
-							<dt className={styles.inforText}>전자책</dt>
-							{bookInfo.subInfo.ebookList?.map((ebook: any) => {
-								return (
+						{bookInfo.subInfo.ebookList?.length > 0 && (
+							<dl>
+								<dt className={styles.inforText}>전자책</dt>
+								{bookInfo.subInfo.ebookList.map((ebook: any) => (
 									<dd className={styles.inforEbookListLink} key={ebook.itemId}>
-										<Link href={ebook.link}>
-											{ebook.priceSales.toLocaleString()}원
+										<Link href={ebook.link} legacyBehavior>
+											<a className={styles.ebookLink}>
+												{ebook.priceSales.toLocaleString()}원
+											</a>
 										</Link>
 									</dd>
-								);
-							})}
-						</dl>
+								))}
+							</dl>
+						)}
 					</div>
+
 					{/* 수량 */}
 					<div className={styles.inforTopArea3}>
 						<span>수량</span>

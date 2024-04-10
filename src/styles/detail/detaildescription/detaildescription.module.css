@@ -34,7 +34,7 @@
 	text-align: left;
 }
 .inforTop {
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 }
 .titleArea {
 	display: block;
@@ -65,8 +65,9 @@
 	font-size: 14px;
 }
 .auth > a {
-	text-decoration: none;
+	text-decoration: underline;
 	margin-right: 2px;
+	color: #666;
 }
 .divice {
 	margin: 5px 5px 0 5px;
@@ -76,8 +77,9 @@
 	border-right: solid 1px #ccc;
 }
 .pub > a {
-	text-decoration: none;
+	text-decoration: underline;
 	margin-right: 2px;
+	color: #666;
 }
 /* 책, 가격*/
 .inforTopArea {
@@ -104,23 +106,26 @@
 
 .inforTopArea > dl > dt {
 	display: table-cell;
-	padding: 17px 0;
+	padding: 10px 0;
 	width: 150px;
 	line-height: 20px;
 	color: #333;
 	font-weight: bold;
+	font-size: 14px;
 }
 .inforTopArea > dl > dd {
 	color: #d8d8d8;
+	font-size: 14px;
 }
+
 .inforPriceSales {
-	font-size: 25px;
+	font-size: 16px;
 	color: #333;
 	font-weight: bold;
 }
 .inforPersent {
 	margin-left: 20px;
-	font-size: 20px;
+	font-size: 16px;
 	font-weight: bold;
 	color: #6594e7;
 }
@@ -137,11 +142,19 @@
 }
 .inforTopArea2 > dl > dt {
 	display: table-cell;
-	padding: 17px 0;
+	padding: 10px 0;
 	width: 150px;
 	line-height: 20px;
 	color: #333;
 	font-weight: bold;
+	font-size: 14px;
+}
+.inforTopArea2 > dl > dd {
+	font-size: 14px;
+}
+.inforTopArea2 > dl > dd > a {
+	text-decoration: underline;
+	color: #666;
 }
 .inforTopArea3 {
 	padding-top: 10px;
@@ -152,9 +165,14 @@
 }
 .inforTopArea3 > span {
 	display: table-cell;
-	padding: 17px 0;
+	padding: 10px 0;
 	width: 150px;
 	line-height: 20px;
 	color: #333;
 	font-weight: bold;
+	font-size: 14px;
 }
+/* .ebooLink {
+	text-decoration: underline;
+	color: #666;
+} */
