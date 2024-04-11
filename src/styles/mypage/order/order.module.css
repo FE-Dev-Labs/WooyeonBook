@@ -1,5 +1,8 @@
 .orderDateContainer {
-	padding: 0px 20px 20px 0px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 0px 10px 0px;
 }
 .orderAccordionContainer {
 	margin-bottom: 8px;
@@ -11,34 +14,42 @@
 }
 .orderNav {
 	display: flex;
-	/* justify-content: space-evenly; */
 	border-bottom: solid 1px #d8d8d8;
+	align-items: center;
 }
 .orderNav > li {
 	font-weight: bold;
 	padding: 20px;
 }
 .orderNav > li:first-child {
-	margin-left: 110px;
+	margin-left: 90px;
 }
 .orderNav > li:nth-child(2) {
 	margin-left: 300px;
 }
 .orderNav > li:nth-child(3) {
-	margin-left: 40px;
+	margin-left: 50px;
 }
 .orderNav > li:nth-child(4) {
-	margin-left: 30px;
+	margin-left: 40px;
 }
 .orderNav > li:nth-child(5) {
-	margin-left: 30px;
+	margin-left: 40px;
 }
-/* .orderNav > li:first-child {
-	position: absolute;
-	overflow: hidden;
-	width: 1px;
-	height: 1px;
-	clip: rect(1px, 1px, 1px, 1px);
-	white-space: nowrap;
-	 
-} */
+.orderDate {
+	padding: 20px 0px 10px 0px;
+	font-size: 18px;
+}
+.orderCancleBtn {
+	margin-left: 30px;
+	width: 80px;
+	height: 40px;
+	font-size: 13px;
+	/* margin-right: 30px; */
+	border: 0;
+	padding: 10px 10px;
+	border-radius: 10px;
+	cursor: pointer;
+	background-color: #6594e7;
+	color: #fff;
+}

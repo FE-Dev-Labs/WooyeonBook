@@ -10,12 +10,27 @@ interface userIdProps {
 	userId: string;
 }
 export default function MyPost({ userId }: userIdProps) {
-	const [postData, setPostData] = useState<AllDataType[]>([]);
-	console.log(postData);
+	const params = useSearchParams();
+	const page = params.get('page');
+	const [postData, setPostData] = useState<[]>([]);
+
+	// const getpostdata = async () => {
+	// 	const { user_id } = await getUser();
+	// 	const response = await fetch(
+	// 		`http://localhost:8080/mylike?user_id=${user_id}`,
+	// 	);
+	// 	const responseData = await response.json();
+	// 	setPostData(responseData);
+	// };
+
+	// useEffect(() => {
+	// 	getpostdata();
+	// }, []);
+
 	const getpostdata = async () => {
-		const { user_id } = await getUser();
 		const response = await fetch(
-			`http://localhost:8080/mylike?user_id=${user_id}`,
+			`http://localhost:8080/api/mypage?page=${page}&userId=${userId}`,
+			{ cache: 'force-cache' },
 		);
 		const responseData = await response.json();
 		setPostData(responseData);
@@ -23,13 +38,13 @@ export default function MyPost({ userId }: userIdProps) {
 
 	useEffect(() => {
 		getpostdata();
-	}, []);
+	}, [page, userId]);
 
 	return (
 		<>
 			{postData?.map((list) => {
 				return (
-					<div className={styles.postAccordionContainer} key={list.doc_id}>
+					<div className={styles.postAccordionContainer}>
 						<div className={styles.postAccordionWrapper}>
 							<Postaccordionlayout list={list} />
 						</div>

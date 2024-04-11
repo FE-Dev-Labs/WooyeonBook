@@ -9,7 +9,6 @@ interface postdataProps {
 	list: any;
 }
 export default function Postaccordionlayout({ list }: postdataProps) {
-	console.log(list);
 	// 숫자가 문자열로 넘어옴 객체로 변환해서 toLocalDateString()메소드를 사용할 수 변환
 	const listdate = new Date(list.created_at);
 	return (

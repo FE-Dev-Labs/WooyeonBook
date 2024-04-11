@@ -1,3 +1,5 @@
+// OrderButton.tsx
+
 import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import styles from '@/styles/cart/orderButton.module.css';
@@ -43,14 +45,28 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 		if (confirm('상품을 주문하시겠습니까?')) {
 			// 주문 처리 시작 시 로딩 상태 true
 			setIsLoading(true);
+
+			//
+			// index id 값 및 item total price 추가
+			//
+			// cart 객체 내 각 아이템에 인덱스를 이용한 id 추가
+			const myCart = cart.map((item, index) => ({
+				...item,
+				id: index,
+			}));
+			// cart 배열의 itemTotalPrice의 합 계산
+			const totalOrderPrice = cart.reduce(
+				(total, item) => total + item.itemTotalPrice,
+				0,
+			);
 			// 테이블에 넣을 데이터(유저 아이디, 생성 일시, 주문 내역)
 			const orderData = {
-				id: uuid(),
 				user_id: isLoggedIn,
+				cart_id: uuid(),
 				created_at: new Date(),
-				cart: cart,
+				cart: myCart,
+				totalOrderPrice,
 			};
-			console.log(orderData);
 
 			// 테이블에 추가
 			try {

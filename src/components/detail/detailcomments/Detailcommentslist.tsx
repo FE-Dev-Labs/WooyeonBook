@@ -67,7 +67,7 @@ export default function Detailcommentslist({
 					.delete()
 					.eq('id', commentId);
 				if (error) {
-					console.error(error);
+					console.log(error);
 				} else {
 					setIsEditing(false); // 편집 상태 해제
 					getCommentLists(); // 댓글 목록을 다시 가져옵니다.

@@ -21,17 +21,23 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 	// useIsLoggedIn 호출한 로그인 상태
 	const { isLoggedIn } = useIsLoggedIn();
 
+	// useIsLoggIn의 기본값이 null되어있다.
+	// 만약 isLoggedIn이 아니라면 빈값을 주어 newCartItem에 userId추가
+	const userId = isLoggedIn ? isLoggedIn : '';
+	
 	// 카트페이지에서 필요한 요소들
-	const newCartItem = {
-		title: bookInfo.title,
-		author: bookInfo.author,
-		publisher: bookInfo.publisher,
-		priceSales: bookInfo.priceSales,
-		priceStandard: bookInfo.priceStandard,
-		isbn: bookInfo.isbn,
-		cover: bookInfo.cover,
-		mallType: bookInfo.mallType,
-		quantity: itemQuantity,
+	const newCartItem: CartItemType = {
+		userid: userId,
+		title: bookInfo.title, // 책 제목
+		author: bookInfo.author, // 저자
+		publisher: bookInfo.publisher, // 출판사
+		priceSales: bookInfo.priceSales, // 세일가
+		priceStandard: bookInfo.priceStandard, // 정가
+		isbn: bookInfo.isbn, // isbn
+		cover: bookInfo.cover, // 커버
+		mallType: bookInfo.mallType, // 신간/중고 등 몰타입
+		quantity: itemQuantity, // 수량
+		itemTotalPrice: bookInfo.priceSales * itemQuantity, // 해당 책의 최종 가격
 	};
 	// 장바구니에 같은 ISBN을 가진 책이 있는지 확인하는 함수
 	const isAlreadyInCart = cart.some((item) => item.isbn === newCartItem.isbn);

@@ -178,7 +178,7 @@ app.get('/mylike', async (req, res) => {
 		res.status(500).send({ error: error.message });
 	}
 });
-
+// 마이페이지 내가 쓴글
 app.get('/api/mypage', async (req, res) => {
 	const { page, userId } = req.query;
 	try {
@@ -194,6 +194,45 @@ app.get('/api/mypage', async (req, res) => {
 		res.status(500).send({ error: error.message });
 	}
 });
+// app.get('/api/mypage', async (req, res) => {
+// 	const { page, userId } = req.query;
+
+// 	try {
+// 		// 사용자가 생성한 글 가져오기
+// 		const { data: createdData, error: createdError } = await supabase
+// 			.from(`${page}`)
+// 			.select('*')
+// 			.eq('created_user', userId);
+
+// 		if (createdError) {
+// 			throw createdError;
+// 		}
+// 		// 사용자가 생성한 글을 우선 넣는다
+// 		let finalData = [...createdData];
+
+// 		// 'likes'페이지의 경우,사용자가 좋아요 누른 글 가져오기
+// 		if (page === 'likes') {
+// 			const { data: likedData, error: likeError } = await supabase
+// 				.from(`${page}`)
+// 				.select('*');
+
+// 			if (likeError) {
+// 				throw likeError;
+// 			}
+
+// 			// 좋아요 누른 글 필터링
+// 			const likedFilteredData = likedData.filter(
+// 				(item) => item.like_users && item.like_users.includes(userId),
+// 			);
+// 			console.log(likedFilteredData);
+// 			finalData = [...finalData, likedFilteredData];
+// 		}
+
+// 		res.status(200).send(finalData);
+// 	} catch (error) {
+// 		res.status(500).send({ error: error.message });
+// 	}
+// });
 
 // 커뮤니티 update api
 app.get('/api/community/bookReport/:docid', async (req, res) => {
