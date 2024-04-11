@@ -5,6 +5,7 @@ import BookBuying from '@/components/community/detail/BookBuying';
 import BookSelling from '@/components/community/detail/BookSelling';
 import styles from '@/styles/community/detail/DetailLayout.module.css';
 import LikeBtn from '@/components/community/detail/LikeBtn';
+import StateBtn from '@/components/community/detail/StateBtn';
 
 export default async function DetailPage({
 	params,
@@ -37,10 +38,15 @@ export default async function DetailPage({
 	};
 
 	return (
-		<div className={styles.container}>
+		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>{page()}</article>
 			<aside className={styles.optionWrap}>
+				<StateBtn
+					page={params.page}
+					doc_id={params.doc_id}
+					state={data.state as boolean}
+				/>
 				<LikeBtn
 					page={params.page}
 					doc_id={params.doc_id}
@@ -48,6 +54,6 @@ export default async function DetailPage({
 				/>
 				<button>공유</button>
 			</aside>
-		</div>
+		</main>
 	);
 }
