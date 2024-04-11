@@ -1,6 +1,6 @@
 /* cart body */
 .cartBody {
-	gap: 30px;
+	gap: 50px;
 
 	display: flex;
 	flex-direction: column;
@@ -15,10 +15,10 @@
 	text-align: center;
 }
 .cartBody .cartItem:first-child {
-	margin-top: 30px;
+	margin-top: 50px;
 }
 .cartBody .cartItem:last-child {
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 }
 .cartBodyCheckbox {
 	width: 53px;

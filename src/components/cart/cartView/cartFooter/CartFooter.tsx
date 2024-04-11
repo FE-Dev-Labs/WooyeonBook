@@ -1,5 +1,5 @@
 import { cartAtom } from '@/recoil/atom/cartAtom';
-import styles from '@/styles/cart/cartFooter.module.css';
+import styles from '@/styles/cart/cartView/cartFooter/cartFooter.module.css';
 import { CartItemType } from '@/types/bookType';
 import { useRecoilState } from 'recoil';
 

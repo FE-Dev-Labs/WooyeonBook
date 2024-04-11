@@ -1,5 +1,5 @@
 import { cartAtom } from '@/recoil/atom/cartAtom';
-import styles from '@/styles/cart/cartBody.module.css';
+import styles from '@/styles/cart/cartView/cartBody/cartBody.module.css';
 import { CartItemType } from '@/types/bookType';
 import Image from 'next/image';
 import Link from 'next/link';
