@@ -1,21 +1,18 @@
 .orderButtonWrap {
-	height: 70px;
 	gap: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
-	border-bottom: 1px solid #a9a9a9;
-
-	margin-bottom: 22px;
+	margin: 30px 0 30px 0;
 }
 .orderButtonWrap > a > button {
 	width: 125px;
 	height: 40px;
 	border: 1px solid black;
 	border-radius: 50px;
-	font-size: 13px;
 	font-weight: bold;
+	font-size: 15px;
 
 	border: none;
 	display: flex;
@@ -30,8 +27,8 @@
 	height: 40px;
 	border: 1px solid black;
 	border-radius: 50px;
-	font-size: 13px;
 	font-weight: bold;
+	font-size: 15px;
 
 	border: none;
 	display: flex;

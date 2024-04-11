@@ -1,6 +1,6 @@
 /* cart page wrapper */
 .container {
-	height: calc(100vh - 290px);
+	/* height: calc(100vh - 290px); */
 
 	display: flex;
 	justify-content: center;

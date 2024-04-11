@@ -23,7 +23,7 @@ export default function cartPage() {
 	const [selectAll, setSelectAll] = useState<boolean>(true);
 
 	return (
-		<>
+		<div>
 			<PageHeader title="장바구니" />
 			{cart.length > 0 ? (
 				<div className={styles.container}>
@@ -49,6 +49,6 @@ export default function cartPage() {
 					<p>장바구니가 비어있습니다. 😅</p>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }
