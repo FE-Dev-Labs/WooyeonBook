@@ -32,7 +32,11 @@ export const getMainPageData = async () => {
 	// 신간리스트의 item만 추출해 newBookItem 할당
 	const newBookItem = (newBookData.item as NewBookType[])
 		// 소설/시/희곡 키워드가 포함된 아이템만 필터링
-		.filter((item) => item.categoryName.includes('소설/시/희곡'))
+		.filter(
+			(item) =>
+				item.categoryName.includes('소설') ||
+				item.categoryName.includes('에세이'),
+		)
 		// 앞에서 6개만 추출
 		.slice(0, 6);
 
@@ -58,6 +62,6 @@ export const getMainPageData = async () => {
 // 메인 - 신간도서 api 주소
 const newBooksURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`;
 // 메인 - 베스트셀러 api 주소
-const bestSellerURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=Bestseller&MaxResults=24&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`;
+const bestSellerURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=Bestseller&MaxResults=50&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`;
 // 메인 - 중고도서 api 주소
 const usedBooksURL = `${process.env.NEXT_PUBLIC_BASE_URL}?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=itemNewAll&MaxResults=50&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`;

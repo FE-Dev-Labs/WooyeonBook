@@ -15,7 +15,7 @@ export default function BestSeller({
 	isUsedPage,
 }: BestSellerProps) {
 	return (
-		<div className={styles.bestSellerWrapper}>
+		<section className={styles.bestSellerWrapper}>
 			<CategoryTitle
 				mainTitle={page === 'used' ? '중고 베스트셀러' : '베스트셀러'}
 				subTitle={
@@ -31,6 +31,6 @@ export default function BestSeller({
 					<BookItem key={book.itemId} data={book} rank={index + 1} />
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }

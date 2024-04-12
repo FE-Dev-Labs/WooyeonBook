@@ -68,8 +68,8 @@ export default function usedPage() {
 		<>
 			<PageHeader title="중고도서" />
 			<div className={styles.container}>
-				<div />
-				<div className={styles.wrapper}>
+				<aside />
+				<main className={styles.wrapper}>
 					<BestSeller page="used" isUsedPage={true} data={usedBestItem} />
 					<div className={styles.usedLine} />
 					<CategoryBox />
@@ -80,10 +80,10 @@ export default function usedPage() {
 						currentPage={currentPage}
 						page="used"
 					/>
-				</div>
-				<div>
+				</main>
+				<aside>
 					<RecentlyViewedBooks />
-				</div>
+				</aside>
 			</div>
 		</>
 	);

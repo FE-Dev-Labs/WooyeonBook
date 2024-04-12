@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function ThemeRecommendation() {
 	return (
-		<div className={styles.themeRecommendationWrapper}>
+		<section className={styles.themeRecommendationWrapper}>
 			<CategoryTitle
 				mainTitle="테마추천"
 				subTitle="어떤 테마의 책이 있을까? "
@@ -24,6 +24,6 @@ export default function ThemeRecommendation() {
 					</Link>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }

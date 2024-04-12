@@ -12,18 +12,18 @@ export default async function Home() {
 	const { newBookItem, bestSellerItem, usedBookItem } = await getMainPageData();
 
 	return (
-		<main className={styles.container}>
-			<div />
-			<div className={styles.wrapper}>
+		<div className={styles.container}>
+			<aside />
+			<main className={styles.wrapper}>
 				<Slider />
 				<NewBook data={newBookItem} />
 				<ThemeRecommendation />
 				<BestSeller data={bestSellerItem} />
 				<UsedBook data={usedBookItem} />
-			</div>
-			<div>
+			</main>
+			<aside>
 				<RecentlyViewedBooks />
-			</div>
-		</main>
+			</aside>
+		</div>
 	);
 }

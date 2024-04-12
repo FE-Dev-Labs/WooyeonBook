@@ -52,11 +52,11 @@ export default function newPage() {
 	}, [categoryId, currentPage]);
 
 	return (
-		<>
+		<div>
 			<PageHeader title="신간도서" />
 			<div className={styles.container}>
-				<div />
-				<div className={styles.wrapper}>
+				<aside />
+				<main className={styles.wrapper}>
 					<CategoryBox />
 					<BookItemWrapper data={newSpecialAllItem} />
 					<Pagination
@@ -64,11 +64,11 @@ export default function newPage() {
 						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
 					/>
-				</div>
-				<div>
+				</main>
+				<aside>
 					<RecentlyViewedBooks />
-				</div>
+				</aside>
 			</div>
-		</>
+		</div>
 	);
 }

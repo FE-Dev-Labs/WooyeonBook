@@ -73,13 +73,13 @@ export default function newPage() {
 	}, [categoryId]);
 
 	return (
-		<>
+		<div>
 			<PageHeader
 				title={currentCategoryItem ? currentCategoryItem.name : '전체'}
 			/>
 			<div className={styles.container}>
-				<div />
-				<div className={styles.wrapper}>
+				<aside />
+				<main className={styles.wrapper}>
 					<CategoryBar />
 					<CategoryContents
 						data={sortedData}
@@ -88,12 +88,12 @@ export default function newPage() {
 						handlePageNumClick={handlePageNumClick}
 						page="category"
 					/>
-				</div>
-				<div>
+				</main>
+				<aside>
 					<RecentlyViewedBooks />
-				</div>
+				</aside>
 			</div>
-		</>
+		</div>
 	);
 }
 

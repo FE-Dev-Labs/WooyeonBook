@@ -18,13 +18,13 @@ export default function page({ params }: PageParams) {
 	return (
 		<div>
 			<ThemeHeader title={data.tag} />
-			<div className={styles.container}>
+			<main className={styles.container}>
 				<div className={styles.wrapper}>
 					{data.book.map((book: any) => (
 						<BookItem data={book} />
 					))}
 				</div>
-			</div>
+			</main>
 		</div>
 	);
 }

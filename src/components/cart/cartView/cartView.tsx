@@ -20,8 +20,9 @@ export default function CartView() {
 	);
 	// 전체 선택 체크박스 state
 	const [selectAll, setSelectAll] = useState<boolean>(true);
+
 	return (
-		<div>
+		<main>
 			{cart.length > 0 ? (
 				<div className={styles.container}>
 					<div className={styles.wrapper}>
@@ -46,6 +47,6 @@ export default function CartView() {
 					<p>장바구니가 비어있습니다. 😅</p>
 				</div>
 			)}
-		</div>
+		</main>
 	);
 }

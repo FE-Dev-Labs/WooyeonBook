@@ -20,7 +20,7 @@ export default function SortBar({ page, dataLength }: SortBarProp) {
 	};
 
 	return (
-		<div className={styles.sortBox}>
+		<header className={styles.sortBox}>
 			{page === 'search' ? (
 				<div className={styles.amountBox}>상품 ({dataLength})</div>
 			) : (
@@ -43,6 +43,6 @@ export default function SortBar({ page, dataLength }: SortBarProp) {
 					최신순
 				</p>
 			</div>
-		</div>
+		</header>
 	);
 }

@@ -11,10 +11,10 @@ export default function SearchBookItemWrapper({
 	data,
 }: SearchBookItemWrapperProp) {
 	return (
-		<div className={styles.searchBookItemWrapper}>
+		<section className={styles.searchBookItemWrapper}>
 			{data?.map((book: NewBookType) => (
 				<BookItem key={book.itemId} data={book} />
 			))}
-		</div>
+		</section>
 	);
 }

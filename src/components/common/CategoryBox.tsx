@@ -35,19 +35,19 @@ export default function CategoryBox() {
 	};
 
 	return (
-		<>
+		<section>
 			<ul className={styles.categoryBox}>
 				{categoryItem.map((item) => (
 					<li
-						key={item.id}
 						className={linkClassName(item.id)}
+						key={item.id}
 						onClick={() => handleClickCategory(item.id)}>
 						{item.name}
 					</li>
 				))}
 			</ul>
 			<div className={styles.categoryBottom} />
-		</>
+		</section>
 	);
 }
 

@@ -2,7 +2,7 @@
 
 import styles from '@/styles/not-found.module.css';
 import Image from 'next/image';
-import Img from '../../public/notFound.png';
+import Img from '../../public/notFound/notFound.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 

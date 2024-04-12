@@ -36,8 +36,8 @@ export default function CategoryBar() {
 	};
 
 	return (
-		<div>
-			<div className={styles.categoryBarWrapper}>
+		<div className={styles.container}>
+			<nav className={styles.Wrapper}>
 				<header className={styles.categoryBarTitle}>
 					<h1>분야</h1>
 				</header>
@@ -56,7 +56,7 @@ export default function CategoryBar() {
 						);
 					})}
 				</ul>
-			</div>
+			</nav>
 		</div>
 	);
 }

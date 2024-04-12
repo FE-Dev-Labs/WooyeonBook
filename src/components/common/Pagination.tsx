@@ -62,7 +62,7 @@ export default function Pagination({
 	}, [currentPage]);
 
 	return (
-		<div className={styles.paginationContainer}>
+		<footer className={styles.paginationContainer}>
 			<div className={styles.paginationWrappper}>
 				{/* 맨 처음 페이지로 이동하는 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
 				{!isFirstPageGroup && currentPage > 1 && (
@@ -126,6 +126,6 @@ export default function Pagination({
 					</div>
 				)}
 			</div>
-		</div>
+		</footer>
 	);
 }
