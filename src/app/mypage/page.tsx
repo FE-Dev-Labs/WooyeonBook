@@ -4,7 +4,6 @@ import styles from '@/styles/mypage/mypage.module.css';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import Accordion from '@/components/common/Accordion';
 import Communitynav from '@/components/common/Communitynav';
-
 import useCurrentUser from '@/hooks/useCurrentUser';
 import { useEffect, useState } from 'react';
 import MyPost from '@/components/mypage/mypost/MyPost';
@@ -14,11 +13,10 @@ import MyProfile from '@/components/mypage/profile/MyProfile';
 export default function page() {
 	const [isLogin, setIsLogin] = useState(false);
 	// // useCurrentUser  훅
-	const { userName, userId, getUser } = useCurrentUser('');
+	const { userName, userId } = useCurrentUser('');
 
 	// // 로그인 유뮤 체크
 	useEffect(() => {
-		getUser();
 		if (document.cookie === null || document.cookie === '') {
 			setIsLogin(false);
 		} else {
@@ -29,7 +27,7 @@ export default function page() {
 	// 비로그인시 얼럿창 띄어주기 로그인 유도
 
 	return (
-		<>
+		<div>
 			{isLogin && (
 				<div>
 					<PageHeader title="mypage" />
@@ -53,6 +51,6 @@ export default function page() {
 					</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }

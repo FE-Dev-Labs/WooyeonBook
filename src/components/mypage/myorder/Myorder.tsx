@@ -2,7 +2,7 @@ import styles from '@/styles/mypage/order/order.module.css';
 import MyOderList from './MyOderList';
 import { createClient } from '@/utils/supabase/client';
 import { useEffect, useState } from 'react';
-import { BookOrderList, CartItem } from '@/types/orderList';
+import { BookOrderList} from '@/types/orderList';
 interface userIdProps {
 	userId: string;
 }
@@ -32,6 +32,7 @@ export default function MyOrder({ userId }: userIdProps) {
 		getOrderList();
 	}, []);
 
+	// 주문 삭제
 	const handleorderDelete = async (cartId: string) => {
 		console.log('카트아이디', cartId);
 		const yes = confirm('주문을 취소하시겠습니까?');
@@ -40,7 +41,7 @@ export default function MyOrder({ userId }: userIdProps) {
 				const { error } = await supabase
 					.from('orderList')
 					.delete()
-					.match({ cart_id: cartId }); // 주문의 고유 ID를 사용해서 해당 주문을 찾아 삭제
+					.match({ cart_id: cartId });
 
 				if (error) {
 					throw error;
