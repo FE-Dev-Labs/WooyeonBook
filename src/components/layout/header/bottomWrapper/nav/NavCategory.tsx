@@ -1,14 +1,13 @@
-// import styles from '@/styles/layout/header/navCategory.module.css';
 import styles from '@/styles/layout/header/bottomWrapper/nav/navCategory.module.css';
 import Link from 'next/link';
 
 export default function NavCategory() {
 	return (
-		<div className={styles.navCategoryWrapper}>
-			<div className={styles.navCategoryTitle}>
+		<section className={styles.container}>
+			<h1 className={styles.navCategoryTitle}>
 				분야 <p>▼</p>
-			</div>
-			<div className={styles.showCategoryItemBox}>
+			</h1>
+			<nav className={styles.showCategoryItemBox}>
 				<Link href={'/category'} className={styles.categoryItem}>
 					<p>분야 전체</p>
 				</Link>
@@ -22,8 +21,8 @@ export default function NavCategory() {
 						</Link>
 					);
 				})}
-			</div>
-		</div>
+			</nav>
+		</section>
 	);
 }
 
