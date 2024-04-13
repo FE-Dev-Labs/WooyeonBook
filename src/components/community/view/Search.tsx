@@ -7,7 +7,8 @@ import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import communityPathname from '@/apis/communityPathname';
 import { useRouter, useSearchParams } from 'next/navigation';
-
+import { useRecoilState } from 'recoil';
+import { queryString } from '@/recoil/atom/queryString';
 const Select = dynamic(() => import('react-select'), {
 	ssr: false,
 	loading: () => <div className={styles.optionBtnSkeleton}></div>,
@@ -53,78 +54,46 @@ const OptionBtn = memo(
 );
 
 function Search() {
-	const params = useSearchParams();
 	const router = useRouter();
+	const [qs, setQs] = useRecoilState(queryString);
+
 	const [query, setQuery] = useState('');
-	const [sort, setSort] = useState('');
-	const [categories, setCategories] = useState('');
 	const pathname = usePathname().split('/')[2];
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setQuery(e.target.value);
-	};
 
 	useEffect(() => {
 		setQuery('');
 	}, [pathname]);
+	useEffect(() => {
+		const url = [];
+		if (qs.q !== '') {
+			url.push(`q=${qs.q}`);
+		}
+		if (qs.sort !== '') {
+			url.push(`sort=${qs.sort}`);
+		}
+		if (qs.categories !== '') {
+			url.push(`categories=${qs.categories}`);
+		}
+		if (qs.num !== '') {
+			url.push(`num=${qs.num}`);
+		}
+		router.push('/community/' + pathname + '?' + url.join('&'));
+	}, [qs]);
+
+	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setQuery(e.target.value);
+	};
 
 	const onChangeSort = (e: any) => {
-		setSort(e.value);
-		if (
-			params.has('q') &&
-			params.get('q') !== '' &&
-			params.has('categories') &&
-			params.get('categories') !== ''
-		) {
-			return router.push(
-				`/community/${pathname}?sort=${e.value}&q=${query}&categories=${categories}`,
-			);
-		}
-		if (params.has('q')) {
-			return router.push(`/community/${pathname}?sort=${e.value}&q=${query}`);
-		}
-		if (params.has('categories')) {
-			return router.push(
-				`/community/${pathname}?sort=${e.value}&categories=${categories}`,
-			);
-		}
-
-		return router.push(`/community/${pathname}?sort=${e.value}`);
+		setQs({ ...qs, sort: e.value });
 	};
+
 	const onChangeCategories = (e: any) => {
-		setCategories(e.value);
-		if (params.has('q') && params.get('q') !== '' && params.has('sort')) {
-			return router.push(
-				`/community/${pathname}?categories=${e.value}&q=${query}&sort=${sort}`,
-			);
-		}
-		if (params.has('q') && params.get('q') !== '') {
-			return router.push(
-				`/community/${pathname}?categories=${e.value}&q=${query}`,
-			);
-		}
-		if (params.has('sort')) {
-			return router.push(
-				`/community/${pathname}?categories=${e.value}&sort=${sort}`,
-			);
-		}
-
-		return router.push(`/community/${pathname}?categories=${e.value}`);
+		setQs({ ...qs, categories: e.value });
 	};
+
 	const onChangeSearch = () => {
-		if (params.has('sort') && params.has('categories')) {
-			return router.push(
-				`/community/${pathname}?sort=${sort}&categories=${categories}&q=${query}`,
-			);
-		}
-		if (params.has('sort')) {
-			return router.push(`/community/${pathname}?sort=${sort}&q=${query}`);
-		}
-		if (params.has('categories')) {
-			return router.push(
-				`/community/${pathname}?categories=${categories}&q=${query}`,
-			);
-		}
-		return router.push(`/community/${pathname}?q=${query}`);
+		setQs({ ...qs, q: query });
 	};
 	// 옵션 select
 	const sortOptions = [

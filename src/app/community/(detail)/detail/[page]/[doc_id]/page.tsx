@@ -46,6 +46,7 @@ export default async function DetailPage({
 					page={params.page}
 					doc_id={params.doc_id}
 					state={data.state as boolean}
+					admin={data.created_user}
 				/>
 				<LikeBtn
 					page={params.page}

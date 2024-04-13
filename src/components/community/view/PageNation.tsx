@@ -1,33 +1,52 @@
 'use client';
 
+import { queryString } from '@/recoil/atom/queryString';
 import { AllDataType } from '@/types/community/view/data';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
-const PageNation = ({ sortedData }: { sortedData: AllDataType[] }) => {
-	const [url, setUrl] = useState('');
-	useEffect(() => {
-		setUrl(window.location.href);
-	}, []);
+const PageNation = ({ alldata }: { alldata: AllDataType[] }) => {
+	const [qs, setQs] = useRecoilState(queryString);
 
 	const links = Array.from(
-		{ length: Math.ceil(sortedData.length / 10) },
+		{ length: Math.ceil(alldata.length / 10) },
 		(v, i) => i + 1,
 	);
 
-	const prev = () => {};
-	const next = () => {};
+	const onSubmit = (num: number) => {
+		setQs({ ...qs, num: num.toString() });
+	};
 
+	const prev = () => {
+		const num = parseInt(qs.num);
+		if (num > 1) {
+			setQs({ ...qs, num: (num - 1).toString() });
+		}
+	};
+	const isPrev = links.length > 10;
+
+	const next = () => {
+		const num = parseInt(qs.num);
+		if (num < links.length) {
+			setQs({ ...qs, num: (num + 1).toString() });
+		}
+	};
+	const isNext = links.length > 10;
+
+	if (links.length === 0) {
+		return null;
+	}
 	return (
-		<>
+		<footer>
+			{isPrev && <button onClick={prev}>이전</button>}
 			{links.map((item) => {
 				return (
-					<Link key={item} href={`${url}?page=${item}`}>
+					<button key={item} onClick={() => onSubmit(item)}>
 						{item}
-					</Link>
+					</button>
 				);
 			})}
-		</>
+			{isNext && <button onClick={next}>다음</button>}
+		</footer>
 	);
 };
 
