@@ -30,12 +30,12 @@ export default async function meeting({
 	searchParams: { sort?: string; q?: string; categories?: string };
 }) {
 	const { data, sortedData } = await getCommunityViewData({
-		page: 'bookBuying',
+		page: 'bookMeeting',
 		searchParams,
 	});
 
 	if (!isBookMeetingArray(data)) {
-		throw new Error('Data is not an array of book buying ');
+		throw new Error('Data is not an array of book meeting ');
 	}
 	const res = await fetch('http://localhost:8080/community/bookMeeting', {
 		cache: 'no-store',
