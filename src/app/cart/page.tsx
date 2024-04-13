@@ -1,5 +1,5 @@
 import PageHeader from '@/components/common/PageHeader';
-import CartView from '@/components/cart/cartView/cartView';
+import CartView from '@/components/cart/cartView/CartView';
 import styles from '@/styles/cart/cart.module.css';
 
 export default function cartPage() {

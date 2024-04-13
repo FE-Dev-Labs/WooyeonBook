@@ -1,20 +1,21 @@
 'use client';
 
 import styles from '@/styles/orderComplete/textWrapper.module.css';
-import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import Link from 'next/link';
+import { useRecoilValue } from 'recoil';
+import { userIdAtom } from '@/recoil/atom/userAtom';
 
 export default function TextWrapper() {
-	// useUser에서 호출한 로그인 상태(user_id)
-	const { isLoggedIn } = useIsLoggedIn();
+	// 로그인 판별 및 유저 id
+	const userId = useRecoilValue(userIdAtom);
 
-	if (isLoggedIn === null) {
+	if (userId === null) {
 		return <div className={styles.textWrapper}>주문이 진행중입니다.</div>;
 	}
 
 	return (
 		<div className={styles.textWrapper}>
-			{isLoggedIn ? (
+			{userId ? (
 				<>
 					<p>주문이 완료되었습니다. 😎</p>
 					<Link href="/mypage?page=bookMeeting">

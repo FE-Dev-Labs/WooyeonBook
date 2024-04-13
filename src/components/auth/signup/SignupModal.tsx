@@ -13,8 +13,6 @@ import {
 } from '@/recoil/atom/signupAtom';
 import { createClient } from '@/utils/supabase/client';
 import useAuth from '@/hooks/useAuth';
-import { FormEvent, useState } from 'react';
-import { headers } from 'next/headers';
 
 export default function SignupModal() {
 	const router = useRouter();
@@ -37,7 +35,7 @@ export default function SignupModal() {
 			password: auth.password,
 			options: {
 				data: { name: auth.name, phone: auth.phone },
-				// emailRedirectTo: `/auth/callback`,
+				emailRedirectTo: `/auth/callback`,
 			},
 		});
 

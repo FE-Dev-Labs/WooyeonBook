@@ -6,10 +6,9 @@ import BestSeller from '@/components/common/BestSeller';
 import UsedBook from '@/components/main/usedBook/UsedBook';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { getMainPageData } from '@/apis/main/getMainPageData';
-import BookItemSkeleton from '@/components/common/bookItem/BookItemSkeleton';
 
 export default async function Home() {
-	// api 폴더에서 import 해온 신간도서, 베스트셀러, 중고도서 아이템
+	// api 폴더에서 import 해온 신간도서(6), 베스트셀러(5), 중고도서 아이템(6)
 	const { newBookItem, bestSellerItem, usedBookItem } = await getMainPageData();
 
 	return (

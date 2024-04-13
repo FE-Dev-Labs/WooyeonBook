@@ -1,27 +1,38 @@
 'use client';
+
 import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
 import closeIcon from '../../../../public/common/close.png';
 import { createClient } from '@/utils/supabase/client';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-// import Cookies from 'js-cookie';
 import useAuth from '@/hooks/useAuth';
+import { useSetRecoilState } from 'recoil';
+import {
+	userEmailAtom,
+	userIdAtom,
+	userNameAtom,
+	userPhoneAtom,
+} from '@/recoil/atom/userAtom';
 
 export default function LoginModal() {
-	const auth = useAuth();
+	// useRouter 호출
 	const router = useRouter();
+	// useAuth 호출
+	const auth = useAuth();
+	// createClient 호출
 	const supabase = createClient();
+	// user state
+	const setUserId = useSetRecoilState(userIdAtom);
+	const setUserName = useSetRecoilState(userNameAtom);
+	const setUserEmail = useSetRecoilState(userEmailAtom);
+	const setUserPhone = useSetRecoilState(userPhoneAtom);
 
-	// const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-	// 	event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
-	// 	await signIn(); // 비동기 로그인 함수 호출
-	// };
-
-	const signIn = async (event: React.FormEvent<HTMLFormElement>) => {
+	// 로그인 버튼 클릭 시 동작하는 함수
+	const handleLoginClick = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
 
-		// validation 통과 하지 못할 시 함수 종료
+		// validation 통과 못할 시 함수 종료
 		if (!auth.checkLoginValidation()) return;
 
 		// 로그인
@@ -29,13 +40,19 @@ export default function LoginModal() {
 			email: auth.email,
 			password: auth.password,
 		});
-		if (error) {
-			console.error('로그인 실패:', error.message);
-		}
 
-		// 성공적인 로그인 후 처리
-		alert('환영합니다!');
-		router.back();
+		if (error) {
+			// 에러 발생할 경우
+			console.error('로그인 실패:', error.message);
+		} else if (data && data.user) {
+			// 로그인에 성공했을 경우 setState 및 alert
+			setUserId(data.user.id);
+			setUserName(data.user.user_metadata.name);
+			setUserEmail(data.user.email);
+			setUserPhone(data.user.user_metadata.phone);
+			alert('환영합니다!');
+			router.back();
+		}
 	};
 
 	return (
@@ -46,7 +63,7 @@ export default function LoginModal() {
 						<div className={styles.title}>
 							<span>로그인</span>
 						</div>
-						<form onSubmit={signIn} className={styles.formWrapper}>
+						<form onSubmit={handleLoginClick} className={styles.formWrapper}>
 							<div className={styles.inputWrapper}>
 								<label className={styles.inputLabel}>
 									이메일

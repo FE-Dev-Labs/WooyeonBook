@@ -6,11 +6,11 @@ import TopWrapper from './topWrapper/TopWrapper';
 export default function Header() {
 	return (
 		<header className={styles.container}>
-			<div className={styles.wrapper}>
+			<main className={styles.wrapper}>
 				<TopWrapper />
 				<MiddleWrapper />
 				<BottomWrappper />
-			</div>
+			</main>
 		</header>
 	);
 }
