@@ -8,12 +8,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import useAuth from '@/hooks/useAuth';
 import { useSetRecoilState } from 'recoil';
-import {
-	userEmailAtom,
-	userIdAtom,
-	userNameAtom,
-	userPhoneAtom,
-} from '@/recoil/atom/userAtom';
+import { userAtom } from '@/recoil/atom/userAtom';
 
 export default function LoginModal() {
 	// useRouter 호출
@@ -23,10 +18,11 @@ export default function LoginModal() {
 	// createClient 호출
 	const supabase = createClient();
 	// user state
-	const setUserId = useSetRecoilState(userIdAtom);
-	const setUserName = useSetRecoilState(userNameAtom);
-	const setUserEmail = useSetRecoilState(userEmailAtom);
-	const setUserPhone = useSetRecoilState(userPhoneAtom);
+	// const setUserId = useSetRecoilState(userIdAtom);
+	// const setUserName = useSetRecoilState(userNameAtom);
+	// const setUserEmail = useSetRecoilState(userEmailAtom);
+	// const setUserPhone = useSetRecoilState(userPhoneAtom);
+	const setUser = useSetRecoilState(userAtom);
 
 	// 로그인 버튼 클릭 시 동작하는 함수
 	const handleLoginClick = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -46,10 +42,12 @@ export default function LoginModal() {
 			console.error('로그인 실패:', error.message);
 		} else if (data && data.user) {
 			// 로그인에 성공했을 경우 setState 및 alert
-			setUserId(data.user.id);
-			setUserName(data.user.user_metadata.name);
-			setUserEmail(data.user.email);
-			setUserPhone(data.user.user_metadata.phone);
+			setUser({
+				id: data.user.id,
+				name: data.user.user_metadata.name,
+				email: data.user.email,
+				phone: data.user.user_metadata.phone,
+			});
 			alert('환영합니다!');
 			router.back();
 		}

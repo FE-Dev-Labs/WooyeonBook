@@ -8,26 +8,37 @@ const { persistAtom: persistUserAtom } = recoilPersist({
 	storage: isBrowser ? localStorage : undefined, // 사용할 스토리지 타입(로컬)
 });
 
-export const userIdAtom = atom<string | null>({
-	key: 'userIdState',
-	default: null,
+export const userAtom = atom({
+	key: 'userState',
+	default: {
+		id: null,
+		name: null,
+		email: undefined,
+		phone: null,
+	},
 	effects_UNSTABLE: [persistUserAtom],
 });
 
-export const userNameAtom = atom<string | null>({
-	key: 'userNameState',
-	default: null,
-	effects_UNSTABLE: [persistUserAtom],
-});
+// export const userIdAtom = atom<string | null>({
+// 	key: 'userIdState',
+// 	default: null,
+// 	effects_UNSTABLE: [persistUserAtom],
+// });
 
-export const userEmailAtom = atom<string | undefined>({
-	key: 'userEmailState',
-	default: undefined,
-	effects_UNSTABLE: [persistUserAtom],
-});
+// export const userNameAtom = atom<string | null>({
+// 	key: 'userNameState',
+// 	default: null,
+// 	effects_UNSTABLE: [persistUserAtom],
+// });
 
-export const userPhoneAtom = atom<string | null>({
-	key: 'userPhoneState',
-	default: null,
-	effects_UNSTABLE: [persistUserAtom],
-});
+// export const userEmailAtom = atom<string | undefined>({
+// 	key: 'userEmailState',
+// 	default: undefined,
+// 	effects_UNSTABLE: [persistUserAtom],
+// });
+
+// export const userPhoneAtom = atom<string | null>({
+// 	key: 'userPhoneState',
+// 	default: null,
+// 	effects_UNSTABLE: [persistUserAtom],
+// });

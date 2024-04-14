@@ -1,6 +1,6 @@
-import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
+import { userAtom } from '@/recoil/atom/userAtom';
 import styles from '@/styles/detail/detailDescription/detailOrderBtn.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { CartItemType } from '@/types/bookType';
@@ -18,8 +18,8 @@ export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// 현재 카트 아이템의 수량
 	const itemQuantity = useRecoilValue(itemAmountAtom);
-	// useIsLoggedIn 호출한 로그인 상태
-	const { isLoggedIn } = useIsLoggedIn();
+	// user 판별
+	const user = useRecoilValue(userAtom);
 
 	// 카트페이지에서 필요한 요소들
 	const newCartItem: CartItemType = {
@@ -54,7 +54,7 @@ export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 
 	// 주문하기 선택 시 동작하는 함수
 	const handleOrderClick = async () => {
-		if (!isLoggedIn) {
+		if (!user) {
 			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
 				// 로그인 페이지로 이동
 				router.push('/login');
