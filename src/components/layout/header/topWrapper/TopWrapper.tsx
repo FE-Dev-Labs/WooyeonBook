@@ -32,7 +32,6 @@ export default function TopWrapper() {
 		if (user.id) {
 			try {
 				await supabase.auth.signOut();
-				console.log('로그아웃 성공!');
 				setUser({
 					id: null,
 					name: null,

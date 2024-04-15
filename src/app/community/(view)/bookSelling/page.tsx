@@ -1,5 +1,6 @@
 import { getCommunityViewData } from '@/apis/community/getCommunityViewData';
 import ContentBox from '@/components/community/view/ContentBox';
+import PageNation from '@/components/community/view/PageNation';
 import { AllDataType, BookSellingDataType } from '@/types/community/view/data';
 
 function isBookMeetingArray(data: any): data is BookSellingDataType[] {
@@ -42,11 +43,17 @@ export default async function sellingBook({
 	if (!isBookMeetingArray(data)) {
 		throw new Error('Data is not an array of book buying ');
 	}
+	const res = await fetch('http://localhost:8080/community/bookSelling', {
+		cache: 'no-store',
+	});
+	const alldata: AllDataType[] = await res.json();
+
 	return (
 		<section>
 			{sortedData?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookSelling" />;
 			})}
+			<PageNation alldata={alldata} />
 		</section>
 	);
 }
