@@ -1,4 +1,5 @@
 'use client';
+
 import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
 import closeIcon from '../../../../public/common/close.png';
@@ -12,8 +13,6 @@ import {
 } from '@/recoil/atom/signupAtom';
 import { createClient } from '@/utils/supabase/client';
 import useAuth from '@/hooks/useAuth';
-import { FormEvent, useState } from 'react';
-import { headers } from 'next/headers';
 
 export default function SignupModal() {
 	const router = useRouter();
@@ -24,9 +23,13 @@ export default function SignupModal() {
 	const address = useRecoilValue(roadAddressAtom);
 	const detailaddress = useRecoilValue(detailAddressAtom);
 
-	const signUp = async () => {
-		// event.preventDefault(); // 폼의 기본 제출 동작 방지
+	const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault(); // 폼의 기본 제출 동작 방지
+
+		// validation 통과 하지 못할 시 함수 종료
 		if (!auth.checkValidation()) return;
+
+		// 에러 선언
 		const { error } = await supabase.auth.signUp({
 			email: auth.email,
 			password: auth.password,
@@ -35,9 +38,13 @@ export default function SignupModal() {
 				emailRedirectTo: `/auth/callback`,
 			},
 		});
+
+		// 유저 선언
 		const {
 			data: { user },
 		} = await supabase.auth.getUser();
+
+		// 유저 데이터
 		const userData = {
 			id: user?.id,
 			email: auth.email,
@@ -47,20 +54,25 @@ export default function SignupModal() {
 			zipcode: zipcode,
 			detailaddress: detailaddress,
 		};
+
+		// users 테이블에 userData 넣기
 		const { data: users } = await supabase
 			.from('users')
 			.insert(userData)
 			.select();
+
+		// 에러 발생 시
 		if (error) {
 			return redirect('/?message=Could not authenticate user');
-		} else {
-			alert('Success');
-			return redirect('/');
-
-			// return redirect('/login');
-			// return redirect(`/confirm?email=${auth.email}`);
 		}
+
+		// 성공적인 회원가입 후 처리
+		alert('회원가입 완료. 로그인 해주세요.');
+		// router.back();
+		await supabase.auth.signOut();
+		router.push('/login');
 	};
+
 	return (
 		<div className={styles.container}>
 			<div className={styles.modalSignupWrapper}>
@@ -69,7 +81,7 @@ export default function SignupModal() {
 						<div className={styles.title}>
 							<span>회원가입</span>
 						</div>
-						<form action={signUp} className={styles.formWrapper}>
+						<form onSubmit={signUp} className={styles.formWrapper}>
 							<div className={styles.inputSignupWrapper}>
 								<div className={styles.inputLeftWrapper}>
 									<label className={styles.inputLabel}>
@@ -132,10 +144,7 @@ export default function SignupModal() {
 									<SignupAddress />
 								</div>
 							</div>
-							{/* <div className={styles.buttonWrapper}> */}
 							<button className={styles.signupButton}>회원가입</button>
-							{/* </div> */}
-							{/* {searchParams?.message && <p>{searchParams.message}</p>} */}
 						</form>
 					</div>
 					<div className={styles.closeIcon} onClick={() => router.back()}>

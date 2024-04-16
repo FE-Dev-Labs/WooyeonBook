@@ -1,6 +1,6 @@
 'use client';
 import { Dispatch, SetStateAction, createContext, useState } from 'react';
-import styles from '@/styles/common/accordionlayout.module.css';
+import styles from '@/styles/common/accordionLayout.module.css';
 
 //  AccordionContext 객체의 기본 값
 interface AccordionProps {

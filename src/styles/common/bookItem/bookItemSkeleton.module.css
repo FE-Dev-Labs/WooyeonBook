@@ -1,0 +1,55 @@
+.skeletonWrapper {
+	width: 200px;
+	height: 380px;
+}
+
+.bookSkeleton {
+	width: inherit;
+	height: 275px;
+
+	border-radius: 10px;
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+.titleSkeleton {
+	width: inherit;
+	height: 36px;
+
+	margin-top: 20px;
+
+	border-radius: 10px;
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+.textSkeleton {
+	width: 50px;
+	height: 15px;
+
+	margin-top: 16px;
+
+	border-radius: 10px;
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+.subTextSkeleton {
+	width: 125px;
+	height: 15px;
+
+	margin-top: 6px;
+
+	border-radius: 10px;
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

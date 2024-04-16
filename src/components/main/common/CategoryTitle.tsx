@@ -15,7 +15,7 @@ export default function CategoryTitle({
 	isUsedPage,
 }: CategoryTitleProps) {
 	return (
-		<div className={styles.titleWrapper}>
+		<header className={styles.titleWrapper}>
 			<div className={styles.titleName}>
 				<h1>{mainTitle}</h1>
 				<p>{subTitle}</p>
@@ -25,6 +25,6 @@ export default function CategoryTitle({
 					<p className={styles.seeAll}>전체보기</p>
 				</Link>
 			)}
-		</div>
+		</header>
 	);
 }

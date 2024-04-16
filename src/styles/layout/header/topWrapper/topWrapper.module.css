@@ -11,10 +11,15 @@
 .topWrapper > a {
 	color: #000000;
 }
+.topWrapper > button {
+	cursor: pointer;
+	font-size: 12px;
+	border: none;
+	padding: 0;
+}
 .userName {
 	color: #6594e7;
 }
-.logoutButton {
-	all: unset;
+/* .logoutButton {
 	cursor: pointer;
-}
+} */

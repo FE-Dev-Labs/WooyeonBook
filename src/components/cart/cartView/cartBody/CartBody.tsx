@@ -1,9 +1,11 @@
 import { cartAtom } from '@/recoil/atom/cartAtom';
-import styles from '@/styles/cart/cartBody.module.css';
+import styles from '@/styles/cart/cartView/cartBody/cartBody.module.css';
 import { CartItemType } from '@/types/bookType';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
+import minusIcon from '../../../../../public/detail/BsDashCircle.png';
+import plusIcon from '../../../../../public/detail/BsPlusCircle.png';
 
 interface CartBodyProps {
 	checkedItem: string[];
@@ -46,6 +48,11 @@ export default function CartBody({
 				// 중고책인 경우 1개 이상 수량 증가 못하게 alert 후 함수 종료
 				if (item.mallType === 'USED') {
 					alert('중고 도서는 수량 조절이 불가능합니다.');
+					return item;
+				}
+				// 수량이 100 이상인 경우 경고 메시지 출력
+				if (item.quantity >= 100) {
+					alert('100권 이상 주문할 수 없습니다.');
 					return item;
 				}
 				return { ...item, quantity: item.quantity + 1 };
@@ -99,21 +106,25 @@ export default function CartBody({
 						{item?.priceSales.toLocaleString()}원
 					</div>
 					<div className={styles.quantityWrap}>
-						<button
-							className={styles.quantityMinusPlusBtn}
+						<Image
+							src={minusIcon}
+							alt="minus button"
+							width={15}
+							height={15}
 							onClick={() => {
 								handleDecreaseCountClick(item?.isbn);
-							}}>
-							-
-						</button>
+							}}
+						/>
 						<div className={styles.quantity}>{item?.quantity}</div>
-						<button
-							className={styles.quantityMinusPlusBtn}
+						<Image
+							src={plusIcon}
+							alt="plus button"
+							width={15}
+							height={15}
 							onClick={() => {
 								handleIncreaseCountClick(item?.isbn);
-							}}>
-							+
-						</button>
+							}}
+						/>
 					</div>
 					<div className={styles.itemSumPrice}>
 						{(item?.priceSales * item?.quantity).toLocaleString()}원

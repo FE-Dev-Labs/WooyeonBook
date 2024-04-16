@@ -1,15 +1,14 @@
 /* cart header */
 .cartHeader {
-	height: 40px;
+	height: 50px;
 	display: flex;
 	align-items: center;
-	font-size: 14px;
 	text-align: center;
 
 	border-top: 1px solid #a9a9a9;
 	border-bottom: 1px solid #a9a9a9;
 
-	margin-top: 21px;
+	margin-top: 50px;
 }
 .cartHeader :nth-child(1) {
 	width: 53px;

@@ -107,6 +107,7 @@ export interface CartItemType {
 	cover: string;
 	mallType: string;
 	quantity: number;
+	itemTotalPrice: number;
 }
 
 // 최근 본 상품 타입

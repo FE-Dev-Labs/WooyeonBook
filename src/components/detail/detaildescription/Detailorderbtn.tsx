@@ -1,7 +1,7 @@
-import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
-import styles from '@/styles/detail/detaildescription/detailorderbtn.module.css';
+import { userAtom } from '@/recoil/atom/userAtom';
+import styles from '@/styles/detail/detailDescription/detailOrderBtn.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { CartItemType } from '@/types/bookType';
 import { useRouter } from 'next/navigation';
@@ -11,28 +11,30 @@ interface DetailOrderBtnProp {
 	bookInfo: Book;
 }
 
-export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
+export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 	// useRouter 호출
 	const router = useRouter();
 	// 카트 아이템 state
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// 현재 카트 아이템의 수량
 	const itemQuantity = useRecoilValue(itemAmountAtom);
-	// useIsLoggedIn 호출한 로그인 상태
-	const { isLoggedIn } = useIsLoggedIn();
+	// user 판별
+	const user = useRecoilValue(userAtom);
 
 	// 카트페이지에서 필요한 요소들
-	const newCartItem = {
-		title: bookInfo.title,
-		author: bookInfo.author,
-		publisher: bookInfo.publisher,
-		priceSales: bookInfo.priceSales,
-		priceStandard: bookInfo.priceStandard,
-		isbn: bookInfo.isbn,
-		cover: bookInfo.cover,
-		mallType: bookInfo.mallType,
-		quantity: itemQuantity,
+	const newCartItem: CartItemType = {
+		title: bookInfo.title, // 책 제목
+		author: bookInfo.author, // 저자
+		publisher: bookInfo.publisher, // 출판사
+		priceSales: bookInfo.priceSales, // 세일가
+		priceStandard: bookInfo.priceStandard, // 정가
+		isbn: bookInfo.isbn, // isbn
+		cover: bookInfo.cover, // 커버
+		mallType: bookInfo.mallType, // 신간/중고 등 몰타입
+		quantity: itemQuantity, // 수량
+		itemTotalPrice: bookInfo.priceSales * itemQuantity, // 해당 책의 최종 가격
 	};
+
 	// 장바구니에 같은 ISBN을 가진 책이 있는지 확인하는 함수
 	const isAlreadyInCart = cart.some((item) => item.isbn === newCartItem.isbn);
 
@@ -52,7 +54,7 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 
 	// 주문하기 선택 시 동작하는 함수
 	const handleOrderClick = async () => {
-		if (!isLoggedIn) {
+		if (!user) {
 			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
 				// 로그인 페이지로 이동
 				router.push('/login');

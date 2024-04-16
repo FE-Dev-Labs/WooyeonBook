@@ -1,5 +1,5 @@
 'use client';
-import styles from '@/styles/common/accordionlayout.module.css';
+import styles from '@/styles/common/accordionLayout.module.css';
 import Image from 'next/image';
 import viewIcon from '../../../public/detail/view.png';
 import closeIcon from '../../../public/detail/close.png';

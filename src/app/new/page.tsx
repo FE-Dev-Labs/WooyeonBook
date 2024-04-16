@@ -1,9 +1,9 @@
 'use client';
 
-import BookItemWrapper from '@/components/common/BookItemWrapper';
 import CategoryBox from '@/components/common/CategoryBox';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
+import BookItemWrapper from '@/components/common/bookItem/BookItemWrapper';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import styles from '@/styles/new/new.module.css';
 import { NewBookType } from '@/types/bookType';
@@ -52,11 +52,11 @@ export default function newPage() {
 	}, [categoryId, currentPage]);
 
 	return (
-		<>
+		<div>
 			<PageHeader title="신간도서" />
 			<div className={styles.container}>
-				<div />
-				<div className={styles.wrapper}>
+				<aside />
+				<main className={styles.wrapper}>
 					<CategoryBox />
 					<BookItemWrapper data={newSpecialAllItem} />
 					<Pagination
@@ -64,11 +64,11 @@ export default function newPage() {
 						handlePageNumClick={handlePageNumClick}
 						currentPage={currentPage}
 					/>
-				</div>
-				<div>
+				</main>
+				<aside>
 					<RecentlyViewedBooks />
-				</div>
+				</aside>
 			</div>
-		</>
+		</div>
 	);
 }

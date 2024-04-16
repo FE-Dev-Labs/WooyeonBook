@@ -52,6 +52,7 @@
 .categoryBottom {
 	width: inherit;
 	height: 1px;
+	margin-top: 50px;
 
 	background-color: #aaa;
 }

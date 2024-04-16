@@ -1,10 +1,4 @@
-.navCategoryWrapper {
-	/* width: 100px;
-	display: flex;
-	top: -10px;
-	flex-direction: column;
-	position: relative; */
-
+.container {
 	width: 50px;
 	height: 20px;
 	font-size: 16px;

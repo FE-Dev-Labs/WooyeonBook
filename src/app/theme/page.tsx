@@ -9,7 +9,7 @@ export default function themePage() {
 		<div>
 			<PageHeader title="테마추천" />
 			<div className={styles.container}>
-				<div className={styles.wrapper}>
+				<main className={styles.wrapper}>
 					{recommendedData.map((item) => (
 						<Link href={`/theme/${item.artistName}`}>
 							<ThemItem
@@ -20,7 +20,7 @@ export default function themePage() {
 							/>
 						</Link>
 					))}
-				</div>
+				</main>
 			</div>
 		</div>
 	);

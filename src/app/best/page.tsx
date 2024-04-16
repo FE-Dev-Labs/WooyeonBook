@@ -55,8 +55,8 @@ export default function bestPage() {
 		<div>
 			<PageHeader title="인기" />
 			<div className={styles.container}>
-				<div />
-				<div className={styles.wrapper}>
+				<aside />
+				<main className={styles.wrapper}>
 					<CategoryBox />
 					<Rank data={bestAllItem} />
 					<Pagination
@@ -65,10 +65,10 @@ export default function bestPage() {
 						currentPage={currentPage}
 						page="best"
 					/>
-				</div>
-				<div>
+				</main>
+				<aside>
 					<RecentlyViewedBooks />
-				</div>
+				</aside>
 			</div>
 		</div>
 	);

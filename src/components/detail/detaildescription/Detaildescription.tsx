@@ -1,15 +1,15 @@
-import styles from '@/styles/detail/detaildescription/detaildescription.module.css';
+import styles from '@/styles/detail/detailDescription/detailDescription.module.css';
 import Link from 'next/link';
-import Detailquantity from './Detailquantity';
-import Detailtotalquantity from './Detailtotalquantity';
 import Image from 'next/image';
 import { Book } from '@/types/bookDetailDate';
-import Detailorderbtn from './Detailorderbtn';
+import DetailQuantity from './DetailQuantity';
+import DetailTotalQuantity from './DetailTotalQuantity';
+import DetailOrderBtn from './DetailOrderbtn';
 
 interface bookDetailProp {
 	bookInfo: Book;
 }
-export default function Detaildescription({ bookInfo }: bookDetailProp) {
+export default function DetailDescription({ bookInfo }: bookDetailProp) {
 	const modifiedCover = (cover: string) => {
 		if (cover.indexOf('/coversum/') !== -1) {
 			return cover.replace('/coversum/', '/cover500/');
@@ -145,12 +145,12 @@ export default function Detaildescription({ bookInfo }: bookDetailProp) {
 					{/* 수량 */}
 					<div className={styles.inforTopArea3}>
 						<span>수량</span>
-						<Detailquantity bookInfo={bookInfo} />
+						<DetailQuantity bookInfo={bookInfo} />
 					</div>
 					{/* 총 수량 */}
-					<Detailtotalquantity bookInfo={bookInfo} />
+					<DetailTotalQuantity bookInfo={bookInfo} />
 					{/* 장바구니, 구매하기 버튼 */}
-					<Detailorderbtn bookInfo={bookInfo} />
+					<DetailOrderBtn bookInfo={bookInfo} />
 				</div>
 			</div>
 		</>
