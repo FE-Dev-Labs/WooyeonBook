@@ -120,6 +120,7 @@ app.get(`/api/getKeywords`, async (req, res) => {
 		res.status(400).send(error);
 	}
 });
+
 app.get('/auth', async (req, res) => {
 	try {
 		const { data, error } = await supabase.auth.getUser();
