@@ -15,7 +15,6 @@ const LikeBtn = ({
 	const router = useRouter();
 	const onSubmit = async () => {
 		const { user_id } = await getUser();
-		console.log(user_id);
 
 		if (user_id === undefined) {
 			router.push('/login');

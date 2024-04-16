@@ -36,19 +36,20 @@ async function bookReport({
 		page: 'bookReport',
 		searchParams,
 	});
-
 	if (!isBookReportArray(data)) {
 		throw new Error('Data is not an array of book reports');
 	}
+	const res = await fetch('http://localhost:8080/community/bookReport', {
+		cache: 'no-store',
+	});
+	const alldata: AllDataType[] = await res.json();
 
 	return (
 		<section>
 			{sortedData?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
 			})}
-			<footer>
-				<PageNation sortedData={sortedData} />
-			</footer>
+			<PageNation alldata={alldata} />
 		</section>
 	);
 }
