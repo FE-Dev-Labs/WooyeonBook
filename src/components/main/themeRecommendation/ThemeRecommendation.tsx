@@ -14,13 +14,8 @@ export default function ThemeRecommendation() {
 			/>
 			<div className={styles.themeItemWrapper}>
 				{recommendedData.map((item) => (
-					<Link href={`/theme/${item.artistName}`}>
-						<ThemItem
-							key={item.id}
-							tag={item.tag}
-							image={item.image}
-							color={item.color}
-						/>
+					<Link href={`/theme/${item.artistName}`} key={item.id}>
+						<ThemItem tag={item.tag} image={item.image} color={item.color} />
 					</Link>
 				))}
 			</div>
