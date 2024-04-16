@@ -1,76 +1,89 @@
-'use client';
-
 import styles from '@/styles/category/category.module.css';
 import CategoryBar from '@/components/category/categoryBar/CategoryBar';
 import CategoryContents from '@/components/category/categoryContents/CategoryContents';
 import PageHeader from '@/components/common/PageHeader';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { NewBookType } from '@/types/bookType';
-import { useSearchParams } from 'next/navigation';
+// import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 
-export default function newPage() {
+export default async function categoryPage({
+	searchParams,
+}: {
+	searchParams: { categoryId: string; sort: string; num: string };
+}) {
 	// useSearchParams 호출
-	const params = useSearchParams();
+	// const params = useSearchParams();
 	// url 내 categoryId 추출
-	const categoryId = params.get('categoryId');
+	// const categoryId = params.get('categoryId');
+
+	const categoryId = searchParams.categoryId;
+
+	const response = await fetch(
+		`http://localhost:8080/list/newAll?categoryId=${categoryId}&sort=${searchParams.sort}`,
+		{
+			next: { revalidate: 3600 },
+		},
+	);
+	const { data, dataLength } = await response.json();
+
 	// 해당 카테고리 전체 아이템 state
-	const [newAllItem, setNewAllItem] = useState<NewBookType[]>([]);
-	// 해당 카테고리의 아이템 갯수 state
-	const [dataLength, setDataLength] = useState<number>(0);
-	// 현재 카테고리의 현재 페이지 state
-	const [currentPage, setCurrentPage] = useState<number>(1);
-	// 소팅 state(제목순, 최신순)
-	const sortType = useRecoilValue(sortTypeState);
+	// const [newAllItem, setNewAllItem] = useState<NewBookType[]>([]);
+	// // 해당 카테고리의 아이템 갯수 state
+	// const [dataLength, setDataLength] = useState<number>(0);
+	// // 현재 카테고리의 현재 페이지 state
+	// const [currentPage, setCurrentPage] = useState<number>(1);
+	// // 소팅 state(제목순, 최신순)
+	// const sortType = useRecoilValue(sortTypeState);
 
-	// server -> api 받아오는 함수
-	const fetchData = async () => {
-		const response = await fetch(
-			`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
-			{
-				cache: 'no-store',
-			},
-		);
-		const { data, dataLength } = await response.json();
+	// // server -> api 받아오는 함수
+	// const fetchData = async () => {
+	// 	const response = await fetch(
+	// 		`http://localhost:8080/list/newAll?categoryId=${categoryId}`,
+	// 		{
+	// 			next: { revalidate: 3600 },
+	// 		},
+	// 	);
+	// 	const { data, dataLength } = await response.json();
 
-		// 해당 카테고리 all item
-		setNewAllItem(data);
-		// 해당 카테고리 아이템 갯수
-		setDataLength(dataLength);
-	};
+	// 	// 해당 카테고리 all item
+	// 	setNewAllItem(data);
+	// 	// 해당 카테고리 아이템 갯수
+	// 	setDataLength(dataLength);
+	// };
 
 	// 현재 선택된 카테고리 아이템 찾기
 	const currentCategoryItem = categoryItem.find(
 		(item) => item.id === Number(categoryId),
 	);
 
-	// 현재 카테고리의 각 페이지(숫자) 선택 시 실행되는 함수
-	const handlePageNumClick = (pageNum: number) => {
-		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
-		if (currentPage === pageNum) return;
-		// 현재 페이지 숫자 변경
-		setCurrentPage(pageNum);
-		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 320, behavior: 'smooth' });
-	};
+	// // 현재 카테고리의 각 페이지(숫자) 선택 시 실행되는 함수
+	// const handlePageNumClick = (pageNum: number) => {
+	// 	// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
+	// 	if (currentPage === pageNum) return;
+	// 	// 현재 페이지 숫자 변경
+	// 	setCurrentPage(pageNum);
+	// 	// 페이지 선택시 페이지 상단으로 스크롤 이동
+	// 	window.scrollTo({ top: 320, behavior: 'smooth' });
+	// };
 
-	// 소팅한 data
-	const sortedData =
-		// 제목순일 때의 sort
-		sortType === '제목순'
-			? newAllItem.sort((a, b) => a.title.localeCompare(b.title))
-			: // 제목순이 아닐 떄의 sort(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
-				newAllItem.sort(
-					(a, b) =>
-						new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-				);
+	// // 소팅한 data
+	// const sortedData =
+	// 	// 제목순일 때의 sort
+	// 	sortType === '제목순'
+	// 		? newAllItem.sort((a, b) => a.title.localeCompare(b.title))
+	// 		: // 제목순이 아닐 떄의 sort(최신순). 비교군이 2가지라서 삼항연산자로 만들어 놓음
+	// 			newAllItem.sort(
+	// 				(a, b) =>
+	// 					new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+	// 			);
 
-	// fetchData 뿌려주는 useEffect
-	useEffect(() => {
-		fetchData();
-	}, [categoryId]);
+	// // fetchData 뿌려주는 useEffect
+	// useEffect(() => {
+	// 	fetchData();
+	// }, [categoryId]);
 
 	return (
 		<div>
@@ -80,14 +93,14 @@ export default function newPage() {
 			<div className={styles.container}>
 				<aside />
 				<main className={styles.wrapper}>
-					<CategoryBar />
-					<CategoryContents
-						data={sortedData}
+					{/* <CategoryBar /> */}
+					{/* <CategoryContents
+						data={data}
 						dataLength={dataLength}
-						currentPage={currentPage}
-						handlePageNumClick={handlePageNumClick}
+						// currentPage={currentPage}
+						currentPage={Number(searchParams.num)}
 						page="category"
-					/>
+					/> */}
 				</main>
 				<aside>
 					<RecentlyViewedBooks />

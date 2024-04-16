@@ -8,7 +8,7 @@ import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { getMainPageData } from '@/apis/main/getMainPageData';
 
 export default async function Home() {
-	// api 폴더에서 import 해온 신간도서(6), 베스트셀러(5), 중고도서 아이템(6)
+	// main page data
 	const { newBookItem, bestSellerItem, usedBookItem } = await getMainPageData();
 
 	return (

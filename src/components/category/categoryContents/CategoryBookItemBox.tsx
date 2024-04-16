@@ -1,16 +1,25 @@
 import BookItem from '@/components/common/bookItem/BookItem';
+import BookItemSkeleton from '@/components/common/bookItem/BookItemSkeleton';
 import styles from '@/styles/category/categoryContents/categoryBookItemBox.module.css';
 import { NewBookType } from '@/types/bookType';
+import dynamic from 'next/dynamic';
 
 interface CategoryBookItemBoxProp {
 	data: NewBookType[];
 }
 
+const DynamicBookItem = dynamic(
+	() => import('@/components/common/bookItem/BookItem'),
+	{
+		loading: () => <BookItemSkeleton />,
+	},
+);
+
 export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
 	return (
 		<div className={styles.categorybookItemWrapper}>
 			{data?.map((book: NewBookType) => (
-				<BookItem key={book.itemId} data={book} />
+				<DynamicBookItem key={book.itemId} data={book} />
 			))}
 		</div>
 	);
