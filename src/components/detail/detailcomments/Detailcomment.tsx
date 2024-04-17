@@ -20,11 +20,10 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 	const supabase = createClient();
 
 	// useCurrentUser  훅
-	const { userName, userId, getUser } = useCurrentUser('');
+	const { userName, userId } = useCurrentUser('');
 
 	// 로그인 유뮤 체크
 	useEffect(() => {
-		getUser();
 		if (document.cookie === null || document.cookie === '') {
 			setIsLogin(false);
 		} else {

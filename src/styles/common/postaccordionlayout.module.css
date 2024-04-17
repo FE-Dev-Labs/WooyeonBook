@@ -11,9 +11,11 @@
 	background-color: #eeeeee;
 }
 .postdataWrapper {
+	border-bottom: 1px solid #dee2e6;
+}
+.postdataWrap {
 	width: 100%;
 	padding: 18px 16px;
-	border-bottom: 1px solid #dee2e6;
 }
 .postTitle {
 	font-size: 20px;

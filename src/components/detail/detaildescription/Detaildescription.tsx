@@ -10,11 +10,12 @@ interface bookDetailProp {
 	bookInfo: Book;
 }
 export default function Detaildescription({ bookInfo }: bookDetailProp) {
+	
 	const modifiedCover = (cover: string) => {
 		if (cover.indexOf('/coversum/') !== -1) {
 			return cover.replace('/coversum/', '/cover500/');
 		} else {
-			return cover.replace('/cover/', '/cover500/');
+			return cover.replace(/\/cover(\/|200)/, '/cover500/');
 		}
 	};
 

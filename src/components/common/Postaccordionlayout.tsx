@@ -9,10 +9,11 @@ interface postdataProps {
 	list: any;
 }
 export default function Postaccordionlayout({ list }: postdataProps) {
+	// console.log(list);
 	// 숫자가 문자열로 넘어옴 객체로 변환해서 toLocalDateString()메소드를 사용할 수 변환
 	const listdate = new Date(list.created_at);
 	return (
-		<>
+		<div className={styles.postdataWrapper}>
 			<div className={styles.postWrapper}>
 				{list.book_img_url ? (
 					<div className={styles.postImgArea}>
@@ -26,7 +27,7 @@ export default function Postaccordionlayout({ list }: postdataProps) {
 					</div>
 				) : null}
 
-				<div className={styles.postdataWrapper}>
+				<div className={styles.postdataWrap}>
 					<h3 className={styles.postTitle}>{list.title}</h3>
 					<p className={styles.postContent}>{list.content}</p>
 
@@ -47,7 +48,9 @@ export default function Postaccordionlayout({ list }: postdataProps) {
 										height={20}
 										className={styles.iconsStyle}
 									/>
-									<span className={styles.postDataNumber}>{list.like}</span>
+									<span className={styles.postDataNumber}>
+										{list.like_users.length}
+									</span>
 								</dd>
 								<dt className={styles.iconText}>조회수</dt>
 								<dd className={styles.icondd}>
@@ -60,7 +63,7 @@ export default function Postaccordionlayout({ list }: postdataProps) {
 									/>
 									<span className={styles.postDataNumber}>{list.view}</span>
 								</dd>
-								<dt className={styles.iconText}>댓글</dt>
+								{/* <dt className={styles.iconText}>댓글</dt>
 								<dd className={styles.icondd}>
 									<Image
 										src={chatIcon}
@@ -70,12 +73,12 @@ export default function Postaccordionlayout({ list }: postdataProps) {
 										className={styles.iconsStyle}
 									/>
 									<span className={styles.postDataNumber}>{list.comments}</span>
-								</dd>
+								</dd> */}
 							</dl>
 						</div>
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }

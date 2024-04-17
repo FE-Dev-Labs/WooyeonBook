@@ -45,21 +45,6 @@ export default async function MyPost({ userId, page }: userIdProps) {
 					</div>
 				</div>
 			))}
-			{/* {page !== 'likes'
-				? data?.map((list: any) => (
-						<div className={styles.postAccordionContainer} key={list.doc_id}>
-							<div className={styles.postAccordionWrapper}>
-								<Postaccordionlayout list={list} />
-							</div>
-						</div>
-					))
-				: data?.map((list: any) => (
-						<div className={styles.postAccordionContainer} key={list.doc_id}>
-							<div className={styles.postAccordionWrapper}>
-								<Postaccordionlayout list={list} />
-							</div>
-						</div>
-					))} */}
 		</div>
 	);
 }
