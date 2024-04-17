@@ -8,8 +8,8 @@
 }
 .orderHistoryBody {
 	width: 30%;
-	margin: 25px 0 25px 0;
-	gap: 15px;
+	margin: 40px 0 40px 0;
+	gap: 25px;
 
 	display: flex;
 	flex-direction: column;
@@ -18,7 +18,7 @@
 .orderHistoryItemAmountWrap,
 .orderHistoryDiscountAmountWrap,
 .orderHistoryDeliveryChargeWrap {
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: bold;
 
 	display: flex;
@@ -26,7 +26,7 @@
 	color: #9c9c9c;
 }
 .orderHistoryDeliveryChargeWrap > div {
-	gap: 8px;
+	gap: 10px;
 
 	display: flex;
 	justify-content: center;
@@ -37,7 +37,7 @@
 	color: #000000;
 }
 .orderHistoryBodySubText {
-	font-size: 9px;
+	font-size: 12px;
 	font-weight: 400;
 }
 .orderHistoryBodyLine {
@@ -49,18 +49,15 @@
 	justify-content: space-between;
 }
 .orderHistoryFinalPaymentAmountTitle {
-	font-size: 14px;
+	font-size: 16px;
 
 	font-weight: bold;
 }
 .orderHistoryFinalPaymentAmount {
-	font-size: 14px;
-
 	display: flex;
 	align-items: center;
 }
 .orderHistoryFinalPaymentAmount > p {
-	font-size: 14px;
 	font-weight: bold;
 
 	margin-right: 3px;

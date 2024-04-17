@@ -83,20 +83,20 @@ export default function searchPage() {
 	}, [keyword]);
 
 	return (
-		<>
+		<div>
 			{isLoading ? (
-				<div className={styles.loadingContainer}>
+				<main className={styles.loadingContainer}>
 					'{keyword}'에 대한 검색 결과를 찾는 중입니다. 😎
-				</div>
+				</main>
 			) : !pageData?.length ? (
-				<div className={styles.loadingContainer}>
+				<main className={styles.loadingContainer}>
 					'{keyword}'에 대한 검색 결과를 찾을 수 없습니다. 🤔
-				</div>
+				</main>
 			) : (
 				<>
 					<PageHeader title={`'${keyword}' 검색 결과`} />
 					<div className={styles.container}>
-						<div className={styles.wrapper}>
+						<main className={styles.wrapper}>
 							<SortBar page="search" dataLength={dataLength} />
 							<SearchBookItemWrapper data={pageData} />
 							<Pagination
@@ -104,10 +104,10 @@ export default function searchPage() {
 								currentPage={currentPage}
 								handlePageNumClick={handlePageNumClick}
 							/>
-						</div>
+						</main>
 					</div>
 				</>
 			)}
-		</>
+		</div>
 	);
 }

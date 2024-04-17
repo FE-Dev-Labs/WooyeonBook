@@ -1,12 +1,12 @@
 'use client';
 import { AccordionContext } from '@/components/common/AccordionWrapper';
-import styles from '@/styles/detail/detaildata/detailinformation.module.css';
+import styles from '@/styles/detail/detailData/detailInformation.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { useContext } from 'react';
 interface bookDetailProp {
 	bookInfo: Book;
 }
-export default function Detailinformation({ bookInfo }: bookDetailProp) {
+export default function DetailInformation({ bookInfo }: bookDetailProp) {
 	const { active } = useContext(AccordionContext);
 	return (
 		<div className={styles.accordionContent}>

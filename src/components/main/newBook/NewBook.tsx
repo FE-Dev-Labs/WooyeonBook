@@ -9,13 +9,13 @@ interface newBookBoxProp {
 
 export default function newBookBox({ data }: newBookBoxProp) {
 	return (
-		<div className={styles.newBookWrapper}>
+		<section className={styles.newBookWrapper}>
 			<CategoryTitle
 				mainTitle="신간도서"
 				subTitle="새로 나온 책 뭐가 있지?"
 				page="new"
 			/>
 			<BookItemBox data={data} />
-		</div>
+		</section>
 	);
 }

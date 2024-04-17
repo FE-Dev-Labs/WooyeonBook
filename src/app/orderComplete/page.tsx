@@ -1,12 +1,12 @@
 import styles from '@/styles/orderComplete/orderComplete.module.css';
 import Image from 'next/image';
-import orderCompleteImage from '../../../public/orderComplete.png';
+import orderCompleteImage from '../../../public/orderComplete/orderComplete.png';
 import TextWrapper from '@/components/orderComplete/TextWrapper';
 
 export default function OrderCompletePage() {
 	return (
 		<div className={styles.container}>
-			<div className={styles.wrapper}>
+			<main className={styles.wrapper}>
 				<Image
 					src={orderCompleteImage}
 					alt="order complete image"
@@ -15,7 +15,7 @@ export default function OrderCompletePage() {
 					priority={true}
 				/>
 				<TextWrapper />
-			</div>
+			</main>
 		</div>
 	);
 }

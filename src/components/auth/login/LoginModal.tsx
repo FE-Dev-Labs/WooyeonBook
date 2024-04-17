@@ -1,44 +1,56 @@
 'use client';
+
 import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
 import closeIcon from '../../../../public/common/close.png';
 import { createClient } from '@/utils/supabase/client';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Cookies from 'js-cookie';
 import useAuth from '@/hooks/useAuth';
+import { useSetRecoilState } from 'recoil';
+import { userAtom } from '@/recoil/atom/userAtom';
 
 export default function LoginModal() {
-	const auth = useAuth();
+	// useRouter 호출
 	const router = useRouter();
+	// useAuth 호출
+	const auth = useAuth();
+	// createClient 호출
 	const supabase = createClient();
+	// user state
+	// const setUserId = useSetRecoilState(userIdAtom);
+	// const setUserName = useSetRecoilState(userNameAtom);
+	// const setUserEmail = useSetRecoilState(userEmailAtom);
+	// const setUserPhone = useSetRecoilState(userPhoneAtom);
+	const setUser = useSetRecoilState(userAtom);
 
-	// const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-	// 	event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
-	// 	await signIn(); // 비동기 로그인 함수 호출
-	// };
-
-	const signIn = async (
-		event:
-			| React.FormEvent<HTMLFormElement>
-			| React.MouseEvent<HTMLButtonElement>,
-	) => {
+	// 로그인 버튼 클릭 시 동작하는 함수
+	const handleLoginClick = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault(); // 폼 제출로 인한 페이지 새로고침 방지
+
+		// validation 통과 못할 시 함수 종료
 		if (!auth.checkLoginValidation()) return;
 
+		// 로그인
 		const { data, error } = await supabase.auth.signInWithPassword({
 			email: auth.email,
 			password: auth.password,
 		});
 
 		if (error) {
-			// 에러 처리를 위한 변경
-			// 경고창 대신 사용자에게 보여줄 수 있는 방식을 고려해보세요.
-			console.log('error');
+			// 에러 발생할 경우
+			console.error('로그인 실패:', error.message);
+		} else if (data && data.user) {
+			// 로그인에 성공했을 경우 setState 및 alert
+			setUser({
+				id: data.user.id,
+				name: data.user.user_metadata.name,
+				email: data.user.email,
+				phone: data.user.user_metadata.phone,
+			});
+			alert('환영합니다!');
+			router.back();
 		}
-
-		// 성공적인 로그인 후의 처리
-		router.push('/cart');
 	};
 
 	return (
@@ -49,7 +61,7 @@ export default function LoginModal() {
 						<div className={styles.title}>
 							<span>로그인</span>
 						</div>
-						<form onSubmit={signIn} className={styles.formWrapper}>
+						<form onSubmit={handleLoginClick} className={styles.formWrapper}>
 							<div className={styles.inputWrapper}>
 								<label className={styles.inputLabel}>
 									이메일
@@ -75,10 +87,11 @@ export default function LoginModal() {
 								</label>
 							</div>
 							<div className={styles.buttonWrapper}>
-								<button onClick={signIn} className={styles.loginLeftButton}>
-									로그인
-								</button>
-								<Link href={'/signup'} className={styles.loginRightButton}>
+								<button className={styles.loginLeftButton}>로그인</button>
+								<Link
+									href={'/signup'}
+									scroll={false}
+									className={styles.loginRightButton}>
 									회원가입
 								</Link>
 							</div>

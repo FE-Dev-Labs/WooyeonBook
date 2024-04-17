@@ -1,6 +1,7 @@
 'use client';
 
-import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+// import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+import styles from '@/styles/detail/detailDescription/detailQuantity.module.css';
 import Image from 'next/image';
 import minus from '../../../../public/detail/BsDashCircle.png';
 import pluse from '../../../../public/detail/BsPlusCircle.png';
@@ -9,11 +10,11 @@ import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import { useEffect } from 'react';
 import { Book } from '@/types/bookDetailDate';
 
-interface DetailquantityProp {
+interface DetailQuantityProp {
 	bookInfo: Book;
 }
 
-export default function Detailquantity({ bookInfo }: DetailquantityProp) {
+export default function DetailQuantity({ bookInfo }: DetailQuantityProp) {
 	// 장바구니 수량 state
 	const [count, setCount] = useRecoilState<number>(itemAmountAtom);
 
@@ -30,7 +31,7 @@ export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 			return;
 		} else if (count >= 100) {
 			//이미 100개일 때 추가 증가 시도 시 경고
-			alert('수량은 최대 100개까지 주문 가능합니다.');
+			alert('100권 이상 주문할 수 없습니다.');
 			return;
 		} else {
 			setCount((prev) => prev + 1);
@@ -45,7 +46,7 @@ export default function Detailquantity({ bookInfo }: DetailquantityProp) {
 		const value = parseInt(e.target.value);
 		if (!isNaN(value)) {
 			if (value > 100) {
-				alert('수량은 최대 100개까지 주문 가능합니다.');
+				alert('100권 이상 주문할 수 없습니다.');
 				setCount(100);
 			} else if (value >= 1) {
 				setCount(value);

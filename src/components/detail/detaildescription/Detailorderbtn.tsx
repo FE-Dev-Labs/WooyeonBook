@@ -1,7 +1,7 @@
-import { useIsLoggedIn } from '@/hooks/useIsLoggedIn';
 import { cartAtom } from '@/recoil/atom/cartAtom';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
-import styles from '@/styles/detail/detaildescription/detailorderbtn.module.css';
+import { userAtom } from '@/recoil/atom/userAtom';
+import styles from '@/styles/detail/detailDescription/detailOrderBtn.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { CartItemType } from '@/types/bookType';
 import { useRouter } from 'next/navigation';
@@ -11,23 +11,19 @@ interface DetailOrderBtnProp {
 	bookInfo: Book;
 }
 
-export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
+export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 	// useRouter 호출
 	const router = useRouter();
 	// 카트 아이템 state
 	const [cart, setCart] = useRecoilState<CartItemType[]>(cartAtom);
 	// 현재 카트 아이템의 수량
 	const itemQuantity = useRecoilValue(itemAmountAtom);
-	// useIsLoggedIn 호출한 로그인 상태
-	const { isLoggedIn } = useIsLoggedIn();
+	// user 판별
+	const user = useRecoilValue(userAtom);
 
-	// useIsLoggIn의 기본값이 null되어있다.
-	// 만약 isLoggedIn이 아니라면 빈값을 주어 newCartItem에 userId추가
-	const userId = isLoggedIn ? isLoggedIn : '';
-	
 	// 카트페이지에서 필요한 요소들
 	const newCartItem: CartItemType = {
-		userid: userId,
+		userid: user.id,
 		title: bookInfo.title, // 책 제목
 		author: bookInfo.author, // 저자
 		publisher: bookInfo.publisher, // 출판사
@@ -39,6 +35,7 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 		quantity: itemQuantity, // 수량
 		itemTotalPrice: bookInfo.priceSales * itemQuantity, // 해당 책의 최종 가격
 	};
+
 	// 장바구니에 같은 ISBN을 가진 책이 있는지 확인하는 함수
 	const isAlreadyInCart = cart.some((item) => item.isbn === newCartItem.isbn);
 
@@ -58,7 +55,7 @@ export default function Detailorderbtn({ bookInfo }: DetailOrderBtnProp) {
 
 	// 주문하기 선택 시 동작하는 함수
 	const handleOrderClick = async () => {
-		if (!isLoggedIn) {
+		if (!user) {
 			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
 				// 로그인 페이지로 이동
 				router.push('/login');

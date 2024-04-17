@@ -1,4 +1,4 @@
-import styles from '@/styles/common/PageHeader.module.css';
+import styles from '@/styles/common/pageHeader.module.css';
 
 interface PageHeaderProps {
 	title: string;

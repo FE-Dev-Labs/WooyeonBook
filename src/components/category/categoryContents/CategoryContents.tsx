@@ -9,7 +9,6 @@ interface CategoryConentsProp {
 	data: NewBookType[];
 	dataLength: number;
 	currentPage: number;
-	handlePageNumClick: (page: number) => void;
 	page: string;
 }
 
@@ -17,7 +16,6 @@ export default function CategoryContents({
 	data,
 	dataLength,
 	currentPage,
-	handlePageNumClick,
 	page,
 }: CategoryConentsProp) {
 	// 페이지 첫 시작 데이터의 숫자, 24 = 카테고리 페이지에 나타낼 아이템 갯수
@@ -32,12 +30,12 @@ export default function CategoryContents({
 			{/* <CategorySlider /> */}
 			<SortBar />
 			<CategoryBookItemBox data={pageData} />
-			<Pagination
+			{/* <Pagination
 				dataLength={dataLength}
 				handlePageNumClick={handlePageNumClick}
 				currentPage={currentPage}
 				page={page}
-			/>
+			/> */}
 		</div>
 	);
 }

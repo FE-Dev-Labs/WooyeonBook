@@ -14,6 +14,7 @@ import leeImage from '../../../public/theme/leepic.png';
 // import timoImage from '../../../public/theme/timopic.png';
 import timImage from '../../../public/theme/timoheepic.png';
 import leedongImage from '../../../public/theme/leedongpic.png';
+
 export const recommendedData = [
 	{
 		id: 1,

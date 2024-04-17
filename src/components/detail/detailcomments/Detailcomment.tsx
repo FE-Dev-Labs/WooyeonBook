@@ -1,13 +1,14 @@
 'use client';
-import Detailcommentslist from './Detailcommentslist';
-import styles from '@/styles/detail/detailcomments/detailcomment.module.css';
+
+import styles from '@/styles/detail/detailComments/detailComment.module.css';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
-import useCurrentUser from './../../../hooks/useCurrentUser';
+import useCurrentUser from '../../../hooks/useCurrentUser';
+import DetailCommentslist from './DetailCommentslist';
 
-export default function Detailcomment({ bookId }: { bookId: string }) {
+export default function DetailComment({ bookId }: { bookId: string }) {
 	// 댓글
 	const [comment, setComment] = useState<string>('');
 	// 댓글 창
@@ -114,7 +115,7 @@ export default function Detailcomment({ bookId }: { bookId: string }) {
 				<ul>
 					{commentsList.map((list) => {
 						return (
-							<Detailcommentslist
+							<DetailCommentslist
 								key={list.id}
 								list={list}
 								userId={userId}

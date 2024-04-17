@@ -1,6 +1,6 @@
-import BookItem from '@/components/common/BookItem';
 import styles from '@/styles/best/rank.module.css';
 import { BestSellerType } from '@/types/bookType';
+import BookItem from '../common/bookItem/BookItem';
 
 interface RankProp {
 	data: BestSellerType[];

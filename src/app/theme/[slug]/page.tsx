@@ -1,8 +1,8 @@
 import ThemeHeader from '@/components/theme/ThemeHeader';
 import { recommendedData } from '@/apis/theme/recommendedData';
 import styles from '@/styles/theme/artist/artist.module.css';
-import BookItem from '@/components/common/BookItem';
 import { RecommendedDataType } from '@/types/bookType';
+import BookItem from '@/components/common/bookItem/BookItem';
 
 interface PageParams {
 	params: {
@@ -17,14 +17,14 @@ export default function page({ params }: PageParams) {
 
 	return (
 		<div>
-			<ThemeHeader title={data.tag} color={data.color} image={data.image} />
-			<div className={styles.container}>
+			<ThemeHeader title={data.tag} />
+			<main className={styles.container}>
 				<div className={styles.wrapper}>
 					{data.book.map((book: any) => (
 						<BookItem data={book} />
 					))}
 				</div>
-			</div>
+			</main>
 		</div>
 	);
 }

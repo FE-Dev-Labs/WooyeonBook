@@ -1,13 +1,14 @@
 'use client';
 
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
-import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+// import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
+import styles from '@/styles/detail/detailDescription/detailQuantity.module.css';
 import { Book } from '@/types/bookDetailDate';
 import { useRecoilState, useRecoilValue } from 'recoil';
 interface bookDetailProp {
 	bookInfo: Book;
 }
-export default function Detailtotalquantity({ bookInfo }: bookDetailProp) {
+export default function DetailTotalQuantity({ bookInfo }: bookDetailProp) {
 	// 장바구니 수량 state
 	const count = useRecoilValue<number>(itemAmountAtom);
 
