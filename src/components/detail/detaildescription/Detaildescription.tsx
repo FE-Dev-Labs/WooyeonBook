@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Book } from '@/types/bookDetailDate';
 import DetailQuantity from './DetailQuantity';
 import DetailTotalQuantity from './DetailTotalQuantity';
-import DetailOrderBtn from './DetailOrderbtn';
+import DetailOrderBtn from './DetailOrderBtn';
 
 interface bookDetailProp {
 	bookInfo: Book;
@@ -14,7 +14,7 @@ export default function DetailDescription({ bookInfo }: bookDetailProp) {
 		if (cover.indexOf('/coversum/') !== -1) {
 			return cover.replace('/coversum/', '/cover500/');
 		} else {
-			return cover.replace('/cover/', '/cover500/');
+			return cover.replace(/\/cover(\/|200)/, '/cover500/');
 		}
 	};
 

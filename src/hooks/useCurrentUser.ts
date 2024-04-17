@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
 
 const useCurrentUser = (initialValue: string = '') => {
@@ -29,12 +29,15 @@ const useCurrentUser = (initialValue: string = '') => {
 		}
 	};
 
+	useEffect(() => {
+		getUser();
+	}, []);
+
 	return {
 		userEmail,
 		userName,
 		userId,
 		userPhone,
-		getUser,
 	};
 };
 export default useCurrentUser;

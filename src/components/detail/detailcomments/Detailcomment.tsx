@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
-import useCurrentUser from './../../../hooks/useCurrentUser';
+import useCurrentUser from '../../../hooks/useCurrentUser';
 import DetailCommentslist from './DetailCommentslist';
 
 export default function DetailComment({ bookId }: { bookId: string }) {
@@ -21,11 +21,10 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 	const supabase = createClient();
 
 	// useCurrentUser  훅
-	const { userName, userId, getUser } = useCurrentUser('');
+	const { userName, userId } = useCurrentUser('');
 
 	// 로그인 유뮤 체크
 	useEffect(() => {
-		getUser();
 		if (document.cookie === null || document.cookie === '') {
 			setIsLogin(false);
 		} else {

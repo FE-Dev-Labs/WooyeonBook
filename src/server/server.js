@@ -7,7 +7,6 @@ const axios = require('axios');
 const cors = require('cors');
 
 const { createClient } = require('@supabase/supabase-js');
-const { serialize } = require('v8');
 
 const app = express();
 const port = 8080;
@@ -147,19 +146,23 @@ app.get('/auth', async (req, res) => {
 app.get('/mylike', async (req, res) => {
 	const { user_id } = req.query;
 	try {
-		const { data: bookReport } = await supabase.from('bookReport').select();
+		const { data: bookReport } = await supabase.from('bookReport').select('*');
 		const bookReportData = bookReport.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookMeeting } = await supabase.from('bookMeeting').select();
+		const { data: bookMeeting } = await supabase
+			.from('bookMeeting')
+			.select('*');
 		const bookMeetingData = bookMeeting.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookSelling } = await supabase.from('bookSelling').select();
+		const { data: bookSelling } = await supabase
+			.from('bookSelling')
+			.select('*');
 		const bookSellingData = bookSelling.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookBuying } = await supabase.from('bookBuying').select();
+		const { data: bookBuying } = await supabase.from('bookBuying').select('*');
 		const bookBuyingData = bookBuying.filter((item) =>
 			item.like_users.includes(user_id),
 		);
@@ -176,6 +179,7 @@ app.get('/mylike', async (req, res) => {
 	}
 });
 
+// 마이페이지 내가 쓴글
 app.get('/api/mypage', async (req, res) => {
 	const { page, userId } = req.query;
 	try {
@@ -183,9 +187,7 @@ app.get('/api/mypage', async (req, res) => {
 			.from(`${page}`)
 			.select('*')
 			.eq('created_user', userId);
-		if (error) {
-			throw error;
-		}
+
 		res.status(200).send(data);
 	} catch (error) {
 		res.status(500).send({ error: error.message });
