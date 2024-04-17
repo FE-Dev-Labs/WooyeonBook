@@ -1,8 +1,9 @@
+'use client';
 import styles from '@/styles/mypage/order/order.module.css';
 import MyOderList from './MyOderList';
 import { createClient } from '@/utils/supabase/client';
 import { useEffect, useState } from 'react';
-import { BookOrderList} from '@/types/orderList';
+import { BookOrderList } from '@/types/orderList';
 interface userIdProps {
 	userId: string;
 }
