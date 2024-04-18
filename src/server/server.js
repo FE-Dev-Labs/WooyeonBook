@@ -144,7 +144,10 @@ app.get('/auth', async (req, res) => {
 // const getBuyingData=()=>{}
 // const getSellingData=()=>{}
 app.get('/mylike', async (req, res) => {
-	const { user_id } = req.query;
+	const { user_id, num } = req.query;
+	// start은 0이 되야되므로 -4
+	const start = num * 4 - 4;
+	const end = num * 4;
 	try {
 		const { data: bookReport } = await supabase.from('bookReport').select('*');
 		const bookReportData = bookReport.filter((item) =>
@@ -173,7 +176,8 @@ app.get('/mylike', async (req, res) => {
 			...bookSellingData,
 			...bookBuyingData,
 		];
-		res.status(200).send(data);
+		const sliceData = data.slice(start, end);
+		res.status(200).send({ data, sliceData });
 	} catch (error) {
 		res.status(500).send({ error: error.message });
 	}
@@ -181,14 +185,21 @@ app.get('/mylike', async (req, res) => {
 
 // 마이페이지 내가 쓴글
 app.get('/api/mypage', async (req, res) => {
-	const { page, userId } = req.query;
+	const { page, userId, num } = req.query;
+	const limit = 4;
+	const offset = (num - 1) * limit;
 	try {
-		const { data, error } = await supabase
+		const allData = await supabase
 			.from(`${page}`)
 			.select('*')
 			.eq('created_user', userId);
 
-		res.status(200).send(data);
+		const sliceData = await supabase
+			.from(`${page}`)
+			.select('*')
+			.eq('created_user', userId)
+			.range(offset, offset + limit);
+		res.status(200).send({ data: allData.data, sliceData: sliceData.data });
 	} catch (error) {
 		res.status(500).send({ error: error.message });
 	}
