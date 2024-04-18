@@ -8,7 +8,9 @@ export default function NavCategory() {
 				분야 <p>▼</p>
 			</h1>
 			<nav className={styles.showCategoryItemBox}>
-				<Link href={'/category'} className={styles.categoryItem}>
+				<Link
+					href={'/category?categoryId=null&sortType=title'}
+					className={styles.categoryItem}>
 					<p>분야 전체</p>
 				</Link>
 				{categoryItem.map((item, index) => {
@@ -16,7 +18,9 @@ export default function NavCategory() {
 						return null;
 					}
 					return (
-						<Link key={index} href={`/category?categoryId=${item.id}`}>
+						<Link
+							key={index}
+							href={`/category?categoryId=${item.id}&sortType=title`}>
 							{item.name}
 						</Link>
 					);

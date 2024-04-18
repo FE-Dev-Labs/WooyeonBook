@@ -3,43 +3,46 @@
 import styles from '@/styles/category/categoryContents/sortBar.module.css';
 import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 interface SortBarProp {
+	categoryId?: string;
 	page?: string;
 	dataLength?: number | null;
 }
 
-export default function SortBar({ page, dataLength }: SortBarProp) {
+export default function SortBar({ categoryId, page, dataLength }: SortBarProp) {
 	// 소팅 state
 	const [sortType, setSortType] = useRecoilState(sortTypeState);
+	// useRouter 호출
+	const router = useRouter();
+	// usePathname 호출
+	const pathname = usePathname();
 
 	// 소팅 아이템 선택시 동작하는 함수
 	const handleSortTypeChange = (sortType: string) => {
 		// 소팅 아이템 변경
 		setSortType(sortType);
+		// 라우터 변경
+		router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
 	};
 
 	return (
 		<header className={styles.sortBox}>
-			{page === 'search' ? (
+			{page && 'search' && (
 				<div className={styles.amountBox}>상품 ({dataLength})</div>
-			) : (
-				<div style={{ visibility: 'hidden' }} />
 			)}
+			{!page && <div style={{ visibility: 'hidden' }} />}
 			<div className={styles.textBox}>
-				{/* <p
-					className={`${sortType === '인기순' ? styles.selectedSortItem : ''}`}
-					onClick={() => handleSortTypeChange('인기순')}>
-					인기순
-				</p> */}
 				<p
-					className={`${sortType === '제목순' && styles.selectedSortItem}`}
-					onClick={() => handleSortTypeChange('제목순')}>
+					className={`${sortType === 'title' && styles.selectedSortItem}`}
+					onClick={() => handleSortTypeChange('title')}>
 					제목순
 				</p>
 				<p
-					className={`${sortType === '최신순' && styles.selectedSortItem}`}
-					onClick={() => handleSortTypeChange('최신순')}>
+					className={`${sortType === 'earliest' && styles.selectedSortItem}`}
+					onClick={() => handleSortTypeChange('earliest')}>
 					최신순
 				</p>
 			</div>

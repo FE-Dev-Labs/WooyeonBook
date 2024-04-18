@@ -1,30 +1,28 @@
 'use client';
 
+import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 import styles from '@/styles/category/categoryBar/categoryBar.module.css';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRecoilValue } from 'recoil';
 
-export default function CategoryBar() {
+export default function CategoryBar({ categoryId }: { categoryId: string }) {
 	// useRouter 호출
 	const router = useRouter();
 	// usePathname 호출
 	const pathname = usePathname();
-	// useSerachParams 호출
-	const params = useSearchParams();
-
-	// categoryId 추출
-	const categoryId = params.get('categoryId');
+	// sort type value
+	const sortType = useRecoilValue(sortTypeState);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
 	const categoryIdNumber = Number(categoryId);
 
 	// 카테고리 선택 시 동작하는 함수
-	const handleClickCategory = (categoryId: number) => {
+	const handleCategoryItemClick = (categoryId: number) => {
 		// 카테고리 - 전체 시 아이디 null로 찍히므로 null일 시 기존 페이지로 이동
 		// !categoryId 시 기존 페이지로 이동(카테고리 전체 시 아이디 null로 찍힘)
 		if (!categoryId) {
 			router.push(pathname);
-			// categoryId = true 시 해당 경로로 push
 		} else {
-			router.push(`${pathname}?categoryId=${categoryId}`);
+			router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
 		}
 	};
 
@@ -50,7 +48,7 @@ export default function CategoryBar() {
 							<li
 								key={item.id}
 								className={linkClassName(item.id)}
-								onClick={() => handleClickCategory(item.id)}>
+								onClick={() => handleCategoryItemClick(item.id)}>
 								{item.name}
 							</li>
 						);
@@ -95,3 +93,8 @@ const categoryItem = [
 	{ name: '중학교참고서', id: 76000 },
 	{ name: '고등학교참고서', id: 76001 },
 ];
+
+// useSerachParams 호출
+// const params = useSearchParams();
+// categoryId 추출
+// const categoryId = params.get('categoryId');

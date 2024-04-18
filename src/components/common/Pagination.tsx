@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/styles/common/pagination.module.css';
 import Image from 'next/image';
 import arrowRightIcon from '../../../public/common/arrowRight.png';
@@ -9,14 +11,14 @@ import { useEffect, useState } from 'react';
 interface PaginationProps {
 	dataLength: number;
 	currentPage: number;
-	handlePageNumClick: (page: number) => void;
+	// handlePageNumClick: (page: number) => void;
 	page?: string;
 }
 
 export default function Pagination({
 	dataLength,
 	currentPage,
-	handlePageNumClick,
+	// handlePageNumClick,
 	page,
 }: PaginationProps) {
 	// 페이지 그룹 state
@@ -62,6 +64,15 @@ export default function Pagination({
 		setPageGroup(Math.floor((currentPage - 1) / groupSize));
 	}, [currentPage]);
 
+	// 현재 카테고리의 각 페이지(숫자) 선택 시 실행되는 함수
+	const handlePageNumClick = (pageNum: number) => {
+		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
+		if (currentPage === pageNum) return;
+		// 현재 페이지 숫자 변경
+		// setCurrentPage(pageNum);
+		// 페이지 선택시 페이지 상단으로 스크롤 이동
+		window.scrollTo({ top: 320, behavior: 'smooth' });
+	};
 	return (
 		<section className={styles.paginationContainer}>
 			<div className={styles.paginationWrappper}>

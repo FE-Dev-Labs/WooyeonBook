@@ -65,7 +65,6 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 				cart: myCart,
 				totalOrderPrice,
 			};
-			console.log(orderData);
 
 			// 테이블에 추가
 			try {
