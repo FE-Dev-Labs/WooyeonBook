@@ -68,7 +68,7 @@ export default function TopWrapper() {
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
 			<button onClick={handleSignupBtnWordClick}>{signupBtnWord}</button>
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
-			<Link href={'/login'}>
+			<Link href={'/mypage?page=bookReport'}>
 				<p>마이페이지</p>
 			</Link>
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />

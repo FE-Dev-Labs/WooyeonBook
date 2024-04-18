@@ -1,6 +1,6 @@
 .container {
 	display: grid;
-	width: 100vw;
+	/* width: 100vw; */
 	grid-template-columns: 1fr 1300px 1fr;
 	min-height: 80vw;
 }
@@ -67,4 +67,11 @@
 .weeklyPopularWriter {
 	margin-top: 15px;
 	margin-right: 15px;
+}
+.line {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #dee2e6;
+	align-items: center;
 }

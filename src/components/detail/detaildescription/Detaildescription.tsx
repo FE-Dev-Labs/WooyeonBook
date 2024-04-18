@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Book } from '@/types/bookDetailDate';
 import DetailQuantity from './DetailQuantity';
 import DetailTotalQuantity from './DetailTotalQuantity';
-import DetailOrderBtn from './DetailOrderBtn';
+import DetailOrderBtn from './Detailorderbtn';
 
 interface bookDetailProp {
 	bookInfo: Book;

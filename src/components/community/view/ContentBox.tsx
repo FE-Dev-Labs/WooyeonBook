@@ -2,6 +2,7 @@ import styles from '@/styles/community/contentBox.module.css';
 import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
 import NaviLab from './nav/NaviLab';
+import Image from 'next/image';
 interface ContentBoxProps {
 	data: AllDataType;
 	page?: string;
@@ -11,7 +12,22 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 	const title = () => {
 		switch (page) {
 			case 'bookReport':
-				return <h2 className={styles.title}>{data.title}</h2>;
+				return (
+					<div className={styles.titleWrap}>
+						<div className={styles.postImgArea}>
+							{data.book_img_url ? (
+								<Image
+									className={styles.postImg}
+									src={data.book_img_url}
+									alt="책표지"
+									width={200}
+									height={200}
+								/>
+							) : null}
+						</div>
+						<h2 className={styles.title}>{data.title}</h2>
+					</div>
+				);
 			case 'bookMeeting':
 				return (
 					<div className={styles.titleWrap}>

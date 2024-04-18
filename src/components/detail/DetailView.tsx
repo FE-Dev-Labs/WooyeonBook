@@ -5,11 +5,11 @@ import AccordionWrapper from '../common/AccordionWrapper';
 import Accordion from '../common/Accordion';
 import { useEffect } from 'react';
 import { RecentlyViewedBookType } from '@/types/bookType';
-import DetailDescription from './detailDescription/DetailDescription';
-import DetailExplanation from './detaildata/DetailExplanation';
-import DetailInformation from './detaildata/DetailInformation';
-import DetailSustainability from './detaildata/DetailSustainability';
-import DetailComment from './detailcomments/DetailComment';
+import DetailExplanation from './detailData/DetailExplanation';
+import DetailInformation from './detailData/DetailInformation';
+import DetailSustainability from './detailData/DetailSustainability';
+import DetailDescription from './detailDescription/Detaildescription';
+import DetailComment from './detailComments/Detailcomment';
 
 interface DetailViewProps {
 	book: Book;

@@ -2,6 +2,8 @@
 import Link from 'next/link';
 import styles from '@/styles/community/LayoutNav.module.css';
 import communityPathname from '@/apis/communityPathname';
+import Image from 'next/image';
+import writeIcon from '../../../../../public/community/write.png';
 function Nav() {
 	const pathname = communityPathname();
 	const communityUrl = (to: string) => {
@@ -39,6 +41,7 @@ function Nav() {
 				</Link>
 			</div>
 			<Link className={styles.writeBtn} href={`${postUrl()}`}>
+				<Image src={writeIcon} alt="writeIcon" width={20} height={20} className={styles.writeIcon}/>
 				글쓰기
 			</Link>
 		</nav>

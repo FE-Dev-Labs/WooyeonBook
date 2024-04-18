@@ -1,19 +1,20 @@
 /* 헤더 css */
 .Container {
-	width: 100vw;
-	height: 100px;
-	background-color: #333b3d;
+	height: 150px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f8f8f8;
 }
 .Container > div {
 	width: 1300px;
-	color: white;
-	margin: 0 auto;
+	align-items: center;
 }
 .Container > div > h2 {
 	font-size: 30px;
-	padding-top: 20px;
-	margin-bottom: 10px;
+	font-weight: bold;
 }
 .Container > div > p {
-	font-size: 15px;
+	margin-top: 10px;
+	font-size: 14px;
 }
