@@ -82,12 +82,16 @@ const BookMeetingPostPage = () => {
 			deadline: deadline.value as Date,
 			chatting_url: chatUrl.value as string,
 		};
-		// supabase 데이터베이스에 데이터 삽입
-		const { error } = await supabase.from(`${page}`).insert([data]);
-		// 에러 발생시 alert
-		if (error) {
-			return alert('에러가 발생했습니다.');
-		}
+		await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/create/${page}`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			},
+		);
 		// state 초기화
 		title.init('');
 		setContent('');
