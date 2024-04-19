@@ -56,16 +56,6 @@ async function bookReport({
 			)
 		: data;
 
-	// const categoryFiltering = queryFiltering.filter((report: BookReportDataType) => {
-	// 	switch (searchParams?.categories) {
-	// 		case 'true':
-	// 			return report.state === false;
-	// 		case 'false':
-	// 			return report.state === true;
-	// 		default:
-	// 			return report;
-	// 	}
-	// });
 	const sortFiltering = queryFiltering.sort(
 		(a: BookReportDataType, b: BookReportDataType) => {
 			switch (searchParams?.sort) {
@@ -80,6 +70,7 @@ async function bookReport({
 			}
 		},
 	);
+
 	const num = searchParams?.num ? parseInt(searchParams.num) : 1;
 
 	const start = num * 10 - 10;
@@ -92,7 +83,7 @@ async function bookReport({
 			{numFiltering?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
 			})}
-			<PageNation alldata={data} />
+			<PageNation length={data.length} show_page_num={10} />
 		</section>
 	);
 }
