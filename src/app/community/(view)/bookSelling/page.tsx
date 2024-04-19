@@ -30,22 +30,25 @@ function isBookMeetingArray(data: any): data is BookSellingDataType[] {
 	);
 }
 
-export default async function sellingBook({
+export default async function bookSelling({
 	searchParams,
 }: {
 	searchParams: { sort?: string; q?: string };
 }) {
-	const { data, sortedData } = await getCommunityViewData({
+	const { sortedData } = await getCommunityViewData({
 		page: 'bookSelling',
 		searchParams,
 	});
 
-	if (!isBookMeetingArray(data)) {
+	if (!isBookMeetingArray(sortedData)) {
 		throw new Error('Data is not an array of book buying ');
 	}
-	const res = await fetch('http://localhost:8080/community/bookSelling', {
-		cache: 'no-store',
-	});
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookSelling`,
+		{
+			cache: 'no-store',
+		},
+	);
 	const alldata: AllDataType[] = await res.json();
 
 	return (

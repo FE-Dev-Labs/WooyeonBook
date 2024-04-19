@@ -24,22 +24,25 @@ function isBookMeetingArray(data: any): data is BookMeetingDataType[] {
 		)
 	);
 }
-export default async function meeting({
+export default async function bookMeeting({
 	searchParams,
 }: {
 	searchParams: { sort?: string; q?: string; categories?: string };
 }) {
-	const { data, sortedData } = await getCommunityViewData({
+	const { sortedData } = await getCommunityViewData({
 		page: 'bookMeeting',
 		searchParams,
 	});
 
-	if (!isBookMeetingArray(data)) {
+	if (!isBookMeetingArray(sortedData)) {
 		throw new Error('Data is not an array of book meeting ');
 	}
-	const res = await fetch('http://localhost:8080/community/bookMeeting', {
-		cache: 'no-store',
-	});
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookMeeting`,
+		{
+			cache: 'no-store',
+		},
+	);
 	const alldata: AllDataType[] = await res.json();
 	return (
 		<section>

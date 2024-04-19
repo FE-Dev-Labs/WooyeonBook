@@ -1,35 +1,40 @@
 'use client';
 
 import { queryString } from '@/recoil/atom/queryString';
-import { AllDataType } from '@/types/community/view/data';
 import { useRecoilState } from 'recoil';
 
-const PageNation = ({ alldata }: { alldata: AllDataType[] }) => {
+const PageNation = ({
+	length,
+	show_page_num,
+}: {
+	length: number;
+	show_page_num: number;
+}) => {
 	const [qs, setQs] = useRecoilState(queryString);
 
 	// 총 페이지 수
-	const allPageCount = Math.ceil(alldata.length / 10);
+	const allPageCount = Math.ceil(length / show_page_num);
 
 	// 총 그룹 수
 	const allGroupCount = Math.ceil(allPageCount / 10);
 
 	// 현재 페이지
-	const nowPage = parseInt(qs.num);
+	const nowPage = parseInt(qs.num) || 1;
+
 	// 현재 페이지 그룹
-	const nowGroup = Math.ceil((parseInt(qs.num) - 1) / 10);
+	const nowGroup = Math.ceil(nowPage / 10);
 
 	// 보여질 페이지 그룹의 시작과 끝
-	const end = (nowGroup + 1) * 10;
-	const start = end - 9;
+	const end =
+		nowGroup === allGroupCount && allPageCount % 10 === 0
+			? nowGroup * 10
+			: allPageCount % 10;
+	const start = nowGroup * 10 - 9;
 
-	// 전채 페이지
-	const allLinks = Array.from(
-		{ length: Math.ceil(alldata.length / 10) },
-		(v, i) => i + 1,
-	);
+	// 전체 페이지
+	const allLinks = Array.from({ length: allPageCount }, (v, i) => i + 1);
 	// 보여지는 페이지
-	const links = Array.from({ length: 10 }, (v, i) => start + i);
-
+	const links = Array.from({ length: end - start + 1 }, (v, i) => start + i);
 	const isNext = allGroupCount > nowGroup && allLinks.length > 10;
 	//   const isendNext =
 	const isPrev = nowGroup > 0 && allLinks.length > 10;
