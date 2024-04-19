@@ -7,20 +7,23 @@ import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 import arrowLeftIcon from '../../../public/common/arrowLeft.png';
 import arrowDoubleLeftIcon from '../../../public/common/arrowDoubleLeft.png';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+// handlePageNumClick: (page: number) => void;
+// handlePageNumClick,
 
 interface PaginationProps {
 	dataLength: number;
-	currentPage: number;
-	// handlePageNumClick: (page: number) => void;
+	// currentPage: number;
 	page?: string;
 }
 
 export default function Pagination({
 	dataLength,
-	currentPage,
-	// handlePageNumClick,
+	// currentPage,
 	page,
 }: PaginationProps) {
+	const [currentPage, setCurrentPage] = useRecoilState(CurrentPageAtom);
 	// 페이지 그룹 state
 	const [pageGroup, setPageGroup] = useState<number>(
 		Math.floor((currentPage - 1) / 10),
@@ -69,7 +72,7 @@ export default function Pagination({
 		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
 		if (currentPage === pageNum) return;
 		// 현재 페이지 숫자 변경
-		// setCurrentPage(pageNum);
+		setCurrentPage(pageNum);
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
 		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};

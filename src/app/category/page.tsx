@@ -4,10 +4,6 @@ import CategoryContents from '@/components/category/categoryContents/CategoryCon
 import PageHeader from '@/components/common/PageHeader';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
 import { NewBookType } from '@/types/bookType';
-// import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
 import { getCategoryPageData } from '@/apis/category/getCategoryPageData';
 
 export default async function categoryPage({
@@ -22,14 +18,12 @@ export default async function categoryPage({
 	);
 	// category id
 	const categoryId = searchParams.categoryId;
-
 	// 현재 선택된 카테고리 아이템 찾기
 	const currentCategoryItem = categoryItem.find(
 		(item) => item.id === Number(categoryId),
 	);
 
-	console.log(fetchData);
-	console.log(fetchData.length);
+	// console.log(fetchData.length);
 
 	return (
 		<div>
