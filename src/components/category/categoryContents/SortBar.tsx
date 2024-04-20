@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/category/categoryContents/sortBar.module.css';
-import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
+import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
@@ -13,15 +13,15 @@ interface SortBarProp {
 }
 
 export default function SortBar({ categoryId, page, dataLength }: SortBarProp) {
-	// 소팅 state
-	const [sortType, setSortType] = useRecoilState(sortTypeState);
+	// sort type state
+	const [sortType, setSortType] = useRecoilState(sortTypeAtom);
 	// useRouter 호출
 	const router = useRouter();
 	// usePathname 호출
 	const pathname = usePathname();
 
 	// 소팅 아이템 선택시 동작하는 함수
-	const handleSortTypeChange = (sortType: string) => {
+	const handleSortTypeChange = async (sortType: string) => {
 		// 소팅 아이템 변경
 		setSortType(sortType);
 		// 라우터 변경
@@ -29,7 +29,7 @@ export default function SortBar({ categoryId, page, dataLength }: SortBarProp) {
 	};
 
 	return (
-		<header className={styles.sortBox}>
+		<section className={styles.sortBox}>
 			{page && 'search' && (
 				<div className={styles.amountBox}>상품 ({dataLength})</div>
 			)}
@@ -46,6 +46,6 @@ export default function SortBar({ categoryId, page, dataLength }: SortBarProp) {
 					최신순
 				</p>
 			</div>
-		</header>
+		</section>
 	);
 }

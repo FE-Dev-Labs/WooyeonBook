@@ -3,27 +3,19 @@ import CategoryBar from '@/components/category/categoryBar/CategoryBar';
 import CategoryContents from '@/components/category/categoryContents/CategoryContents';
 import PageHeader from '@/components/common/PageHeader';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
-import { NewBookType } from '@/types/bookType';
-import { getCategoryPageData } from '@/apis/category/getCategoryPageData';
 
 export default async function categoryPage({
 	searchParams,
 }: {
-	searchParams: { categoryId: string; sortType: string; num: string };
+	// searchParams: { categoryId: string; sortType: string; num: string };
+	searchParams: { categoryId: string };
 }) {
-	// category page data
-	const fetchData: NewBookType[] = await getCategoryPageData(
-		searchParams.categoryId,
-		searchParams.sortType,
-	);
 	// category id
 	const categoryId = searchParams.categoryId;
 	// 현재 선택된 카테고리 아이템 찾기
 	const currentCategoryItem = categoryItem.find(
 		(item) => item.id === Number(categoryId),
 	);
-
-	// console.log(fetchData.length);
 
 	return (
 		<div>
@@ -34,14 +26,7 @@ export default async function categoryPage({
 				<aside />
 				<main className={styles.wrapper}>
 					<CategoryBar categoryId={categoryId} />
-					<CategoryContents
-						data={fetchData}
-						dataLength={fetchData.length}
-						// currentPage={currentPage}
-						currentPage={Number(searchParams.num)}
-						categoryId={categoryId}
-						page="category"
-					/>
+					<CategoryContents categoryId={categoryId} page="category" />
 				</main>
 				<aside>
 					<RecentlyViewedBooks />
@@ -86,6 +71,12 @@ const categoryItem = [
 	{ name: '고등학교참고서', id: 76001 },
 ];
 
+// category page data
+// const fetchData: NewBookType[] = await getCategoryPageData(
+// 	searchParams.categoryId,
+// 	searchParams.sortType,
+// );
+
 // useSearchParams 호출
 // const params = useSearchParams();
 // url 내 categoryId 추출
@@ -98,7 +89,7 @@ const categoryItem = [
 // // 현재 카테고리의 현재 페이지 state
 // const [currentPage, setCurrentPage] = useState<number>(1);
 // // 소팅 state(제목순, 최신순)
-// const sortType = useRecoilValue(sortTypeState);
+// const sortType = useRecoilValue(sortTypeAtom);
 
 // // server -> api 받아오는 함수
 // const fetchData = async () => {

@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 
 // book item sort type
-export const sortTypeState = atom<string>({
-	key: 'sortType',
+export const sortTypeAtom = atom<string>({
+	key: 'sortTypeAtom',
 	default: 'title',
 });

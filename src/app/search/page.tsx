@@ -4,7 +4,7 @@ import SortBar from '@/components/category/categoryContents/SortBar';
 import PageHeader from '@/components/common/PageHeader';
 import Pagination from '@/components/common/Pagination';
 import SearchBookItemWrapper from '@/components/search/SearchBookItemWrapper';
-import { sortTypeState } from '@/recoil/atom/sortTypeAtom';
+import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import styles from '@/styles/search/search.module.css';
 import { NewBookType } from '@/types/bookType';
 import { useSearchParams } from 'next/navigation';
@@ -23,7 +23,7 @@ export default function searchPage() {
 	// 현재 카테고리의 페이지 state
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	// 소팅 state(제목순, 최신순)
-	const sortType = useRecoilValue(sortTypeState);
+	const sortType = useRecoilValue(sortTypeAtom);
 	// 로딩 state
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 

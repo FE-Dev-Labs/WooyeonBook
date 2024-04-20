@@ -30,7 +30,8 @@ export default function Pagination({
 	);
 
 	// 한 페이지 당 나타낼 아이템의 개수 설정. page가 'best' 또는 'category'일 경우 24, 그 외는 30
-	const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
+	// const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
+	const itemPerPage = 30;
 	// 전체 페이지 수 계산
 	let totalPages =
 		// 베스트페이지일 시, 최대 페이지 10개

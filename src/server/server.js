@@ -485,56 +485,107 @@ app.get('/list/used', async (req, res) => {
 // 		res.status(400).send(err);
 // 	}
 // });
+//
+//
+// app.get('/list/newAll', async (req, res) => {
+// 	const { categoryId, sort } = req.query;
+// 	try {
+// 		// 첫번째 api
+// 		const initialResponse = await axios.get(
+// 			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+// 		);
+// 		// 데이터 수
+// 		const dataLength = await initialResponse.data.totalResults;
+// 		// 페이지 수
+// 		const pageLength = Math.ceil(dataLength / 24);
+// 		// 해당 카테고리에 있는 모든 데이터를 삽입해줄 빈 배열
+// 		const categoryAlldata = [];
+// 		for (let start = 2; start <= pageLength; start++) {
+// 			const categoryResponse = await axios.get(
+// 				`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+// 			);
+// 			// for문을 순회하며 들어가는 데이터
+// 			const categoryData = await categoryResponse.data.item;
+// 			// 끝까지 for문을 돌며 push
+// 			categoryAlldata.push(...categoryData);
+// 		}
+
+// 		// 중복 제거 로직 추가(data.itemId가 같은 책 다수로 인함)
+// 		const uniqueItemsMap = new Map();
+// 		categoryAlldata.forEach((item) => {
+// 			// item.itemId 또는 고유 식별자를 키로 사용
+// 			if (!uniqueItemsMap.has(item.itemId)) {
+// 				uniqueItemsMap.set(item.itemId, item);
+// 			}
+// 		});
+// 		// itemId가 2개인 아이템을 제외한 하나 뿐인 데이터들
+// 		const uniqueData = Array.from(uniqueItemsMap.values());
+// 		const sortedData =
+// 			sort === '제목순'
+// 				? uniqueData.sort((a, b) => a.title.localeCompare(b.title))
+// 				: sort(
+// 						(a, b) =>
+// 							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+// 					);
+// 		// 하나뿐인 데이터들만 포함한 데이터 수
+// 		const uniqueDataLength = uniqueData.length;
+// 		// // 하나뿐인 데이터들만 포함한 페이지 수
+// 		// const uniquePageLength = Math.ceil(uniqueDataLength / 24);
+
+// 		// 중복이 제거된 데이터를 클라이언트에 전송
+// 		res.status(200).send({
+// 			data: sortedData,
+// 			dataLength: uniqueDataLength,
+// 			// pageLength: uniquePageLength,
+// 		});
+// 	} catch (err) {
+// 		res.status(400).send(err);
+// 	}
+// });
 app.get('/list/newAll', async (req, res) => {
-	const { categoryId, sort } = req.query;
+	const { categoryId, sortType } = req.query;
 	try {
 		// 첫번째 api
-		const initialResponse = await axios.get(
+		const response = await axios.get(
 			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 		);
-		// 데이터 수
-		const dataLength = await initialResponse.data.totalResults;
-		// 페이지 수
-		const pageLength = Math.ceil(dataLength / 24);
-		// 해당 카테고리에 있는 모든 데이터를 삽입해줄 빈 배열
-		const categoryAlldata = [];
+		// 데이터의 item 속성만 추출
+		const data = await response.data.item;
+		// 해당 카테고리의 모든 데이터를 넣어줄 배열 (+ 첫 요청에서 가져온 24개 아이템)
+		const allCategoryData = [...data];
+		// 해당 카테고리의 모든 아이템 개수
+		const allCategoryDataLength = await response.data.totalResults;
+		// 해당 카테고리의 데이터 요청 수(한 번에 최대 50)
+		const pageLength = Math.ceil(allCategoryDataLength / 50);
+
+		// 두 번째 요청부터 마지막 요청까지 데이터 누적
 		for (let start = 2; start <= pageLength; start++) {
-			const categoryResponse = await axios.get(
+			const response = await axios.get(
 				`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 			);
-			// for문을 순회하며 들어가는 데이터
-			const categoryData = await categoryResponse.data.item;
+			// for문을 순회하며 얻은 데이터
+			const data = await response.data.item;
 			// 끝까지 for문을 돌며 push
-			categoryAlldata.push(...categoryData);
+			allCategoryData.push(...data);
 		}
 
-		// 중복 제거 로직 추가(data.itemId가 같은 책 다수로 인함)
+		// 중복 제거 로직 추가
 		const uniqueItemsMap = new Map();
-		categoryAlldata.forEach((item) => {
-			// item.itemId 또는 고유 식별자를 키로 사용
-			if (!uniqueItemsMap.has(item.itemId)) {
-				uniqueItemsMap.set(item.itemId, item);
-			}
-		});
-		// itemId가 2개인 아이템을 제외한 하나 뿐인 데이터들
-		const uniqueData = Array.from(uniqueItemsMap.values());
-		const sortedData =
-			sort === '제목순'
-				? uniqueData.sort((a, b) => a.title.localeCompare(b.title))
-				: sort(
+		allCategoryData.forEach((item) => uniqueItemsMap.set(item.itemId, item));
+		const uniqueAllCategoryData = Array.from(uniqueItemsMap.values());
+
+		// 해당 카테고리의 모든 데이터 정렬
+		const sortedAllCategoryData =
+			sortType === 'title'
+				? uniqueAllCategoryData.sort((a, b) => a.title.localeCompare(b.title))
+				: uniqueAllCategoryData.sort(
 						(a, b) =>
 							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 					);
-		// 하나뿐인 데이터들만 포함한 데이터 수
-		const uniqueDataLength = uniqueData.length;
-		// // 하나뿐인 데이터들만 포함한 페이지 수
-		// const uniquePageLength = Math.ceil(uniqueDataLength / 24);
 
-		// 중복이 제거된 데이터를 클라이언트에 전송
+		// 데이터를 클라이언트 전송
 		res.status(200).send({
-			data: sortedData,
-			dataLength: uniqueDataLength,
-			// pageLength: uniquePageLength,
+			data: sortedAllCategoryData,
 		});
 	} catch (err) {
 		res.status(400).send(err);
