@@ -38,9 +38,9 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 				return (
 					<div className={styles.titleWrap}>
 						{data.selling ? (
-							<div className={styles.contentState}>나눔</div>
-						) : (
 							<div className={styles.contentState}>팝니다</div>
+						) : (
+							<div className={styles.contentState}>나눔</div>
 						)}
 						<h2 className={styles.title}>{data.title}</h2>
 					</div>

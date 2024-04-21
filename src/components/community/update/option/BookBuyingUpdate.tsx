@@ -6,7 +6,6 @@ import { useRecoilState } from 'recoil';
 import { useInputState } from '@/hooks/useInputState';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/utils/supabase/supabase';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import OptionBookBuying from '../../post/option/OptionBookBuying';
 import { BookBuyingDataType } from '@/types/community/view/data';
@@ -81,16 +80,16 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 			like: like,
 			state: buyingState,
 		};
-		// supabase 데이터베이스에 데이터 삽입
-		const { error } = await supabase
-			.from('bookBuying')
-			.update(data)
-			.eq('doc_id', docid)
-			.select();
-		// 에러 발생시 alert
-		if (error) {
-			return alert('에러가 발생했습니다.');
-		}
+		await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/update/bookBuying/${docid}`,
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			},
+		);
 		// state 초기화
 		title.init('');
 		setText('');
