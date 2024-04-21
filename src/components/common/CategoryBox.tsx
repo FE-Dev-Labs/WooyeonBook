@@ -1,33 +1,34 @@
 'use client';
 
+import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 import styles from '@/styles/common/categoryBox.module.css';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useSetRecoilState } from 'recoil';
 
-export default function CategoryBox() {
+export default function CategoryBox({ categoryId }: { categoryId: string }) {
 	// useRouter 호출
 	const router = useRouter();
 	// usePathname 호출
 	const pathname = usePathname();
-	// useSerachParams 호출
-	const params = useSearchParams();
-
-	// categoryId 추출
-	const categoryId = params.get('categoryId');
+	// current page setValue
+	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
 	const categoryIdNumber = Number(categoryId);
 
-	// 카테고리 선택 시 실행되는 함수: 각 카테고리 선택시 파라미터 변경
-	const handleClickCategory = (categoryId: number) => {
-		// 카테고리 - 전체 시 아이디 null로 찍히므로 null일 시 기존 페이지로 이동
+	// 카테고리 선택 시 동작하는 함수
+	const handleCategoryItemClick = (categoryId: number) => {
+		if (categoryId) {
+			router.push(`${pathname}?categoryId=${categoryId}`);
+		}
 		// !categoryId 시 기존 페이지로 이동(카테고리 전체 시 아이디 null로 찍힘)
 		if (!categoryId) {
 			router.push(pathname);
-		} else {
-			router.push(`${pathname}?categoryId=${categoryId}`);
 		}
+		// 1페이지로 초기화
+		setCurrentPage(1);
 	};
 
-	// categoryId(nav item의 category number)를 파라미터로 받아 className을 바꿔주는 함수
+	// categoryId(nav item의 category number)를 파라미터로 받아 스타일링을 위해 className을 바꿔주는 함수
 	const linkClassName = (categoryId: number) => {
 		return categoryId === categoryIdNumber
 			? styles.selectedCategory
@@ -41,7 +42,7 @@ export default function CategoryBox() {
 					<li
 						className={linkClassName(item.id)}
 						key={item.id}
-						onClick={() => handleClickCategory(item.id)}>
+						onClick={() => handleCategoryItemClick(item.id)}>
 						{item.name}
 					</li>
 				))}

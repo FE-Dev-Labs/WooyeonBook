@@ -20,19 +20,19 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 
 	// 카테고리 선택 시 동작하는 함수
 	const handleCategoryItemClick = (categoryId: number) => {
-		if (categoryId) {
-			router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
-		}
+		// if (categoryId) {
+		router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
+		// }
 		// !categoryId 시 기존 페이지로 이동(카테고리-전체 시 아이디 null로 찍힘)
-		if (!categoryId) {
-			router.push(pathname);
-		}
+		// if (!categoryId) {
+		// 	router.push(pathname);
+		// }
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
 		setSortType('title');
 	};
 
-	// categoryId(nav item의 category number)를 파라미터로 받아 스타일링을 위해className을 바꿔주는 함수
+	// categoryId(nav item의 category number)를 파라미터로 받아 스타일링을 위해 className을 바꿔주는 함수
 	const linkClassName = (categoryId: number) => {
 		return categoryId === categoryIdNumber
 			? styles.selectedCategory
@@ -41,7 +41,7 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 
 	return (
 		<section className={styles.container}>
-			<nav className={styles.Wrapper}>
+			<nav className={styles.wrapper}>
 				<header className={styles.categoryBarTitle}>
 					<h1>분야</h1>
 				</header>

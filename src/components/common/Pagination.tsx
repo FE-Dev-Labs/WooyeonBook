@@ -36,7 +36,8 @@ export default function Pagination({
 	let totalPages =
 		// 베스트페이지일 시, 최대 페이지 10개
 		page === 'best'
-			? Math.min(Math.ceil(dataLength / itemPerPage), 10)
+			? // ? Math.min(Math.ceil(dataLength / itemPerPage), 10)
+				10
 			: // 중고도서페이지일 시, 최대 페이지 30개
 				page === 'used'
 				? Math.min(Math.ceil(dataLength / itemPerPage), 30)
