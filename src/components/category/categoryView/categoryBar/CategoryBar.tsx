@@ -4,15 +4,15 @@ import styles from '@/styles/category/categoryView/categoryBar/categoryBar.modul
 import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { usePathname, useRouter } from 'next/navigation';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 export default function CategoryBar({ categoryId }: { categoryId: string }) {
 	// useRouter 호출
 	const router = useRouter();
 	// usePathname 호출
 	const pathname = usePathname();
-	// sort type value
-	const sortType = useRecoilValue(sortTypeAtom);
+	// sort type state
+	const [sortType, setSortType] = useRecoilState(sortTypeAtom);
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
@@ -27,8 +27,9 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 		if (!categoryId) {
 			router.push(pathname);
 		}
-		// 1페이지로 초기화
+		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
+		setSortType('title');
 	};
 
 	// categoryId(nav item의 category number)를 파라미터로 받아 스타일링을 위해className을 바꿔주는 함수

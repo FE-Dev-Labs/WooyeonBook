@@ -7,18 +7,15 @@ import { useRecoilValue } from 'recoil';
 import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 import { useEffect, useState } from 'react';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
-import SortBar from './SortBar/SortBar';
 import CategoryBookItemBox from './categoryBookItemBox/CategoryBookItemBox';
+import SortBar from '@/components/common/SortBar';
 
 interface CategoryConentsProp {
 	categoryId: string;
 	page: string;
 }
 
-export default function CategoryContents({
-	categoryId,
-	page,
-}: CategoryConentsProp) {
+export default function CategoryContents({ categoryId }: CategoryConentsProp) {
 	// category page data state
 	const [data, setData] = useState<NewBookType[]>([]);
 	// current page value
@@ -36,6 +33,11 @@ export default function CategoryContents({
 		setData(data);
 	};
 
+	// data 뿌려주는 useEffect
+	useEffect(() => {
+		fetchData();
+	}, [categoryId, sortType]);
+
 	// 페이지 첫 시작 데이터의 숫자, 24 = 카테고리 페이지에 나타낼 아이템 갯수
 	const startIndex = (currentPage - 1) * 24;
 	// 앞서 보여진 데이터를 제외한 마지막 데이터의 숫자
@@ -43,16 +45,12 @@ export default function CategoryContents({
 	// 해당 페이지에서 보여줄 데이터
 	const pageData = data?.slice(startIndex, endIndex);
 
-	useEffect(() => {
-		fetchData();
-	}, [categoryId, sortType]);
-
 	return (
 		<div className={styles.categoryContents}>
 			{/* <CategorySlider /> */}
-			<SortBar categoryId={categoryId} />
+			<SortBar categoryId={categoryId} page="category" />
 			<CategoryBookItemBox data={pageData} />
-			<Pagination dataLength={data.length} page={page} />
+			<Pagination dataLength={data.length} />
 		</div>
 	);
 }

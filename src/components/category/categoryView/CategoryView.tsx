@@ -8,13 +8,10 @@ export default function CategoryView({ categoryId }: { categoryId: string }) {
 		<div className={styles.container}>
 			<aside />
 			<main className={styles.wrapper}>
-				{/* client */}
 				<CategoryBar categoryId={categoryId} />
-				{/* client */}
 				<CategoryContents categoryId={categoryId} page="category" />
 			</main>
 			<aside>
-				{/* client */}
 				<RecentlyViewedBooks />
 			</aside>
 		</div>

@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/category/categoryView/categoryContents/sortBar/sortBar.module.css';
+import styles from '@/styles/common/sortBar.module.css';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/navigation';
@@ -8,11 +8,17 @@ import { usePathname } from 'next/navigation';
 
 interface SortBarProp {
 	categoryId?: string;
-	page?: string;
+	keyword?: any;
+	page: string;
 	dataLength?: number | null;
 }
 
-export default function SortBar({ categoryId, page, dataLength }: SortBarProp) {
+export default function SortBar({
+	categoryId,
+	keyword,
+	page,
+	dataLength,
+}: SortBarProp) {
 	// sort type state
 	const [sortType, setSortType] = useRecoilState(sortTypeAtom);
 	// useRouter 호출
@@ -25,15 +31,21 @@ export default function SortBar({ categoryId, page, dataLength }: SortBarProp) {
 		// 소팅 아이템 변경
 		setSortType(sortType);
 		// 라우터 변경
-		router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
+		page === 'category' &&
+			router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
+		page === 'search' &&
+			router.push(`${pathname}?keyword=${keyword}&sortType=${sortType}`);
 	};
+
+	console.log(keyword);
+	console.log(sortType);
 
 	return (
 		<section className={styles.sortBox}>
-			{page && 'search' && (
+			{page === 'category' && <div style={{ visibility: 'hidden' }} />}
+			{page === 'search' && (
 				<div className={styles.amountBox}>상품 ({dataLength})</div>
 			)}
-			{!page && <div style={{ visibility: 'hidden' }} />}
 			<div className={styles.textBox}>
 				<p
 					className={`${sortType === 'title' && styles.selectedSortItem}`}

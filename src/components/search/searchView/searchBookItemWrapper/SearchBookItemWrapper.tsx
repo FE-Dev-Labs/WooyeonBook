@@ -1,7 +1,8 @@
 import { NewBookType } from '@/types/bookType';
 import React from 'react';
-import styles from '@/styles/search/searchBookItemWrapper.module.css';
-import BookItem from '../common/bookItem/BookItem';
+import styles from '@/styles/search/searchView/searchBookItemWrapper/searchBookItemWrapper.module.css';
+import BookItem from '@/components/common/bookItem/BookItem';
+// import BookItem from '../common/bookItem/BookItem';
 
 interface SearchBookItemWrapperProp {
 	data: NewBookType[];
