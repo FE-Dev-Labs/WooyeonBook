@@ -1,13 +1,9 @@
 import styles from '@/styles/category/category.module.css';
-import CategoryBar from '@/components/category/categoryBar/CategoryBar';
-import CategoryContents from '@/components/category/categoryContents/CategoryContents';
 import PageHeader from '@/components/common/PageHeader';
-import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
-
+import CategoryView from '@/components/category/categoryView/CategoryView';
 export default async function categoryPage({
 	searchParams,
 }: {
-	// searchParams: { categoryId: string; sortType: string; num: string };
 	searchParams: { categoryId: string };
 }) {
 	// category id
@@ -18,20 +14,11 @@ export default async function categoryPage({
 	);
 
 	return (
-		<div>
+		<div className={styles.container}>
 			<PageHeader
 				title={currentCategoryItem ? currentCategoryItem.name : '전체'}
 			/>
-			<div className={styles.container}>
-				<aside />
-				<main className={styles.wrapper}>
-					<CategoryBar categoryId={categoryId} />
-					<CategoryContents categoryId={categoryId} page="category" />
-				</main>
-				<aside>
-					<RecentlyViewedBooks />
-				</aside>
-			</div>
+			<CategoryView categoryId={categoryId} />
 		</div>
 	);
 }
