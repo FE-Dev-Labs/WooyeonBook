@@ -296,9 +296,7 @@ app.get('/list/newAll', async (req, res) => {
 							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 					);
 		// 데이터를 클라이언트 전송
-		res.status(200).send({
-			data: sortedAllCategoryData,
-		});
+		res.status(200).send({ data: sortedAllCategoryData });
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -352,12 +350,29 @@ app.get('/list/search', async (req, res) => {
 	}
 });
 
+// best 페이지: 전체 베스트셀러 도서 api
+app.get('/list/bestAll', async (req, res) => {
+	const { categoryId, pageNum } = req.query;
+
+	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
+	const start = Number(pageNum);
+	try {
+		const response = await axios.get(
+			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=Bestseller&MaxResults=24&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+		);
+		// 베스트셀러 리스트의 해당 카테고리 item만 추출해 data에 할당
+		const data = await response.data.item;
+		res.status(200).send({ data });
+	} catch (err) {
+		res.status(400).send(err);
+	}
+});
+
 // new 페이지: 전체 신간 도서 api
 app.get('/list/newSpecialAll', async (req, res) => {
-	// request.query 내 categoryId 추출
-	const { categoryId, page } = req.query;
+	const { categoryId, pageNum } = req.query;
 	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-	const start = Number(page);
+	const start = Number(pageNum);
 
 	try {
 		const response = await axios.get(
@@ -369,24 +384,6 @@ app.get('/list/newSpecialAll', async (req, res) => {
 		// 해당 카테고리 item의 총 갯수 (약 1,700여 개(3/9 기준))
 		const dataLength = await response.data.totalResults;
 		res.status(200).send({ data, dataLength });
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
-
-// best 페이지: 전체 베스트셀러 도서 api
-app.get('/list/bestAll', async (req, res) => {
-	// request.query 내 categoryId 추출
-	const { categoryId, currentPage } = req.query;
-	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-	const start = Number(currentPage);
-	try {
-		const response = await axios.get(
-			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=Bestseller&MaxResults=24&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
-		);
-		// 베스트셀러 리스트의 해당 카테고리 item만 추출해 data에 할당
-		const data = await response.data.item;
-		res.status(200).send({ data });
 	} catch (err) {
 		res.status(400).send(err);
 	}

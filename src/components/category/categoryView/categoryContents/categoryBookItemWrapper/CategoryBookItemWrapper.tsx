@@ -1,7 +1,6 @@
-import styles from '@/styles/category/categoryView/categoryContents/catetgoryBookItemBox.tsx/categoryBookItemBox.module.css';
+import styles from '@/styles/category/categoryView/categoryContents/categoryBookItemWrapper/categoryBookItemWrapper.module.css';
 import BookItem from '@/components/common/bookItem/BookItem';
 import BookItemSkeleton from '@/components/common/bookItem/BookItemSkeleton';
-// import styles from '@/styles/category/categoryContents/categoryBookItemBox.module.css';
 import { NewBookType } from '@/types/bookType';
 import dynamic from 'next/dynamic';
 
@@ -16,7 +15,9 @@ const DynamicBookItem = dynamic(
 	},
 );
 
-export default function CategoryBookItemBox({ data }: CategoryBookItemBoxProp) {
+export default function CategoryBookItemWrapper({
+	data,
+}: CategoryBookItemBoxProp) {
 	return (
 		<section className={styles.categorybookItemWrapper}>
 			{data?.map((book: NewBookType) => (

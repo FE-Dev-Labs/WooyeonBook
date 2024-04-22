@@ -3,7 +3,7 @@
 import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 import styles from '@/styles/common/categoryBox.module.css';
 import { usePathname, useRouter } from 'next/navigation';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 export default function CategoryBox({ categoryId }: { categoryId: string }) {
 	// useRouter 호출
@@ -12,18 +12,19 @@ export default function CategoryBox({ categoryId }: { categoryId: string }) {
 	const pathname = usePathname();
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
+	// const [currentPage, setCurrentPage] = useRecoilState(CurrentPageAtom);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
 	const categoryIdNumber = Number(categoryId);
 
 	// 카테고리 선택 시 동작하는 함수
 	const handleCategoryItemClick = (categoryId: number) => {
-		if (categoryId) {
-			router.push(`${pathname}?categoryId=${categoryId}`);
-		}
+		// if (categoryId) {
+		router.push(`${pathname}?categoryId=${categoryId}&pageNum=1`);
+		// }
 		// !categoryId 시 기존 페이지로 이동(카테고리 전체 시 아이디 null로 찍힘)
-		if (!categoryId) {
-			router.push(pathname);
-		}
+		// if (!categoryId) {
+		// 	router.push(pathname);
+		// }
 		// 1페이지로 초기화
 		setCurrentPage(1);
 	};

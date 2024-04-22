@@ -9,7 +9,7 @@ export default function NavCategory() {
 			</h1>
 			<nav className={styles.showCategoryItemBox}>
 				<Link
-					href={'/category?categoryId=null&sortType=title'}
+					href={'/category?categoryId=0&sortType=title'}
 					className={styles.categoryItem}>
 					<p>분야 전체</p>
 				</Link>

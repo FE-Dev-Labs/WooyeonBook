@@ -37,9 +37,6 @@ export default function SortBar({
 			router.push(`${pathname}?keyword=${keyword}&sortType=${sortType}`);
 	};
 
-	console.log(keyword);
-	console.log(sortType);
-
 	return (
 		<section className={styles.sortBox}>
 			{page === 'category' && <div style={{ visibility: 'hidden' }} />}

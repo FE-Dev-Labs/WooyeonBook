@@ -9,6 +9,7 @@ import arrowDoubleLeftIcon from '../../../public/common/arrowDoubleLeft.png';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { usePathname, useRouter } from 'next/navigation';
 // handlePageNumClick: (page: number) => void;
 // handlePageNumClick,
 
@@ -16,15 +17,22 @@ interface PaginationProps {
 	dataLength: number;
 	// currentPage: number;
 	page?: string;
+	categoryId?: string;
 }
 
 export default function Pagination({
 	dataLength,
 	// currentPage,
 	page,
+	categoryId,
 }: PaginationProps) {
+	// useRouter 호출
+	const router = useRouter();
+	// usePathname 호출
+	const pathname = usePathname();
+	// current page state
 	const [currentPage, setCurrentPage] = useRecoilState(CurrentPageAtom);
-	// 페이지 그룹 state
+	// page group state
 	const [pageGroup, setPageGroup] = useState<number>(
 		Math.floor((currentPage - 1) / 10),
 	);
@@ -75,9 +83,14 @@ export default function Pagination({
 		if (currentPage === pageNum) return;
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
+		// best, new, used page 주소 수정
+		if (page === 'best' || 'new') {
+			router.push(`${pathname}?categoryId=${categoryId}&pageNum=${pageNum}`);
+		}
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
 		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
+
 	return (
 		<section className={styles.paginationContainer}>
 			<div className={styles.paginationWrappper}>

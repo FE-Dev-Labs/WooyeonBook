@@ -42,8 +42,8 @@ export default function Nav() {
 const nav = [
 	{ name: '홈', link: '/' },
 	{ name: '테마추천', link: '/theme' },
-	{ name: '인기', link: '/best' },
-	{ name: '신간', link: '/new' },
+	{ name: '인기', link: '/best?categoryId=0&pageNum=1' },
+	{ name: '신간', link: '/new?categoryId=0&pageNum=1' },
 	{ name: '중고도서', link: '/used' },
 	{ name: '커뮤니티', link: '/community/bookReport' },
 ];

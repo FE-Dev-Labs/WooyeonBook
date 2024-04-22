@@ -1,13 +1,24 @@
 import styles from '@/styles/category/category.module.css';
 import PageHeader from '@/components/common/PageHeader';
 import CategoryView from '@/components/category/categoryView/CategoryView';
+
 export default async function categoryPage({
 	searchParams,
 }: {
-	searchParams: { categoryId: string };
+	searchParams: { categoryId: string; sortType: string };
 }) {
-	// category id
+	// search params - category id
 	const categoryId = searchParams.categoryId;
+	// search params - sort type
+	const sortType = searchParams.sortType;
+
+	// category page data
+	const response = await fetch(
+		`http://localhost:8080/list/newAll?categoryId=${categoryId}&sortType=${sortType}`,
+		{ next: { revalidate: 3600 } },
+	);
+	const { data } = await response.json();
+
 	// 현재 선택된 카테고리 아이템 찾기
 	const currentCategoryItem = categoryItem.find(
 		(item) => item.id === Number(categoryId),
@@ -18,7 +29,7 @@ export default async function categoryPage({
 			<PageHeader
 				title={currentCategoryItem ? currentCategoryItem.name : '전체'}
 			/>
-			<CategoryView categoryId={categoryId} />
+			<CategoryView categoryId={categoryId} data={data} />
 		</div>
 	);
 }
