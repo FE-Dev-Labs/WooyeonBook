@@ -46,6 +46,11 @@ export default function TopWrapper() {
 		}
 		if (user.id === null) router.push('/signup', { scroll: false });
 	};
+	// 마이페이지 클릭 시 작동하는 함수
+	const handleMypageBtnClick = () => {
+		if (user.id) router.push('/mypage?page=bookReport');
+		if (user.id === null) router.push('/login');
+	};
 
 	// 유저 상태 뿌려줄 useEffect
 	useEffect(() => {
@@ -67,9 +72,7 @@ export default function TopWrapper() {
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
 			<button onClick={handleSignupBtnWordClick}>{signupBtnWord}</button>
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
-			<Link href={'/login'}>
-				<p>마이페이지</p>
-			</Link>
+			<button onClick={handleMypageBtnClick}>마이페이지</button>
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
 			<Link href={'/cart'}>
 				<p>카트</p>

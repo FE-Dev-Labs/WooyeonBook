@@ -10,19 +10,15 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 import { usePathname, useRouter } from 'next/navigation';
-// handlePageNumClick: (page: number) => void;
-// handlePageNumClick,
 
 interface PaginationProps {
 	dataLength: number;
-	// currentPage: number;
 	page?: string;
 	categoryId?: string;
 }
 
 export default function Pagination({
 	dataLength,
-	// currentPage,
 	page,
 	categoryId,
 }: PaginationProps) {
@@ -72,10 +68,11 @@ export default function Pagination({
 	// 마지막 페이지 그룹인지 확인
 	const isLastPageGroup = pageGroup === totalPageGroups - 1;
 
-	// currentPage가 변경될 때마다 페이지 그룹을 업데이트하는 useEffect
-	useEffect(() => {
-		setPageGroup(Math.floor((currentPage - 1) / groupSize));
-	}, [currentPage]);
+	// 페이지내이션 내 버튼 조건
+	const goToFirstPage = !isFirstPageGroup && currentPage > 1;
+	const goToPrevPage = !isFirstPageGroup && currentPage > 1;
+	const goToNextPage = !isLastPageGroup && currentPage < totalPages;
+	const goToLastPage = !isLastPageGroup && currentPage < totalPages;
 
 	// 현재 카테고리의 각 페이지(숫자) 선택 시 실행되는 함수
 	const handlePageNumClick = (pageNum: number) => {
@@ -84,18 +81,23 @@ export default function Pagination({
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// best, new, used page 주소 수정
-		if (page === 'best' || 'new') {
+		if (page === 'best' || 'new' || 'used') {
 			router.push(`${pathname}?categoryId=${categoryId}&pageNum=${pageNum}`);
 		}
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
 		window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
 
+	// currentPage가 변경될 때마다 페이지 그룹을 업데이트하는 useEffect
+	useEffect(() => {
+		setPageGroup(Math.floor((currentPage - 1) / groupSize));
+	}, [currentPage]);
+
 	return (
 		<section className={styles.paginationContainer}>
 			<div className={styles.paginationWrappper}>
 				{/* 맨 처음 페이지로 이동하는 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
-				{!isFirstPageGroup && currentPage > 1 && (
+				{goToFirstPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowDoubleLeftIcon}
@@ -107,7 +109,7 @@ export default function Pagination({
 					</div>
 				)}
 				{/* 이전 페이지 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
-				{!isFirstPageGroup && currentPage > 1 && (
+				{goToPrevPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowLeftIcon}
@@ -132,7 +134,7 @@ export default function Pagination({
 					</div>
 				))}
 				{/* 다음 페이지 버튼, 마지막 페이지 그룹이 아닐 때만 렌더링 */}
-				{!isLastPageGroup && currentPage < totalPages && (
+				{goToNextPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowRightIcon}
@@ -144,7 +146,7 @@ export default function Pagination({
 					</div>
 				)}
 				{/* 맨 마지막 페이지로 이동하는 버튼, 마지막 페이지 그룹이 아닐 때만 렌더링 */}
-				{!isLastPageGroup && currentPage < totalPages && (
+				{goToLastPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowDoubleRightIcon}

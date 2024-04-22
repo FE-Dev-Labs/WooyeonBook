@@ -1,0 +1,29 @@
+.container {
+	/* width: 100vw; */
+
+	/* display: flex;
+	justify-content: center; */
+	display: grid;
+	grid-template-columns: 1fr 1300px 1fr;
+}
+.wrapper {
+	width: 1300px;
+	gap: 50px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.wrapper > :first-child {
+	margin-top: 50px;
+}
+.wrapper > :last-child {
+	/* margin-bottom: 100px; */
+	margin: 20px 0 60px 0;
+}
+
+.usedLine {
+	width: inherit;
+	height: 1px;
+	background-color: #aaa;
+}

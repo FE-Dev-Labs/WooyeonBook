@@ -392,9 +392,9 @@ app.get('/list/newSpecialAll', async (req, res) => {
 // used 페이지: 전체 중고 도서 api
 app.get('/list/usedAll', async (req, res) => {
 	// request.query 내 categoryId 추출
-	const { categoryId, page } = req.query;
+	const { categoryId, pageNum } = req.query;
 	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-	const start = Number(page);
+	const start = Number(pageNum);
 
 	try {
 		const response = await axios.get(
@@ -413,7 +413,7 @@ app.get('/list/usedAll', async (req, res) => {
 });
 
 // used 페이지: 중고 베스트셀러 도서(5개) api
-app.get('/list/used', async (req, res) => {
+app.get('/list/usedBest', async (req, res) => {
 	try {
 		const response = await axios.get(
 			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=itemNewAll&MaxResults=50&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
@@ -426,7 +426,7 @@ app.get('/list/used', async (req, res) => {
 			// 앞에서 6개만 추출
 			.slice(0, 5);
 
-		res.status(200).send(data);
+		res.status(200).send({ usedBestData: data });
 	} catch (err) {
 		res.status(400).send(err);
 	}

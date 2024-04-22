@@ -1,13 +1,8 @@
-'use client';
-
 import CategoryBox from '@/components/common/CategoryBox';
 import styles from '@/styles/best/bestView/bestView.module.css';
 import Rank from './rank/Rank';
 import RecentlyViewedBooks from '@/components/layout/RecentlyViewedBooks';
-import { useEffect, useState } from 'react';
-import { BestSellerType, NewBookType } from '@/types/bookType';
-import { useRecoilValue } from 'recoil';
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { BestSellerType } from '@/types/bookType';
 import Pagination from '@/components/common/Pagination';
 
 interface BestViewProps {
