@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+import uuid from 'react-uuid';
 
 export interface RootBookType {
 	version: string;
@@ -98,6 +99,7 @@ export interface UsedBookType {
 
 // 장바구니에 들어갈 아이템 타입
 export interface CartItemType {
+	userid: string;
 	title: string;
 	author: string;
 	publisher: string;

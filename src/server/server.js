@@ -7,7 +7,6 @@ const axios = require('axios');
 const cors = require('cors');
 
 const { createClient } = require('@supabase/supabase-js');
-const { serialize } = require('v8');
 
 const app = express();
 const port = 8080;
@@ -145,21 +144,28 @@ app.get('/auth', async (req, res) => {
 // const getBuyingData=()=>{}
 // const getSellingData=()=>{}
 app.get('/mylike', async (req, res) => {
-	const { user_id } = req.query;
+	const { user_id, num } = req.query;
+	// start은 0이 되야되므로 -4
+	const start = num * 4 - 4;
+	const end = num * 4;
 	try {
-		const { data: bookReport } = await supabase.from('bookReport').select();
+		const { data: bookReport } = await supabase.from('bookReport').select('*');
 		const bookReportData = bookReport.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookMeeting } = await supabase.from('bookMeeting').select();
+		const { data: bookMeeting } = await supabase
+			.from('bookMeeting')
+			.select('*');
 		const bookMeetingData = bookMeeting.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookSelling } = await supabase.from('bookSelling').select();
+		const { data: bookSelling } = await supabase
+			.from('bookSelling')
+			.select('*');
 		const bookSellingData = bookSelling.filter((item) =>
 			item.like_users.includes(user_id),
 		);
-		const { data: bookBuying } = await supabase.from('bookBuying').select();
+		const { data: bookBuying } = await supabase.from('bookBuying').select('*');
 		const bookBuyingData = bookBuying.filter((item) =>
 			item.like_users.includes(user_id),
 		);
@@ -170,23 +176,30 @@ app.get('/mylike', async (req, res) => {
 			...bookSellingData,
 			...bookBuyingData,
 		];
-		res.status(200).send(data);
+		const sliceData = data.slice(start, end);
+		res.status(200).send({ data, sliceData });
 	} catch (error) {
 		res.status(500).send({ error: error.message });
 	}
 });
 
+// 마이페이지 내가 쓴글
 app.get('/api/mypage', async (req, res) => {
-	const { page, userId } = req.query;
+	const { page, userId, num } = req.query;
+	const limit = 4;
+	const offset = (num - 1) * limit;
 	try {
-		const { data, error } = await supabase
+		const allData = await supabase
 			.from(`${page}`)
 			.select('*')
 			.eq('created_user', userId);
-		if (error) {
-			throw error;
-		}
-		res.status(200).send(data);
+
+		const sliceData = await supabase
+			.from(`${page}`)
+			.select('*')
+			.eq('created_user', userId)
+			.range(offset, offset + limit);
+		res.status(200).send({ data: allData.data, sliceData: sliceData.data });
 	} catch (error) {
 		res.status(500).send({ error: error.message });
 	}

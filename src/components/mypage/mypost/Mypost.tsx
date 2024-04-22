@@ -1,41 +1,56 @@
 import Postaccordionlayout from '@/components/common/Postaccordionlayout';
 import styles from '@/styles/mypage/mypage.module.css';
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { createClient } from '@/utils/supabase/client';
-import { getUser } from '@/apis/community/getUser';
-import { AllDataType } from '@/types/community/view/data';
+import PageNation from './../../community/view/PageNation';
+import MypagePageNation from './MypagePageNation';
 
 interface userIdProps {
 	userId: string;
+	page: string;
+	num?: string;
 }
-export default function Mypost({ userId }: userIdProps) {
-	const [postData, setPostData] = useState<AllDataType[]>([]);
 
-	const getpostdata = async () => {
-		const { user_id } = await getUser();
-		const response = await fetch(
-			`http://localhost:8080/mylike?user_id=${user_id}`,
-		);
-		const responseData = await response.json();
-		setPostData(responseData);
-	};
+export default async function MyPost({ userId, page, num }: userIdProps) {
+	const response =
+		page === 'likes'
+			? fetch(
+					`http://localhost:8080/mylike?user_id=${userId as string}&num=${num || 1}`,
+					{
+						cache: 'no-store',
+					},
+				)
+			: fetch(
+					`http://localhost:8080/api/mypage?page=${page}&userId=${userId as string}&num=${num || 1}`,
+					{ cache: 'no-store' },
+				);
+	// let response = undefined;
 
-	useEffect(() => {
-		getpostdata();
-	}, []);
+	// switch (page) {
+	// 	case 'likes':
+	// 		response = fetch(
+	// 			`http://localhost:8080/mylike?user_id=${userId as string}`,
+	// 			{ cache: 'no-store' },
+	// 		);
+	// 		break;
+
+	// 	default:
+	// 		response = fetch(
+	// 			`http://localhost:8080/api/mypage?page=${page}&userId=${userId as string}`,
+	// 			{ cache: 'no-store' },
+	// 		);
+	// }
+
+	const { data, sliceData } = await response.then((item) => item.json());
 
 	return (
-		<>
-			{postData?.map((list) => {
-				return (
-					<div className={styles.postAccordionContainer} key={list.doc_id}>
-						<div className={styles.postAccordionWrapper}>
-							<Postaccordionlayout list={list} />
-						</div>
+		<div>
+			{sliceData?.map((list: any) => (
+				<div className={styles.postAccordionContainer} key={list.doc_id}>
+					<div className={styles.postAccordionWrapper}>
+						<Postaccordionlayout list={list} page={page} />
 					</div>
-				);
-			})}
-		</>
+				</div>
+			))}
+			<MypagePageNation alldata={data} />
+		</div>
 	);
 }

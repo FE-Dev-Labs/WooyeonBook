@@ -2,8 +2,8 @@
 import styles from '@/styles/mypage/profile/profile.module.css';
 import { useInforDateType } from '@/types/userInforDate';
 import { useEffect, useState } from 'react';
-import MyprofileDaumApi from './MyprofileDaumApi';
 import { createClient } from '@/utils/supabase/client';
+import MyProfileDaumApi from './MyProfileDaumApi';
 interface userIdProps {
 	userInfor: useInforDateType[];
 	getUserInfor: any;
@@ -13,7 +13,7 @@ interface userIdProps {
 	isEditingName: any;
 	userId: string;
 }
-export default function MyprofileAddress({
+export default function MyProfileAddress({
 	userInfor,
 	getUserInfor,
 	setIsEditingName,
@@ -179,7 +179,7 @@ export default function MyprofileAddress({
 				</div>
 			))}
 			{isOpen && (
-				<MyprofileDaumApi
+				<MyProfileDaumApi
 					setIsOpen={setIsOpen}
 					setIsEditingZipcode={setIsEditingZipcode}
 					setIsEditingAddress={setIsEditingAddress}

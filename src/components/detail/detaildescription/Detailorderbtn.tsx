@@ -23,6 +23,7 @@ export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 
 	// 카트페이지에서 필요한 요소들
 	const newCartItem: CartItemType = {
+		userid: user.id,
 		title: bookInfo.title, // 책 제목
 		author: bookInfo.author, // 저자
 		publisher: bookInfo.publisher, // 출판사

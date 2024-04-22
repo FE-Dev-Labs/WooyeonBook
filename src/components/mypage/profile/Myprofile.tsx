@@ -2,13 +2,13 @@
 import styles from '@/styles/mypage/profile/profile.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useEffect, useState } from 'react';
-import MyprofileAddress from './MyprofileAddress';
 import { useInforDateType } from '@/types/userInforDate';
+import MyProfileAddress from './MyProfileAddress';
 
 interface userIdProps {
 	userId: string;
 }
-export default function Myprofile({ userId }: userIdProps) {
+export default function MyProfile({ userId }: userIdProps) {
 	// 현재 유저 정보 배열
 	const [userInfor, setUserInfor] = useState<useInforDateType[]>([]);
 	// 수정 버튼
@@ -186,7 +186,7 @@ export default function Myprofile({ userId }: userIdProps) {
 						)}
 					</div>
 				))}
-				<MyprofileAddress
+				<MyProfileAddress
 					userInfor={userInfor}
 					getUserInfor={getUserInfor}
 					isEditingName={isEditingName}

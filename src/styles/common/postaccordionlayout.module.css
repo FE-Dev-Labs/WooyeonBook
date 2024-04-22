@@ -11,16 +11,18 @@
 	background-color: #eeeeee;
 }
 .postdataWrapper {
+	border-bottom: 1px solid #dee2e6;
+}
+.postdataWrap {
 	width: 100%;
 	padding: 18px 16px;
-	border-bottom: 1px solid #dee2e6;
 }
 .postTitle {
 	font-size: 20px;
 	/* margin-bottom: 10px; */
 }
 .postContent {
-	height: inherit;
+	height: 45px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -39,7 +41,7 @@
 }
 .postFooter {
 	display: flex;
-	margin-top: 1rem;
+	margin-top: 10px;
 	justify-content: space-between;
 	color: #868e96;
 	font-size: 12px;
@@ -75,4 +77,16 @@
 .icondd {
 	display: flex;
 	align-items: center;
+}
+.contentState {
+	margin-bottom: 10px;
+	display: inline-block;
+	border-radius: 25px;
+	padding: 5px 8px;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	background-color: #6594e7;
 }

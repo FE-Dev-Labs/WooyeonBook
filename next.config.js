@@ -17,19 +17,6 @@ const nextConfig = {
 			},
 		],
 	},
-
-	// images: {
-	// 	domains: ['image.aladin.co.kr'],
-	// },
-
-	// async rewrites() {
-	// 	return [
-	// 		{
-	// 			source: '/apis/aladin/getNewBookData',
-	// 			destination: `http://www.aladin.co.kr/ttb/api/ItemList.aspx??ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=ItemNewSpecial&MaxResults=30&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-	// 		},
-	// 	];
-	// },
 };
 
 module.exports = nextConfig;
