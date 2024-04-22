@@ -32,7 +32,7 @@ export default function Search() {
 	const [searchData, setSearchData] = useState<Book[]>([]);
 
 	// 원준 추가
-	// sort type state
+	// sort type setValue
 	const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(CurrentPageAtom);

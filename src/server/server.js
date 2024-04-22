@@ -295,7 +295,6 @@ app.get('/list/newAll', async (req, res) => {
 						(a, b) =>
 							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
 					);
-		console.log(sortedAllCategoryData);
 		// 데이터를 클라이언트 전송
 		res.status(200).send({
 			data: sortedAllCategoryData,
