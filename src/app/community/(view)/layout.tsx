@@ -47,7 +47,7 @@ export default async function CommunityViewLayout({
 										href={`/community/detail/${data.field as string}/${data.doc_id as string}`}
 										key={data.doc_id}>
 										<div className={styles.weeklyPopularContent}>
-											{data.content}
+											{data.title}
 										</div>
 										<div className={styles.weeklyPopularWriter}>
 											<Image

@@ -52,7 +52,7 @@
 	word-wrap: break-word;
 }
 .weeklyPopularWrap > div > a:hover {
-	background-color: #dcddde;
+	background-color: #f8f8f8;
 	transition: 0.5s;
 }
 .weeklyPopularWrap > div > a:visited {
