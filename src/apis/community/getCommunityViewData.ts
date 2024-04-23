@@ -12,7 +12,7 @@ interface Props {
 
 export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 	const response = await fetch(
-		`http://localhost:8080/community/${page}?num=${searchParams.num || 1}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/view/${page}?num=${searchParams.num || 1}`,
 		{
 			cache: 'no-store',
 		},
@@ -60,5 +60,5 @@ export const getCommunityViewData = async ({ page, searchParams }: Props) => {
 		}
 	});
 
-	return { data, sortedData };
+	return { sortedData };
 };

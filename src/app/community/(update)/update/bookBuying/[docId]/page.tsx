@@ -7,18 +7,15 @@ const UpdatePage = async ({
 		docId: string;
 	};
 }) => {
-	const data = await fetch(
+	const res = await fetch(
 		`http://localhost:8080/api/community/bookBuying/${params.docId}`,
 		{
 			cache: 'no-store',
 		},
-	).then((res) => res.json());
-
-	return (
-		<div>
-			<BookBuyingUpdate data={data} docid={params.docId} />
-		</div>
 	);
+	const data = await res.json();
+
+	return <BookBuyingUpdate data={data} docid={params.docId} />;
 };
 
 export default UpdatePage;

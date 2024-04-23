@@ -30,26 +30,60 @@ function isBookReportArray(data: any): data is BookReportDataType[] {
 async function bookReport({
 	searchParams,
 }: {
-	searchParams: { sort?: string; q?: string };
+	searchParams: {
+		sort?: string;
+		q?: string;
+		num?: string;
+		categories?: string;
+	};
 }) {
-	const { data, sortedData } = await getCommunityViewData({
-		page: 'bookReport',
-		searchParams,
-	});
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookReport`,
+		{
+			cache: 'no-store',
+		},
+	);
+
+	const data: BookReportDataType[] = await res.json();
+
 	if (!isBookReportArray(data)) {
 		throw new Error('Data is not an array of book reports');
 	}
-	const res = await fetch('http://localhost:8080/community/bookReport', {
-		cache: 'no-store',
-	});
-	const alldata: AllDataType[] = await res.json();
+
+	const queryFiltering = searchParams?.q
+		? data.filter((report: BookReportDataType) =>
+				report.title.includes(searchParams.q as string),
+			)
+		: data;
+
+	const sortFiltering = queryFiltering.sort(
+		(a: BookReportDataType, b: BookReportDataType) => {
+			switch (searchParams?.sort) {
+				case 'Latest':
+					return b.created_at > a.created_at ? 1 : -1;
+				case 'Oldest':
+					return a.created_at > b.created_at ? 1 : -1;
+				case 'View':
+					return b.view - a.view;
+				default:
+					return b.created_at > a.created_at ? 1 : -1;
+			}
+		},
+	);
+
+	const num = searchParams?.num ? parseInt(searchParams.num) : 1;
+
+	const start = num * 10 - 10;
+	const end = num * 10 - 1;
+
+	const numFiltering = sortFiltering.slice(start, end);
 
 	return (
 		<section>
-			{sortedData?.map((data: AllDataType) => {
+			{numFiltering?.map((data: AllDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
 			})}
-			<PageNation alldata={alldata} />
+			<PageNation length={data.length} show_page_num={10} />
 		</section>
 	);
 }

@@ -1,58 +1,14 @@
 'use client';
 import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
-// import searchIcon from '../../../../public/searchIcon.png';
-import searchIcon from '../../../../public/common/search.png';
-import { memo, useEffect, useState } from 'react';
+
+impor searchIcon from '../../../../public/searchIcon.png';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import dynamic from 'next/dynamic';
-import communityPathname from '@/apis/communityPathname';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
 import { queryString } from '@/recoil/atom/queryString';
-const Select = dynamic(() => import('react-select'), {
-	ssr: false,
-	loading: () => <div className={styles.optionBtnSkeleton}></div>,
-});
-
-interface OptionBtnProps {
-	categoriesOption: { value: string; label: string }[];
-	sortOptions: { value: string; label: string }[];
-	pathName: string;
-	onChangeSort?: (e: any) => void;
-	onChangeCategories?: (e: any) => void;
-}
-
-const OptionBtn = memo(
-	({
-		categoriesOption,
-		sortOptions,
-		pathName,
-		onChangeSort,
-		onChangeCategories,
-	}: OptionBtnProps) => (
-		<>
-			{pathName == 'bookReport' ? (
-				<div className={styles.optionBtn}></div>
-			) : (
-				<Select
-					className={styles.sortOptionBtn}
-					options={categoriesOption}
-					defaultValue={categoriesOption[0]}
-					isSearchable={false}
-					onChange={onChangeCategories}
-				/>
-			)}
-			<Select
-				className={styles.sortOptionBtn}
-				options={sortOptions}
-				defaultValue={sortOptions[0]}
-				isSearchable={false}
-				onChange={onChangeSort}
-			/>
-		</>
-	),
-);
+import OptionBtn from './OptionBtn';
 
 function Search() {
 	const router = useRouter();
@@ -63,7 +19,9 @@ function Search() {
 
 	useEffect(() => {
 		setQuery('');
+		setQs({ q: '', sort: '', categories: '', num: '' });
 	}, [pathname]);
+
 	useEffect(() => {
 		const url = [];
 		if (qs.q !== '') {
@@ -96,38 +54,7 @@ function Search() {
 	const onChangeSearch = () => {
 		setQs({ ...qs, q: query });
 	};
-	// 옵션 select
-	const sortOptions = [
-		{ value: 'Latest', label: '최신순' },
-		{ value: 'Oldest', label: '오래된 순' },
-		{ value: 'View', label: '조회순' },
-	];
 
-	const categoriesOption = () => {
-		const pathname = communityPathname();
-		if (pathname === 'bookMeeting') {
-			return [
-				{ value: 'All', label: '전체' },
-				{ value: 'true', label: '모집중' },
-				{ value: 'false', label: '모집완료' },
-			];
-		}
-		if (pathname === 'bookBuying') {
-			return [
-				{ value: 'All', label: '전체' },
-				{ value: 'true', label: '거래중' },
-				{ value: 'false', label: '거래완료' },
-			];
-		}
-		if (pathname === 'bookSelling') {
-			return [
-				{ value: 'All', label: '전체' },
-				{ value: 'true', label: '나눔' },
-				{ value: 'false', label: '팝니다' },
-			];
-		}
-		return [];
-	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.searchWrap}>
@@ -146,8 +73,6 @@ function Search() {
 				검색
 			</button>
 			<OptionBtn
-				categoriesOption={categoriesOption()}
-				sortOptions={sortOptions}
 				pathName={pathname}
 				onChangeSort={onChangeSort}
 				onChangeCategories={onChangeCategories}

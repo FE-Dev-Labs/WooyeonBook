@@ -7,7 +7,6 @@ import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/utils/supabase/supabase';
 import OptionBookSelling from '../../post/option/OptionBookSelling';
 import { BookSellingDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
@@ -88,16 +87,16 @@ function Update({ data, docid }: UpdateProps) {
 			price: price.value,
 			selling: sellingState,
 		};
-		// supabase 데이터베이스에 데이터 삽입
-		const { error } = await supabase
-			.from('bookSelling')
-			.update(data)
-			.eq('doc_id', docid)
-			.select();
-		// 에러 발생시 alert
-		if (error) {
-			return alert('에러가 발생했습니다.');
-		}
+		await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/update/bookSelling/${docid}`,
+			{
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			},
+		);
 		// state 초기화
 		title.init('');
 		price.init(0);
