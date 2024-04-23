@@ -32,7 +32,7 @@ export default async function CommunityViewLayout({
 					<article className={styles.contentWrap}>
 						<Nav />
 						<Search />
-						<hr className={styles.line} />
+						<div className={styles.line}></div>
 						{children}
 					</article>
 

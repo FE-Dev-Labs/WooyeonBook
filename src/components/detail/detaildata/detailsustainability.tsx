@@ -5,7 +5,7 @@ interface bookDetailProp {
 	bookInfo: Book;
 }
 
-export default function DetailSustainability({ bookInfo }: bookDetailProp) {
+export default function DetailSustainAbility({ bookInfo }: bookDetailProp) {
 	// 제목은 크게 - 뒤에 내용은 작게 css 주기 위한 코드
 	const modifiedTitle = bookInfo.title.split('- ')[0];
 	const modigiedContent = bookInfo.title.split('- ')[1];

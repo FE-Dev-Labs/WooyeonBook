@@ -1,7 +1,7 @@
 'use client';
 import dynamic from 'next/dynamic';
 import styles from '@/styles/common/controlfilterpanel.module.css';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const Select = dynamic(() => import('react-select'), { ssr: false });
 export default function ControlFilterPanel() {
@@ -13,7 +13,7 @@ export default function ControlFilterPanel() {
 		{ value: 'Like', label: '인기순' },
 		{ value: 'View', label: '조회순' },
 	];
-	const categoriesByPage = () => {
+	const categoriesOption = () => {
 		if (page === 'bookMeeting') {
 			return [
 				{ value: 'All', label: '전체' },
@@ -55,7 +55,7 @@ export default function ControlFilterPanel() {
 				{page === 'bookReport' ? null : (
 					<Select
 						className={styles.optionBtn}
-						options={categoriesByPage()}
+						options={categoriesOption()}
 						defaultValue={{ value: 'All', label: '전체' }}
 						isSearchable={false}
 					/>

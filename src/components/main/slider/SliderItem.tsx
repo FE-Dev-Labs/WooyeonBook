@@ -1,4 +1,3 @@
-'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/main/slider/sliderItem.module.css';

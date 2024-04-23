@@ -3,16 +3,17 @@ import styles from '@/styles/mypage/mypage.module.css';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import Accordion from '@/components/common/Accordion';
 import Communitynav from '@/components/common/Communitynav';
-import MyPost from '@/components/mypage/mypost/MyPost';
-import MyOrder from '@/components/mypage/myorder/MyOrder';
-import MyProfile from '@/components/mypage/profile/MyProfile';
+
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
+import MyPost from '@/components/mypage/mypost/Mypost';
+import MyProfile from '@/components/mypage/profile/Myprofile';
+import MyOrder from '@/components/mypage/myorder/Myorder';
 
 export default async function page({
 	searchParams,
 }: {
-	searchParams: { page?: string };
+	searchParams: { page?: string; num?: string };
 }) {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
@@ -40,6 +41,7 @@ export default async function page({
 							<MyPost
 								userId={data.user.id}
 								page={searchParams.page as string}
+								num={searchParams.num as string}
 							/>
 						</Accordion>
 						<Accordion title={'회원정보'} index={1}>

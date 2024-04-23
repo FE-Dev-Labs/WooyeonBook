@@ -72,9 +72,9 @@ export default function Slider() {
 
 	return (
 		<MainSlider {...settings} className={styles.mainSliderWrapper}>
-			{mainBookSlider.map((item, index) => {
+			{mainBookSlider.map((item) => {
 				return (
-					<div onClick={() => router.push(item.link)} key={index}>
+					<div onClick={() => router.push(item.link)} key={item.id}>
 						<SliderItem item={item} />
 					</div>
 				);

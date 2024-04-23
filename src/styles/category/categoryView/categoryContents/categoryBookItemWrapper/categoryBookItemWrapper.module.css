@@ -1,0 +1,9 @@
+.categorybookItemWrapper {
+	width: inherit;
+	margin: 50px 0 50px 0;
+
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	row-gap: 50px;
+	column-gap: 75px;
+}

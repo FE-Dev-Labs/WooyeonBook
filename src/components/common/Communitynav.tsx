@@ -3,10 +3,36 @@ import styles from '@/styles/common/communitynav.module.css';
 import ControlFilterPanel from './ControlFilterPanel';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { mypage_QS } from '@/recoil/atom/mypageAtom';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Communitynav() {
 	const params = useSearchParams();
 	const page = params.get('page');
+	const [qs, setQs] = useRecoilState(mypage_QS);
+	const router = useRouter();
+	useEffect(() => {
+		// url 변경 될때 마다 실행
+		if (page !== qs.page) {
+			setQs((prevQs) => ({ ...prevQs, page: page ?? '' }));
+		}
+	}, [page, setQs]);
+
+	useEffect(() => {
+		const url = [];
+		if (qs.page !== '') {
+			url.push(`page=${qs.page}`);
+		}
+		if (qs.sort !== '') {
+			url.push(`sort=${qs.sort}`);
+		}
+		if (qs.num !== '') {
+			url.push(`num=${qs.num}`);
+		}
+		router.push('/mypage' + '?' + url.join('&'));
+	}, [qs]);
 
 	return (
 		<div className={styles.container}>
