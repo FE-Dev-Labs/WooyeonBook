@@ -9,7 +9,7 @@ interface commentListType {
 	getCommentLists: any;
 	userId: string;
 }
-export default function DetailCommentslist({
+export default function DetailCommentsList({
 	list,
 	userId,
 	getCommentLists,

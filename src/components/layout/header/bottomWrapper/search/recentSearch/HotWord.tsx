@@ -30,9 +30,12 @@ export default function HotWord() {
 	// 검색어 api
 	useEffect(() => {
 		const fetchKeywords = async () => {
-			const response = await fetch(`http://localhost:8080/api/getKeywords`, {
-				cache: 'force-cache',
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/keywords`,
+				{
+					cache: 'force-cache',
+				},
+			);
 			const data: popularKeywords[] = await response.json();
 			setPopularSearchData(data);
 		};

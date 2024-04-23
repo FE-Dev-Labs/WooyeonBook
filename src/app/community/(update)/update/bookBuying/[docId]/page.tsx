@@ -8,7 +8,7 @@ const UpdatePage = async ({
 	};
 }) => {
 	const res = await fetch(
-		`http://localhost:8080/api/community/bookBuying/${params.docId}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/bookBuying/${params.docId}`,
 		{
 			cache: 'no-store',
 		},

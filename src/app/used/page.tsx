@@ -13,13 +13,16 @@ export default async function usedPage({
 	const pageNum = searchParams.pageNum;
 
 	// used page data
-	const usedBestResponse = await fetch('http://localhost:8080/list/usedBest', {
-		next: { revalidate: 3600 },
-	});
+	const usedBestResponse = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}list/usedBest`,
+		{
+			next: { revalidate: 3600 },
+		},
+	);
 	const { usedBestData } = await usedBestResponse.json();
 
 	const usedResponse = await fetch(
-		`http://localhost:8080/list/usedAll?categoryId=${categoryId}&pageNum=${pageNum}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/usedAll?categoryId=${categoryId}&pageNum=${pageNum}`,
 		{ next: { revalidate: 3600 } },
 	);
 	const { data, dataLength } = await usedResponse.json();

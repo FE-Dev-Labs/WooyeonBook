@@ -14,7 +14,7 @@ export default async function categoryPage({
 
 	// category page data
 	const response = await fetch(
-		`http://localhost:8080/list/newAll?categoryId=${categoryId}&sortType=${sortType}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list//newAll?categoryId=${categoryId}&sortType=${sortType}`,
 		{ next: { revalidate: 3600 } },
 	);
 	const { data } = await response.json();

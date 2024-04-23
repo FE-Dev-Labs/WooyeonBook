@@ -25,7 +25,7 @@ export default function SearchResult({
 
 	const keyonSubmit = async () => {
 		const res = await fetch(
-			`http://localhost:8080/supbase/popularSearch?keyword=${keyword}`,
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supbase/popularSearch?keyword=${keyword}`,
 		);
 		const key = await res.json();
 		const postdata = {
@@ -36,17 +36,20 @@ export default function SearchResult({
 		// 검색어에 대한 기록이 서버에 이미 존재하는지를 확인
 		if (key.length > 0) {
 			await fetch(
-				`http://localhost:8080/api/updateKeywords?keyword=${keyword}&count=${key[0].search_count}`,
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/update/supabase/keyword?keyword=${keyword}&count=${key[0].search_count}`,
 				{
 					method: 'PUT',
 				},
 			);
 		} else {
-			await fetch(`http://localhost:8080/api/saveKeywords`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(postdata),
-			});
+			await fetch(
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/create/supabase/keywords`,
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(postdata),
+				},
+			);
 		}
 	};
 	// 검색어 리스트 클릭 함수

@@ -49,7 +49,7 @@ function BookSearch() {
 
 	const getdata = async () => {
 		const { data } = await axios.get(
-			`http://localhost:8080/search/book?bookName=${
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/book?bookName=${
 				searchBook.value as string
 			}`,
 		);
