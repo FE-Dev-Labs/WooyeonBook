@@ -4,6 +4,9 @@ import Image from 'next/image';
 import lineIcon from '../../../../../../../public/layout/line.png';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSetRecoilState } from 'recoil';
+import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
+import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 interface popularKeywords {
 	id: string;
 	keyword: string | number | Date;
@@ -13,6 +16,12 @@ interface popularKeywords {
 export default function HotWord() {
 	// useRouter 호출
 	const router = useRouter();
+
+	// 원준 추가
+	// sort type setValue
+	const setSortType = useSetRecoilState(sortTypeAtom);
+	// current page setValue
+	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 
 	const [popularSearchData, setPopularSearchData] = useState<popularKeywords[]>(
 		[],
@@ -41,7 +50,10 @@ export default function HotWord() {
 
 	// 인기 검색어 클릭 시 동작하는 함수
 	const handleValueClick = (value: string) => {
-		router.push(`/search?keyword=${value}`);
+		router.push(`/search?keyword=${value}&sortType=title`);
+		// 1페이지로&제목순으로 초기화
+		setCurrentPage(1);
+		setSortType('title');
 	};
 	return (
 		<dl className={styles.hotWordWrapper}>

@@ -1,0 +1,15 @@
+.container {
+	/* width: 100vw; */
+
+	/* display: flex;
+	justify-content: center; */
+	display: grid;
+	grid-template-columns: 1fr 1300px 1fr;
+}
+.wrapper {
+	width: 1300px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

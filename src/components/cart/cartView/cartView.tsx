@@ -21,8 +21,6 @@ export default function CartView() {
 	// 전체 선택 체크박스 state
 	const [selectAll, setSelectAll] = useState<boolean>(true);
 
-	console.log(cart);
-
 	return (
 		<main>
 			{cart.length > 0 ? (

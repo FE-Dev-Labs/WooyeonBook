@@ -5,11 +5,11 @@ import AccordionWrapper from '../common/AccordionWrapper';
 import Accordion from '../common/Accordion';
 import { useEffect } from 'react';
 import { RecentlyViewedBookType } from '@/types/bookType';
+import DetailDescription from './detailDescription/DetailDescription';
 import DetailExplanation from './detailData/DetailExplanation';
 import DetailInformation from './detailData/DetailInformation';
-import DetailSustainability from './detailData/DetailSustainability';
-import DetailDescription from './detailDescription/Detaildescription';
-import DetailComment from './detailComments/Detailcomment';
+import DetailSustainAbility from './detailData/DetailSustainAbility';
+import DetailComment from './detailComments/DetailComment';
 
 interface DetailViewProps {
 	book: Book;
@@ -56,7 +56,7 @@ export default function DetailView({ book, id }: DetailViewProps) {
 				</Accordion>
 				{book?.mallType === 'BOOK' ? (
 					<Accordion title={'지속가능성'} index={2}>
-						<DetailSustainability bookInfo={book} />
+						<DetailSustainAbility bookInfo={book} />
 					</Accordion>
 				) : null}
 

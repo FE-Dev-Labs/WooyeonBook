@@ -1,33 +1,5 @@
+/* best page wrapper */
 .container {
-	/* width: 100vw; */
-
-	/* display: flex;
-	justify-content: center; */
-	display: grid;
-	grid-template-columns: 1fr 1300px 1fr;
-}
-.wrapper {
-	width: 1300px;
-	gap: 50px;
-
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-}
-.wrapper > :first-child {
-	margin-top: 50px;
-}
-.wrapper > :nth-child(3) {
-	margin-top: -50px;
-	/* background-color: yellow; */
-}
-.wrapper > :nth-child(4) {
-	/* margin-top: -50px; */
-	/* margin-top: -50px 0 -25px 0; */
-
-	/* background-color: yellow; */
-}
-.wrapper > :last-child {
-	/* margin-bottom: 60px; */
-	margin: -10px 0 60px 0;
 }

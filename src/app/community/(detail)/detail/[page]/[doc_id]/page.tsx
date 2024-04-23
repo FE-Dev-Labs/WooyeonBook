@@ -15,7 +15,7 @@ export default async function DetailPage({
 	searchParams?: { sort?: string };
 }) {
 	const response = await fetch(
-		`http://localhost:8080/community/${params.page}/${params.doc_id}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/${params.page}/${params.doc_id}`,
 		{
 			cache: 'no-store',
 		},

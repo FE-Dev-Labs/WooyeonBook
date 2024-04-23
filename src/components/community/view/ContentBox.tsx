@@ -110,6 +110,7 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 				);
 		}
 	};
+  
 	return (
 		<NaviLab
 			page={page as string}
