@@ -7,7 +7,6 @@ import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/utils/supabase/supabase';
 import OptionBookSelling from '../../post/option/OptionBookSelling';
 import { BookSellingDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
