@@ -6,7 +6,8 @@ import styles from '@/styles/community/ViewLayout.module.css';
 import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
-
+import Image from 'next/image';
+import userLogo from '../../../../public/common/userLogo.png';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
@@ -49,7 +50,14 @@ export default async function CommunityViewLayout({
 											{data.title}
 										</div>
 										<div className={styles.weeklyPopularWriter}>
-											🌱 {data.user_name}
+											<Image
+												src={userLogo}
+												alt="img"
+												width={16}
+												height={16}
+												className={styles.userLogo}
+											/>
+											<span className={styles.userName}>{data.user_name}</span>
 										</div>
 									</Link>
 								);

@@ -13,10 +13,18 @@ export default function Communitynav() {
 	const page = params.get('page');
 	const [qs, setQs] = useRecoilState(mypage_QS);
 	const router = useRouter();
+
+	// 기본값이 bookReport default이므로 다른 page를 가면 qs.page를 변경시켜준다.
 	useEffect(() => {
-		// url 변경 될때 마다 실행
 		if (page !== qs.page) {
 			setQs((prevQs) => ({ ...prevQs, page: page ?? '' }));
+			// 페이지가 변경될 때 필터링 상태를 초기화
+			setQs({
+				page: page ?? '',
+				sort: '',
+				categories: '',
+				num: '',
+			});
 		}
 	}, [page, setQs]);
 
@@ -27,6 +35,9 @@ export default function Communitynav() {
 		}
 		if (qs.sort !== '') {
 			url.push(`sort=${qs.sort}`);
+		}
+		if (qs.categories !== '') {
+			url.push(`categories=${qs.categories}`);
 		}
 		if (qs.num !== '') {
 			url.push(`num=${qs.num}`);

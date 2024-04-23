@@ -16,6 +16,7 @@
 	margin: 0 auto 20px auto;
 	display: flex;
 	justify-content: space-between;
+	color: #868e96;
 }
 
 .contentInfoWrap {
@@ -24,7 +25,7 @@
 }
 
 .dot {
-	font-size: 5px;
+	font-size: 20px;
 	height: 16px;
 	line-height: 16px;
 	margin: 0 5px;
@@ -37,20 +38,20 @@
 }
 
 .adimBtnWrap > a {
-	margin-right: 30px;
 	width: 100px;
-	height: 24px;
-	line-height: 24px;
+	height: 40px;
+	background-color: #6594e7;
+	color: #ffffff;
 	border: none;
-	color: black;
-	text-align: center;
-	cursor: pointer;
-	font-size: 18px;
-	font-weight: bold;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-size: 14px;
 }
-.adimBtnWrap > a:hover {
+/* .adimBtnWrap > a:hover {
 	color: #6594e7;
-}
+} */
 .adimBtnWrap > button {
 	margin-right: 20px;
 	width: 100px;
