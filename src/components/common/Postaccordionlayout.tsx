@@ -7,8 +7,6 @@ interface postdataProps {
 	page: string;
 }
 export default function Postaccordionlayout({ list, page }: postdataProps) {
-
-
 	const titleChange = () => {
 		switch (page) {
 			case 'bookReport':
@@ -95,7 +93,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 								</div>
 							) : null}
 							<div className={styles.postdataWrap}>
-								{list.state ? (
+								{list.selling ? (
 									<div className={styles.contentState}>나눔</div>
 								) : (
 									<div className={styles.contentState}>팝니다</div>

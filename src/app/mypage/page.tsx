@@ -13,7 +13,12 @@ import MyOrder from '@/components/mypage/myorder/Myorder';
 export default async function page({
 	searchParams,
 }: {
-	searchParams: { page?: string; num?: string };
+	searchParams: {
+		page?: string;
+		sort: string;
+		categories: string;
+		num?: string;
+	};
 }) {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
@@ -41,6 +46,8 @@ export default async function page({
 							<MyPost
 								userId={data.user.id}
 								page={searchParams.page as string}
+								sort={searchParams.sort as string}
+								categories={searchParams.categories as string}
 								num={searchParams.num as string}
 							/>
 						</Accordion>
