@@ -26,7 +26,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 							) : null}
 							<div className={styles.postdataWrap}>
 								<h3 className={styles.postTitle}>{list.title}</h3>
-								<p className={styles.postContent}>{list.content}</p>
+								<p className={styles.postReportContent}>{list.content}</p>
 								<PostaccordionLayoutFooter list={list} />
 							</div>
 						</div>

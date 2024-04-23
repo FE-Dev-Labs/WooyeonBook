@@ -3,6 +3,7 @@ import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
 import NaviLab from './nav/NaviLab';
 import Image from 'next/image';
+import PostaccordionLayoutFooter from '@/components/common/PostaccordionLayoutFooter';
 interface ContentBoxProps {
 	data: AllDataType;
 	page?: string;
@@ -13,52 +14,98 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 		switch (page) {
 			case 'bookReport':
 				return (
-					<div className={styles.titleWrap}>
-						<div className={styles.postImgArea}>
+					<div className={styles.postdataWrapper}>
+						<div className={styles.postWrapper}>
 							{data.book_img_url ? (
-								<Image
-									className={styles.postImg}
-									src={data.book_img_url}
-									alt="책표지"
-									width={200}
-									height={200}
-								/>
+								<div className={styles.postImgArea}>
+									<Image
+										className={styles.postImg}
+										src={data.book_img_url}
+										alt="책표지"
+										width={200}
+										height={200}
+									/>
+								</div>
 							) : null}
+							<div className={styles.postdataWrap}>
+								<h3 className={styles.postTitle}>{data.title}</h3>
+								<p className={styles.postReportContent}>{data.content}</p>
+								<PostaccordionLayoutFooter list={data} />
+							</div>
 						</div>
-						<h2 className={styles.title}>{data.title}</h2>
 					</div>
 				);
 			case 'bookMeeting':
 				return (
-					<div className={styles.titleWrap}>
-						{data.state ? (
-							<div className={styles.contentState}>모집 완료</div>
-						) : (
-							<div className={styles.contentState}>모집중</div>
-						)}
-						<h2 className={styles.title}>{data.title}</h2>
+					<div className={styles.postdataWrapper}>
+						<div className={styles.postWrapper}>
+							<div className={styles.postdataWrap}>
+								{data.state ? (
+									<div className={styles.contentState}>모집 완료</div>
+								) : (
+									<div className={styles.contentState}>모집중</div>
+								)}
+								<h3 className={styles.postTitle}>{data.title}</h3>
+								<p className={styles.postContent}>{data.content}</p>
+								<PostaccordionLayoutFooter list={data} />
+							</div>
+						</div>
 					</div>
 				);
 			case 'bookBuying':
 				return (
-					<div className={styles.titleWrap}>
-						{data.state ? (
-							<div className={styles.contentState}>거래 완료</div>
-						) : (
-							<div className={styles.contentState}>거래중</div>
-						)}
-						<h2 className={styles.title}>{data.title}</h2>
+					<div className={styles.postdataWrapper}>
+						<div className={styles.postWrapper}>
+							{data.book_img_url ? (
+								<div className={styles.postImgArea}>
+									<Image
+										className={styles.postImg}
+										src={data.book_img_url}
+										alt="책표지"
+										width={200}
+										height={200}
+									/>
+								</div>
+							) : null}
+							<div className={styles.postdataWrap}>
+								{data.state ? (
+									<div className={styles.contentState}>거래 완료</div>
+								) : (
+									<div className={styles.contentState}>거래중</div>
+								)}
+								<h3 className={styles.postTitle}>{data.title}</h3>
+								<p className={styles.postContent}>{data.content} </p>
+								<PostaccordionLayoutFooter list={data} />
+							</div>
+						</div>
 					</div>
 				);
 			case 'bookSelling':
 				return (
-					<div className={styles.titleWrap}>
-						{data.selling ? (
-							<div className={styles.contentState}>나눔</div>
-						) : (
-							<div className={styles.contentState}>팝니다</div>
-						)}
-						<h2 className={styles.title}>{data.title}</h2>
+					<div className={styles.postdataWrapper}>
+						<div className={styles.postWrapper}>
+							{data.book_img_url ? (
+								<div className={styles.postImgArea}>
+									<Image
+										className={styles.postImg}
+										src={data.book_img_url}
+										alt="책표지"
+										width={200}
+										height={200}
+									/>
+								</div>
+							) : null}
+							<div className={styles.postdataWrap}>
+								{data.selling ? (
+									<div className={styles.contentState}>나눔</div>
+								) : (
+									<div className={styles.contentState}>팝니다</div>
+								)}
+								<h3 className={styles.postTitle}>{data.title}</h3>
+								<p className={styles.postContent}>{data.content}</p>
+								<PostaccordionLayoutFooter list={data} />
+							</div>
+						</div>
 					</div>
 				);
 		}
@@ -68,10 +115,10 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 			page={page as string}
 			doc_id={data.doc_id}
 			view={data.view as number}>
-			<div className={styles.container}>
-				{title()}
-				<div className={styles.content}>{data.content}</div>
-				<div className={styles.contnetInfoWrap}>
+			{/* <div className={styles.container}> */}
+			{title()}
+
+			{/* <div className={styles.contnetInfoWrap}>
 					<div className={styles.authorAndDateWrap}>
 						<div>{data.user_name}</div>
 						<div className={styles.dot}>●</div>
@@ -82,7 +129,7 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 						<div>조회수 : {data.view}</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</NaviLab>
 	);
 }

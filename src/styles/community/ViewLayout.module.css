@@ -9,7 +9,7 @@
 .mainWrap {
 	display: grid;
 	width: 100%;
-	grid-template-columns: 970px 1fr;
+	grid-template-columns: 1000px 1fr;
 	row-gap: 30px;
 }
 
@@ -23,32 +23,32 @@
 
 .weeklyPopularWrap {
 	display: flex;
-	justify-content: center;
 	margin-top: 30px;
+	margin-left: 80px;
 }
 .weeklyPopularWrap > div {
-	width: 280px;
-	height: 600px;
+	width: 220px;
+	height: 470px;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid #b5bdc4;
+	border-radius: 10px;
+	border: 1px solid #dee2e6;
 }
 .weeklyPopularWrap > div > h3 {
-	font-size: 20px;
-	padding-top: 10px;
-	padding-left: 15px;
-	margin-bottom: 10px;
-	color: #000000;
+	padding: 12px;
+	/* margin-bottom: 10px; */
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 150%;
+	color: #212529;
 }
 
 .weeklyPopularWrap > div > a {
 	font-size: 16px;
 	margin-bottom: 20px;
-	color: #b5bdc4;
-	width: 265px;
+	color: #495057;
 	padding-left: 15px;
 	padding-top: 10px;
-	padding-bottom: 10px;
 	word-wrap: break-word;
 }
 .weeklyPopularWrap > div > a:hover {
@@ -59,14 +59,26 @@
 	color: black;
 }
 .weeklyPopularContent {
-	color: #b5bdc4;
+	color: #495057;
+	font-size: 14px;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
 .weeklyPopularWriter {
-	margin-top: 15px;
-	margin-right: 15px;
+	display: flex;
+	align-items: center;
+}
+.userName {
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 150%;
+	color: #212529;
+}
+.userLogo {
+	object-fit: cover;
+	border-radius: 32px;
+	margin-right: 5px;
 }
 .line {
 	width: 100%;
