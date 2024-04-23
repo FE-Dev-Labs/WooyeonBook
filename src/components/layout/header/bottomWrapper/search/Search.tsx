@@ -10,11 +10,13 @@ import { Book } from '@/types/bookDetailDate';
 import cancelIcon from '../../../../../../public/layout/cancel.png';
 import { useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { searchKeyword } from '@/recoil/atom/searchKeyword';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import SearchResult from './SearchResult';
 import RecentSearch from './recentSearch/RecentSearch';
+import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
+import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 
 export default function Search() {
 	// 검색어 로컬스토리지 저장
@@ -28,6 +30,12 @@ export default function Search() {
 	const [keyword, setKeyword] = useRecoilState(searchKeyword);
 	// 검색어 책 데이터 배열에 넣기
 	const [searchData, setSearchData] = useState<Book[]>([]);
+
+	// 원준 추가
+	// sort type setValue
+	const setSortType = useSetRecoilState(sortTypeAtom);
+	// current page setValue
+	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 
 	// useModal 훅
 	const {
@@ -127,7 +135,7 @@ export default function Search() {
 	// 쿼리값 전달
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const searchUrl = `/search?keyword=${String(keyword)}`;
+		const searchUrl = `/search?keyword=${String(keyword)}&sortType=title`;
 		// 로컬스토리지에 검색어 추가
 		// handleSubmitKeyword(String(keyword));
 		addKeyword(String(keyword));
@@ -135,6 +143,9 @@ export default function Search() {
 		// 검색어 모달 닫기
 		handleModalCloseChange();
 		router.push(searchUrl);
+		// 1페이지로&제목순으로 초기화
+		setCurrentPage(1);
+		setSortType('title');
 	};
 
 	return (

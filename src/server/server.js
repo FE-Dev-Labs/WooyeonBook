@@ -267,95 +267,115 @@ app.get('/api/community/bookSelling/:docid', async (req, res) => {
 });
 
 /** 원준 api */
-
-// search 페이지: 검색 결과 api
-// app.get('/list/search', async (req, res) => {
-// 	// request.query 내 searchTarget 추출
-// 	const { query, page } = req.query;
-// 	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-// 	const start = Number(page);
-
-// 	try {
-// 		const response = await axios.get(
-// 			`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=50&start=${start}&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-// 		);
-
-// 		// 검색어 리스트의 item만 추출해 data에 할당
-// 		const data = await response.data.item;
-// 		// 해당 리스트 item의 총 갯수
-// 		const dataLength = await response.data.totalResults;
-// 		res.status(200).send({ data, dataLength });
-// 	} catch (err) {
-// 		res.status(400).send(err);
-// 	}
-// });
-
-app.get('/list/search', async (req, res) => {
-	// // request.query 내 searchTarget 추출
-	// const { query } = req.query;
-	// try {
-	// 	const initialResponse = await axios.get(
-	// 		`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=30&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-	// 	);
-
-	// 	// 데이터 수
-	// 	const dataLength = await initialResponse.data.totalResults;
-	// 	// 페이지 수
-	// 	const pageLength = Math.ceil(dataLength / 24);
-	// 	// 해당 카테고리에 있는 모든 데이터를 삽입해줄 빈 배열
-	// 	const searchAllData = [];
-	// 	for (let start = 2; start <= pageLength; start++) {
-	// 		const searchResponse = await axios.get(
-	// 			`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=30&start=${start}&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-	// 		);
-	// 		// for문을 순회하며 들어가는 데이터
-	// 		const searchData = await searchResponse.data.item;
-	// 		// 끝까지 for문을 돌며 push
-	// 		searchAllData.push(...searchData);
-	// 	}
-
-	// 	// 중복 제거 로직 추가(data.itemId가 같은 책 다수로 인함)
-	// 	const uniqueItemsMap = new Map();
-	// 	searchAllData.forEach((item) => {
-	// 		// item.itemId 또는 고유 식별자를 키로 사용
-	// 		if (!uniqueItemsMap.has(item.itemId)) {
-	// 			uniqueItemsMap.set(item.itemId, item);
-	// 		}
-	// 	});
-	// 	// itemId가 2개인 아이템을 제외한 하나 뿐인 데이터들
-	// 	const uniqueData = Array.from(uniqueItemsMap.values());
-	// 	// 하나뿐인 데이터들만 포함한 데이터 수
-	// 	const uniqueDataLength = uniqueData.length;
-
-	// 	res.status(200).send({ data: uniqueData, dataLength: uniqueDataLength });
-	// } catch (err) {
-	// 	res.status(400).send(err);
-	// }
-	const { query } = req.query;
+// category 페이지 : 신간 전체 리스트 api
+app.get('/list/newAll', async (req, res) => {
+	const { categoryId, sortType } = req.query;
 	try {
-		const initialResponse = await axios.get(
-			`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=30&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+		// 첫번째 api
+		const response = await axios.get(
+			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 		);
-		const dataLength = initialResponse.data.totalResults;
-		const pageLength = Math.ceil(dataLength / 24);
-		const fetchPromises = [];
+		// 데이터의 item 속성만 추출
+		const data = await response.data.item;
+		// 해당 카테고리의 모든 데이터를 넣어줄 배열 (+ 첫 요청에서 가져온 24개 아이템)
+		const allCategoryData = [...data];
+		// 해당 카테고리의 모든 아이템 개수
+		const allCategoryDataLength = await response.data.totalResults;
+		// 해당 카테고리의 데이터 요청 수(한 번에 최대 50)
+		const pageLength = Math.ceil(allCategoryDataLength / 50);
 
+		// 두 번째 요청부터 마지막 요청까지 데이터 누적
 		for (let start = 2; start <= pageLength; start++) {
-			fetchPromises.push(
-				axios.get(
-					`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=30&start=${start}&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
-				),
+			const response = await axios.get(
+				`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
 			);
+			// for문을 순회하며 얻은 데이터
+			const data = await response.data.item;
+			// 끝까지 for문을 돌며 push
+			allCategoryData.push(...data);
 		}
 
-		const responses = await Promise.all(fetchPromises);
-		const searchAllData = responses.flatMap((response) => response.data.item);
-
+		// 중복 제거 로직 추가
 		const uniqueItemsMap = new Map();
-		searchAllData.forEach((item) => uniqueItemsMap.set(item.itemId, item));
-		const uniqueData = Array.from(uniqueItemsMap.values());
+		allCategoryData.forEach((item) => uniqueItemsMap.set(item.itemId, item));
+		const uniqueAllCategoryData = Array.from(uniqueItemsMap.values());
 
-		res.status(200).send({ data: uniqueData, dataLength: uniqueData.length });
+		// 해당 카테고리의 모든 데이터 정렬
+		const sortedAllCategoryData =
+			sortType === 'title'
+				? uniqueAllCategoryData.sort((a, b) => a.title.localeCompare(b.title))
+				: uniqueAllCategoryData.sort(
+						(a, b) =>
+							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+					);
+		// 데이터를 클라이언트 전송
+		res.status(200).send({ data: sortedAllCategoryData });
+	} catch (err) {
+		res.status(400).send(err);
+	}
+});
+
+// search 페이지: 검색 결과 api
+app.get('/list/search', async (req, res) => {
+	const { query, sortType } = req.query;
+	try {
+		// 첫번째 api
+		const response = await axios.get(
+			`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=30&start=1&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+		);
+		// 데이터의 item 속성만 추출
+		const data = await response.data.item;
+		// 해당 키워드 검색의 모든 데이터를 넣어줄 배열 (+ 첫 요청에서 가져온 30개 아이템)
+		const allSearchData = [...data];
+		// 해당 키워드 검색의 모든 아이템 개수
+		const allSearchDataLength = await response.data.totalResults;
+		// 해당 키워드 검색의 데이터 요청 수(한 번에 최대 50)
+		const pageLength = Math.ceil(allSearchDataLength / 50);
+
+		// 두 번째 요청부터 마지막 요청까지 데이터 누적
+		for (let start = 2; start <= pageLength; start++) {
+			const response = await axios.get(
+				`${process.env.SEARCH_BASE_URL}?ttbkey=${process.env.TTB_KEY}&Query=${query}&QueryType=Keyword&MaxResults=50&start=${start}&SearchTarget=Book&output=js&Version=20131101&Cover=Big`,
+			);
+			// for문을 순회하며 얻은 데이터
+			const data = await response.data.item;
+			// 끝까지 for문을 돌며 push
+			allSearchData.push(...data);
+		}
+
+		// 중복 제거 로직 추가
+		const uniqueItemsMap = new Map();
+		allSearchData.forEach((item) => uniqueItemsMap.set(item.itemId, item));
+		const uniqueAllSearchData = Array.from(uniqueItemsMap.values());
+
+		// 해당 카테고리의 모든 데이터 정렬
+		const sortedAllSearchData =
+			sortType === 'title'
+				? uniqueAllSearchData.sort((a, b) => a.title.localeCompare(b.title))
+				: uniqueAllSearchData.sort(
+						(a, b) =>
+							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
+					);
+
+		res.status(200).send({ data: sortedAllSearchData });
+	} catch (err) {
+		res.status(400).send(err);
+	}
+});
+
+// best 페이지: 전체 베스트셀러 도서 api
+app.get('/list/bestAll', async (req, res) => {
+	const { categoryId, pageNum } = req.query;
+
+	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
+	const start = Number(pageNum);
+	try {
+		const response = await axios.get(
+			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=Bestseller&MaxResults=24&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
+		);
+		// 베스트셀러 리스트의 해당 카테고리 item만 추출해 data에 할당
+		const data = await response.data.item;
+		res.status(200).send({ data });
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -363,10 +383,9 @@ app.get('/list/search', async (req, res) => {
 
 // new 페이지: 전체 신간 도서 api
 app.get('/list/newSpecialAll', async (req, res) => {
-	// request.query 내 categoryId 추출
-	const { categoryId, page } = req.query;
+	const { categoryId, pageNum } = req.query;
 	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-	const start = Number(page);
+	const start = Number(pageNum);
 
 	try {
 		const response = await axios.get(
@@ -383,35 +402,12 @@ app.get('/list/newSpecialAll', async (req, res) => {
 	}
 });
 
-// best 페이지: 전체 베스트셀러 도서 api
-app.get('/list/bestAll', async (req, res) => {
-	// request.query 내 categoryId 추출
-	const { categoryId, page } = req.query;
-	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-	const start = Number(page);
-
-	try {
-		const response = await axios.get(
-			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=Bestseller&MaxResults=24&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
-		);
-
-		// 베스트셀러 리스트의 해당 카테고리 item만 추출해 data에 할당
-		const data = await response.data.item;
-		// 해당 카테고리 item의 총 갯수
-		const dataLength = await response.data.totalResults;
-
-		res.status(200).send({ data, dataLength });
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
-
 // used 페이지: 전체 중고 도서 api
 app.get('/list/usedAll', async (req, res) => {
 	// request.query 내 categoryId 추출
-	const { categoryId, page } = req.query;
+	const { categoryId, pageNum } = req.query;
 	// 추출한 page를 숫자로 변환(문자열로 넘어옴)해서 startIndex에 삽입(아이템 뿌려주는 시작 숫자)
-	const start = Number(page);
+	const start = Number(pageNum);
 
 	try {
 		const response = await axios.get(
@@ -430,7 +426,7 @@ app.get('/list/usedAll', async (req, res) => {
 });
 
 // used 페이지: 중고 베스트셀러 도서(5개) api
-app.get('/list/used', async (req, res) => {
+app.get('/list/usedBest', async (req, res) => {
 	try {
 		const response = await axios.get(
 			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=itemNewAll&MaxResults=50&start=1&SearchTarget=Used&SubSearchTarget=Book&output=js&Version=20131101&Cover=Big`,
@@ -443,112 +439,7 @@ app.get('/list/used', async (req, res) => {
 			// 앞에서 6개만 추출
 			.slice(0, 5);
 
-		res.status(200).send(data);
-	} catch (err) {
-		res.status(400).send(err);
-	}
-});
-
-// category 페이지 : 신간 전체 리스트 api
-// app.get('/list/newAll', async (req, res) => {
-// 	const { categoryId } = req.query;
-// 	try {
-// 		// 첫번째 api
-// 		const initialResponse = await axios.get(
-// 			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
-// 		);
-// 		// 데이터 수
-// 		const dataLength = await initialResponse.data.totalResults;
-// 		// 페이지 수
-// 		const pageLength = Math.ceil(dataLength / 24);
-// 		// 해당 카테고리에 있는 모든 데이터를 삽입해줄 빈 배열
-// 		const categoryAlldata = [];
-// 		for (let start = 2; start <= pageLength; start++) {
-// 			const categoryResponse = await axios.get(
-// 				`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
-// 			);
-// 			// for문을 순회하며 들어가는 데이터
-// 			const categoryData = await categoryResponse.data.item;
-// 			// 끝까지 for문을 돌며 push
-// 			categoryAlldata.push(...categoryData);
-// 		}
-
-// 		// 중복 제거 로직 추가(data.itemId가 같은 책 다수로 인함)
-// 		const uniqueItemsMap = new Map();
-// 		categoryAlldata.forEach((item) => {
-// 			// item.itemId 또는 고유 식별자를 키로 사용
-// 			if (!uniqueItemsMap.has(item.itemId)) {
-// 				uniqueItemsMap.set(item.itemId, item);
-// 			}
-// 		});
-// 		// itemId가 2개인 아이템을 제외한 하나 뿐인 데이터들
-// 		const uniqueData = Array.from(uniqueItemsMap.values());
-// 		// 하나뿐인 데이터들만 포함한 데이터 수
-// 		const uniqueDataLength = uniqueData.length;
-// 		// // 하나뿐인 데이터들만 포함한 페이지 수
-// 		// const uniquePageLength = Math.ceil(uniqueDataLength / 24);
-
-// 		// 중복이 제거된 데이터를 클라이언트에 전송
-// 		res.status(200).send({
-// 			data: uniqueData,
-// 			dataLength: uniqueDataLength,
-// 			// pageLength: uniquePageLength,
-// 		});
-// 	} catch (err) {
-// 		res.status(400).send(err);
-// 	}
-// });
-app.get('/list/newAll', async (req, res) => {
-	const { categoryId, sort } = req.query;
-	try {
-		// 첫번째 api
-		const initialResponse = await axios.get(
-			`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=24&start=1&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
-		);
-		// 데이터 수
-		const dataLength = await initialResponse.data.totalResults;
-		// 페이지 수
-		const pageLength = Math.ceil(dataLength / 24);
-		// 해당 카테고리에 있는 모든 데이터를 삽입해줄 빈 배열
-		const categoryAlldata = [];
-		for (let start = 2; start <= pageLength; start++) {
-			const categoryResponse = await axios.get(
-				`${process.env.BASE_URL}?ttbkey=${process.env.TTB_KEY}&QueryType=ItemNewAll&MaxResults=50&start=${start}&SearchTarget=Book&CategoryId=${categoryId}&output=js&Version=20131101&Cover=Big`,
-			);
-			// for문을 순회하며 들어가는 데이터
-			const categoryData = await categoryResponse.data.item;
-			// 끝까지 for문을 돌며 push
-			categoryAlldata.push(...categoryData);
-		}
-
-		// 중복 제거 로직 추가(data.itemId가 같은 책 다수로 인함)
-		const uniqueItemsMap = new Map();
-		categoryAlldata.forEach((item) => {
-			// item.itemId 또는 고유 식별자를 키로 사용
-			if (!uniqueItemsMap.has(item.itemId)) {
-				uniqueItemsMap.set(item.itemId, item);
-			}
-		});
-		// itemId가 2개인 아이템을 제외한 하나 뿐인 데이터들
-		const uniqueData = Array.from(uniqueItemsMap.values());
-		const sortedData =
-			sort === '제목순'
-				? uniqueData.sort((a, b) => a.title.localeCompare(b.title))
-				: sort(
-						(a, b) =>
-							new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime(),
-					);
-		// 하나뿐인 데이터들만 포함한 데이터 수
-		const uniqueDataLength = uniqueData.length;
-		// // 하나뿐인 데이터들만 포함한 페이지 수
-		// const uniquePageLength = Math.ceil(uniqueDataLength / 24);
-
-		// 중복이 제거된 데이터를 클라이언트에 전송
-		res.status(200).send({
-			data: sortedData,
-			dataLength: uniqueDataLength,
-			// pageLength: uniquePageLength,
-		});
+		res.status(200).send({ usedBestData: data });
 	} catch (err) {
 		res.status(400).send(err);
 	}

@@ -1,3 +1,5 @@
+'use client';
+
 import styles from '@/styles/common/pagination.module.css';
 import Image from 'next/image';
 import arrowRightIcon from '../../../public/common/arrowRight.png';
@@ -5,32 +7,41 @@ import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
 import arrowLeftIcon from '../../../public/common/arrowLeft.png';
 import arrowDoubleLeftIcon from '../../../public/common/arrowDoubleLeft.png';
 import { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface PaginationProps {
 	dataLength: number;
-	currentPage: number;
-	handlePageNumClick: (page: number) => void;
 	page?: string;
+	categoryId?: string;
 }
 
 export default function Pagination({
 	dataLength,
-	currentPage,
-	handlePageNumClick,
 	page,
+	categoryId,
 }: PaginationProps) {
-	// 페이지 그룹 state
+	// useRouter 호출
+	const router = useRouter();
+	// usePathname 호출
+	const pathname = usePathname();
+	// current page state
+	const [currentPage, setCurrentPage] = useRecoilState(CurrentPageAtom);
+	// page group state
 	const [pageGroup, setPageGroup] = useState<number>(
 		Math.floor((currentPage - 1) / 10),
 	);
 
 	// 한 페이지 당 나타낼 아이템의 개수 설정. page가 'best' 또는 'category'일 경우 24, 그 외는 30
-	const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
+	// const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
+	const itemPerPage = 30;
 	// 전체 페이지 수 계산
 	let totalPages =
 		// 베스트페이지일 시, 최대 페이지 10개
 		page === 'best'
-			? Math.min(Math.ceil(dataLength / itemPerPage), 10)
+			? // ? Math.min(Math.ceil(dataLength / itemPerPage), 10)
+				10
 			: // 중고도서페이지일 시, 최대 페이지 30개
 				page === 'used'
 				? Math.min(Math.ceil(dataLength / itemPerPage), 30)
@@ -57,6 +68,26 @@ export default function Pagination({
 	// 마지막 페이지 그룹인지 확인
 	const isLastPageGroup = pageGroup === totalPageGroups - 1;
 
+	// 페이지내이션 내 버튼 조건
+	const goToFirstPage = !isFirstPageGroup && currentPage > 1;
+	const goToPrevPage = !isFirstPageGroup && currentPage > 1;
+	const goToNextPage = !isLastPageGroup && currentPage < totalPages;
+	const goToLastPage = !isLastPageGroup && currentPage < totalPages;
+
+	// 현재 카테고리의 각 페이지(숫자) 선택 시 실행되는 함수
+	const handlePageNumClick = (pageNum: number) => {
+		// 현재 페이지 숫자와 선택하려는 페이지 숫자가 같으면 리턴
+		if (currentPage === pageNum) return;
+		// 현재 페이지 숫자 변경
+		setCurrentPage(pageNum);
+		// best, new, used page 주소 수정
+		if (page === 'best' || 'new' || 'used') {
+			router.push(`${pathname}?categoryId=${categoryId}&pageNum=${pageNum}`);
+		}
+		// 페이지 선택시 페이지 상단으로 스크롤 이동
+		window.scrollTo({ top: 320, behavior: 'smooth' });
+	};
+
 	// currentPage가 변경될 때마다 페이지 그룹을 업데이트하는 useEffect
 	useEffect(() => {
 		setPageGroup(Math.floor((currentPage - 1) / groupSize));
@@ -66,7 +97,7 @@ export default function Pagination({
 		<section className={styles.paginationContainer}>
 			<div className={styles.paginationWrappper}>
 				{/* 맨 처음 페이지로 이동하는 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
-				{!isFirstPageGroup && currentPage > 1 && (
+				{goToFirstPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowDoubleLeftIcon}
@@ -78,7 +109,7 @@ export default function Pagination({
 					</div>
 				)}
 				{/* 이전 페이지 버튼, 첫 번째 페이지 그룹(1~10)이 아닐 때만 렌더링 */}
-				{!isFirstPageGroup && currentPage > 1 && (
+				{goToPrevPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowLeftIcon}
@@ -103,7 +134,7 @@ export default function Pagination({
 					</div>
 				))}
 				{/* 다음 페이지 버튼, 마지막 페이지 그룹이 아닐 때만 렌더링 */}
-				{!isLastPageGroup && currentPage < totalPages && (
+				{goToNextPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowRightIcon}
@@ -115,7 +146,7 @@ export default function Pagination({
 					</div>
 				)}
 				{/* 맨 마지막 페이지로 이동하는 버튼, 마지막 페이지 그룹이 아닐 때만 렌더링 */}
-				{!isLastPageGroup && currentPage < totalPages && (
+				{goToLastPage && (
 					<div className={styles.paginationItem}>
 						<Image
 							src={arrowDoubleRightIcon}
