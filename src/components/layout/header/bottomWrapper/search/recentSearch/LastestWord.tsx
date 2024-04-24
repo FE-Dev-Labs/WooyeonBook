@@ -15,16 +15,16 @@ export default function LastestWord() {
 
 	// 원준 추가
 	// sort type setValue
-	const setSortType = useSetRecoilState(sortTypeAtom);
+	// const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 
 	// 최근 검색어 클릭 시 동작하는 함수
 	const handleValueClick = (value: string) => {
-		router.push(`/search?keyword=${value}&sortType=title`);
+		router.push(`/search?keyword=${value}&pageNum=1`);
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		setSortType('title');
+		// setSortType('title'); sort tyte 제거
 	};
 
 	return (

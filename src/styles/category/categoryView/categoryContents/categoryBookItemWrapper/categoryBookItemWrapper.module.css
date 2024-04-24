@@ -1,6 +1,6 @@
 .categorybookItemWrapper {
 	width: inherit;
-	margin: 50px 0 50px 0;
+	margin-bottom: 50px;
 
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);

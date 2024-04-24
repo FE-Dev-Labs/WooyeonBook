@@ -138,7 +138,7 @@ export default function Search() {
 	// 쿼리값 전달
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const searchUrl = `/search?keyword=${String(keyword)}&sortType=title`;
+		const searchUrl = `/search?keyword=${String(keyword)}&pageNum=1`;
 		// 로컬스토리지에 검색어 추가
 		// handleSubmitKeyword(String(keyword));
 		addKeyword(String(keyword));
@@ -148,7 +148,7 @@ export default function Search() {
 		router.push(searchUrl);
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		setSortType('title');
+		// setSortType('title'); sort 제거
 	};
 
 	return (

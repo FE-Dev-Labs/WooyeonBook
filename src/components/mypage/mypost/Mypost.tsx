@@ -1,8 +1,5 @@
 import Postaccordionlayout from '@/components/common/Postaccordionlayout';
 import styles from '@/styles/mypage/mypage.module.css';
-import PageNation from './../../community/view/PageNation';
-import { useSearchParams } from 'next/navigation';
-import { BookSellingDataType } from '@/types/community/view/data';
 import MypagePagination from './MypagePagination';
 
 interface userIdProps {

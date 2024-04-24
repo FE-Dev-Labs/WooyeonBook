@@ -13,14 +13,16 @@ import { usePathname, useRouter } from 'next/navigation';
 
 interface PaginationProps {
 	dataLength: number;
-	page?: string;
+	page: string;
 	categoryId?: string;
+	keyword?: string;
 }
 
 export default function Pagination({
 	dataLength,
 	page,
 	categoryId,
+	keyword,
 }: PaginationProps) {
 	// useRouter 호출
 	const router = useRouter();
@@ -34,19 +36,13 @@ export default function Pagination({
 	);
 
 	// 한 페이지 당 나타낼 아이템의 개수 설정. page가 'best' 또는 'category'일 경우 24, 그 외는 30
-	// const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
-	const itemPerPage = 30;
+	const itemPerPage = page === 'best' || page === 'category' ? 24 : 30;
 	// 전체 페이지 수 계산
-	let totalPages =
-		// 베스트페이지일 시, 최대 페이지 10개
-		page === 'best'
-			? // ? Math.min(Math.ceil(dataLength / itemPerPage), 10)
-				10
-			: // 중고도서페이지일 시, 최대 페이지 30개
-				page === 'used'
-				? Math.min(Math.ceil(dataLength / itemPerPage), 30)
-				: // 베스트, 중고가 아닐 때(카테고리, 신간), 최대 페이지 개수 제한X
-					Math.ceil(dataLength / itemPerPage);
+	const totalPages = // 중고도서페이지일 시, 최대 페이지 30개
+		page === 'used'
+			? Math.min(Math.ceil(dataLength / itemPerPage), 30)
+			: // 베스트, 중고가 아닐 때(카테고리, 신간), 최대 페이지 개수 제한X
+				Math.ceil(dataLength / itemPerPage);
 
 	// 한 번에 보여줄 페이지 수
 	const groupSize = 10;
@@ -55,7 +51,7 @@ export default function Pagination({
 	// 현재 페이지 그룹에 따른 끝 페이지
 	const endPage = Math.min(startPage + groupSize - 1, totalPages);
 	// 현재 페이지 그룹에 속하는 페이비 번호들의 배열
-	let pageArr = Array.from(
+	const pageArr = Array.from(
 		{ length: endPage - startPage + 1 },
 		(_, i) => startPage + i,
 	);
@@ -80,18 +76,25 @@ export default function Pagination({
 		if (currentPage === pageNum) return;
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
-		// best, new, used page 주소 수정
-		if (page === 'best' || 'new' || 'used') {
+		// 페이지 별 라우트 설정
+		if (page === 'best' || 'new' || 'used' || 'cateegory') {
 			router.push(`${pathname}?categoryId=${categoryId}&pageNum=${pageNum}`);
 		}
+		if (page === 'search') {
+			router.push(`${pathname}?keyword=${keyword}&pageNum=${pageNum}`);
+		}
 		// 페이지 선택시 페이지 상단으로 스크롤 이동
-		window.scrollTo({ top: 320, behavior: 'smooth' });
+		// window.scrollTo({ top: 320, behavior: 'smooth' });
 	};
 
 	// currentPage가 변경될 때마다 페이지 그룹을 업데이트하는 useEffect
 	useEffect(() => {
 		setPageGroup(Math.floor((currentPage - 1) / groupSize));
 	}, [currentPage]);
+	// page가 변경될 때마다 현재 페이지를 1로 수정하는 useEffect
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [page]);
 
 	return (
 		<section className={styles.paginationContainer}>

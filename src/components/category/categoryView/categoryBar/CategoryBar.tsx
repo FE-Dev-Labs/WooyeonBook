@@ -12,7 +12,7 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 	// usePathname 호출
 	const pathname = usePathname();
 	// sort type state
-	const [sortType, setSortType] = useRecoilState(sortTypeAtom);
+	// const [sortType, setSortType] = useRecoilState(sortTypeAtom);
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
@@ -21,7 +21,8 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 	// 카테고리 선택 시 동작하는 함수
 	const handleCategoryItemClick = (categoryId: number) => {
 		// if (categoryId) {
-		router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
+		// router.push(`${pathname}?categoryId=${categoryId}&sortType=${sortType}`);
+		router.push(`${pathname}?categoryId=${categoryId}&pageNum=1`);
 		// }
 		// !categoryId 시 기존 페이지로 이동(카테고리-전체 시 아이디 null로 찍힘)
 		// if (!categoryId) {
@@ -29,7 +30,7 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 		// }
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		setSortType('title');
+		// setSortType('title'); // sort type 제거
 	};
 
 	// categoryId(nav item의 category number)를 파라미터로 받아 스타일링을 위해 className을 바꿔주는 함수
