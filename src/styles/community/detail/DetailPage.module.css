@@ -6,16 +6,14 @@
 
 .title {
 	width: 1300px;
-	margin: 0 auto 30px auto;
+	/* margin: 0 auto 30px auto; */
 	font-size: 30px;
 	font-weight: bold;
+	margin-bottom: 10px;
 }
 
 .infoWrap {
-	width: 1300px;
-	margin: 0 auto 20px auto;
 	display: flex;
-	justify-content: space-between;
 	color: #868e96;
 }
 
@@ -73,36 +71,31 @@
 
 .viewerWrap {
 	width: 1300px;
-	min-height: 700px;
-	margin: 0 auto 30px auto;
+	min-height: 40px;
+	padding: 24px 0px;
 }
 
 /* option section*/
 
 .optionContainer {
 	width: 1300px;
-	margin: 0 auto 30px auto;
-	display: flex;
 	flex-wrap: wrap;
+	border-bottom: 2px solid #dee2e6;
 }
 .optionItemWrap {
 	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	width: 650px;
-	height: 70px;
-	margin-bottom: 30px;
+	align-items: center;
+	margin-bottom: 20px;
+	justify-content: space-between;
 }
 .optionItemTitle {
-	font-size: 24px;
-	font-weight: bold;
-	color: #717171;
+	font-size: 16px;
+	color: #868e96;
 }
 .optionItemContent {
-	font-size: 22px;
-	font-weight: bold;
-	margin-top: 10px;
-	color: #000;
+	font-size: 16px;
+
+	color: #868e96;
 }
 .optionItemContent:visited {
 	color: #000;
@@ -213,4 +206,70 @@
 	display: flex;
 	justify-content: flex-end;
 	margin-bottom: 30px;
+}
+.optiondivice {
+	display: flex;
+}
+.dropdown {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px 10px 0px 10px;
+}
+.dropdownMenu {
+}
+.dropdownMenuWrapper {
+	position: absolute;
+	padding: 10px 0;
+	z-index: 1000;
+	top: 55px;
+	right: 10px;
+	display: flex;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 0.25rem;
+	flex-direction: column;
+}
+.editBtn {
+	display: flex;
+	padding: 0.4rem 1rem;
+	clear: both;
+	font-weight: 400;
+	color: #212529;
+	text-align: inherit;
+	text-decoration: none;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
+	align-content: center;
+	align-items: center;
+	font-size: 14px;
+}
+.editIcon {
+	margin-right: 8px;
+}
+.deleteIcon {
+	margin-rigth: 8px;
+}
+.dropdown {
+	position: relative;
+}
+.moreIconHover {
+	border: none;
+	width: 45px;
+	height: 45px;
+	background-color: transparent;
+}
+.moreIconHover:hover {
+	width: 45px;
+	height: 45px;
+	background-color: #f8f9fa;
+}
+.moreIconActive {
+	width: 45px;
+	height: 45px;
+	background-color: #f8f9fa;
+	color: #495057;
+	border-radius: 4px;
 }

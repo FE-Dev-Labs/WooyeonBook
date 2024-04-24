@@ -8,6 +8,7 @@ import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
+import DropDownBtn from './DropDownBtn';
 
 interface BookReportProps {
 	data: AllDataType;
@@ -28,36 +29,32 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 	const { comments } = await getDetailCommentData({ data, searchParams });
 	return (
 		<section className={styles.container}>
-			<h2 className={styles.title}>{data.title}</h2>
-			<div className={styles.infoWrap}>
-				<div className={styles.contentInfoWrap}>
-					<div>{getDate(data.created_at)}</div>
-					<div className={styles.dot}>･</div>
-					<div>조회수 {data.view}</div>
-					<div className={styles.dot}>･</div>
-					<div>좋아요 {data.like_users.length} </div>
-				</div>
-				{data?.created_user === user?.id ? (
-					<div className={styles.adimBtnWrap}>
-						<Link href={`/community/update/bookReport/${data.doc_id}`}>
-							수정
-						</Link>
-						<button>삭제</button>
-					</div>
-				) : null}
-			</div>
-			<hr className={styles.line} />
-			{/* option */}
 			<section className={styles.optionContainer}>
+				<h2 className={styles.title}>{data.title}</h2>
+				{/* 책 정보 */}
 				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>독후감 책</label>
-					<div className={styles.optionItemContent}>{data.book_name}</div>
+					<div className={styles.optiondivice}>
+						<div className={styles.optionItemTitle}>독후감 책</div>
+						<div className={styles.dot}>･</div>
+						<div className={styles.optionItemContent}>{data.book_name}</div>
+					</div>
+					{/* 날짜,조회수,좋아요 */}
+					<div className={styles.infoWrap}>
+						<div className={styles.contentInfoWrap}>
+							<div>{getDate(data.created_at)}</div>
+							<div className={styles.dot}>･</div>
+							<div>조회수 {data.view}</div>
+							<div className={styles.dot}>･</div>
+							<div>좋아요 {data.like_users.length} </div>
+						</div>
+					</div>
 				</div>
-				<hr className={styles.line} />
 			</section>
-			{/* editor */}
+
+			{/* 책 내용 */}
 			<div className={styles.viewerWrap}>
 				<View content={data.content} />
+				<DropDownBtn data={data} user={user} />
 			</div>
 			<hr className={styles.line} />
 			{/* 댓글 */}
