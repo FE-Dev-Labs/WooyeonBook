@@ -1,7 +1,7 @@
 import styles from '@/styles/category/categoryView/categoryContents/categoryContents.module.css';
 import { NewBookType } from '@/types/bookType';
-import CategoryBookItemWrapper from './categoryBookItemWrapper/CategoryBookItemWrapper';
 import Pagination from '@/components/common/Pagination';
+import BookItemWrapper from '@/components/common/bookItem/BookItemWrapper';
 
 interface CategoryContentsProps {
 	categoryId: string;
@@ -18,7 +18,7 @@ export default function CategoryContents({
 		<div className={styles.categoryContents}>
 			{/* <CategorySlider /> */}
 			{/* <SortBar categoryId={categoryId} page="category" /> */}
-			<CategoryBookItemWrapper data={data} />
+			<BookItemWrapper data={data} page="category" />
 			<Pagination
 				dataLength={dataLength}
 				page="category"
