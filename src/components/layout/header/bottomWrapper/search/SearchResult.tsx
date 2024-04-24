@@ -25,7 +25,7 @@ export default function SearchResult({
 
 	const keyonSubmit = async () => {
 		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supbase/popularSearch?keyword=${keyword}`,
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/popularSearch?keyword=${keyword}`,
 		);
 		const key = await res.json();
 		const postdata = {

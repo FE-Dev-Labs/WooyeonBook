@@ -15,7 +15,6 @@ export default async function searchPage({
 	// search page data
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/search?query=${keyword}&sortType=${sortType}`,
-		{ next: { revalidate: 3600 } },
 	);
 	const { data } = await response.json();
 

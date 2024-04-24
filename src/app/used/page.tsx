@@ -14,7 +14,7 @@ export default async function usedPage({
 
 	// used page data
 	const usedBestResponse = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}list/usedBest`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/usedBest`,
 		{
 			next: { revalidate: 3600 },
 		},

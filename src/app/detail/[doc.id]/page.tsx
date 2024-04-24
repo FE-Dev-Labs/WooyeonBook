@@ -1,5 +1,5 @@
 import styles from '@/styles/detail/detail.module.css';
-import { ResponseData } from '@/types/bookDetailDate';
+import { Book, ResponseData } from '@/types/bookDetailDate';
 import DetailView from '@/components/detail/DetailView';
 // import useLocal from '@/hooks/useLocal';
 // import Detailcookies from '@/components/detail/detailcomments/Detailcookies';
@@ -31,4 +31,20 @@ export default async function page({
 			))}
 		</div>
 	);
+}
+
+export async function generateStaticParams() {
+	const res = await fetch(
+		`http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&QueryType=Bestseller&MaxResults=100&start=1&SearchTarget=Book&output=js&Version=20131101`,
+	);
+	const data = await res.json();
+	const item = data.item;
+	const paths = item.map((book: Book) => {
+		return {
+			params: {
+				'doc.id': book.isbn13.toString(),
+			},
+		};
+	});
+	return paths;
 }
