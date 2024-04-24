@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from '@/styles/community/search.module.css';
 
-import searchIcon from '../../../../public/searchIcon.png';
+import searchIcon from '../../../../public/common/search.png';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
