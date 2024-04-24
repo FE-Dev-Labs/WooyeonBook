@@ -1,10 +1,9 @@
 'use client';
 
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
-// import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import styles from '@/styles/detail/detailDescription/detailQuantity.module.css';
 import { Book } from '@/types/bookDetailDate';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 interface bookDetailProp {
 	bookInfo: Book;
 }
@@ -23,7 +22,3 @@ export default function DetailTotalQuantity({ bookInfo }: bookDetailProp) {
 		</div>
 	);
 }
-// const totalPrice =
-// 	typeof count === 'number'
-// 		? (count * bookInfo.priceSales).toLocaleString()
-// 		: '';

@@ -5,7 +5,7 @@ import AccordionWrapper from '../common/AccordionWrapper';
 import Accordion from '../common/Accordion';
 import { useEffect } from 'react';
 import { RecentlyViewedBookType } from '@/types/bookType';
-import DetailDescription from './detailDescription/DetailDescription';
+import DetailDescription from './detailDescription/Detaildescription';
 import DetailExplanation from './detailData/DetailExplanation';
 import DetailInformation from './detailData/DetailInformation';
 import DetailSustainAbility from './detailData/DetailSustainAbility';
@@ -59,7 +59,6 @@ export default function DetailView({ book, id }: DetailViewProps) {
 						<DetailSustainAbility bookInfo={book} />
 					</Accordion>
 				) : null}
-
 				<Accordion title={'한줄평'} index={3}>
 					<DetailComment bookId={id} />
 				</Accordion>

@@ -1,8 +1,9 @@
 'use client';
-import styles from '@/styles/detail/detailcomments/detailcommentlist.module.css';
+
+import styles from '@/styles/detail/detailcomments/detailCommentList.module.css';
 import { commentsType } from '@/types/detailComments';
 import { createClient } from '@/utils/supabase/client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface commentListType {
 	list: commentsType;

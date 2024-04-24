@@ -1,9 +1,9 @@
 import Postaccordionlayout from '@/components/common/Postaccordionlayout';
 import styles from '@/styles/mypage/mypage.module.css';
 import PageNation from './../../community/view/PageNation';
-import MypagePageNation from './MypagePageNation';
 import { useSearchParams } from 'next/navigation';
 import { BookSellingDataType } from '@/types/community/view/data';
+import MypagePagination from './MypagePagination';
 
 interface userIdProps {
 	userId: string;
@@ -54,7 +54,7 @@ export default async function MyPost({
 					</div>
 				</div>
 			))}
-			<MypagePageNation alldata={data} />
+			<MypagePagination alldata={data} />
 		</div>
 	);
 }

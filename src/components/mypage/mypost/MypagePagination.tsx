@@ -4,7 +4,7 @@ import { mypage_QS } from '@/recoil/atom/mypageAtom';
 import { AllDataType } from '@/types/community/view/data';
 import { useRecoilState } from 'recoil';
 
-const MypagePageNation = ({ alldata }: { alldata: any[] }) => {
+const MypagePagination = ({ alldata }: { alldata: any[] }) => {
 	const [qs, setQs] = useRecoilState(mypage_QS);
 
 	// 총 페이지 수
@@ -73,4 +73,4 @@ const MypagePageNation = ({ alldata }: { alldata: any[] }) => {
 	);
 };
 
-export default MypagePageNation;
+export default MypagePagination;

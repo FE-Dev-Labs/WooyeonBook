@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
-
 import useCurrentUser from '../../../hooks/useCurrentUser';
-import DetailCommentsList from './Detailcommentslist';
+import DetailCommentsList from './DetailCommentsList';
+// import DetailCommentsList from './Detailcommentslist';
 
 export default function DetailComment({ bookId }: { bookId: string }) {
 	// 댓글

@@ -1,5 +1,5 @@
 'use client';
-import styles from '@/styles/common/communitynav.module.css';
+import styles from '@/styles/common/communityNav.module.css';
 import ControlFilterPanel from './ControlFilterPanel';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';

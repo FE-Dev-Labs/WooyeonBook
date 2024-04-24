@@ -1,6 +1,5 @@
 'use client';
 
-// import styles from '@/styles/detail/detaildescription/detailquantity.module.css';
 import styles from '@/styles/detail/detailDescription/detailQuantity.module.css';
 import Image from 'next/image';
 import minus from '../../../../public/detail/BsDashCircle.png';
