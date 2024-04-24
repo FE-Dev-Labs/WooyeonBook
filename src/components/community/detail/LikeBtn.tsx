@@ -2,7 +2,9 @@
 import { getUser } from '@/apis/community/getUser';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-
+import styles from '@/styles/community/detail/DetailPage.module.css';
+import Image from 'next/image';
+import heartIcon from '../../../../public/common/BsHeart.png';
 const LikeBtn = ({
 	page,
 	doc_id,
@@ -43,7 +45,20 @@ const LikeBtn = ({
 		}
 	};
 
-	return <button onClick={onSubmit}>♡ {like?.length}</button>;
+	return (
+		<div className={styles.likeBtnWrap} onClick={onSubmit}>
+			<button className={styles.likeBtn}>
+				<Image
+					src={heartIcon}
+					alt="heartIcon"
+					width={17}
+					height={17}
+					className={styles.iconsStyle}
+				/>
+				<span className={styles.likeCountText}>{like?.length}</span>
+			</button>
+		</div>
+	);
 };
 
 export default LikeBtn;

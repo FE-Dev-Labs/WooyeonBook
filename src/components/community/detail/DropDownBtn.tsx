@@ -48,31 +48,35 @@ const DropDownBtn = ({ data, user }: BookReportProps) => {
 					style={{ display: isOpen ? 'block' : 'none' }}>
 					{data?.created_user === user?.id ? (
 						<div className={styles.dropdownMenuWrapper}>
-							<Link
-								href={`/community/update/bookReport/${data.doc_id}`}
-								className={styles.editBtn}>
-								<Image
-									src={editIcon}
-									alt="editIcon"
-									width={16}
-									height={16}
-									className={styles.editIcon}
-								/>
-								수정
-							</Link>
+							<div className={styles.dropdownIconHover}>
+								<Link
+									href={`/community/update/bookReport/${data.doc_id}`}
+									className={styles.editBtn}>
+									<Image
+										src={editIcon}
+										alt="editIcon"
+										width={16}
+										height={16}
+										className={styles.editIcon}
+									/>
+									수정
+								</Link>
+							</div>
 							{/*삭제 로직 추가하기 */}
-							<Link
-								href={`/community/update/bookReport/${data.doc_id}`}
-								className={styles.editBtn}>
-								<Image
-									src={deleteIcon}
-									alt="deleteIcon"
-									width={16}
-									height={16}
-									className={styles.editIcon}
-								/>
-								삭제
-							</Link>
+							<div className={styles.dropdownIconHover}>
+								<Link
+									href={`/community/update/bookReport/${data.doc_id}`}
+									className={styles.editBtn}>
+									<Image
+										src={deleteIcon}
+										alt="deleteIcon"
+										width={16}
+										height={16}
+										className={styles.editIcon}
+									/>
+									삭제
+								</Link>
+							</div>
 						</div>
 					) : null}
 				</div>

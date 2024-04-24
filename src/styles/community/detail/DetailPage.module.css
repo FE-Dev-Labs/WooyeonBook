@@ -104,10 +104,12 @@
 /* 댓글 */
 
 .commentHeader {
-	width: 1200px;
-	margin: 0 auto 20px auto;
+	border-top: 2px solid #dee2e6;
+	/* width: 1200px; */
+	margin: 50 auto 20px auto;
 	display: flex;
 	justify-content: space-between;
+	padding: 30px 50px;
 }
 .commentCount {
 	font-size: 20px;
@@ -132,7 +134,7 @@
 
 .commentCreateWrap {
 	width: 1200px;
-	margin: 15px auto;
+	margin: 0px auto;
 }
 .commentCreateWrap > button {
 	width: 100%;
@@ -158,14 +160,26 @@
 	width: 1300px;
 	margin: 0 auto;
 }
-.commentCreateBoxWrap > textarea {
-	width: 1260px;
-	height: 210px;
-	border: 1px solid #adb5bd;
-	border-radius: 10px;
-	padding: 20px;
-	resize: none;
-	font-size: 20px;
+.commentCreateBoxWrap > input {
+	width: 96%;
+	height: 30px;
+	padding: 0px 20px 0px 20px;
+	border: none;
+	background-color: #ffffff;
+	border-radius: 16px;
+	padding: 15px 10px 10px 30px;
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+	margin-right: 30px;
+}
+
+.commentCreateBoxWrap > input:focus {
+	outline: none;
+}
+.commentCreateBoxWrap > input::placeholder {
+	font-size: 16px;
+	/* text-align: center; */
+	align-items: center;
+	/* line-height: 15; */
 }
 .commentCreateBoxWrap > div {
 	width: 100%;
@@ -264,7 +278,8 @@
 .moreIconHover:hover {
 	width: 45px;
 	height: 45px;
-	background-color: #f8f9fa;
+	background-color: #f1f3f5;
+	border-radius: 4px;
 }
 .moreIconActive {
 	width: 45px;
@@ -272,4 +287,82 @@
 	background-color: #f8f9fa;
 	color: #495057;
 	border-radius: 4px;
+}
+.dropdownIconHover:hover {
+	background-color: #f1f3f5;
+}
+.viewBtnWrap {
+	display: flex;
+	justify-content: flex-end;
+}
+.likeBtn {
+	border: none;
+	width: 50px;
+	height: 45px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.likeBtn:hover {
+	width: 50px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
+}
+.shareBtn {
+	border: none;
+	width: 70px;
+	height: 45px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.shareBtn:hover {
+	width: 70px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
+}
+.likeBtnWrap {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px 0px 10px;
+}
+.shareBtnWrap {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px 0px 10px;
+}
+.likeCountText {
+	font-size: 14px;
+	font-weight: 700;
+}
+.shareText {
+	font-size: 14px;
+	font-weight: 700;
+}
+.iconsStyle {
+	margin-right: 10px;
+}
+.commentInput {
+	width: 96%;
+	height: 30px;
+	padding: 0px 20px 0px 20px;
+	border: none;
+	background-color: #ffffff;
+	border-radius: 16px;
+	padding: 15px 10px 10px 30px;
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+	margin-right: 30px;
+}
+.commentInput:focus {
+	outline: none;
+}
+.commentInput::placeholder {
+	font-size: 16px;
+	/* text-align: center; */
+	align-items: center;
+	/* line-height: 15; */
 }

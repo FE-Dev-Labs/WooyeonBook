@@ -9,16 +9,28 @@ import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
 import DropDownBtn from './DropDownBtn';
+import StateBtn from './StateBtn';
+import LikeBtn from './LikeBtn';
+import Image from 'next/image';
+import shareIcon from '../../../../public/detail/shareIcon.png';
 
 interface BookReportProps {
 	data: AllDataType;
+	params: { doc_id: string };
 	searchParams?: { sort?: string };
+	page: string;
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookReport = async ({ searchParams, data }: BookReportProps) => {
+const BookReport = async ({
+	searchParams,
+	data,
+	page,
+	params,
+}: BookReportProps) => {
+	console.log(page);
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -54,15 +66,39 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 			{/* 책 내용 */}
 			<div className={styles.viewerWrap}>
 				<View content={data.content} />
-				<DropDownBtn data={data} user={user} />
+				<div className={styles.viewBtnWrap}>
+					<StateBtn
+						page={'bookReport'}
+						doc_id={params.doc_id}
+						state={data.state as boolean}
+						admin={data.created_user}
+					/>
+					<LikeBtn
+						page={'bookReport'}
+						doc_id={params.doc_id}
+						like={data.like_users}
+					/>
+					<div className={styles.shareBtnWrap}>
+						<button className={styles.shareBtn}>
+							<Image
+								src={shareIcon}
+								alt="shareIcon"
+								width={15}
+								height={15}
+								className={styles.iconsStyle}
+							/>
+							<span className={styles.shareText}>공유</span>
+						</button>
+					</div>
+					<DropDownBtn data={data} user={user} />
+				</div>
 			</div>
-			<hr className={styles.line} />
 			{/* 댓글 */}
 			<section>
 				<div className={styles.commentHeader}>
 					<div className={styles.commentCount}>댓글 {comments.length}</div>
 					<div className={styles.commentSortWrap}>
-						<Link
+						{/* <Link
 							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}
 							scroll={false}>
 							좋아요순
@@ -72,7 +108,7 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 							href={`/community/detail/bookReport/${data.doc_id}?sort=lastest`}
 							scroll={false}>
 							최신순
-						</Link>
+						</Link> */}
 					</div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
