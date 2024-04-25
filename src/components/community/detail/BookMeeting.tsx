@@ -7,7 +7,8 @@ import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
-import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
+import { fetchComments } from '@/apis/community/fetchComments';
+
 interface BookMeetingProps {
 	data: AllDataType;
 	searchParams?: { sort?: string };
@@ -33,13 +34,7 @@ const BookMeeting = async ({ searchParams, data }: BookMeetingProps) => {
 		error,
 	} = await supabase.auth.getUser();
 
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/comment/${data.doc_id}`,
-		{
-			cache: 'no-cache',
-		},
-	);
-	const comments: CommentData[] = await res.json();
+	const comments: CommentData[] = await fetchComments(data.doc_id);
 
 	const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
 		switch (searchParams?.sort) {

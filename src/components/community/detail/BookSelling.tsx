@@ -8,6 +8,7 @@ import { createClient } from '@/utils/supabase/server';
 import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
+import { fetchComments } from '@/apis/community/fetchComments';
 interface BookSellingProps {
 	data: AllDataType;
 	searchParams?: { sort?: string };
@@ -25,6 +26,7 @@ interface CommentData {
 	check: boolean;
 	like: number;
 }
+
 const BookSelling = async ({ searchParams, data }: BookSellingProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
@@ -33,13 +35,7 @@ const BookSelling = async ({ searchParams, data }: BookSellingProps) => {
 		error,
 	} = await supabase.auth.getUser();
 
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/comment/${data.doc_id}`,
-		{
-			cache: 'no-cache',
-		},
-	);
-	const comments: CommentData[] = await res.json();
+	const comments: CommentData[] = await fetchComments(data.doc_id);
 
 	const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
 		switch (searchParams?.sort) {
