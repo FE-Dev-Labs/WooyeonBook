@@ -82,13 +82,13 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 						onChange={onChangeText}
 						maxLength={50}
 					/>
+					<button onClick={cancleComment}>취소</button>
+					<button onClick={createComment}>등록</button>
 					<div>
 						<div className={styles.commentInputCount}>
 							<span className={styles.commentInputCountTxt}>{inputCount}</span>
 							<span className={styles.commentCount}>/50 자</span>
 						</div>
-						<button onClick={cancleComment}>취소</button>
-						<button onClick={createComment}>등록</button>
 					</div>
 				</div>
 			)}

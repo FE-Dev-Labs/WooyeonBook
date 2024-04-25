@@ -1,6 +1,6 @@
-import Postaccordionlayout from '@/components/common/Postaccordionlayout';
 import styles from '@/styles/mypage/mypage.module.css';
 import MypagePagination from './MypagePagination';
+import PostAccordionLayout from '@/components/common/PostAccordionLayout';
 
 interface userIdProps {
 	userId: string;
@@ -47,7 +47,7 @@ export default async function MyPost({
 			{numFiltering?.map((list: any) => (
 				<div className={styles.postAccordionContainer} key={list.doc_id}>
 					<div className={styles.postAccordionWrapper}>
-						<Postaccordionlayout list={list} page={page} />
+						<PostAccordionLayout list={list} page={page} />
 					</div>
 				</div>
 			))}
