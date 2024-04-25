@@ -50,6 +50,7 @@ export default function LoginModal() {
 			});
 			alert('환영합니다!');
 			router.back();
+			window.scrollTo(0, 0); // router.back에 {scroll: false} 옵션 X
 		}
 	};
 
