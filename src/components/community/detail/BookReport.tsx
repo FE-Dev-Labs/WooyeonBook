@@ -12,7 +12,7 @@ import DropDownBtn from './DropDownBtn';
 import StateBtn from './StateBtn';
 import LikeBtn from './LikeBtn';
 import Image from 'next/image';
-import shareIcon from '../../../../public/detail/shareIcon.png';
+import shareIcon from '@/assets/community/shareIcon.png';
 
 interface BookReportProps {
 	data: AllDataType;

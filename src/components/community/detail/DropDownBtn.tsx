@@ -5,9 +5,9 @@ import { AllDataType } from '@/types/community/view/data';
 import { useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import Image from 'next/image';
-import moreIcon from '../../../../public/detail/moreIcon.png';
-import editIcon from '../../../../public/detail/editIcon.png';
-import deleteIcon from '../../../../public/detail/deleteIcon.png';
+import moreIcon from '@/assets/detail/moreIcon.png';
+import editIcon from '@/assets/detail/editIcon.png';
+import deleteIcon from '@/assets/detail/deleteIcon.png';
 interface BookReportProps {
 	data: AllDataType;
 	user: User | null;

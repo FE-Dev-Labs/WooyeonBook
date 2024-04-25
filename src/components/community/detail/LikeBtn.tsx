@@ -4,7 +4,7 @@ import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import styles from '@/styles/community/detail/DetailPage.module.css';
 import Image from 'next/image';
-import heartIcon from '../../../../public/common/BsHeart.png';
+import heartIcon from '@/assets/common/heartIcon.png';
 const LikeBtn = ({
 	page,
 	doc_id,

@@ -15,6 +15,7 @@ export default async function bestPage({
 	// best page data
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/bestAll?categoryId=${categoryId}&pageNum=${pageNum}`,
+		{ next: { revalidate: 3600 } },
 	);
 	const { data } = await response.json();
 

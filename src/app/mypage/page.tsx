@@ -7,7 +7,7 @@ import { cookies } from 'next/headers';
 import MyPost from '@/components/mypage/myPost/MyPost';
 import MyProfile from '@/components/mypage/profile/MyProfile';
 import MyOrder from '@/components/mypage/myOrder/MyOrder';
-import Communitynav from '@/components/common/Communitynav';
+import CommunityNav from '@/components/common/CommunityNav';
 
 export default async function page({
 	searchParams,
@@ -41,7 +41,7 @@ export default async function page({
 					</div>
 					<AccordionWrapper>
 						<Accordion title={'내가쓴글'} index={0}>
-							<Communitynav />
+							<CommunityNav />
 							<MyPost
 								userId={data.user.id}
 								page={searchParams.page as string}

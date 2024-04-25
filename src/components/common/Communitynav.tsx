@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function Communitynav() {
+export default function CommunityNav() {
 	const params = useSearchParams();
 	const page = params.get('page');
 	const [qs, setQs] = useRecoilState(mypage_QS);

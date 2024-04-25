@@ -1,7 +1,7 @@
 'use client';
 import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/hotWord.module.css';
 import Image from 'next/image';
-import lineIcon from '../../../../../../../public/layout/line.png';
+import lineIcon from '@/assets/layout/lineIcon.png';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';

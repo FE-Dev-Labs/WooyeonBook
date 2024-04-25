@@ -2,10 +2,10 @@
 
 import styles from '@/styles/common/pagination.module.css';
 import Image from 'next/image';
-import arrowRightIcon from '../../../public/common/arrowRight.png';
-import arrowDoubleRightIcon from '../../../public/common/arrowDoubleRight.png';
-import arrowLeftIcon from '../../../public/common/arrowLeft.png';
-import arrowDoubleLeftIcon from '../../../public/common/arrowDoubleLeft.png';
+import arrowLeftIcon from '@/assets/common/arrowLeftIcon.png';
+import arrowDoubleLeftIcon from '@/assets/common/arrowLeftIcon.png';
+import arrowRightIcon from '@/assets/common/arrowRightIcon.png';
+import arrowDoubleRightIcon from '@/assets/common/arrowDoubleRightIcon.png';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';

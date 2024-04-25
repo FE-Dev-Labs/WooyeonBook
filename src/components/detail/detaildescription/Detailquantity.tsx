@@ -2,8 +2,8 @@
 
 import styles from '@/styles/detail/detailDescription/detailQuantity.module.css';
 import Image from 'next/image';
-import minus from '../../../../public/detail/BsDashCircle.png';
-import pluse from '../../../../public/detail/BsPlusCircle.png';
+import minusCircleIcon from '@/assets/common/minusCircleIcon.png';
+import plusCircleIcon from '@/assets/common/plusCircleIcon.png';
 import { useRecoilState } from 'recoil';
 import { itemAmountAtom } from '@/recoil/atom/itemAmountAtom';
 import { useEffect } from 'react';
@@ -63,8 +63,8 @@ export default function DetailQuantity({ bookInfo }: DetailQuantityProp) {
 			<div className={styles.quantityimgArea}>
 				<Image
 					className={styles.quantityMinusImg}
-					alt="Minus"
-					src={minus}
+					alt="minus"
+					src={minusCircleIcon}
 					width={15}
 					height={15}
 					onClick={handleDecreaseCountClick}
@@ -77,8 +77,8 @@ export default function DetailQuantity({ bookInfo }: DetailQuantityProp) {
 
 				<Image
 					className={styles.quantityPlusImg}
-					alt="Pluse"
-					src={pluse}
+					alt="plus"
+					src={plusCircleIcon}
 					width={15}
 					height={15}
 					onClick={handleIncreaseCountClick}

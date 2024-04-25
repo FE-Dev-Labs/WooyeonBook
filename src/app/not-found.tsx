@@ -2,7 +2,7 @@
 
 import styles from '@/styles/not-found.module.css';
 import Image from 'next/image';
-import Img from '../../public/notFound/notFound.png';
+import notFoundImage from '@/assets/notFound/notFountImage.png';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -11,7 +11,7 @@ export default function Notfound() {
 	const goback = () => router.back();
 	return (
 		<div className={styles.container}>
-			<Image src={Img} alt="img" width={400} height={200} />
+			<Image src={notFoundImage} alt="img" width={400} height={200} />
 			<div className={styles.notFountWrapper}>
 				<p>찾으시는 페이지가 없습니다. 😂</p>
 				<div>

@@ -2,11 +2,11 @@
 
 import styles from '@/styles/layout/recentlyViewedBooks.module.css';
 import Image from 'next/image';
-import arrowLeftIcon from '../../../public/common/arrowLeft.png';
-import arrowRightIcon from '../../../public/common/arrowRight.png';
+import arrowLeftIcon from '@/assets/common/arrowLeftIcon.png';
+import arrowRightIcon from '@/assets/common/arrowRightIcon.png';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import closeButton from '../../../public/common/close.png';
+import closeBlackIcon from '@/assets/common/closeBlackIcon.png';
 import { RecentlyViewedBookType } from '@/types/bookType';
 
 export default function RecentlyViewedBooks() {
@@ -81,7 +81,7 @@ export default function RecentlyViewedBooks() {
 									</Link>
 									<Image
 										className={styles.deleteButton}
-										src={closeButton}
+										src={closeBlackIcon}
 										alt="close button"
 										onClick={() => handleDeleteItemClick(item.itemIsbn)}
 									/>

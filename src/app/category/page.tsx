@@ -15,6 +15,7 @@ export default async function categoryPage({
 	// category page data
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/newAll?categoryId=${categoryId}&pageNum=${pageNum}`,
+		{ next: { revalidate: 3600 } },
 	);
 	const { data, dataLength } = await response.json();
 

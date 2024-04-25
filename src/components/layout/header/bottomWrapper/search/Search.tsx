@@ -2,12 +2,12 @@
 
 import styles from '@/styles/layout/header/bottomWrapper/search/search.module.css';
 import Image from 'next/image';
-import searchIcon from '../../../../../../public/common/search.png';
+import searchIcon from '@/assets/common/searchIcon.png';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import axios from 'axios';
 import { Book } from '@/types/bookDetailDate';
-import cancelIcon from '../../../../../../public/layout/cancel.png';
+import closeBigIcon from '@/assets/layout/closeBigIcon.png';
 import { useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -185,7 +185,7 @@ export default function Search() {
 									<div className={styles.lastlestCloseWrap}>
 										<span className={styles.lastelestCloseText}>닫기</span>
 										<Image
-											src={cancelIcon}
+											src={closeBigIcon}
 											alt="cancelIcon"
 											width={10}
 											height={10}

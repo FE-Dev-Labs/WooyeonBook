@@ -1,12 +1,7 @@
-'use client';
-
 import styles from '@/styles/common/bookItem/bookItem.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
-// import { useState } from 'react';
-// import addBook from '../../../public/common/addBook.png';
-// import deleteBook from '../../../public/common/deleteBook.png';
 
 interface BookItemProps {
 	rank?: number;

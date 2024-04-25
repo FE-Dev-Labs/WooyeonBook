@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from '@/styles/common/postAccordionLayout.module.css';
-import PostAccordionLayoutFooter from './PostaccordionLayoutFooter';
+import PostAccordionLayoutFooter from './PostAccordionLayoutFooter';
 
 interface postdataProps {
 	list: any;

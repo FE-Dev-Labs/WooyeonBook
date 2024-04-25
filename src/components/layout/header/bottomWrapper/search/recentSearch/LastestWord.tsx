@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import cancelIcon from '../../../../../../../public/layout/cancel.png';
+import closeBigIcon from '@/assets/layout/closeBigIcon.png';
 import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/lastestWord.module.css';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useRouter } from 'next/navigation';
@@ -43,7 +43,7 @@ export default function LastestWord() {
 									{lastestword}
 								</p>
 								<Image
-									src={cancelIcon}
+									src={closeBigIcon}
 									alt="cancelIcon"
 									width={10}
 									height={10}

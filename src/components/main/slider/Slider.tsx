@@ -5,8 +5,8 @@ import dynamic from 'next/dynamic';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
-import prevArrow from '../../../../public/main/prevArrow.png';
-import nextArrow from '../../../../public/main/nextArrow.png';
+import thinArrowRightIcon from '@/assets/main/thinArrowRightIcon.png';
+import thinArrowLeftIcon from '@/assets/main/thinArrowLeftIcon.png';
 import SliderItem from './SliderItem';
 import arrowStyles from '@/styles/main/slider/customArrow.module.css';
 import { mainBookSlider } from '@/apis/main/silderData';
@@ -36,7 +36,7 @@ export default function Slider() {
 			<div
 				className={`${className} ${arrowStyles.arrow} ${arrowStyles.arrowPrev}`}
 				onClick={onClick}>
-				<Image src={prevArrow} alt="prev" width={16} height={16} />
+				<Image src={thinArrowRightIcon} alt="prev" width={16} height={16} />
 			</div>
 		);
 	};
@@ -46,7 +46,7 @@ export default function Slider() {
 			<div
 				className={`${className} ${arrowStyles.arrow} ${arrowStyles.arrowNext}`}
 				onClick={onClick}>
-				<Image src={nextArrow} alt="next" width={16} height={16} />
+				<Image src={thinArrowLeftIcon} alt="next" width={16} height={16} />
 			</div>
 		);
 	};

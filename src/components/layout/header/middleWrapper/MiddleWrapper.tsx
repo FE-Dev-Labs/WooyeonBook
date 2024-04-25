@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import logoIcon from '../../../../../public/layout/logo.png';
+import logoIcon from '@/assets/layout/locoIcon.png';
 import styles from '@/styles/layout/header/middleWrapper/middleWrapper.module.css';
 
 export default function MiddleWrapper() {

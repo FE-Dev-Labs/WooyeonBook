@@ -1,6 +1,6 @@
 import styles from '@/styles/mypage/profile/profile.module.css';
 import DaumPostcode from 'react-daum-postcode';
-import closeIcon from '../../../../public/layout/closewhite.png';
+import closeWhiteIcon from '@/assets/common/closeWhiteIcon.png';
 import Image from 'next/image';
 interface profileDaumPorps {
 	setIsOpen: any;
@@ -33,7 +33,7 @@ export default function MyProfileDaumApi({
 						<div className={styles.closeBtnBackground}>
 							<Image
 								className={styles.closeBtn}
-								src={closeIcon}
+								src={closeWhiteIcon}
 								alt="close"
 								width={20}
 								height={20}
