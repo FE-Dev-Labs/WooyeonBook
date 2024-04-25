@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 interface popularKeywords {
 	id: string;
 	keyword: string | number | Date;
@@ -21,7 +21,7 @@ export default function HotWord() {
 	// sort type setValue
 	// const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
-	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
+	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
 	const [popularSearchData, setPopularSearchData] = useState<popularKeywords[]>(
 		[],

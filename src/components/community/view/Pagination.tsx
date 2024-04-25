@@ -3,7 +3,7 @@
 import { queryString } from '@/recoil/atom/queryString';
 import { useRecoilState } from 'recoil';
 
-const PageNation = ({
+const Pagination = ({
 	length,
 	show_page_num,
 }: {
@@ -76,4 +76,4 @@ const PageNation = ({
 	);
 };
 
-export default PageNation;
+export default Pagination;

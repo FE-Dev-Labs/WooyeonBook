@@ -1,6 +1,6 @@
 import ContentBox from '@/components/community/view/ContentBox';
+import Pagination from '@/components/community/view/Pagination';
 import { BookBuyingDataType } from '@/types/community/view/data';
-import PageNation from '@/components/community/view/PageNation';
 
 function isBookBuyingArray(data: any): data is BookBuyingDataType[] {
 	return (
@@ -89,7 +89,7 @@ export default async function bookBuying({
 			{numFiltering?.map((data: BookBuyingDataType) => {
 				return <ContentBox key={data.doc_id} data={data} page="bookBuying" />;
 			})}
-			<PageNation length={data.length} show_page_num={10} />
+			<Pagination length={data.length} show_page_num={10} />
 		</section>
 	);
 }

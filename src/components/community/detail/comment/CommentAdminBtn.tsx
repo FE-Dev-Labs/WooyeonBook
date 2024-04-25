@@ -6,7 +6,7 @@ import {
 } from '@/recoil/atom/communityCommentAtom';
 import { createClient } from '@/utils/supabase/client';
 import { useRecoilState } from 'recoil';
-import styles from '@/styles/community/detail/CommentAdminBtn.module.css';
+import styles from '@/styles/community/detail/commentAdminBtn.module.css';
 import { useEffect } from 'react';
 
 const CommentAdminBtn = ({

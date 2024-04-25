@@ -1,6 +1,6 @@
 'use client';
 import communityPathname from '@/apis/communityPathname';
-import styles from '@/styles/community/Header.module.css';
+import styles from '@/styles/community/header.module.css';
 function Header() {
 	const pathname = communityPathname();
 	const content = () => {

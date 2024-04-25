@@ -1,4 +1,4 @@
-import styles from '@/styles/community/detail/DetailPage.module.css';
+import styles from '@/styles/community/detail/detailPage.module.css';
 import { getDate } from '@/utils/getDate';
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';

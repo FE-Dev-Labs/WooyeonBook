@@ -1,5 +1,5 @@
 import { AllDataType } from '@/types/community/view/data';
-import styles from '@/styles/community/detail/DetailPage.module.css';
+import styles from '@/styles/community/detail/detailPage.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';

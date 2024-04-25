@@ -5,7 +5,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 
 export default function LastestWord() {
 	// useRouter 호출
@@ -17,7 +17,7 @@ export default function LastestWord() {
 	// sort type setValue
 	// const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
-	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
+	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
 	// 최근 검색어 클릭 시 동작하는 함수
 	const handleValueClick = (value: string) => {

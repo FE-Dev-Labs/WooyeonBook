@@ -8,8 +8,8 @@ import arrowRightIcon from '@/assets/common/arrowRightIcon.png';
 import arrowDoubleRightIcon from '@/assets/common/arrowDoubleRightIcon.png';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
 import { usePathname, useRouter } from 'next/navigation';
+import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 
 interface PaginationProps {
 	dataLength: number;
@@ -29,7 +29,7 @@ export default function Pagination({
 	// usePathname 호출
 	const pathname = usePathname();
 	// current page state
-	const [currentPage, setCurrentPage] = useRecoilState(CurrentPageAtom);
+	const [currentPage, setCurrentPage] = useRecoilState(currentPageAtom);
 	// page group state
 	const [pageGroup, setPageGroup] = useState<number>(
 		Math.floor((currentPage - 1) / 10),

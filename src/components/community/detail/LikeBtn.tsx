@@ -2,7 +2,7 @@
 import { getUser } from '@/apis/community/getUser';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-import styles from '@/styles/community/detail/DetailPage.module.css';
+import styles from '@/styles/community/detail/detailPage.module.css';
 import Image from 'next/image';
 import heartIcon from '@/assets/common/heartIcon.png';
 const LikeBtn = ({

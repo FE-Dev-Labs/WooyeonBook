@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import styles from '@/styles/community/detail/DetailPage.module.css';
+import styles from '@/styles/community/detail/detailPage.module.css';
 import { AllDataType } from '@/types/community/view/data';
 import { useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';

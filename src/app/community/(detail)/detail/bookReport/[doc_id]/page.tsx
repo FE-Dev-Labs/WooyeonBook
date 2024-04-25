@@ -1,6 +1,6 @@
 import { AllDataType } from '@/types/community/view/data';
 import BookReport from '@/components/community/detail/BookReport';
-import styles from '@/styles/community/detail/DetailLayout.module.css';
+import styles from '@/styles/community/detail/detailLayout.module.css';
 import LikeBtn from '@/components/community/detail/LikeBtn';
 import StateBtn from '@/components/community/detail/StateBtn';
 

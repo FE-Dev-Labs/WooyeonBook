@@ -2,7 +2,7 @@ import Nav from '@/components/community/view/nav/Nav';
 import Search from '@/components/community/view/Search';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import styles from '@/styles/community/ViewLayout.module.css';
+import styles from '@/styles/community/viewLayout.module.css';
 import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';

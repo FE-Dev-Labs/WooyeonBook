@@ -3,7 +3,7 @@ import {
 	isUpdateState,
 	updateComment,
 } from '@/recoil/atom/communityCommentAtom';
-import styles from '@/styles/community/detail/DetailPage.module.css';
+import styles from '@/styles/community/detail/detailPage.module.css';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 

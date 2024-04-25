@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import styles from '@/styles/community/post/PostNav.module.css';
+import styles from '@/styles/community/post/postNav.module.css';
 const Nav = () => {
 	const pathname = usePathname().split('/')[4];
 	const linkClassName = (path: string) => {

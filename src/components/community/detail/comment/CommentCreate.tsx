@@ -1,6 +1,6 @@
 'use client';
 import { getUser } from '@/apis/community/getUser';
-import styles from '@/styles/community/detail/DetailPage.module.css';
+import styles from '@/styles/community/detail/detailPage.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useState } from 'react';
 

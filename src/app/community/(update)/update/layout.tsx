@@ -1,4 +1,4 @@
-import styles from '@/styles/community/post/PostLayout.module.css';
+import styles from '@/styles/community/post/postLayout.module.css';
 
 export default function PostLayout({
 	children,

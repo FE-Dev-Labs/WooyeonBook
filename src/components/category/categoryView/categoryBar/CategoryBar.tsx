@@ -1,7 +1,7 @@
 'use client';
 
 import styles from '@/styles/category/categoryView/categoryBar/categoryBar.module.css';
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -14,7 +14,7 @@ export default function CategoryBar({ categoryId }: { categoryId: string }) {
 	// sort type state
 	// const [sortType, setSortType] = useRecoilState(sortTypeAtom);
 	// current page setValue
-	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
+	const setCurrentPage = useSetRecoilState(currentPageAtom);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
 	const categoryIdNumber = Number(categoryId);
 

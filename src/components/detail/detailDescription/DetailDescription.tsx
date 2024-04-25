@@ -2,9 +2,11 @@ import styles from '@/styles/detail/detailDescription/detailDescription.module.c
 import Link from 'next/link';
 import Image from 'next/image';
 import { Book } from '@/types/bookDetailDate';
+import DetailOrderBtn from './DetailOrderBtn';
 import DetailQuantity from './DetailQuantity';
 import DetailTotalQuantity from './DetailTotalQuantity';
-import DetailOrderBtn from './DetailOrderBtn';
+// import DetailQuantity from './Detailquantity';
+// import DetailTotalQuantity from './Detailtotalquantity';
 
 interface bookDetailProp {
 	bookInfo: Book;

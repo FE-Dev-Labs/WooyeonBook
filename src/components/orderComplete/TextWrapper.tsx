@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/orderComplete/textWrapper.module.css';
+import styles from '@/styles/orderComplete/textWrapper/textWrapper.module.css';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '@/recoil/atom/userAtom';

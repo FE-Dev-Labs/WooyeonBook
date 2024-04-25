@@ -1,4 +1,4 @@
-import styles from '@/styles/community/post/PostLayout.module.css';
+import styles from '@/styles/community/post/postLayout.module.css';
 import Nav from '@/components/community/post/Nav';
 
 export default async function PostLayout({

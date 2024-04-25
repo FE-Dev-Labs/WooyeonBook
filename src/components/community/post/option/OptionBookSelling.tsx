@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/community/post/OptionBookSelling.module.css';
+import styles from '@/styles/community/post/optionBookSelling.module.css';
 import BookSearch from '../BookSearch';
 import dynamic from 'next/dynamic';
 import { useRecoilValue } from 'recoil';

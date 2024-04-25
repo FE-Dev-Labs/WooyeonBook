@@ -16,7 +16,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import SearchResult from './SearchResult';
 import RecentSearch from './recentSearch/RecentSearch';
 import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 
 export default function Search() {
 	// 검색어 로컬스토리지 저장
@@ -35,7 +35,7 @@ export default function Search() {
 	// sort type setValue
 	const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
-	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
+	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
 	// useModal 훅
 	const {

@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import styles from '@/styles/community/LayoutNav.module.css';
+import styles from '@/styles/community/layoutNav.module.css';
 import communityPathname from '@/apis/communityPathname';
 import Image from 'next/image';
 import pencilIcon from '@/assets/community/pencilIcon.png';

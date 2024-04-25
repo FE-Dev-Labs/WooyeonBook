@@ -1,5 +1,5 @@
 import { book_name } from '@/recoil/atom/bookIdAtom';
-import styles from '@/styles/community/post/OptionBookBuying.module.css';
+import styles from '@/styles/community/post/optionBookBuying.module.css';
 import { useRecoilValue } from 'recoil';
 import BookSearch from '../BookSearch';
 

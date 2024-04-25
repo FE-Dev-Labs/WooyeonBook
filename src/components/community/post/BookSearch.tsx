@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import searchIcon from '../../../../public/common/search.png';
 import { useEffect, useRef, useState } from 'react';
-import styles from '@/styles/community/post/BookSearch.module.css';
+import styles from '@/styles/community/post/bookSearch.module.css';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';

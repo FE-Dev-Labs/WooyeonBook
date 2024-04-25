@@ -1,6 +1,6 @@
 'use client';
 
-import { CurrentPageAtom } from '@/recoil/atom/CurrentPageAtom';
+import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 import styles from '@/styles/common/categoryBox.module.css';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -11,8 +11,7 @@ export default function CategoryBox({ categoryId }: { categoryId: string }) {
 	// usePathname 호출
 	const pathname = usePathname();
 	// current page setValue
-	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
-	// const [currentPage, setCurrentPage] = useRecoilState(CurrentPageAtom);
+	const setCurrentPage = useSetRecoilState(currentPageAtom);
 	// categoryId의 타입 불일치로 인해 숫자 타입으로 변환(params에서 get하면 string으로 추출됨)
 	const categoryIdNumber = Number(categoryId);
 
