@@ -15,15 +15,47 @@ interface BookBuyingProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-
+interface CommentData {
+	id: string;
+	created_at: Date;
+	comment: string;
+	created_user: string;
+	created_user_name: string;
+	doc_id: string;
+	check: boolean;
+	like: number;
+}
 const BookBuying = async ({ searchParams, data }: BookBuyingProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
 		data: { user },
-		error,
 	} = await supabase.auth.getUser();
-	const { comments } = await getDetailCommentData({ data, searchParams });
+	// const { comments } = await getDetailCommentData({ data, searchParams });
+
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/comment/${data.doc_id}`,
+		{
+			cache: 'no-cache',
+		},
+	);
+	const comments: CommentData[] = await res.json();
+
+	const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
+		switch (searchParams?.sort) {
+			case 'like':
+				return b.like - a.like;
+			case 'lastest':
+				return (
+					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+				);
+			default:
+				return (
+					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+				);
+		}
+	});
+
 	return (
 		<section className={styles.container}>
 			<h2 className={styles.title}>{data.title}</h2>
@@ -80,7 +112,7 @@ const BookBuying = async ({ searchParams, data }: BookBuyingProps) => {
 					</div>
 				</div>
 				<CommentCreate page={'bookBuying'} doc_id={data.doc_id} />
-				{comments.map((item) => {
+				{sortedComments.map((item: CommentData) => {
 					return <CommentItem data={item} key={item.id} />;
 				})}
 			</section>

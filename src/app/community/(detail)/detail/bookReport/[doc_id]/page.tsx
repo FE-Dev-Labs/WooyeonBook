@@ -51,7 +51,6 @@ export default async function DetailPage({
 export async function generateStaticParams() {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookReport`,
-		{ next: { revalidate: 60 } },
 	);
 	const data: AllDataType[] = await res.json();
 	const paths = data.map((item) => {
