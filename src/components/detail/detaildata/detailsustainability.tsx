@@ -1,4 +1,4 @@
-import styles from '@/styles/detail/detailData/detailSustainability.module.css';
+import styles from '@/styles/detail/detailData/detailSustainAbility.module.css';
 import { Book } from '@/types/bookDetailDate';
 import Link from 'next/link';
 interface bookDetailProp {

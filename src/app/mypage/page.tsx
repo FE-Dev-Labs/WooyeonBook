@@ -2,13 +2,12 @@ import PageHeader from '@/components/common/PageHeader';
 import styles from '@/styles/mypage/mypage.module.css';
 import AccordionWrapper from '@/components/common/AccordionWrapper';
 import Accordion from '@/components/common/Accordion';
-import Communitynav from '@/components/common/Communitynav';
-
 import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
-import MyPost from '@/components/mypage/mypost/Mypost';
-import MyProfile from '@/components/mypage/profile/Myprofile';
-import MyOrder from '@/components/mypage/myorder/Myorder';
+import MyPost from '@/components/mypage/myPost/MyPost';
+import MyProfile from '@/components/mypage/profile/MyProfile';
+import MyOrder from '@/components/mypage/myOrder/MyOrder';
+import CommunityNav from '@/components/common/CommunityNav';
 
 export default async function page({
 	searchParams,
@@ -42,7 +41,7 @@ export default async function page({
 					</div>
 					<AccordionWrapper>
 						<Accordion title={'내가쓴글'} index={0}>
-							<Communitynav />
+							<CommunityNav />
 							<MyPost
 								userId={data.user.id}
 								page={searchParams.page as string}

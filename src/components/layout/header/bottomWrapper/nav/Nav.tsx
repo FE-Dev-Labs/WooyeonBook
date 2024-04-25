@@ -16,7 +16,8 @@ export default function Nav() {
 			(path.startsWith('/community') && pathname.startsWith('/community')) ||
 			(path.startsWith('/best') && pathname.startsWith('/best')) ||
 			(path.startsWith('/new') && pathname.startsWith('/new')) ||
-			(path.startsWith('/used') && pathname.startsWith('/used'))
+			(path.startsWith('/used') && pathname.startsWith('/used')) ||
+			(path.startsWith('/theme') && pathname.startsWith('/theme'))
 			? styles.selectedNav
 			: styles.navItem;
 	};

@@ -5,19 +5,19 @@ import CategoryView from '@/components/category/categoryView/CategoryView';
 export default async function categoryPage({
 	searchParams,
 }: {
-	searchParams: { categoryId: string; sortType: string };
+	searchParams: { categoryId: string; pageNum: number };
 }) {
 	// search params - category id
 	const categoryId = searchParams.categoryId;
-	// search params - sort type
-	const sortType = searchParams.sortType;
+	// search params - page
+	const pageNum = searchParams.pageNum;
 
 	// category page data
 	const response = await fetch(
-		`http://localhost:8080/list/newAll?categoryId=${categoryId}&sortType=${sortType}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/newAll?categoryId=${categoryId}&pageNum=${pageNum}`,
 		{ next: { revalidate: 3600 } },
 	);
-	const { data } = await response.json();
+	const { data, dataLength } = await response.json();
 
 	// 현재 선택된 카테고리 아이템 찾기
 	const currentCategoryItem = categoryItem.find(
@@ -29,7 +29,11 @@ export default async function categoryPage({
 			<PageHeader
 				title={currentCategoryItem ? currentCategoryItem.name : '전체'}
 			/>
-			<CategoryView categoryId={categoryId} data={data} />
+			<CategoryView
+				categoryId={categoryId}
+				data={data}
+				dataLength={dataLength}
+			/>
 		</div>
 	);
 }

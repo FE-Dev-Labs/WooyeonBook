@@ -4,7 +4,7 @@ import styles from '@/styles/auth/auth.module.css';
 import { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { useRecoilState } from 'recoil';
-import closeIcon from '../../../../public/layout/closewhite.png';
+import closeWhiteIcon from '@/assets/common/closeWhiteIcon.png';
 import Image from 'next/image';
 import useAuth from '@/hooks/useAuth';
 
@@ -85,7 +85,7 @@ export default function SignupAddress() {
 									<div className={styles.closeBtnBackground}>
 										<Image
 											className={styles.closeBtn}
-											src={closeIcon}
+											src={closeWhiteIcon}
 											alt="close"
 											width={20}
 											height={20}

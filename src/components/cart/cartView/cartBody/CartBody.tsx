@@ -4,8 +4,8 @@ import { CartItemType } from '@/types/bookType';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRecoilState } from 'recoil';
-import minusIcon from '../../../../../public/detail/BsDashCircle.png';
-import plusIcon from '../../../../../public/detail/BsPlusCircle.png';
+import minusCircleIcon from '@/assets/common/minusCircleIcon.png';
+import plusCircleIcon from '@/assets/common/plusCircleIcon.png';
 
 interface CartBodyProps {
 	checkedItem: string[];
@@ -107,7 +107,7 @@ export default function CartBody({
 					</div>
 					<div className={styles.quantityWrap}>
 						<Image
-							src={minusIcon}
+							src={minusCircleIcon}
 							alt="minus button"
 							width={15}
 							height={15}
@@ -117,7 +117,7 @@ export default function CartBody({
 						/>
 						<div className={styles.quantity}>{item?.quantity}</div>
 						<Image
-							src={plusIcon}
+							src={plusCircleIcon}
 							alt="plus button"
 							width={15}
 							height={15}

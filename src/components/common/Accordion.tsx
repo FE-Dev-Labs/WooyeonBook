@@ -1,8 +1,8 @@
 'use client';
 import styles from '@/styles/common/accordionLayout.module.css';
 import Image from 'next/image';
-import viewIcon from '../../../public/detail/view.png';
-import closeIcon from '../../../public/detail/close.png';
+import closeBlackIcon from '@/assets/common/closeBlackIcon.png';
+import plusIcon from '@/assets/mypage/plusIcon.png';
 import { useContext } from 'react';
 import { AccordionContext } from './AccordionWrapper';
 
@@ -38,7 +38,7 @@ export default function Accordion({
 				<h2>{title}</h2>
 
 				<Image
-					src={active.includes(index) ? closeIcon : viewIcon}
+					src={active.includes(index) ? closeBlackIcon : plusIcon}
 					alt="closeImage"
 					width={20}
 					height={20}

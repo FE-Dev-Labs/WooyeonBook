@@ -8,8 +8,16 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 	const supabase = createClient();
 
 	const [comment, setComment] = useState('');
-	const onChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+	// 글자 실시간 표시
+	const [inputCount, setInputCount] = useState<number>(0);
+	const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
 		setComment(e.target.value);
+		if (e.target.value.length > 50) {
+			alert('50자 이내로 적어주세요');
+		} else {
+			setInputCount(e.target.value.length);
+		}
 	};
 	const [createState, setCreateState] = useState(false);
 	const handleState = async () => {
@@ -43,6 +51,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 		}
 		setCreateState(false);
 		setComment('');
+		setInputCount(0); // 댓글 글자수도 초기화
 		window.location.reload();
 	};
 	const cancleComment = () => {
@@ -54,14 +63,30 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 			{/* create  btn client*/}
 			{!createState && (
 				<div className={styles.commentCreateWrap}>
-					<button onClick={handleState}> 댓글을 작성해보세요.</button>
+					<input
+						type="text"
+						placeholder="한글 기준 50자까지 작성 가능합니다."
+						onFocus={handleState}
+						className={styles.commentInput}
+						maxLength={50}
+					/>
 				</div>
 			)}
 			{/* create box client*/}
 			{createState && (
 				<div className={styles.commentCreateBoxWrap}>
-					<textarea value={comment} onChange={onChangeText} />
+					<input
+						type="text"
+						placeholder="한글 기준 50자까지 작성 가능합니다."
+						value={comment}
+						onChange={onChangeText}
+						maxLength={50}
+					/>
 					<div>
+						<div className={styles.commentInputCount}>
+							<span className={styles.commentInputCountTxt}>{inputCount}</span>
+							<span className={styles.commentCount}>/50 자</span>
+						</div>
 						<button onClick={cancleComment}>취소</button>
 						<button onClick={createComment}>등록</button>
 					</div>

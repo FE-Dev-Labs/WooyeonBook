@@ -48,11 +48,13 @@ function BookSearch() {
 	const [searchData, setSearchData] = useState<SearchData[]>([]);
 
 	const getdata = async () => {
-		const { data } = await axios.get(
-			`http://localhost:8080/search/book?bookName=${
+		const res = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/book?bookName=${
 				searchBook.value as string
 			}`,
 		);
+		const data = await res.json();
+
 		setSearchData(data);
 	};
 
@@ -62,7 +64,7 @@ function BookSearch() {
 			if (searchbook.length > 1) {
 				getdata();
 			}
-		}, 400);
+		}, 200);
 		return () => clearTimeout(debounce);
 	}, [searchBook.value]);
 

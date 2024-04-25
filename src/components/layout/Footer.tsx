@@ -1,7 +1,7 @@
 import styles from '@/styles/layout//footer.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import logoIcon from '../../../public/layout/logo.png';
+import logoIcon from '@/assets/layout/locoIcon.png';
 
 export default function Footer() {
 	return (

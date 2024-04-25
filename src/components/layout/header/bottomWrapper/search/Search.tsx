@@ -2,12 +2,12 @@
 
 import styles from '@/styles/layout/header/bottomWrapper/search/search.module.css';
 import Image from 'next/image';
-import searchIcon from '../../../../../../public/common/search.png';
+import searchIcon from '@/assets/common/searchIcon.png';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';
 import axios from 'axios';
 import { Book } from '@/types/bookDetailDate';
-import cancelIcon from '../../../../../../public/layout/cancel.png';
+import closeBigIcon from '@/assets/layout/closeBigIcon.png';
 import { useRouter } from 'next/navigation';
 import useModal from '@/hooks/useModal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -68,7 +68,7 @@ export default function Search() {
 	const getdata = async () => {
 		try {
 			const { data } = await axios.get(
-				`http://localhost:8080/search/keyword?keyword=${keyword}`,
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/keyword?keyword=${keyword}`,
 			);
 			setSearchData(data);
 		} catch (err) {
@@ -107,7 +107,7 @@ export default function Search() {
 
 	const keyonSubmit = async () => {
 		const res = await fetch(
-			`http://localhost:8080/supbase/popularSearch?keyword=${keyword}`,
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/popularSearch?keyword=${keyword}`,
 		);
 		const key = await res.json();
 		const postdata = {
@@ -118,24 +118,27 @@ export default function Search() {
 		// 검색어에 대한 기록이 서버에 이미 존재하는지를 확인
 		if (key.length > 0) {
 			await fetch(
-				`http://localhost:8080/api/updateKeywords?keyword=${keyword}&count=${key[0].search_count}`,
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/update/supabase/keyword?keyword=${keyword}&count=${key[0].search_count}`,
 				{
 					method: 'PUT',
 				},
 			);
 		} else {
-			await fetch(`http://localhost:8080/api/saveKeywords`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(postdata),
-			});
+			await fetch(
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/create/supabase/keywords`,
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(postdata),
+				},
+			);
 		}
 	};
 
 	// 쿼리값 전달
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const searchUrl = `/search?keyword=${String(keyword)}&sortType=title`;
+		const searchUrl = `/search?keyword=${String(keyword)}&pageNum=1`;
 		// 로컬스토리지에 검색어 추가
 		// handleSubmitKeyword(String(keyword));
 		addKeyword(String(keyword));
@@ -145,7 +148,7 @@ export default function Search() {
 		router.push(searchUrl);
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		setSortType('title');
+		// setSortType('title'); sort 제거
 	};
 
 	return (
@@ -182,7 +185,7 @@ export default function Search() {
 									<div className={styles.lastlestCloseWrap}>
 										<span className={styles.lastelestCloseText}>닫기</span>
 										<Image
-											src={cancelIcon}
+											src={closeBigIcon}
 											alt="cancelIcon"
 											width={10}
 											height={10}

@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import styles from '@/styles/common/postaccordionlayout.module.css';
-import PostaccordionLayoutFooter from './PostaccordionLayoutFooter';
+import styles from '@/styles/common/postAccordionLayout.module.css';
+import PostAccordionLayoutFooter from './PostAccordionLayoutFooter';
 
 interface postdataProps {
 	list: any;
 	page: string;
 }
-export default function Postaccordionlayout({ list, page }: postdataProps) {
+export default function PostAccordionLayout({ list, page }: postdataProps) {
 	const titleChange = () => {
 		switch (page) {
 			case 'bookReport':
@@ -27,7 +27,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 							<div className={styles.postdataWrap}>
 								<h3 className={styles.postTitle}>{list.title}</h3>
 								<p className={styles.postReportContent}>{list.content}</p>
-								<PostaccordionLayoutFooter list={list} />
+								<PostAccordionLayoutFooter list={list} />
 							</div>
 						</div>
 					</div>
@@ -44,7 +44,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 								)}
 								<h3 className={styles.postTitle}>{list.title}</h3>
 								<p className={styles.postContent}>{list.content}</p>
-								<PostaccordionLayoutFooter list={list} />
+								<PostAccordionLayoutFooter list={list} />
 							</div>
 						</div>
 					</div>
@@ -72,7 +72,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 								)}
 								<h3 className={styles.postTitle}>{list.title}</h3>
 								<p className={styles.postContent}>{list.content}</p>
-								<PostaccordionLayoutFooter list={list} />
+								<PostAccordionLayoutFooter list={list} />
 							</div>
 						</div>
 					</div>
@@ -100,7 +100,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 								)}
 								<h3 className={styles.postTitle}>{list.title}</h3>
 								<p className={styles.postContent}>{list.content}</p>
-								<PostaccordionLayoutFooter list={list} />
+								<PostAccordionLayoutFooter list={list} />
 							</div>
 						</div>
 					</div>
@@ -123,7 +123,7 @@ export default function Postaccordionlayout({ list, page }: postdataProps) {
 							<div className={styles.postdataWrap}>
 								<h3 className={styles.postTitle}>{list.title}</h3>
 								<p className={styles.postContent}>{list.content}</p>
-								<PostaccordionLayoutFooter list={list} />
+								<PostAccordionLayoutFooter list={list} />
 							</div>
 						</div>
 					</div>

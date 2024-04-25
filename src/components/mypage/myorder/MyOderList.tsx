@@ -1,8 +1,7 @@
-import styles from '@/styles/mypage/order/orderlist.module.css';
+import styles from '@/styles/mypage/order/orderList.module.css';
 import Image from 'next/image';
 import { CartItem } from '@/types/orderList';
 import { createClient } from '@/utils/supabase/client';
-import { supabase } from './../../../utils/supabase/supabase';
 
 interface orderItem {
 	item: CartItem;

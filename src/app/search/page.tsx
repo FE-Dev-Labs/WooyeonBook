@@ -5,24 +5,24 @@ import SearchView from '@/components/search/searchView/SearchView';
 export default async function searchPage({
 	searchParams,
 }: {
-	searchParams: { keyword: any; sortType: string };
+	searchParams: { keyword: any; pageNum: number };
 }) {
 	// search params - keyword
 	const keyword = searchParams.keyword;
-	// search params - sort type
-	const sortType = searchParams.sortType;
+	// search params - page
+	const pageNum = searchParams.pageNum;
 
 	// search page data
 	const response = await fetch(
-		`http://localhost:8080/list/search?query=${keyword}&sortType=${sortType}`,
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/search?query=${keyword}&pageNum=${pageNum}`,
 		{ next: { revalidate: 3600 } },
 	);
-	const { data } = await response.json();
+	const { data, dataLength } = await response.json();
 
 	return (
 		<div className={styles.container}>
 			<PageHeader title={`'${keyword}' 검색 결과`} />
-			<SearchView keyword={keyword} data={data} />
+			<SearchView keyword={keyword} data={data} dataLength={dataLength} />
 		</div>
 	);
 }

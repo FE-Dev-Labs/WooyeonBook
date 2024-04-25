@@ -1,6 +1,6 @@
 import styles from '@/styles/orderComplete/orderComplete.module.css';
 import Image from 'next/image';
-import orderCompleteImage from '../../../public/orderComplete/orderComplete.png';
+import orderCompleteImage from '@/assets/orderComplete/orderCompleteImage.png';
 import TextWrapper from '@/components/orderComplete/TextWrapper';
 
 export default function OrderCompletePage() {

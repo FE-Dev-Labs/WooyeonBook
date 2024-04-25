@@ -6,3 +6,13 @@
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 }
+
+.categoryBookItemWrapper {
+	width: inherit;
+	column-gap: 75px;
+	row-gap: 50px;
+	/* margin-bottom: 50px; */
+
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import verticalLineIcon from '../../../../../public/layout/verticalline.png';
+import verticalLineIcon from '@/assets/layout/verticalLineIcon.png';
 import styles from '@/styles/layout/header/topWrapper/topWrapper.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useRecoilState } from 'recoil';
@@ -72,9 +72,7 @@ export default function TopWrapper() {
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
 			<button onClick={handleSignupBtnWordClick}>{signupBtnWord}</button>
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
-
 			<button onClick={handleMypageBtnClick}>마이페이지</button>
-
 			<Image src={verticalLineIcon} alt="vertical line" width={2} height={15} />
 			<Link href={'/cart'}>
 				<p>카트</p>
@@ -121,7 +119,7 @@ export default function TopWrapper() {
 // }
 
 // // 로그아웃 클릭 시 동작하는 함수
-// const handleLogoutClick = async () => {
+// const fhrmClick = async () => {
 //    try {
 //       await supabase.auth.signOut();
 //       console.log('로그아웃 성공!');

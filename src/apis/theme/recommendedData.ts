@@ -1,26 +1,22 @@
-import rmImage from '../../../public/theme/rmpic.png';
-import iuImage from '../../../public/theme/iupic.png';
-import moonImage from '../../../public/theme/monpic.png';
-import fakerImage from '../../../public/theme/fakerpic.png';
-import vImage from '../../../public/theme/vpic.png';
-import kimImage from '../../../public/theme/kimpic.png';
-import moonfaImage from '../../../public/theme/mongapic.png';
-import duaImage from '../../../public/theme/duapic.png';
-import elonImage from '../../../public/theme/elonpic.png';
-import parkImage from '../../../public/theme/parkpic.png';
-import billImage from '../../../public/theme/bilpic.png';
-import warImage from '../../../public/theme/warrenpic.png';
-import leeImage from '../../../public/theme/leepic.png';
-// import timoImage from '../../../public/theme/timopic.png';
-import timImage from '../../../public/theme/timoheepic.png';
-import leedongImage from '../../../public/theme/leedongpic.png';
+import rmImage from '@/assets/theme/rmImage.png';
+import iuImage from '@/assets/theme/iuImage.png';
+import moonImage from '@/assets/theme/moonImage.png';
+import fakerImage from '@/assets/theme/fakerImage.png';
+import vImage from '@/assets/theme/vImage.png';
+import kimImage from '@/assets/theme/kimImage.png';
+import moongayoungImage from '@/assets/theme/moongayoungImage.png';
+import duaImage from '@/assets/theme/duaImage.png';
+import elonImage from '@/assets/theme/elonImage.png';
+import leeImage from '@/assets/theme/leeImage.png';
+import timoImage from '@/assets/theme/timoImage.png';
+import leedongjinImage from '@/assets/theme/leedongjinImage.png';
 
 export const recommendedData = [
 	{
 		id: 1,
 		artistName: 'timotheechalamet',
 		tag: 'Hot한 티모시 샬라메',
-		image: timImage,
+		image: timoImage,
 		color: '#993399',
 		book: [
 			{
@@ -1966,7 +1962,7 @@ export const recommendedData = [
 		id: 6,
 		artistName: 'moongayeong',
 		tag: '인간 마네킹 문가영',
-		image: moonfaImage,
+		image: moongayoungImage,
 		color: '#FC819E',
 		book: [
 			{
@@ -2215,7 +2211,7 @@ export const recommendedData = [
 		id: 13,
 		artistName: 'leedongjin',
 		tag: '영화 평론가 이동진',
-		image: leedongImage,
+		image: leedongjinImage,
 		color: '#53351C',
 		book: [
 			{

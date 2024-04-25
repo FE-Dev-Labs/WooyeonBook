@@ -3,7 +3,8 @@ import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
 import NaviLab from './nav/NaviLab';
 import Image from 'next/image';
-import PostaccordionLayoutFooter from '@/components/common/PostaccordionLayoutFooter';
+import PostAccordionLayoutFooter from '@/components/common/PostAccordionLayoutFooter';
+// import PostaccordionLayoutFooter from '@/components/common/PostaccordionLayoutFooter';
 interface ContentBoxProps {
 	data: AllDataType;
 	page?: string;
@@ -30,7 +31,7 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 							<div className={styles.postdataWrap}>
 								<h3 className={styles.postTitle}>{data.title}</h3>
 								<p className={styles.postReportContent}>{data.content}</p>
-								<PostaccordionLayoutFooter list={data} />
+								<PostAccordionLayoutFooter list={data} />
 							</div>
 						</div>
 					</div>
@@ -47,7 +48,7 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 								)}
 								<h3 className={styles.postTitle}>{data.title}</h3>
 								<p className={styles.postContent}>{data.content}</p>
-								<PostaccordionLayoutFooter list={data} />
+								<PostAccordionLayoutFooter list={data} />
 							</div>
 						</div>
 					</div>
@@ -75,7 +76,7 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 								)}
 								<h3 className={styles.postTitle}>{data.title}</h3>
 								<p className={styles.postContent}>{data.content} </p>
-								<PostaccordionLayoutFooter list={data} />
+								<PostAccordionLayoutFooter list={data} />
 							</div>
 						</div>
 					</div>
@@ -103,14 +104,14 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 								)}
 								<h3 className={styles.postTitle}>{data.title}</h3>
 								<p className={styles.postContent}>{data.content}</p>
-								<PostaccordionLayoutFooter list={data} />
+								<PostAccordionLayoutFooter list={data} />
 							</div>
 						</div>
 					</div>
 				);
 		}
 	};
-  
+
 	return (
 		<NaviLab
 			page={page as string}

@@ -8,16 +8,29 @@ import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
+import DropDownBtn from './DropDownBtn';
+import StateBtn from './StateBtn';
+import LikeBtn from './LikeBtn';
+import Image from 'next/image';
+import shareIcon from '@/assets/community/shareIcon.png';
 
 interface BookReportProps {
 	data: AllDataType;
+	params: { doc_id: string };
 	searchParams?: { sort?: string };
+	page: string;
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookReport = async ({ searchParams, data }: BookReportProps) => {
+const BookReport = async ({
+	searchParams,
+	data,
+	page,
+	params,
+}: BookReportProps) => {
+	console.log(page);
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -28,44 +41,64 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 	const { comments } = await getDetailCommentData({ data, searchParams });
 	return (
 		<section className={styles.container}>
-			<h2 className={styles.title}>{data.title}</h2>
-			<div className={styles.infoWrap}>
-				<div className={styles.contentInfoWrap}>
-					<div>{getDate(data.created_at)}</div>
-					<div className={styles.dot}>･</div>
-					<div>조회수 {data.view}</div>
-					<div className={styles.dot}>･</div>
-					<div>좋아요 {data.like_users.length} </div>
-				</div>
-				{data?.created_user === user?.id ? (
-					<div className={styles.adimBtnWrap}>
-						<Link href={`/community/update/bookReport/${data.doc_id}`}>
-							수정
-						</Link>
-						<button>삭제</button>
-					</div>
-				) : null}
-			</div>
-			<hr className={styles.line} />
-			{/* option */}
 			<section className={styles.optionContainer}>
+				<h2 className={styles.title}>{data.title}</h2>
+				{/* 책 정보 */}
 				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>독후감 책</label>
-					<div className={styles.optionItemContent}>{data.book_name}</div>
+					<div className={styles.optiondivice}>
+						<div className={styles.optionItemTitle}>독후감 책</div>
+						<div className={styles.dot}>･</div>
+						<div className={styles.optionItemContent}>{data.book_name}</div>
+					</div>
+					{/* 날짜,조회수,좋아요 */}
+					<div className={styles.infoWrap}>
+						<div className={styles.contentInfoWrap}>
+							<div>{getDate(data.created_at)}</div>
+							<div className={styles.dot}>･</div>
+							<div>조회수 {data.view}</div>
+							<div className={styles.dot}>･</div>
+							<div>좋아요 {data.like_users.length} </div>
+						</div>
+					</div>
 				</div>
-				<hr className={styles.line} />
 			</section>
-			{/* editor */}
+
+			{/* 책 내용 */}
 			<div className={styles.viewerWrap}>
 				<View content={data.content} />
+				<div className={styles.viewBtnWrap}>
+					<StateBtn
+						page={'bookReport'}
+						doc_id={params.doc_id}
+						state={data.state as boolean}
+						admin={data.created_user}
+					/>
+					<LikeBtn
+						page={'bookReport'}
+						doc_id={params.doc_id}
+						like={data.like_users}
+					/>
+					<div className={styles.shareBtnWrap}>
+						<button className={styles.shareBtn}>
+							<Image
+								src={shareIcon}
+								alt="shareIcon"
+								width={15}
+								height={15}
+								className={styles.iconsStyle}
+							/>
+							<span className={styles.shareText}>공유</span>
+						</button>
+					</div>
+					<DropDownBtn data={data} user={user} />
+				</div>
 			</div>
-			<hr className={styles.line} />
 			{/* 댓글 */}
 			<section>
 				<div className={styles.commentHeader}>
 					<div className={styles.commentCount}>댓글 {comments.length}</div>
 					<div className={styles.commentSortWrap}>
-						<Link
+						{/* <Link
 							href={`/community/detail/bookReport/${data.doc_id}?sort=like`}
 							scroll={false}>
 							좋아요순
@@ -75,7 +108,7 @@ const BookReport = async ({ searchParams, data }: BookReportProps) => {
 							href={`/community/detail/bookReport/${data.doc_id}?sort=lastest`}
 							scroll={false}>
 							최신순
-						</Link>
+						</Link> */}
 					</div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />

@@ -1,4 +1,4 @@
-import CartView from '@/components/cart/cartView/CartView';
+import CartView from '@/components/cart/cartView/cartView';
 import PageHeader from '@/components/common/PageHeader';
 import styles from '@/styles/cart/cart.module.css';
 

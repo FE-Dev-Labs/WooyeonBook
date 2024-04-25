@@ -2,7 +2,7 @@ import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/rec
 import LastestWord from './LastestWord';
 import HotWord from './HotWord';
 import Image from 'next/image';
-import cancelIcon from '../../../../../../../public/layout/cancel.png';
+import closeBigIcon from '@/assets/layout/closeBigIcon.png';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 
@@ -42,7 +42,7 @@ export default function RecentSearch() {
 						onMouseDown={() => handleModalStateChange()}>
 						<span className={styles.lastelestCloseText}>닫기</span>
 						<Image
-							src={cancelIcon}
+							src={closeBigIcon}
 							alt="cancelIcon"
 							width={10}
 							height={10}

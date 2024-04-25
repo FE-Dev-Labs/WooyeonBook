@@ -2,7 +2,7 @@
 
 import styles from '@/styles/auth/auth.module.css';
 import Image from 'next/image';
-import closeIcon from '../../../../public/common/close.png';
+import closeBlackIcon from '@/assets/common/closeBlackIcon.png';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -98,7 +98,7 @@ export default function LoginModal() {
 						</form>
 					</div>
 					<div className={styles.closeIcon} onClick={() => router.back()}>
-						<Image src={closeIcon} alt="close" width={40} height={40} />
+						<Image src={closeBlackIcon} alt="close" width={40} height={40} />
 					</div>
 				</div>
 			</div>

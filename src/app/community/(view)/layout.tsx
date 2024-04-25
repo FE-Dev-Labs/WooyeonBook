@@ -7,7 +7,7 @@ import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
 import { getDate } from '@/utils/getDate';
 import Image from 'next/image';
-import userLogo from '../../../../public/common/userLogo.png';
+import userLogoIcon from '@/assets/community/userLogoIcon.png';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
@@ -18,9 +18,12 @@ export default async function CommunityViewLayout({
 }: {
 	children: React.ReactNode;
 }) {
-	const reponse = await fetch('http://localhost:8080/popular/community', {
-		cache: 'no-store',
-	});
+	const reponse = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/view/popularList`,
+		{
+			cache: 'no-store',
+		},
+	);
 	const popularData = await reponse.json();
 
 	return (
@@ -51,7 +54,7 @@ export default async function CommunityViewLayout({
 										</div>
 										<div className={styles.weeklyPopularWriter}>
 											<Image
-												src={userLogo}
+												src={userLogoIcon}
 												alt="img"
 												width={16}
 												height={16}

@@ -1,7 +1,7 @@
 'use client';
 import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/hotWord.module.css';
 import Image from 'next/image';
-import lineIcon from '../../../../../../../public/layout/line.png';
+import lineIcon from '@/assets/layout/lineIcon.png';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
@@ -19,7 +19,7 @@ export default function HotWord() {
 
 	// 원준 추가
 	// sort type setValue
-	const setSortType = useSetRecoilState(sortTypeAtom);
+	// const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(CurrentPageAtom);
 
@@ -30,9 +30,12 @@ export default function HotWord() {
 	// 검색어 api
 	useEffect(() => {
 		const fetchKeywords = async () => {
-			const response = await fetch(`http://localhost:8080/api/getKeywords`, {
-				cache: 'force-cache',
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/keywords`,
+				{
+					cache: 'force-cache',
+				},
+			);
 			const data: popularKeywords[] = await response.json();
 			setPopularSearchData(data);
 		};
@@ -50,10 +53,10 @@ export default function HotWord() {
 
 	// 인기 검색어 클릭 시 동작하는 함수
 	const handleValueClick = (value: string) => {
-		router.push(`/search?keyword=${value}&sortType=title`);
+		router.push(`/search?keyword=${value}&pageNum=1`);
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		setSortType('title');
+		// setSortType('title'); sort type 제거
 	};
 	return (
 		<dl className={styles.hotWordWrapper}>

@@ -1,5 +1,5 @@
 'use client';
-import styles from '@/styles/common/communitynav.module.css';
+import styles from '@/styles/common/communityNav.module.css';
 import ControlFilterPanel from './ControlFilterPanel';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -8,7 +8,7 @@ import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function Communitynav() {
+export default function CommunityNav() {
 	const params = useSearchParams();
 	const page = params.get('page');
 	const [qs, setQs] = useRecoilState(mypage_QS);

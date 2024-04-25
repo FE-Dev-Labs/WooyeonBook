@@ -3,7 +3,7 @@ import styles from '@/styles/mypage/profile/profile.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useEffect, useState } from 'react';
 import { useInforDateType } from '@/types/userInforDate';
-import MyProfileAddress from './MyprofileAddress';
+import MyProfileAddress from './MyProfileAddress';
 
 interface userIdProps {
 	userId: string;

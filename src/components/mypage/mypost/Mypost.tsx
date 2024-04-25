@@ -1,9 +1,6 @@
 import Postaccordionlayout from '@/components/common/Postaccordionlayout';
 import styles from '@/styles/mypage/mypage.module.css';
-import PageNation from './../../community/view/PageNation';
-import MypagePageNation from './MypagePageNation';
-import { useSearchParams } from 'next/navigation';
-import { BookSellingDataType } from '@/types/community/view/data';
+import MypagePagination from './MypagePagination';
 
 interface userIdProps {
 	userId: string;
@@ -23,13 +20,13 @@ export default async function MyPost({
 	const response =
 		page === 'likes'
 			? fetch(
-					`http://localhost:8080/mylike?user_id=${userId as string}&num=${pageNum || 1}`,
+					`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/mypage/my/like?user_id=${userId as string}&num=${pageNum || 1}`,
 					{
 						cache: 'no-store',
 					},
 				)
 			: fetch(
-					`http://localhost:8080/api/mypage?page=${page}&userId=${userId as string}&num=${pageNum || 1}&sort=${sort}&categories=${categories}`,
+					`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/mypage/my/post?page=${page}&userId=${userId as string}&num=${pageNum || 1}&sort=${sort}&categories=${categories}`,
 					{ cache: 'no-store' },
 				);
 
@@ -54,7 +51,7 @@ export default async function MyPost({
 					</div>
 				</div>
 			))}
-			<MypagePageNation alldata={data} />
+			<MypagePagination alldata={data} />
 		</div>
 	);
 }

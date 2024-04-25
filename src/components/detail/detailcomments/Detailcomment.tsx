@@ -5,10 +5,8 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
-
 import useCurrentUser from '../../../hooks/useCurrentUser';
 import DetailCommentsList from './DetailCommentsList';
-
 
 export default function DetailComment({ bookId }: { bookId: string }) {
 	// 댓글
@@ -117,7 +115,7 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 				<ul>
 					{commentsList.map((list) => {
 						return (
-							<DetailCommentslist
+							<DetailCommentsList
 								key={list.id}
 								list={list}
 								userId={userId}
