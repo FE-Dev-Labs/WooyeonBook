@@ -14,7 +14,7 @@ export default async function DetailPage({
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/bookSelling/${params.doc_id}`,
 		{
-			next: { revalidate: 60 },
+			next: { revalidate: 10 },
 		},
 	);
 	const data: AllDataType = await response.json();
