@@ -19,7 +19,7 @@ export default async function page({
 
 	const detailData: ResponseData = await fetch(
 		`http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=${process.env.NEXT_PUBLIC_TTB_KEY}&itemIdType=ISBN&ItemId=${id}&output=js&Version=20131101&Cover=Big&OptResult=ebookList,usedList,subbarcode,packing`,
-		{ cache: 'force-cache' },
+		{ next: { revalidate: 86400 } },
 	).then((detaildata) => {
 		return detaildata.json();
 	});
@@ -41,9 +41,7 @@ export async function generateStaticParams() {
 	const item = data.item;
 	const paths = item.map((book: Book) => {
 		return {
-			params: {
-				'doc.id': book.isbn13.toString(),
-			},
+			'doc.id': book.isbn13.toString(),
 		};
 	});
 	return paths;

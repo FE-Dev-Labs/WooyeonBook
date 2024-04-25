@@ -7,7 +7,6 @@ import { useInputState } from '@/hooks/useInputState';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
-import { supabase } from '@/utils/supabase/supabase';
 import { BookBuyingPostDataType } from '@/types/community/post/data';
 import OptionBookBuying from '@/components/community/post/option/OptionBookBuying';
 import { useEffect } from 'react';

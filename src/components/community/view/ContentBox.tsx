@@ -1,10 +1,8 @@
 import styles from '@/styles/community/contentBox.module.css';
 import { AllDataType } from '@/types/community/view/data';
-import { getDate } from '@/utils/getDate';
 import NaviLab from './nav/NaviLab';
 import Image from 'next/image';
 import PostAccordionLayoutFooter from '@/components/common/PostAccordionLayoutFooter';
-// import PostaccordionLayoutFooter from '@/components/common/PostaccordionLayoutFooter';
 interface ContentBoxProps {
 	data: AllDataType;
 	page?: string;

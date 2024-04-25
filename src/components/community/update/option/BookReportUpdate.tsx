@@ -92,7 +92,7 @@ function Update({ data, docid }: UpdateProps) {
 			bookId: '',
 		});
 		setContentArr([]);
-		return router.push('/');
+		return router.push(`/community/bookReport/detail/${docid}`);
 	};
 	return (
 		<div className={styles.container}>

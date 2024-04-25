@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import searchIcon from '../../../../public/common/search.png';
+import searchIcon from '@/assets/common/searchIcon.png';
 import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/community/post/bookSearch.module.css';
 import axios from 'axios';
