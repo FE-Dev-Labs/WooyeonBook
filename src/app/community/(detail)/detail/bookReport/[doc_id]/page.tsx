@@ -14,7 +14,7 @@ export default async function DetailPage({
 	const response = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/bookReport/${params.doc_id}`,
 		{
-			next: { revalidate: 60 },
+			cache: 'no-store',
 		},
 	);
 	const data: AllDataType = await response.json();
@@ -46,18 +46,4 @@ export default async function DetailPage({
 			</aside>
 		</main>
 	);
-}
-
-export async function generateStaticParams() {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookReport`,
-		{ next: { revalidate: 60 } },
-	);
-	const data: AllDataType[] = await res.json();
-	const paths = data.map((item) => {
-		return {
-			doc_id: item.doc_id,
-		};
-	});
-	return paths;
 }

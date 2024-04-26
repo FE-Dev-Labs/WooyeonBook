@@ -13,6 +13,7 @@ import StateBtn from './StateBtn';
 import LikeBtn from './LikeBtn';
 import Image from 'next/image';
 import shareIcon from '@/assets/community/shareIcon.png';
+import { fetchComments } from '@/apis/community/fetchComments';
 
 interface BookReportProps {
 	data: AllDataType;
@@ -23,14 +24,22 @@ interface BookReportProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-
+interface CommentData {
+	id: string;
+	created_at: Date;
+	comment: string;
+	created_user: string;
+	created_user_name: string;
+	doc_id: string;
+	check: boolean;
+	like: number;
+}
 const BookReport = async ({
 	searchParams,
 	data,
 	page,
 	params,
 }: BookReportProps) => {
-	console.log(page);
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -38,7 +47,22 @@ const BookReport = async ({
 		error,
 	} = await supabase.auth.getUser();
 
-	const { comments } = await getDetailCommentData({ data, searchParams });
+	const comments: CommentData[] = await fetchComments(data.doc_id);
+
+	const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
+		switch (searchParams?.sort) {
+			case 'like':
+				return b.like - a.like;
+			case 'lastest':
+				return (
+					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+				);
+			default:
+				return (
+					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+				);
+		}
+	});
 	return (
 		<section className={styles.container}>
 			<section className={styles.optionContainer}>
