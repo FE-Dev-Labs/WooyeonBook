@@ -53,6 +53,8 @@ export default function DetailDescription({ bookInfo }: bookDetailProp) {
 		100
 	).toFixed(0);
 
+	console.log(bookInfo);
+
 	return (
 		<>
 			<div className={styles.Wrapper}>
@@ -138,15 +140,18 @@ export default function DetailDescription({ bookInfo }: bookDetailProp) {
 						{bookInfo.subInfo.ebookList?.length > 0 && (
 							<dl>
 								<dt className={styles.inforText}>전자책</dt>
-								{bookInfo.subInfo.ebookList.map((ebook: any) => (
-									<dd className={styles.inforEbookListLink} key={ebook.itemId}>
-										<Link href={ebook.link} legacyBehavior>
-											<a className={styles.ebookLink}>
-												{ebook.priceSales.toLocaleString()}원
-											</a>
-										</Link>
-									</dd>
-								))}
+								<dd
+									className={styles.inforEbookListLink}
+									key={bookInfo.subInfo.ebookList[0].itemId}>
+									<Link
+										href={bookInfo.subInfo.ebookList[0].link}
+										legacyBehavior>
+										<a className={styles.ebookLink}>
+											{bookInfo.subInfo.ebookList[0].priceSales.toLocaleString()}
+											원
+										</a>
+									</Link>
+								</dd>
 							</dl>
 						)}
 					</div>

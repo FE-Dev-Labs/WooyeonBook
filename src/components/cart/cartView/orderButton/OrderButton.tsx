@@ -5,7 +5,6 @@ import { CartItemType } from '@/types/bookType';
 import { supabase } from '@/utils/supabase/supabase';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 import uuid from 'react-uuid';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
@@ -26,7 +25,7 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 	// 주문하기 버튼 클릭 시 동작하는 함수
 	const handleOrderButtonClick = async () => {
 		// 로그인 상태가 아닐 경우
-		if (!user) {
+		if (user.id === null) {
 			if (confirm('로그인이 필요한 서비스입니다 로그인 하시겠습니까?')) {
 				// 로그인 페이지로 이동
 				router.push('/login');
