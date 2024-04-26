@@ -74,21 +74,27 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 			)}
 			{/* create box client*/}
 			{createState && (
-				<div className={styles.commentCreateBoxWrap}>
-					<input
-						type="text"
-						placeholder="한글 기준 50자까지 작성 가능합니다."
-						value={comment}
-						onChange={onChangeText}
-						maxLength={50}
-					/>
-					<button onClick={cancleComment}>취소</button>
-					<button onClick={createComment}>등록</button>
-					<div>
-						<div className={styles.commentInputCount}>
-							<span className={styles.commentInputCountTxt}>{inputCount}</span>
-							<span className={styles.commentCount}>/50 자</span>
+				<div className={styles.commentWrapper}>
+					<div className={styles.commentCreateBoxWrap}>
+						<input
+							type="text"
+							placeholder="한글 기준 50자까지 작성 가능합니다."
+							value={comment}
+							onChange={onChangeText}
+							maxLength={50}
+						/>
+						<div className={styles.commentBtnWrapper}>
+							<button onClick={createComment} className={styles.updateBtn}>
+								등록
+							</button>
+							<button onClick={cancleComment} className={styles.cancelBtn}>
+								취소
+							</button>
 						</div>
+					</div>
+					<div className={styles.commentInputCount}>
+						<span className={styles.commentInputCountTxt}>{inputCount}</span>
+						<span className={styles.commentCount}>/50 자</span>
 					</div>
 				</div>
 			)}

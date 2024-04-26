@@ -94,15 +94,18 @@ const BookReport = async ({
 				</div>
 			</div>
 			{/* 댓글 */}
-			<section>
+			<section className={styles.commentWrapper}>
 				<div className={styles.commentHeader}>
-					<div className={styles.commentCount}>댓글 {comments.length}</div>
+					<div className={styles.commentCount}>댓글 </div>
+					<span className={styles.commentCountLength}>{comments.length}</span>
 					<div className={styles.commentSortWrap}></div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
-				{comments.map((item) => {
-					return <CommentItem data={item} key={item.id} />;
-				})}
+				<ul>
+					{comments.map((item) => {
+						return <CommentItem data={item} key={item.id} />;
+					})}
+				</ul>
 			</section>
 		</section>
 	);
