@@ -61,9 +61,9 @@
 	font-size: 18px;
 	font-weight: bold;
 }
-.adimBtnWrap > button:hover {
+/* .adimBtnWrap > button:hover {
 	color: red;
-}
+} */
 .line {
 	width: 1300px;
 	margin-bottom: 30px;
@@ -82,6 +82,24 @@
 	flex-wrap: wrap;
 	border-bottom: 2px solid #dee2e6;
 }
+.optionMeetingContainer {
+	width: 500px;
+	height: 100px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.optionBuyingContainer {
+	width: 500px;
+	height: 60px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 .optionItemWrap {
 	display: flex;
 	align-items: center;
@@ -89,13 +107,18 @@
 	justify-content: space-between;
 }
 .optionItemTitle {
+	width: 120px;
+	margin-right: 10px;
 	font-size: 16px;
 	color: #868e96;
 }
 .optionItemContent {
+	display: inline-block;
 	font-size: 16px;
-
 	color: #868e96;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .optionItemContent:visited {
 	color: #000;
@@ -168,8 +191,8 @@
 .commentCreateBoxWrap {
 	display: flex;
 	align-items: center;
-	width: 1200px;
-	margin: 0 auto;
+	/* width: 1200px;
+	margin: 0 auto; */
 }
 .commentCreateBoxWrap > input {
 	width: 96%;
@@ -194,7 +217,7 @@
 }
 /* 댓글 본문 */
 .commnetWrap {
-	width: 1200px;
+	/* width: 1200px; */
 	margin: 0 auto;
 	padding: 30px 50px 0 50px;
 }
@@ -327,6 +350,22 @@
 	display: flex;
 	justify-content: center;
 	padding: 10px 10px 0px 10px;
+	cursor: pointer;
+}
+.stateBtnWrapper {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px 0px 10px;
+	cursor: pointer;
+}
+.stateBtnWrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
 }
 .shareBtnWrap {
 	display: flex;
@@ -337,6 +376,11 @@
 	font-size: 14px;
 	font-weight: 700;
 }
+.stateBtnText {
+	font-size: 14px;
+	font-weight: 700;
+}
+
 .shareText {
 	font-size: 14px;
 	font-weight: 700;
@@ -405,7 +449,7 @@
 	justify-content: flex-end;
 	padding-top: 10px;
 	padding-bottom: 30px;
-	width: 1200px;
+	/* width: 1200px; */
 	margin: 0 auto;
 }
 .commentInputCountTxt {
@@ -459,4 +503,7 @@
 
 .commnetModifyInput:focus {
 	outline: none;
+}
+.OptionaccordionContainer {
+	/* display: flex; */
 }
