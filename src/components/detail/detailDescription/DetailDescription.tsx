@@ -76,13 +76,20 @@ export default function DetailDescription({ bookInfo }: bookDetailProp) {
 						</div>
 						<span className={styles.pubArea}>
 							<span className={styles.auth}>
-								<Link href={'/'}>{authors}</Link>
+								<Link href={`/search?keyword=${authors}&pageNum=1`}>
+									{authors}
+								</Link>
 								저/
-								<Link href={'/'}>{translators}</Link>역
+								<Link href={`/search?keyword=${translators}&pageNum=1`}>
+									{translators}
+								</Link>
+								역
 							</span>
 							<em className={styles.divice}></em>
 							<span className={styles.pub}>
-								<Link href={'/'}>{bookInfo.publisher}</Link>
+								<Link href={`/search?keyword=${bookInfo.publisher}&pageNum=1`}>
+									{bookInfo.publisher}
+								</Link>
 							</span>
 							<em className={styles.divice}></em>
 							<span className={styles.date}>

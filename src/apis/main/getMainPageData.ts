@@ -3,7 +3,7 @@ import { BestSellerType, NewBookType, UsedBookType } from '@/types/bookType';
 export const getMainPageData = async () => {
 	const fetchData = async (url: string) => {
 		try {
-			const response = await fetch(url, { cache: 'no-store' });
+			const response = await fetch(url, { next: { revalidate: 86400 } });
 			// 네트워크 응답 상태가 성공적이지 않은 경우
 			if (!response.ok) {
 				throw new Error(`Network response was not ok: ${response.statusText}`);
