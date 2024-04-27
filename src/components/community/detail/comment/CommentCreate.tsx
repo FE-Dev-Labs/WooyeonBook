@@ -3,6 +3,18 @@ import { getUser } from '@/apis/community/getUser';
 import styles from '@/styles/community/detail/detailPage.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useState } from 'react';
+import { createComment } from '@/apis/community/crudComment';
+
+interface CommentData {
+	id?: string;
+	created_at: Date;
+	comment: string;
+	created_user: string;
+	created_user_name: string;
+	doc_id: string;
+	check: boolean;
+	like: number;
+}
 
 const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 	const supabase = createClient();
@@ -30,7 +42,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 			setCreateState(!createState);
 		}
 	};
-	const createComment = async () => {
+	const onSubmit = async () => {
 		const { user_id, user_name } = await getUser();
 		const submitData = {
 			created_at: new Date(),
@@ -42,13 +54,8 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 			doc_id: doc_id,
 			like: 0,
 		};
-		const { error } = await supabase
-			.from('comment')
-			.insert(submitData)
-			.select();
-		if (error) {
-			throw new Error('Error creating comment');
-		}
+		await createComment(submitData as CommentData, doc_id as string);
+
 		setCreateState(false);
 		setComment('');
 		setInputCount(0); // 댓글 글자수도 초기화
@@ -83,7 +90,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 						maxLength={50}
 					/>
 					<button onClick={cancleComment}>취소</button>
-					<button onClick={createComment}>등록</button>
+					<button onClick={onSubmit}>등록</button>
 					<div>
 						<div className={styles.commentInputCount}>
 							<span className={styles.commentInputCountTxt}>{inputCount}</span>

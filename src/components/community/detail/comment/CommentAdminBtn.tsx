@@ -8,13 +8,14 @@ import { createClient } from '@/utils/supabase/client';
 import { useRecoilState } from 'recoil';
 import styles from '@/styles/community/detail/commentAdminBtn.module.css';
 import { useEffect } from 'react';
+import { deleteComments, updateComments } from '@/apis/community/comment/CRUD';
 
 const CommentAdminBtn = ({
 	data,
 	id,
 }: {
 	data: {
-		id: string;
+		id?: string;
 		created_at: Date;
 		comment: string;
 		created_user: string;
@@ -26,7 +27,7 @@ const CommentAdminBtn = ({
 	id: string;
 }) => {
 	const supabase = createClient();
-	const [updateSteate, setUpdateState] = useRecoilState(isUpdateState);
+	const [updateState, setUpdateState] = useRecoilState(isUpdateState);
 	const [text, setText] = useRecoilState(updateComment);
 	useEffect(() => {
 		setText(data.comment);
@@ -39,7 +40,7 @@ const CommentAdminBtn = ({
 
 	const onUpdate = async () => {
 		const updateData = {
-			id: updateSteate,
+			id: updateState,
 			created_at: new Date(),
 			comment: text,
 			like: data.like,
@@ -48,28 +49,17 @@ const CommentAdminBtn = ({
 			doc_id: data.doc_id,
 			check: data.check,
 		};
-		const response = supabase
-			.from('comment')
-			.update(updateData)
-			.eq('id', updateSteate);
-		const { error } = await response;
-		if (error) {
-			throw error;
-		}
+		await updateComments(updateData, updateState);
 		setUpdateState('');
 		window.location.reload();
 	};
 	const deleteComment = async () => {
-		const response = supabase.from('comment').delete().eq('id', id);
-		const { error } = await response;
-		if (error) {
-			throw error;
-		}
+		await deleteComments(updateState as string);
 		window.location.reload();
 	};
 	return (
 		<div className={styles.adminBtnWrap}>
-			{updateSteate === id ? (
+			{updateState === id ? (
 				<button className={styles.updateBtn} onClick={onUpdate}>
 					수정
 				</button>

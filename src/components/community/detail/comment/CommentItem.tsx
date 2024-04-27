@@ -9,7 +9,7 @@ const CommentItem = async ({
 	data,
 }: {
 	data: {
-		id: string;
+		id?: string;
 		created_at: Date;
 		comment: string;
 		created_user: string;
@@ -37,9 +37,9 @@ const CommentItem = async ({
 					<div>{getDate(data.created_at)}</div>
 				</div>
 				{/* client */}
-				{isAdmin && <CommentAdminBtn data={data} id={data.id} />}
+				{isAdmin && <CommentAdminBtn data={data} id={data.id as string} />}
 			</div>
-			<Comment id={data.id} comment={data.comment} />
+			<Comment id={data.id as string} comment={data.comment} />
 			{/* <div className={styles.contentBtnWrap}>
 				<button>공유</button>
 			</div> */}

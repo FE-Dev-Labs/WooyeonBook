@@ -1,8 +1,6 @@
 import { AllDataType } from '@/types/community/view/data';
 import BookReport from '@/components/community/detail/BookReport';
 import styles from '@/styles/community/detail/detailLayout.module.css';
-import LikeBtn from '@/components/community/detail/LikeBtn';
-import StateBtn from '@/components/community/detail/StateBtn';
 
 export default async function DetailPage({
 	params,
@@ -30,20 +28,7 @@ export default async function DetailPage({
 					page={'bookReport'}
 				/>
 			</article>
-			<aside className={styles.optionWrap}>
-				{/* <StateBtn
-					page={'bookReport'}
-					doc_id={params.doc_id}
-					state={data.state as boolean}
-					admin={data.created_user}
-				/>
-				<LikeBtn
-					page={'bookReport'}
-					doc_id={params.doc_id}
-					like={data.like_users}
-				/>
-				<button>공유</button> */}
-			</aside>
+			<aside className={styles.optionWrap}></aside>
 		</main>
 	);
 }
