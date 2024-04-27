@@ -71,6 +71,9 @@
 	justify-content: center;
 	align-items: center;
 }
+.quantityWrap > img {
+	cursor: pointer;
+}
 .quantity {
 	width: 40px;
 	/* line-height: normal; */

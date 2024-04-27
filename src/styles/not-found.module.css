@@ -1,60 +1,39 @@
 .container {
-	height: 75dvh;
+	height: calc(100vh - 170px);
+	gap: 30px;
+
 	display: flex;
-	flex-direction: column;
+	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+
+	background-color: #f4f2e5;
+}
+.wrapper {
+	width: 1300px;
+	margin-top: -60px;
+	gap: 150px;
+
+	display: flex;
+	/* flex-direction: column; */
 	align-items: center;
 }
-.container > a {
-	background-size: cover;
+
+.textWrpper {
+	height: 260px;
+	font-size: 20px;
 }
 .text {
-	margin: 40px 0;
-	font-size: 30px;
+	font-size: 40px;
 }
-.btnWrap {
-	display: flex;
-	justify-content: space-between;
+.p {
+	margin-top: 40px;
+	margin-bottom: 5px;
 }
-.btnWrap > button {
-	font-size: 24px;
-	background-color: inherit;
-	border: none;
+.p2 {
+	margin-top: 15px;
 }
-.btnWrap :nth-child(1) {
-	margin-right: 50px;
-}
-
-.container {
-	height: calc(100vh - 290px);
-	gap: 50px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
-.notFountWrapper {
-	width: 400px;
-	font-size: 20px;
-	gap: 50px;
-
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.notFountWrapper > div {
-	font-size: 14px;
-	gap: 50px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
-}
-.notFountWrapper > div > div {
+.p2:hover {
 	cursor: pointer;
-}
-.notFountWrapper > div > a {
-	color: #000000;
+	text-decoration: underline;
 }

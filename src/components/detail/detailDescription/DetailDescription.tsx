@@ -53,8 +53,6 @@ export default function DetailDescription({ bookInfo }: bookDetailProp) {
 		100
 	).toFixed(0);
 
-	console.log(bookInfo);
-
 	return (
 		<>
 			<div className={styles.Wrapper}>

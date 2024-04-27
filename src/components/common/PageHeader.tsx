@@ -14,3 +14,4 @@ export default function PageHeader({ title, isTheme }: PageHeaderProps) {
 		</header>
 	);
 }
+``;
