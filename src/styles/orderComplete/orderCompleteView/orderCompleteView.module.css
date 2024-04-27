@@ -1,0 +1,18 @@
+.container {
+	height: calc(100vh - 170px);
+
+	display: flex;
+	justify-content: center;
+
+	background-color: #f4f2e5;
+}
+.wrapper {
+	width: 1300px;
+	height: inherit;
+	gap: 50px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
