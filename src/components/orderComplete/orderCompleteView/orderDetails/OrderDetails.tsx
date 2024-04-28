@@ -4,29 +4,51 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface OrderDetailsProp {
-	order: CartItem[];
 	userName: string;
+	order: CartItem[];
+	orderId: string;
 }
-export default function OrderDetails({ order, userName }: OrderDetailsProp) {
+export default function OrderDetails({
+	userName,
+	order,
+	orderId,
+}: OrderDetailsProp) {
 	return (
 		<div className={styles.container}>
-			<div className={styles.book}>
-				<Image
-					src={order[0].cover}
-					alt="book image"
-					width={200}
-					height={300}></Image>
+			<div className={styles.order}>
+				<h1>주문 완료</h1>
+				<div className={styles.textWrapper}>
+					<h1>{userName}님! 주문이 완료되었습니다.</h1>
+					<p>주문번호: {orderId}</p>
+				</div>
+				<div className={styles.imageWrapper}>
+					<Image
+						className={styles.img}
+						src={order[0]?.cover}
+						alt="book image"
+						width={150}
+						height={200}
+					/>
+					<div className={styles.imgTitle}>
+						{order.length === 1 && (
+							<h1 className={styles.imgTitle}>{order[0]?.title}</h1>
+						)}
+						{order.length > 1 && (
+							<h1 className={styles.imgTitle}>
+								{order[0]?.title} 外 {order.length - 1}건
+							</h1>
+						)}
+					</div>
+				</div>
+				<div className={styles.buttonWrapper}>
+					<Link href="/mypage?page=bookReport">
+						<button>주문 상세보기</button>
+					</Link>
+					<Link href="/">
+						<button>계속 쇼핑하기</button>
+					</Link>
+				</div>
 			</div>
-
-			<h1>{userName}님!</h1>
-			<p className={styles.text}>"{order[0].title}"</p>
-			{order.length === 1 && <p>1건 주문이 완료되었습니다. 😎</p>}
-			{order.length > 1 && (
-				<p>외 {order.length - 1}건 주문이 완료되었습니다. 😎</p>
-			)}
-			<Link href="/mypage?page=bookMeeting">
-				<button>마이페이지에서 주문 내역을 확인하세요!</button>
-			</Link>
 		</div>
 	);
 }

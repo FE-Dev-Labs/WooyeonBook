@@ -89,16 +89,3 @@ export default function OrderButton({ checkedItem }: OrderButtonProps) {
 		</div>
 	);
 }
-{
-	/* {isLoading && (
-				<div className={styles.loadingContainer}>주문이 진행중입니다. 😎</div>
-			)}
-			{!isLoading && (
-				<div className={styles.orderButtonWrap}>
-					<Link href={'/'}>
-						<button>상품 추가</button>
-					</Link>
-					<button onClick={handleOrderButtonClick}>결제하기</button>
-				</div>
-			)} */
-}

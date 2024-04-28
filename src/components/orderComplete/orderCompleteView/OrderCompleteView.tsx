@@ -8,16 +8,20 @@ import { useEffect, useState } from 'react';
 import { CartItem } from '@/types/orderList';
 import OrderProgress from './orderProgress/OrderProgress';
 import OrderDetails from './orderDetails/OrderDetails';
+import { usePathname } from 'next/navigation';
 
 export default function OrderCompleteView() {
 	// supabase 선언
 	const supabase = createClient();
+	// usePathname 선언
+	const orderId = usePathname().split('/orderId=')[1];
+
 	// 로그인 판별 및 유저 id
 	const user = useRecoilValue(userAtom);
 	// order state
 	const [order, setOrder] = useState<CartItem[]>([]);
 	// 로딩 state
-	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	// 주문 목록 불러오기
 	const getOrderList = async () => {
@@ -38,21 +42,25 @@ export default function OrderCompleteView() {
 		}
 	};
 
+	console.log(order);
+
 	// 로딩 및 order list 뿌려주는 useEffect
 	useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(true);
-		}, 4000);
 		getOrderList();
-	}, []);
 
-	console.log(order);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 4000);
+	}, []);
 
 	return (
 		<div className={styles.container}>
 			<main className={styles.wrapper}>
-				{!isLoading && <OrderProgress />}
-				{isLoading && <OrderDetails userName={user.name} order={order} />}
+				{/* {isLoading && <OrderProgress />}
+				{!isLoading && (
+					<OrderDetails userName={user.name} order={order} orderId={orderId} />
+				)} */}
+				<OrderDetails userName={user.name} order={order} orderId={orderId} />
 			</main>
 		</div>
 	);
