@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
-import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { fetchComments } from '@/apis/community/fetchComments';
+import { CommentData } from '@/types/community/comment';
 interface BookSellingProps {
 	data: AllDataType;
 	searchParams?: { sort?: string };
@@ -16,16 +16,6 @@ interface BookSellingProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-interface CommentData {
-	id: string;
-	created_at: Date;
-	comment: string;
-	created_user: string;
-	created_user_name: string;
-	doc_id: string;
-	check: boolean;
-	like: number;
-}
 
 const BookSelling = async ({ searchParams, data }: BookSellingProps) => {
 	const cookieStore = cookies();

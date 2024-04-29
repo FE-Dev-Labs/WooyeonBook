@@ -3,7 +3,7 @@ import { getUser } from '@/apis/community/getUser';
 import styles from '@/styles/community/detail/detailPage.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useState } from 'react';
-import { createComment } from '@/apis/community/crudComment';
+import { createComment } from '@/apis/community/comment/CRUD';
 
 interface CommentData {
 	id?: string;
@@ -59,6 +59,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 		setCreateState(false);
 		setComment('');
 		setInputCount(0); // 댓글 글자수도 초기화
+
 		window.location.reload();
 	};
 	const cancleComment = () => {

@@ -4,21 +4,9 @@ import { createClient } from '@/utils/supabase/server';
 import { cookies } from 'next/headers';
 import Comment from './Comment';
 import CommentAdminBtn from './CommentAdminBtn';
+import { CommentData } from '@/types/community/comment';
 
-const CommentItem = async ({
-	data,
-}: {
-	data: {
-		id?: string;
-		created_at: Date;
-		comment: string;
-		created_user: string;
-		created_user_name: string;
-		doc_id: string;
-		check: boolean;
-		like: number;
-	};
-}) => {
+const CommentItem = async ({ data }: { data: CommentData }) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -40,9 +28,6 @@ const CommentItem = async ({
 				{isAdmin && <CommentAdminBtn data={data} id={data.id as string} />}
 			</div>
 			<Comment id={data.id as string} comment={data.comment} />
-			{/* <div className={styles.contentBtnWrap}>
-				<button>공유</button>
-			</div> */}
 		</div>
 	);
 };

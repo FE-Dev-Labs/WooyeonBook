@@ -1,8 +1,8 @@
-import { AllDataType } from '@/types/community/view/data';
 import BookMeeting from '@/components/community/detail/BookMeeting';
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import LikeBtn from '@/components/community/detail/LikeBtn';
 import StateBtn from '@/components/community/detail/StateBtn';
+import { fetchDetailCommunity } from '@/apis/community/CRUD';
 
 export default async function DetailPage({
 	params,
@@ -11,13 +11,7 @@ export default async function DetailPage({
 	params: { doc_id: string };
 	searchParams?: { sort?: string };
 }) {
-	const response = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/bookMeeting/${params.doc_id}`,
-		{
-			cache: 'no-store',
-		},
-	);
-	const data: AllDataType = await response.json();
+	const data = await fetchDetailCommunity('bookMeeting', params.doc_id);
 
 	return (
 		<main className={styles.container}>

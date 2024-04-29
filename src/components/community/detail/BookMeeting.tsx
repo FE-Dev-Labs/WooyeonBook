@@ -8,6 +8,7 @@ import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { fetchComments } from '@/apis/community/fetchComments';
+import { CommentData } from '@/types/community/comment';
 
 interface BookMeetingProps {
 	data: AllDataType;
@@ -16,16 +17,7 @@ interface BookMeetingProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-interface CommentData {
-	id: string;
-	created_at: Date;
-	comment: string;
-	created_user: string;
-	created_user_name: string;
-	doc_id: string;
-	check: boolean;
-	like: number;
-}
+
 const BookMeeting = async ({ searchParams, data }: BookMeetingProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
