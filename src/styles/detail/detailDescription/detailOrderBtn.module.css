@@ -6,8 +6,8 @@
 .addToCartBtn {
 	display: block;
 	cursor: pointer;
-	width: 160px;
-	height: 60px;
+	width: 150px;
+	height: 50px;
 	background-color: #fff;
 	text-align: center;
 	font-weight: bold;
@@ -19,8 +19,8 @@
 .orderBtn {
 	display: block;
 	cursor: pointer;
-	width: 160px;
-	height: 60px;
+	width: 150px;
+	height: 50px;
 	background: #6594e7;
 	text-align: center;
 	font-weight: bold;

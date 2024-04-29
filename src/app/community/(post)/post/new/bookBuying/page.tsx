@@ -102,8 +102,7 @@ const BookBuyingPostPage = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div>📚</div>
-				<h2>중고 책을 구매해보세요.</h2>
+				<span className={styles.headerTitle}>중고 책을 구매해보세요.</span>
 			</div>
 			<input
 				type="text"

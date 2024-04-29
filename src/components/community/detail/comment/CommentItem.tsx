@@ -30,20 +30,21 @@ const CommentItem = async ({
 	}
 	const isAdmin = data.created_user === user?.id;
 	return (
-		<div className={styles.commnetWrap}>
-			<div className={styles.commentInfoWrap}>
-				<div>
-					<div>{data.created_user_name}</div>
-					<div>{getDate(data.created_at)}</div>
-				</div>
-				{/* client */}
+		<li className={styles.commentListWrapper}>
+			<div className={styles.commentListUserSelection}>
+				<span className={styles.commentListUserName}>
+					{data.created_user_name}
+				</span>
+				<em className={styles.divice}></em>
+				<span className={styles.commentListDate}>
+					{getDate(data.created_at)}
+				</span>
+			</div>
+			<div className={styles.commentModifyWrapper}>
+				<Comment id={data.id} comment={data.comment} />
 				{isAdmin && <CommentAdminBtn data={data} id={data.id} />}
 			</div>
-			<Comment id={data.id} comment={data.comment} />
-			{/* <div className={styles.contentBtnWrap}>
-				<button>공유</button>
-			</div> */}
-		</div>
+		</li>
 	);
 };
 
