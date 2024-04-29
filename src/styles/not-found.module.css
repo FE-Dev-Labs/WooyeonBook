@@ -6,8 +6,6 @@
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-
-	background-color: #f4f2e5;
 }
 .wrapper {
 	width: 1300px;

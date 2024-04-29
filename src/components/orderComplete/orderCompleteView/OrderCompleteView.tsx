@@ -56,11 +56,10 @@ export default function OrderCompleteView() {
 	return (
 		<div className={styles.container}>
 			<main className={styles.wrapper}>
-				{/* {isLoading && <OrderProgress />}
+				{isLoading && <OrderProgress />}
 				{!isLoading && (
 					<OrderDetails userName={user.name} order={order} orderId={orderId} />
-				)} */}
-				<OrderDetails userName={user.name} order={order} orderId={orderId} />
+				)}
 			</main>
 		</div>
 	);
