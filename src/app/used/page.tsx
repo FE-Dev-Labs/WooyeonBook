@@ -15,15 +15,12 @@ export default async function usedPage({
 	// used page data
 	const usedBestResponse = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/usedBest`,
-		{
-			next: { revalidate: 3600 },
-		},
+		{ next: { revalidate: 86400 } },
 	);
 	const { usedBestData } = await usedBestResponse.json();
-
 	const usedResponse = await fetch(
 		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/list/usedAll?categoryId=${categoryId}&pageNum=${pageNum}`,
-		{ next: { revalidate: 3600 } },
+		{ next: { revalidate: 86400 } },
 	);
 	const { data, dataLength } = await usedResponse.json();
 
