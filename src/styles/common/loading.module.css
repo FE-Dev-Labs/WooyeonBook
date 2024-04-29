@@ -1,0 +1,14 @@
+.container {
+	position: fixed; /* 위치를 화면에 고정 */
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5); /* 배경을 반투명하게 설정 */
+	display: flex;
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; /* 세로 중앙 정렬 */
+}
+.wrapper {
+	/* height: calc(100vh - 170px); */
+}

@@ -19,7 +19,12 @@ const Comment = ({ id, comment }: { id: string; comment: string }) => {
 	return (
 		<div className={styles.commentContentWrap}>
 			{isUpdate === id ? (
-				<input type="text" value={text} onChange={onChangeText} />
+				<input
+					type="text"
+					value={text}
+					onChange={onChangeText}
+					className={styles.commnetModifyInput}
+				/>
 			) : (
 				<p>{comment}</p>
 			)}

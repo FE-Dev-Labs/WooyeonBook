@@ -100,8 +100,9 @@ const BookReportPostPage = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div>📚</div>
-				<h2>독후감을 작성하고 공유해 보세요.</h2>
+				<span className={styles.headerTitle}>
+					독후감을 작성하고 공유해 보세요.
+				</span>
 			</div>
 			<input
 				type="text"

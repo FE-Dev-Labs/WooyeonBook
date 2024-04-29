@@ -1,5 +1,5 @@
 'use client';
-
+import styles from '@/styles/common/pagination.module.css';
 import { mypage_QS } from '@/recoil/atom/mypageAtom';
 import { AllDataType } from '@/types/community/view/data';
 import { useRecoilState } from 'recoil';
@@ -58,18 +58,28 @@ const MypagePagination = ({ alldata }: { alldata: any[] }) => {
 	if (allLinks.length === 0) {
 		return null;
 	}
+
 	return (
-		<footer>
-			{isPrev && <button onClick={prev}>이전</button>}
-			{links.map((item) => {
-				return (
-					<button key={item} onClick={() => onSubmit(item)}>
-						{item}
-					</button>
-				);
-			})}
-			{isNext && <button onClick={next}>다음</button>}
-		</footer>
+		<div className={styles.categoryContents}>
+			<section className={styles.paginationContainer}>
+				<div className={styles.paginationWrappper}>
+					{isPrev && <button onClick={prev}>이전</button>}
+					{links.map((item) => {
+						return (
+							<div
+								className={
+									nowPage === item ? styles.selectedNum : styles.paginationItem
+								}
+								key={item}
+								onClick={() => onSubmit(item)}>
+								{item}
+							</div>
+						);
+					})}
+					{isNext && <button onClick={next}>다음</button>}
+				</div>
+			</section>
+		</div>
 	);
 };
 

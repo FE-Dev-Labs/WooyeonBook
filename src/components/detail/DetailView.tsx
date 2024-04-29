@@ -17,6 +17,7 @@ interface DetailViewProps {
 }
 
 export default function DetailView({ book, id }: DetailViewProps) {
+	// 최근 본 상품 업데이트하는 useEffect
 	useEffect(() => {
 		// 최근 본 상품 목록을 로컬 스토리지에서 가져오기
 		const storedItems = localStorage.getItem('recentItems');

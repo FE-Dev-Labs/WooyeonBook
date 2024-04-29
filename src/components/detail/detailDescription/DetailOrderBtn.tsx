@@ -63,17 +63,20 @@ export default function DetailOrderBtn({ bookInfo }: DetailOrderBtnProp) {
 				return;
 			}
 		}
-		// 이미 카트에 해당 아이템이 존재하는 경우
-		if (isAlreadyInCart) {
-			alert('이미 장바구니에 담긴 제품입니다. 장바구니 페이지로 이동합니다.');
-			router.push('/cart');
-			// 장바구니에 해당 아이템이 존재하지 않는 경우
-		} else {
-			alert('장바구니 페이지로 이동합니다.');
-			// set
-			setCart([...cart, newCartItem]);
-			// 카트 페이지로 이동
-			router.push('/cart');
+		// 주문 확인
+		if (confirm('상품을 주문하시겠습니까?')) {
+			// 이미 카트에 해당 아이템이 존재하는 경우
+			if (isAlreadyInCart) {
+				alert('이미 장바구니에 담긴 제품입니다. 장바구니 페이지로 이동합니다.');
+				router.push('/cart');
+				// 장바구니에 해당 아이템이 존재하지 않는 경우
+			} else {
+				alert('장바구니 페이지로 이동합니다.');
+				// 카트 페이지로 이동
+				router.push('/cart');
+				// 카트 비우기
+				setCart([...cart, newCartItem]);
+			}
 		}
 	};
 

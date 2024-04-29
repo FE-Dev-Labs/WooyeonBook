@@ -70,7 +70,7 @@ export default function SignupModal() {
 		alert('회원가입 완료. 로그인 해주세요.');
 		// router.back();
 		await supabase.auth.signOut();
-		router.push('/login');
+		router.push('/login', { scroll: false });
 	};
 
 	return (

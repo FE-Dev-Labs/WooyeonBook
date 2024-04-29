@@ -1,7 +1,5 @@
 import LoginModal from '@/components/auth/login/LoginModal';
 
-const page = () => {
+export default function page() {
 	return <LoginModal />;
-};
-
-export default page;
+}

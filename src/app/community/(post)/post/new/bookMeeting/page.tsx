@@ -108,8 +108,7 @@ const BookMeetingPostPage = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div>📚</div>
-				<h2>모임을 만들어 보세요.</h2>
+				<span className={styles.headerTitle}>모임을 만들어 보세요.</span>
 			</div>
 			<input
 				type="text"

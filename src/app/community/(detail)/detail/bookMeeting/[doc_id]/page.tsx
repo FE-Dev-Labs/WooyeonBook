@@ -17,10 +17,15 @@ export default async function DetailPage({
 		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>
-				<BookMeeting data={data} searchParams={searchParams} />
+				<BookMeeting
+					data={data}
+					params={params}
+					searchParams={searchParams}
+					page={'bookMeeting'}
+				/>
 			</article>
 			<aside className={styles.optionWrap}>
-				<StateBtn
+				{/* <StateBtn
 					page={'bookMeeting'}
 					doc_id={params.doc_id}
 					state={data.state as boolean}
@@ -31,7 +36,7 @@ export default async function DetailPage({
 					doc_id={params.doc_id}
 					like={data.like_users}
 				/>
-				<button>공유</button>
+				<button>공유</button> */}
 			</aside>
 		</main>
 	);

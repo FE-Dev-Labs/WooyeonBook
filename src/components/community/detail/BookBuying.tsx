@@ -9,16 +9,28 @@ import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { fetchComments } from '@/apis/community/fetchComments';
 import { CommentData } from '@/types/community/comment';
+import StateBtn from './StateBtn';
+import LikeBtn from './LikeBtn';
+import Image from 'next/image';
+import DropDownBtn from './DropDownBtn';
+import shareIcon from '@/assets/community/shareIcon.png';
 
 interface BookBuyingProps {
 	data: AllDataType;
+	params: { doc_id: string };
 	searchParams?: { sort?: string };
+	page: string;
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookBuying = async ({ searchParams, data }: BookBuyingProps) => {
+const BookBuying = async ({
+	searchParams,
+	data,
+	page,
+	params,
+}: BookBuyingProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -27,80 +39,96 @@ const BookBuying = async ({ searchParams, data }: BookBuyingProps) => {
 
 	const comments: CommentData[] = await fetchComments(data.doc_id);
 
-	const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
-		switch (searchParams?.sort) {
-			case 'like':
-				return b.like - a.like;
-			case 'lastest':
-				return (
-					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-				);
-			default:
-				return (
-					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-				);
-		}
-	});
+	// 댓글 좋아요, 최신순
+	// const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
+	// 	switch (searchParams?.sort) {
+	// 		case 'like':
+	// 			return b.like - a.like;
+	// 		case 'lastest':
+	// 			return (
+	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+	// 			);
+	// 		default:
+	// 			return (
+	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+	// 			);
+	// 	}
+	// });
 
 	return (
 		<section className={styles.container}>
-			<h2 className={styles.title}>{data.title}</h2>
-			<div className={styles.infoWrap}>
-				<div className={styles.contentInfoWrap}>
-					<div>{getDate(data.created_at)}</div>
-					<div className={styles.dot}>●</div>
-					<div>조회수 : {data.view}</div>
-					<div className={styles.dot}>●</div>
-					<div>좋아요 : {data.like_users.length} </div>
-				</div>
-				{data?.created_user === user?.id ? (
-					<div className={styles.adimBtnWrap}>
-						<Link href={`/community/update/bookBuying/${data.doc_id}`}>
-							수정
-						</Link>
-						<button>삭제</button>
-					</div>
-				) : null}
-			</div>
-			<hr className={styles.line} />
-			{/* option */}
 			<section className={styles.optionContainer}>
+				<h2 className={styles.title}>{data.title}</h2>
+				{/* 날짜,조회수,좋아요 */}
 				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>판매하는 책</label>
-					<div className={styles.optionItemContent}>{data.book_name}</div>
+					<div className={styles.infoWrap}>
+						<div className={styles.contentInfoWrap}>
+							<div>{getDate(data.created_at)}</div>
+							<div className={styles.dot}>･</div>
+							<div>조회수{data.view}</div>
+							<div className={styles.dot}>･</div>
+							<div>좋아요{data.like_users.length} </div>
+						</div>
+					</div>
 				</div>
-				<div className={styles.optionItemWrap}>
-					<label className={styles.optionItemTitle}>희망 구매 가격</label>
-					<div className={styles.optionItemContent}>{data.price} 원</div>
-				</div>
-				<hr className={styles.line} />
 			</section>
-			{/* editor */}
-			<div className={styles.viewerWrap}>
+			{/* 모임 내용 */}
+			<div className={styles.OptionaccordionContainer}>
+				<section className={styles.optionBuyingContainer}>
+					<div className={styles.optionItemWrap}>
+						<label className={styles.optionItemTitle}>판매하는 책</label>
+						<div className={styles.optionItemContent}>{data.book_name}</div>
+					</div>
+					<div className={styles.optionItemWrap}>
+						<label className={styles.optionItemTitle}>희망 구매 가격</label>
+						<div className={styles.optionItemContent}>{data.price} 원</div>
+					</div>
+				</section>
 				<View content={data.content} />
 			</div>
-			{/* 댓글 */}
-			<section>
-				<div className={styles.commentHeader}>
-					<div className={styles.commentCount}>댓글 {comments.length}</div>
-					<div className={styles.commentSortWrap}>
-						<Link
-							href={`/community/detail/bookBuying/${data.doc_id}?sort=like`}
-							scroll={false}>
-							좋아요순
-						</Link>
-						<div className={styles.dot}>●</div>
-						<Link
-							href={`/community/detail/bookBuying/${data.doc_id}?sort=lastest`}
-							scroll={false}>
-							최신순
-						</Link>
+			{/* 책 내용 */}
+			<div className={styles.viewerWrap}>
+				<div className={styles.viewBtnWrap}>
+					<StateBtn
+						page={'bookBuying'}
+						doc_id={params.doc_id}
+						state={data.state as boolean}
+						admin={data.created_user}
+					/>
+					<LikeBtn
+						page={'bookBuying'}
+						doc_id={params.doc_id}
+						like={data.like_users}
+					/>
+					<div className={styles.shareBtnWrap}>
+						<button className={styles.shareBtn}>
+							<Image
+								src={shareIcon}
+								alt="shareIcon"
+								width={15}
+								height={15}
+								className={styles.iconsStyle}
+							/>
+							<span className={styles.shareText}>공유</span>
+						</button>
 					</div>
+					<DropDownBtn data={data} user={user} />
 				</div>
-				<CommentCreate page={'bookBuying'} doc_id={data.doc_id} />
-				{sortedComments.map((item: CommentData) => {
-					return <CommentItem data={item} key={item.id} />;
-				})}
+			</div>
+
+			{/* 댓글 */}
+			<section className={styles.commentWrapper}>
+				<div className={styles.commentHeader}>
+					<div className={styles.commentCount}>댓글 </div>
+					<span className={styles.commentCountLength}>{comments.length}</span>
+					<div className={styles.commentSortWrap}></div>
+				</div>
+				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
+				<ul>
+					{comments.map((item) => {
+						return <CommentItem data={item} key={item.id} />;
+					})}
+				</ul>
 			</section>
 		</section>
 	);

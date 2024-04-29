@@ -3,7 +3,7 @@
 import { getUser } from '@/apis/community/getUser';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
-
+import styles from '@/styles/community/detail/detailPage.module.css';
 const StateBtn = ({
 	page,
 	doc_id,
@@ -56,7 +56,13 @@ const StateBtn = ({
 			.select();
 		window.location.reload();
 	};
-	return <button onClick={onSubmit}>{text()}</button>;
+	return (
+		<div className={styles.stateBtnWrapper}>
+			<div className={styles.stateBtnWrap} onClick={onSubmit}>
+				<span className={styles.stateBtnText}>{text()}</span>
+			</div>
+		</div>
+	);
 };
 
 export default StateBtn;

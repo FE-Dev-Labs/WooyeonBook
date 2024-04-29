@@ -1,0 +1,81 @@
+.container {
+	width: 500px;
+	border-radius: 20px;
+
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+}
+
+.order {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.order > h1 {
+	font-size: 28px;
+	margin: 50px 0 50px 0;
+}
+.imageWrapper {
+	margin-bottom: 50px;
+	gap: 20px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+}
+.imgTitle {
+	width: 200px;
+}
+.img {
+	border-radius: 10px;
+}
+
+.textWrapper {
+	width: 400px;
+	margin-bottom: 50px;
+
+	display: flex;
+	flex-direction: column;
+}
+.textWrapper > h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+.textWrapper > p {
+	font-size: 12px;
+}
+
+.buttonWrapper {
+	margin-bottom: 50px;
+	gap: 20px;
+
+	display: flex;
+}
+.buttonWrapper > a > button {
+	width: 125px;
+	height: 40px;
+	border: 1px solid black;
+	border-radius: 50px;
+	font-weight: bold;
+	font-size: 15px;
+
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	background-color: #f8f8f8;
+}
+.buttonWrapper > a > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}
+.buttonWrapper > button:hover {
+	color: #ffffff;
+	background-color: #231304;
+}

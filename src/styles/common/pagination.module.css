@@ -1,4 +1,14 @@
 /* Pagination */
+
+.categoryContents {
+	width: 1025px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
 .paginationContainer {
 	width: inherit;
 	height: 30px;

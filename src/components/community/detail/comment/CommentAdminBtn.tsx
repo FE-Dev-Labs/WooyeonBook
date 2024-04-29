@@ -61,13 +61,14 @@ const CommentAdminBtn = ({
 		<div className={styles.adminBtnWrap}>
 			{isUpdate === data.id ? (
 				<button className={styles.updateBtn} onClick={onUpdate}>
-					수정
+					완료
 				</button>
 			) : (
 				<button className={styles.updateBtn} onClick={handleIsUpdate}>
 					수정
 				</button>
 			)}
+			<em className={styles.divice}></em>
 			<button className={styles.deleteBtn} onClick={deleteComment}>
 				삭제
 			</button>

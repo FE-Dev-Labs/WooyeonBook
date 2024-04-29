@@ -1,7 +1,5 @@
 import SignupModal from '@/components/auth/signup/SignupModal';
 
-const page = () => {
+export default function page() {
 	return <SignupModal />;
-};
-
-export default page;
+}

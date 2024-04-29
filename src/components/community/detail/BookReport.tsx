@@ -39,20 +39,21 @@ const BookReport = async ({
 
 	const comments: CommentData[] = await fetchComments(data.doc_id as string);
 
-	const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
-		switch (searchParams?.sort) {
-			case 'like':
-				return b.like - a.like;
-			case 'lastest':
-				return (
-					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-				);
-			default:
-				return (
-					new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-				);
-		}
-	});
+	// 댓글 좋아요, 최신순
+	// const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
+	// 	switch (searchParams?.sort) {
+	// 		case 'like':
+	// 			return b.like - a.like;
+	// 		case 'lastest':
+	// 			return (
+	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+	// 			);
+	// 		default:
+	// 			return (
+	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+	// 			);
+	// 	}
+	// });
 	return (
 		<section className={styles.container}>
 			<section className={styles.optionContainer}>
@@ -108,15 +109,18 @@ const BookReport = async ({
 				</div>
 			</div>
 			{/* 댓글 */}
-			<section>
+			<section className={styles.commentWrapper}>
 				<div className={styles.commentHeader}>
-					<div className={styles.commentCount}>댓글 {comments.length}</div>
+					<div className={styles.commentCount}>댓글 </div>
+					<span className={styles.commentCountLength}>{comments.length}</span>
 					<div className={styles.commentSortWrap}></div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
-				{sortedComments.map((item: CommentData) => {
-					return <CommentItem data={item} key={item.id} />;
-				})}
+				<ul>
+					{comments.map((item) => {
+						return <CommentItem data={item} key={item.id} />;
+					})}
+				</ul>
 			</section>
 		</section>
 	);

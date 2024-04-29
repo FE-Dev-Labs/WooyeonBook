@@ -17,11 +17,7 @@ export default function LoginModal() {
 	const auth = useAuth();
 	// createClient 호출
 	const supabase = createClient();
-	// user state
-	// const setUserId = useSetRecoilState(userIdAtom);
-	// const setUserName = useSetRecoilState(userNameAtom);
-	// const setUserEmail = useSetRecoilState(userEmailAtom);
-	// const setUserPhone = useSetRecoilState(userPhoneAtom);
+	// user setState
 	const setUser = useSetRecoilState(userAtom);
 
 	// 로그인 버튼 클릭 시 동작하는 함수
@@ -50,6 +46,7 @@ export default function LoginModal() {
 			});
 			alert('환영합니다!');
 			router.back();
+			window.scrollTo(0, 0); // router.back에 {scroll: false} 옵션 X
 		}
 	};
 

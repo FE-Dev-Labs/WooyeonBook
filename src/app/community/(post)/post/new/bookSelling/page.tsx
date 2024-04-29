@@ -111,8 +111,7 @@ const BookSellingPostPage = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<div>📚</div>
-				<h2>책을 나누고 판매해 보세요.</h2>
+				<span className={styles.headerTitle}>책을 나누고 판매해 보세요.</span>
 			</div>
 			<input
 				type="text"

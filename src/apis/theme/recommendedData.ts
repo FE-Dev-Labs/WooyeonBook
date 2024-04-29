@@ -526,7 +526,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 5,
+		id: 3,
 		artistName: 'kimeunhee',
 		tag: '스릴러 장인 김은희 작가',
 		image: kimImage,
@@ -666,7 +666,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 3,
+		id: 4,
 		artistName: 'faker',
 		tag: '프로게이머 페이커',
 		image: fakerImage,
@@ -1098,7 +1098,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 12,
+		id: 5,
 		artistName: 'leejiyeong',
 		tag: '스타강사 이지영',
 		image: leeImage,
@@ -1345,7 +1345,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 8,
+		id: 6,
 		artistName: 'elonmusk',
 		tag: '혁신가 Elon musk',
 		image: elonImage,
@@ -1746,7 +1746,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 4,
+		id: 7,
 		artistName: 'rm',
 		tag: '월드스타 방탄 RM',
 		image: rmImage,
@@ -1959,7 +1959,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 6,
+		id: 8,
 		artistName: 'moongayeong',
 		tag: '인간 마네킹 문가영',
 		image: moongayoungImage,
@@ -2208,7 +2208,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 13,
+		id: 9,
 		artistName: 'leedongjin',
 		tag: '영화 평론가 이동진',
 		image: leedongjinImage,
@@ -2426,7 +2426,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 7,
+		id: 10,
 		artistName: 'dualipa',
 		tag: '다크팝 여왕 Dua lipa',
 		image: duaImage,
@@ -2681,9 +2681,8 @@ export const recommendedData = [
 			},
 		],
 	},
-
 	{
-		id: 2,
+		id: 11,
 		artistName: 'moon',
 		tag: '배우 겸 유투버 문상훈',
 		image: moonImage,
@@ -2845,7 +2844,7 @@ export const recommendedData = [
 		],
 	},
 	{
-		id: 5,
+		id: 12,
 		artistName: 'v',
 		tag: '뷔,주얼 쇼크 방탄 뷔',
 		image: vImage,
@@ -3037,25 +3036,4 @@ export const recommendedData = [
 			},
 		],
 	},
-
-	// {
-	// 	id: 10,
-	// 	artistName: 'billgates',
-	// 	tag: 'Bill Gates',
-	// 	image: billImage,
-	// 	color: '#B1BCE6',
-	// },
-	// {
-	// 	id: 9,
-	// 	artistName: 'parkjiseong',
-	// 	tag: '박지성',
-	// 	image: parkImage,
-	// 	color: '#272727',
-	// {
-	// 	id: 11,
-	// 	artistName: 'warrenbuffett',
-	// 	tag: 'Warren Buffett',
-	// 	image: warImage,
-	// 	color: '#9BABB8',
-	// },
 ];

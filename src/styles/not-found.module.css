@@ -1,60 +1,46 @@
 .container {
-	height: 75dvh;
+	height: calc(100vh - 170px);
+	gap: 30px;
+
 	display: flex;
-	flex-direction: column;
+	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+}
+.wrapper {
+	width: 1300px;
+	gap: 150px;
+
+	display: flex;
 	align-items: center;
 }
-.container > a {
-	background-size: cover;
+
+.textWrpper {
+	height: 260px;
+	font-size: 20px;
 }
 .text {
-	margin: 40px 0;
-	font-size: 30px;
+	font-size: 40px;
 }
-.btnWrap {
-	display: flex;
-	justify-content: space-between;
+.p {
+	margin-top: 40px;
+	margin-bottom: 5px;
 }
-.btnWrap > button {
-	font-size: 24px;
-	background-color: inherit;
-	border: none;
-}
-.btnWrap :nth-child(1) {
-	margin-right: 50px;
-}
-
-.container {
-	height: calc(100vh - 290px);
-	gap: 50px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}
-.notFountWrapper {
-	width: 400px;
+.button {
+	/* width: 220px; */
+	margin-top: 40px;
 	font-size: 20px;
-	gap: 50px;
+	text-decoration: underline;
 
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-.notFountWrapper > div {
-	font-size: 14px;
-	gap: 50px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
-}
-.notFountWrapper > div > div {
+	background: inherit;
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	overflow: visible;
 	cursor: pointer;
 }
-.notFountWrapper > div > a {
-	color: #000000;
+.button:hover {
+	cursor: pointer;
+	color: #6594e7;
 }
