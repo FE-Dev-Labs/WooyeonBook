@@ -92,7 +92,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 							maxLength={50}
 						/>
 						<div className={styles.commentBtnWrapper}>
-							<button onClick={createComment} className={styles.updateBtn}>
+							<button onClick={onSubmit} className={styles.updateBtn}>
 								등록
 							</button>
 							<button onClick={cancleComment} className={styles.cancelBtn}>
