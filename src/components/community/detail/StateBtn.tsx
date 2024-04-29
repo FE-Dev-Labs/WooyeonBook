@@ -9,16 +9,22 @@ const StateBtn = ({
 	doc_id,
 	state,
 	admin,
+	selling,
 }: {
 	page: string;
 	doc_id: string;
 	state: boolean;
 	admin: string;
+	selling?: boolean;
 }) => {
 	const router = useRouter();
 	if (page === 'bookReport') {
 		return null;
 	}
+	if (page === 'bookSelling' && selling === false) {
+		return null;
+	}
+
 	const text = () => {
 		switch (page) {
 			case 'bookSelling':

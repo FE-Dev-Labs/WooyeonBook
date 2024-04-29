@@ -8,11 +8,13 @@ import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { fetchComments } from '@/apis/community/fetchComments';
+import { CommentData } from '@/types/community/comment';
 import StateBtn from './StateBtn';
 import LikeBtn from './LikeBtn';
 import Image from 'next/image';
 import DropDownBtn from './DropDownBtn';
 import shareIcon from '@/assets/community/shareIcon.png';
+
 interface BookBuyingProps {
 	data: AllDataType;
 	params: { doc_id: string };
@@ -22,16 +24,6 @@ interface BookBuyingProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-interface CommentData {
-	id: string;
-	created_at: Date;
-	comment: string;
-	created_user: string;
-	created_user_name: string;
-	doc_id: string;
-	check: boolean;
-	like: number;
-}
 
 const BookBuying = async ({
 	searchParams,

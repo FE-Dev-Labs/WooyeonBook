@@ -1,19 +1,18 @@
 import { AllDataType } from '@/types/community/view/data';
 import styles from '@/styles/community/detail/detailPage.module.css';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
 import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
-import { getDetailCommentData } from '@/apis/community/getDetailCommentData';
 import DropDownBtn from './DropDownBtn';
 import StateBtn from './StateBtn';
 import LikeBtn from './LikeBtn';
 import Image from 'next/image';
 import shareIcon from '@/assets/community/shareIcon.png';
-import { fetchComments } from '@/apis/community/fetchComments';
+import { fetchComments } from '@/apis/community/comment/CRUD';
+import { CommentData } from '@/types/community/comment';
 
 interface BookReportProps {
 	data: AllDataType;
@@ -24,16 +23,7 @@ interface BookReportProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-interface CommentData {
-	id: string;
-	created_at: Date;
-	comment: string;
-	created_user: string;
-	created_user_name: string;
-	doc_id: string;
-	check: boolean;
-	like: number;
-}
+
 const BookReport = async ({
 	searchParams,
 	data,
@@ -47,7 +37,7 @@ const BookReport = async ({
 		error,
 	} = await supabase.auth.getUser();
 
-	const comments: CommentData[] = await fetchComments(data.doc_id);
+	const comments: CommentData[] = await fetchComments(data.doc_id as string);
 
 	// 댓글 좋아요, 최신순
 	// const sortedComments = comments.sort((a: CommentData, b: CommentData) => {

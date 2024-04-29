@@ -7,14 +7,15 @@ import {
 import { createClient } from '@/utils/supabase/client';
 import { useRecoilState } from 'recoil';
 import styles from '@/styles/community/detail/commentAdminBtn.module.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { deleteComments, updateComments } from '@/apis/community/comment/CRUD';
 
 const CommentAdminBtn = ({
 	data,
 	id,
 }: {
 	data: {
-		id: string;
+		id?: string;
 		created_at: Date;
 		comment: string;
 		created_user: string;
@@ -25,21 +26,20 @@ const CommentAdminBtn = ({
 	};
 	id: string;
 }) => {
-	const supabase = createClient();
-	const [updateSteate, setUpdateState] = useRecoilState(isUpdateState);
+	const [isUpdate, setIsUpdate] = useRecoilState(isUpdateState);
 	const [text, setText] = useRecoilState(updateComment);
 	useEffect(() => {
 		setText(data.comment);
 	}, []);
 
-	const handleUpdate = () => {
-		setUpdateState(id);
+	const handleIsUpdate = () => {
+		setIsUpdate(data.id as string);
 		setText(data.comment);
 	};
 
 	const onUpdate = async () => {
 		const updateData = {
-			id: updateSteate,
+			id: data.id as string,
 			created_at: new Date(),
 			comment: text,
 			like: data.like,
@@ -48,33 +48,23 @@ const CommentAdminBtn = ({
 			doc_id: data.doc_id,
 			check: data.check,
 		};
-		const response = supabase
-			.from('comment')
-			.update(updateData)
-			.eq('id', updateSteate);
-		const { error } = await response;
-		if (error) {
-			throw error;
-		}
-		setUpdateState('');
+		await updateComments(updateData, data.id as string);
+
+		setIsUpdate('');
 		window.location.reload();
 	};
 	const deleteComment = async () => {
-		const response = supabase.from('comment').delete().eq('id', id);
-		const { error } = await response;
-		if (error) {
-			throw error;
-		}
+		await deleteComments(data.id as string);
 		window.location.reload();
 	};
 	return (
 		<div className={styles.adminBtnWrap}>
-			{updateSteate === id ? (
+			{isUpdate === data.id ? (
 				<button className={styles.updateBtn} onClick={onUpdate}>
 					완료
 				</button>
 			) : (
-				<button className={styles.updateBtn} onClick={handleUpdate}>
+				<button className={styles.updateBtn} onClick={handleIsUpdate}>
 					수정
 				</button>
 			)}

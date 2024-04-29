@@ -96,9 +96,9 @@ export default async function ContentBox({ data, page }: ContentBoxProps) {
 							) : null}
 							<div className={styles.postdataWrap}>
 								{data.selling ? (
-									<div className={styles.contentState}>나눔</div>
-								) : (
 									<div className={styles.contentState}>팝니다</div>
+								) : (
+									<div className={styles.contentState}>나눔</div>
 								)}
 								<h3 className={styles.postTitle}>{data.title}</h3>
 								<p className={styles.postContent}>{data.content}</p>
