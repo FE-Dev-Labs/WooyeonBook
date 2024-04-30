@@ -1,4 +1,4 @@
-import styles from '@/styles/community/post/OptionBookMeeting.module.css';
+import styles from '@/styles/community/post/optionBookMeeting.module.css';
 import { BookMeetingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
 

@@ -6,7 +6,6 @@ import styles from '@/styles/community/post/postNewPage.module.css';
 import { useInputState } from '@/hooks/useInputState';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
-import { supabase } from '@/utils/supabase/supabase';
 import { BookMeetingPostDataType } from '@/types/community/post/data';
 import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
 import { useEffect, useState } from 'react';
