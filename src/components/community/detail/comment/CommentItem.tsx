@@ -29,8 +29,8 @@ const CommentItem = async ({ data }: { data: CommentData }) => {
 				</span>
 			</div>
 			<div className={styles.commentModifyWrapper}>
-				<Comment id={data.id} comment={data.comment} />
-				{isAdmin && <CommentAdminBtn data={data} id={data.id} />}
+				<Comment id={data.id as string} comment={data.comment} />
+				{isAdmin && <CommentAdminBtn data={data} id={data.id as string} />}
 			</div>
 		</li>
 	);
