@@ -5,7 +5,6 @@ import Image from 'next/image';
 import searchIcon from '@/assets/common/searchIcon.png';
 import { useEffect, useRef, useState } from 'react';
 import useOutsideClick from '@/hooks/useOutsideClick';
-import axios from 'axios';
 import { Book } from '@/types/bookDetailDate';
 import closeBigIcon from '@/assets/layout/closeBigIcon.png';
 import { useRouter } from 'next/navigation';
@@ -15,7 +14,6 @@ import { searchKeyword } from '@/recoil/atom/searchKeyword';
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import SearchResult from './SearchResult';
 import RecentSearch from './recentSearch/RecentSearch';
-import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 
 export default function Search() {
@@ -30,10 +28,6 @@ export default function Search() {
 	const [keyword, setKeyword] = useRecoilState(searchKeyword);
 	// 검색어 책 데이터 배열에 넣기
 	const [searchData, setSearchData] = useState<Book[]>([]);
-
-	// 원준 추가
-	// sort type setValue
-	const setSortType = useSetRecoilState(sortTypeAtom);
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
@@ -66,14 +60,12 @@ export default function Search() {
 	};
 
 	const getdata = async () => {
-		try {
-			const { data } = await axios.get(
-				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/keyword?keyword=${keyword}`,
-			);
-			setSearchData(data);
-		} catch (err) {
-			console.error(err);
-		}
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/keyword?keyword=${keyword}`,
+			{ next: { revalidate: 86400 } },
+		);
+		const data = await response.json();
+		setSearchData(data);
 	};
 
 	useEffect(() => {
@@ -163,7 +155,7 @@ export default function Search() {
 					ref={ref}
 				/>
 				<button type="submit" className={styles.searchIcon}>
-					<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
+					<Image src={searchIcon} alt="search Icon" width={20} height={20} />
 				</button>
 				{showSearchHistory && <RecentSearch />}
 				{isOpen && (

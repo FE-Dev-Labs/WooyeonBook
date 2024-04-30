@@ -235,7 +235,7 @@ export const recommendedData = [
 	{
 		id: 2,
 		artistName: 'iu',
-		tag: '국민 여동생 아이유 ',
+		tag: '국민 여동생 아이유',
 		image: iuImage,
 		color: '#8B93FF',
 		book: [

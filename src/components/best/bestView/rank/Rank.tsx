@@ -1,7 +1,5 @@
 import styles from '@/styles/best/bestView/Rank/rank.module.css';
 import { BestSellerType } from '@/types/bookType';
-// import BookItem from '../common/bookItem/BookItem';
-import BookItem from '@/components/common/bookItem/BookItem';
 import dynamic from 'next/dynamic';
 import BookItemSkeleton from '@/components/common/bookItem/BookItemSkeleton';
 

@@ -23,7 +23,7 @@ export default function Slider() {
 	// useRouter 호출
 	const router = useRouter();
 
-	// // 슬라이더 다이나믹 라우팅 적용
+	// 슬라이더 다이나믹 라우팅 적용
 	const MainSlider = dynamic(() => import('react-slick'), {
 		// 로딩 시 스켈레톤 ui 렌더링
 		loading: () => <SliderSkeleton />,
