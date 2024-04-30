@@ -4,7 +4,6 @@ import Image from 'next/image';
 import searchIcon from '@/assets/common/searchIcon.png';
 import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/community/post/bookSearch.module.css';
-import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
