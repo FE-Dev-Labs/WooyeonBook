@@ -64,13 +64,13 @@ export default function SignupModal() {
 		// 에러 발생 시
 		if (error) {
 			return redirect('/?message=Could not authenticate user');
+		} else {
+			// 성공적인 회원가입 후 처리
+			alert('회원가입 완료. 로그인 해주세요!');
+			router.back();
+			window.scrollTo(0, 0); // router.back에 {scroll: false} 옵션 X
+			await supabase.auth.signOut();
 		}
-
-		// 성공적인 회원가입 후 처리
-		alert('회원가입 완료. 로그인 해주세요.');
-		// router.back();
-		await supabase.auth.signOut();
-		router.push('/login', { scroll: false });
 	};
 
 	return (

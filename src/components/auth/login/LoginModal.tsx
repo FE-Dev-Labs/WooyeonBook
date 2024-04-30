@@ -85,12 +85,12 @@ export default function LoginModal() {
 							</div>
 							<div className={styles.buttonWrapper}>
 								<button className={styles.loginLeftButton}>로그인</button>
-								<Link
+								{/* <Link
 									href={'/signup'}
 									scroll={false}
 									className={styles.loginRightButton}>
 									회원가입
-								</Link>
+								</Link> */}
 							</div>
 						</form>
 					</div>
