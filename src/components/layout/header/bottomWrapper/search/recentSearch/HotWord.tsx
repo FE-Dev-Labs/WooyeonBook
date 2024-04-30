@@ -5,7 +5,6 @@ import lineIcon from '@/assets/layout/lineIcon.png';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
-import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 interface popularKeywords {
 	id: string;
@@ -17,10 +16,7 @@ export default function HotWord() {
 	// useRouter 호출
 	const router = useRouter();
 
-	// 원준 추가
-	// sort type setValue
-	// const setSortType = useSetRecoilState(sortTypeAtom);
-	// current page setValue
+	// 현재 인기 검색어 페이지 리코일
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
 	const [popularSearchData, setPopularSearchData] = useState<popularKeywords[]>(
@@ -32,9 +28,7 @@ export default function HotWord() {
 		const fetchKeywords = async () => {
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/keywords`,
-				{
-					cache: 'force-cache',
-				},
+				{ next: { revalidate: 86400 } },
 			);
 			const data: popularKeywords[] = await response.json();
 			setPopularSearchData(data);
@@ -56,7 +50,6 @@ export default function HotWord() {
 		router.push(`/search?keyword=${value}&pageNum=1`);
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		// setSortType('title'); sort type 제거
 	};
 	return (
 		<dl className={styles.hotWordWrapper}>
@@ -89,51 +82,6 @@ export default function HotWord() {
 							</li>
 						);
 					})}
-					{/* <li className={styles.hotWordPopularLi}>
-						<Link href={'/'} passHref legacyBehavior>
-							<a className={styles.hotWordLink}>
-								<span className={styles.hotWordNum}>2</span>
-								<span className={styles.hotWordTitle}>쇼펜하우어</span>
-								<Image
-									src={lineIcon}
-									alt="lineIcon"
-									className={styles.lineIcon}
-									width={15}
-									height={2}
-								/>
-							</a>
-						</Link>
-					</li>
-					<li className={styles.hotWordPopularLi}>
-						<Link href={'/'} passHref legacyBehavior>
-							<a className={styles.hotWordLink}>
-								<span className={styles.hotWordNum}>3</span>
-								<span className={styles.hotWordTitle}>영어</span>
-								<Image
-									src={lineIcon}
-									alt="lineIcon"
-									className={styles.lineIcon}
-									width={15}
-									height={2}
-								/>
-							</a>
-						</Link>
-					</li>
-					<li className={styles.hotWordPopularLi}>
-						<Link href={'/'} passHref legacyBehavior>
-							<a className={styles.hotWordLink}>
-								<span className={styles.hotWordNum}>4</span>
-								<span className={styles.hotWordTitle}>자기계발</span>
-								<Image
-									src={lineIcon}
-									alt="lineIcon"
-									className={styles.lineIcon}
-									width={15}
-									height={2}
-								/>
-							</a>
-						</Link>
-					</li> */}
 				</ol>
 			</dd>
 		</dl>

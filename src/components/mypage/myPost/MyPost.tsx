@@ -27,10 +27,26 @@ export default async function MyPost({
 				)
 			: fetch(
 					`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/mypage/my/post?page=${page}&userId=${userId as string}&num=${pageNum || 1}&sort=${sort}&categories=${categories}`,
-					{ cache: 'no-store' },
+					{
+						cache: 'no-store',
+					},
 				);
 
 	const data = await response.then((item) => item.json());
+
+	// 데이터가 비어 있을 경우
+	if (!data || data.length === 0) {
+		switch (page) {
+			case 'likes':
+				return (
+					<div className={styles.checkDataText}>찜한 목록이 없습니다.</div>
+				);
+			default:
+				return (
+					<div className={styles.checkDataText}>내가 쓴 글이 없습니다.</div>
+				);
+		}
+	}
 
 	const num = pageNum ? parseInt(pageNum) : 1;
 
@@ -51,6 +67,7 @@ export default async function MyPost({
 					</div>
 				</div>
 			))}
+
 			<MypagePagination alldata={data} />
 		</div>
 	);
