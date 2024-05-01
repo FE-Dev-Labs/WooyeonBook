@@ -1,4 +1,5 @@
 'use client';
+import styles from '@/styles/community/NaviLab.module.css';
 import { createClient } from '@/utils/supabase/client';
 import Link from 'next/link';
 
@@ -29,7 +30,10 @@ const NaviLab = ({
 	};
 
 	return (
-		<Link href={`/community/detail/${page}/${doc_id}`} onClick={viewCount}>
+		<Link
+			href={`/community/detail/${page}/${doc_id}`}
+			onClick={viewCount}
+			className={styles.linkGoDetail}>
 			{children}
 		</Link>
 	);

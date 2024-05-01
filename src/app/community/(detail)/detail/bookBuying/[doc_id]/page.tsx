@@ -24,20 +24,7 @@ export default async function DetailPage({
 					page={'bookBuying'}
 				/>
 			</article>
-			<aside className={styles.optionWrap}>
-				{/* <StateBtn
-					page={'bookBuying'}
-					doc_id={params.doc_id}
-					state={data.state as boolean}
-					admin={data.created_user}
-				/>
-				<LikeBtn
-					page={'bookBuying'}
-					doc_id={params.doc_id}
-					like={data.like_users}
-				/>
-				<button>공유</button> */}
-			</aside>
+			<aside className={styles.optionWrap}></aside>
 		</main>
 	);
 }
