@@ -1,8 +1,6 @@
-import BookBuying from '@/components/community/detail/BookBuying';
 import styles from '@/styles/community/detail/detailLayout.module.css';
-import LikeBtn from '@/components/community/detail/LikeBtn';
-import StateBtn from '@/components/community/detail/StateBtn';
 import { fetchDetailCommunity } from '@/apis/community/CRUD';
+import dynamic from 'next/dynamic';
 
 export default async function DetailPage({
 	params,
@@ -12,12 +10,15 @@ export default async function DetailPage({
 	searchParams?: { sort?: string };
 }) {
 	const data = await fetchDetailCommunity('bookBuying', params.doc_id);
-
+	const BookBuyingLazy = dynamic(
+		() => import('@/components/community/detail/BookBuying'),
+		{ loading: () => <p>Loading...</p> },
+	);
 	return (
 		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>
-				<BookBuying
+				<BookBuyingLazy
 					data={data}
 					params={params}
 					searchParams={searchParams}

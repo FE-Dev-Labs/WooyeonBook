@@ -5,9 +5,9 @@ import Link from 'next/link';
 import styles from '@/styles/community/viewLayout.module.css';
 import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
-import { getDate } from '@/utils/getDate';
 import Image from 'next/image';
 import userLogoIcon from '@/assets/community/userLogoIcon.png';
+import { Suspense } from 'react';
 export const metadata: Metadata = {
 	title: '',
 	description: '',
@@ -41,31 +41,35 @@ export default async function CommunityViewLayout({
 					</article>
 
 					<aside className={styles.weeklyPopularWrap}>
-						<div>
-							<h3>주간 인기글</h3>
+						<Suspense fallback={<p>Loading ...</p>}>
+							<div>
+								<h3>주간 인기글</h3>
 
-							{popularData.map((data: AllDataType) => {
-								return (
-									<Link
-										href={`/community/detail/${data.field as string}/${data.doc_id as string}`}
-										key={data.doc_id}>
-										<div className={styles.weeklyPopularContent}>
-											{data.title}
-										</div>
-										<div className={styles.weeklyPopularWriter}>
-											<Image
-												src={userLogoIcon}
-												alt="img"
-												width={16}
-												height={16}
-												className={styles.userLogo}
-											/>
-											<span className={styles.userName}>{data.user_name}</span>
-										</div>
-									</Link>
-								);
-							})}
-						</div>
+								{popularData.map((data: AllDataType) => {
+									return (
+										<Link
+											href={`/community/detail/${data.field as string}/${data.doc_id as string}`}
+											key={data.doc_id}>
+											<div className={styles.weeklyPopularContent}>
+												{data.title}
+											</div>
+											<div className={styles.weeklyPopularWriter}>
+												<Image
+													src={userLogoIcon}
+													alt="img"
+													width={16}
+													height={16}
+													className={styles.userLogo}
+												/>
+												<span className={styles.userName}>
+													{data.user_name}
+												</span>
+											</div>
+										</Link>
+									);
+								})}
+							</div>
+						</Suspense>
 					</aside>
 				</div>
 				{/* 오른쪽 광고 영역 */}
