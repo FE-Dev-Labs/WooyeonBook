@@ -2,37 +2,60 @@
 	width: 500px;
 	position: relative;
 }
+
 .container > input {
-	width: 478px;
+	width: 460px;
 	height: 38px;
 	font-size: 16px;
 	padding: 0 10px;
 	border: 1px solid #cccccc;
 	border-radius: 5px;
+	padding: 0 20px;
+	transition: border-radius 0.3s;
 }
 .container > input:focus {
 	outline: none;
 }
+.searchResultLi {
+	display: block;
+	margin-right: 20px;
+	padding-left: 19px;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	font-size: 14px;
+	color: #666;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.searchResultKeyword {
+	color: #6594e7;
+	font-weight: bold;
+}
+.searchResultWrap {
+	cursor: pointer;
+}
+
 .container > button {
 	top: 8px;
 	right: 15px;
 	border: none;
 	position: absolute;
 	cursor: pointer;
-
 	background-color: #ffffff;
 }
 /* 검색 결과 */
 .searchResultWrap {
 	position: absolute;
-	width: 480px;
-	min-height: 240px;
+	width: 500px;
+	/* min-height: 240px; */
 	margin-top: 5px;
 	z-index: 100;
 	border: 1px solid #cccccc;
-	border-radius: 10px;
+	border-radius: 5px;
 	background-color: #ffffff;
-	padding: 10px 10px;
+	padding: 10px 0px 0px 0px;
 }
 .searchResultItemWrap {
 	height: 32px;
@@ -43,4 +66,34 @@
 }
 .searchResultItemTitle {
 	font-size: 11px;
+}
+.searchResultKeyword {
+	color: #6594e7;
+	font-weight: bold;
+}
+.lastlestDeleteAll {
+	display: flex;
+	position: relative;
+	z-index: 1;
+	height: 40px;
+	line-height: 40px;
+	border-top: solid 1px #ebebeb;
+	margin-top: 10px;
+}
+.lastlestCloseWrap {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 20px 0 30px;
+	height: 40px;
+	line-height: 40px;
+}
+.lastelestCloseText {
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #666;
+}
+.cancelIcon {
+	margin: 15px 0 0 4px;
 }
