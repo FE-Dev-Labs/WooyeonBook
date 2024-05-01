@@ -1,0 +1,9 @@
+/* global.css 또는 해당 파일에서 */
+.linkGoDetail {
+	color: inherit; /* 기본 색상 유지 */
+	text-decoration: none; /* 하이퍼링크 밑줄 제거 */
+}
+
+.linkGoDetail:visited {
+	color: inherit; /* visited 컬러를 없앰 */
+}

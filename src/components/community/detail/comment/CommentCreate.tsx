@@ -22,6 +22,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 	const [comment, setComment] = useState('');
 	// 글자 실시간 표시
 	const [inputCount, setInputCount] = useState<number>(0);
+
 	const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setComment(e.target.value);

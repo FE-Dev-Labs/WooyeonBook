@@ -7,7 +7,9 @@ import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
 import useCurrentUser from '../../../hooks/useCurrentUser';
 import DetailCommentsList from './DetailCommentsList';
-// import DetailCommentsList from './Detailcommentslist';
+import { useRouter } from 'next/navigation';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '@/recoil/atom/userAtom';
 
 export default function DetailComment({ bookId }: { bookId: string }) {
 	// 댓글
@@ -18,20 +20,17 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 	const [commentsList, setCommentsList] = useState<commentsType[]>([]);
 	// 글자 실시간 표시
 	const [inputCount, setInputCount] = useState<number>(0);
+	// useRouter 호출
+	const router = useRouter();
 
 	const supabase = createClient();
 
 	// useCurrentUser  훅
 	const { userName, userId } = useCurrentUser('');
 
-	// 로그인 유뮤 체크
-	useEffect(() => {
-		if (document.cookie === null || document.cookie === '') {
-			setIsLogin(false);
-		} else {
-			setIsLogin(true);
-		}
-	}, []);
+	// user state
+	// useCurrentUser 훅 사용시 로그인 후 userId가 바로 들어오지않음 userAtom을 사용
+	const [user, setUser] = useRecoilState(userAtom);
 
 	const hanldeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
@@ -42,9 +41,15 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 			setInputCount(e.target.value.length);
 		}
 	};
+
 	// 댓글 추가
 	const handleSumbit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (!user.id) {
+			router.push('/login');
+			return; // 함수 종료
+		}
 		const commentdata: commentsType = {
 			id: uuid(),
 			user_id: userId,
@@ -92,26 +97,22 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 	}, []);
 
 	return (
-		<>
-			{isLogin && (
-				<>
-					<form className={styles.commentForm} onSubmit={handleSumbit}>
-						<input
-							value={comment}
-							className={styles.commentInput}
-							type="text"
-							placeholder="한글 기준 50자까지 작성 가능합니다."
-							onChange={hanldeInputChange}
-							maxLength={50}
-						/>
-						<button className={styles.commnetSubmitBtn}>등록</button>
-					</form>
-					<div className={styles.commentInputCount}>
-						<span className={styles.commentInputCountTxt}>{inputCount}</span>
-						<span className={styles.commentCount}>/50 자</span>
-					</div>
-				</>
-			)}
+		<div>
+			<form className={styles.commentForm} onSubmit={handleSumbit}>
+				<input
+					value={comment}
+					className={styles.commentInput}
+					type="text"
+					placeholder="한글 기준 50자까지 작성 가능합니다."
+					onChange={hanldeInputChange}
+					maxLength={50}
+				/>
+				<button className={styles.commnetSubmitBtn}>등록</button>
+			</form>
+			<div className={styles.commentInputCount}>
+				<span className={styles.commentInputCountTxt}>{inputCount}</span>
+				<span className={styles.commentCount}>/50 자</span>
+			</div>
 			<div>
 				<ul>
 					{commentsList.map((list) => {
@@ -126,6 +127,6 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 					})}
 				</ul>
 			</div>
-		</>
+		</div>
 	);
 }

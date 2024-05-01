@@ -1,14 +1,25 @@
 import Image from 'next/image';
 import styles from '@/styles/common/postAccordionLayout.module.css';
 import PostAccordionLayoutFooter from './PostAccordionLayoutFooter';
+import NaviLab from '../community/view/nav/NaviLab';
 
 interface postdataProps {
 	list: any;
 	page: string;
 }
+
+// 'likes' 페이지일 경우 'page' 값을 'list.field'로 변경
+const likesPage = ({ list, page }: postdataProps) => {
+	if (page === 'likes') {
+		return list.field;
+	}
+	return page;
+};
+
 export default function PostAccordionLayout({ list, page }: postdataProps) {
+	const newPage = likesPage({ list, page });
 	const titleChange = () => {
-		switch (page) {
+		switch (newPage) {
 			case 'bookReport':
 				return (
 					<div className={styles.postdataWrapper}>
@@ -130,5 +141,13 @@ export default function PostAccordionLayout({ list, page }: postdataProps) {
 				);
 		}
 	};
-	return <div>{titleChange()}</div>;
+
+	return (
+		<NaviLab
+			page={newPage as string}
+			doc_id={list.doc_id}
+			view={list.view as number}>
+			{titleChange()}
+		</NaviLab>
+	);
 }
