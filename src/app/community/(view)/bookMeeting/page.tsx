@@ -1,6 +1,7 @@
-import ContentBox from '@/components/community/view/ContentBox';
+import MeetingContentBox from '@/components/community/view/MeetingContentBox';
 import Pagination from '@/components/community/view/Pagination';
 import { BookMeetingDataType } from '@/types/community/view/data';
+import dynamic from 'next/dynamic';
 function isBookMeetingArray(data: any): data is BookMeetingDataType[] {
 	return (
 		Array.isArray(data) &&
@@ -23,6 +24,10 @@ function isBookMeetingArray(data: any): data is BookMeetingDataType[] {
 		)
 	);
 }
+const MeetingContentBoxLazy = dynamic(
+	() => import('@/components/community/view/MeetingContentBox'),
+	{ loading: () => <p>Loading...</p> },
+);
 export default async function bookMeeting({
 	searchParams,
 }: {
@@ -86,7 +91,13 @@ export default async function bookMeeting({
 	return (
 		<section>
 			{numFiltering?.map((data: BookMeetingDataType) => {
-				return <ContentBox key={data.doc_id} data={data} page="bookMeeting" />;
+				return (
+					<MeetingContentBoxLazy
+						key={data.doc_id as string}
+						data={data}
+						page="bookMeeting"
+					/>
+				);
 			})}
 			<Pagination length={data.length} show_page_num={10} />
 		</section>

@@ -1,6 +1,11 @@
-import BookReport from '@/components/community/detail/BookReport';
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import { fetchDetailCommunity } from '@/apis/community/CRUD';
+import dynamic from 'next/dynamic';
+
+const BookReportLazy = dynamic(
+	() => import('@/components/community/detail/BookReport'),
+	{ loading: () => <p>Loading...</p> },
+);
 
 export default async function DetailPage({
 	params,
@@ -15,11 +20,11 @@ export default async function DetailPage({
 		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>
-				<BookReport
+				<BookReportLazy
 					data={data}
 					params={params}
 					searchParams={searchParams}
-					page={'bookReport'}
+					page="bookReport"
 				/>
 			</article>
 			<aside className={styles.optionWrap}></aside>

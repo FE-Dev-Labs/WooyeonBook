@@ -1,7 +1,7 @@
-import { getCommunityViewData } from '@/apis/community/getCommunityViewData';
-import ContentBox from '@/components/community/view/ContentBox';
 import Pagination from '@/components/community/view/Pagination';
-import { AllDataType, BookReportDataType } from '@/types/community/view/data';
+import ReportContentBox from '@/components/community/view/ReportContentBox';
+import { BookReportDataType } from '@/types/community/view/data';
+import dynamic from 'next/dynamic';
 
 function isBookReportArray(data: any): data is BookReportDataType[] {
 	return (
@@ -26,7 +26,10 @@ function isBookReportArray(data: any): data is BookReportDataType[] {
 		)
 	);
 }
-
+const ReportContentBoxLazy = dynamic(
+	() => import('@/components/community/view/ReportContentBox'),
+	{ loading: () => <p>Loading...</p> },
+);
 async function bookReport({
 	searchParams,
 }: {
@@ -80,8 +83,14 @@ async function bookReport({
 
 	return (
 		<section>
-			{numFiltering?.map((data: AllDataType) => {
-				return <ContentBox key={data.doc_id} data={data} page="bookReport" />;
+			{numFiltering?.map((data: BookReportDataType) => {
+				return (
+					<ReportContentBoxLazy
+						key={data.doc_id as string}
+						data={data}
+						page="bookReport"
+					/>
+				);
 			})}
 			<Pagination length={data.length} show_page_num={10} />
 		</section>

@@ -1,8 +1,6 @@
-import BookSelling from '@/components/community/detail/BookSelling';
 import styles from '@/styles/community/detail/detailLayout.module.css';
-import LikeBtn from '@/components/community/detail/LikeBtn';
-import StateBtn from '@/components/community/detail/StateBtn';
 import { fetchDetailCommunity } from '@/apis/community/CRUD';
+import dynamic from 'next/dynamic';
 
 export default async function DetailPage({
 	params,
@@ -12,32 +10,22 @@ export default async function DetailPage({
 	searchParams?: { sort?: string };
 }) {
 	const data = await fetchDetailCommunity('bookSelling', params.doc_id);
+	const BookSellingLazy = dynamic(
+		() => import('@/components/community/detail/BookSelling'),
+		{ loading: () => <p>Loading...</p> },
+	);
 	return (
 		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>
-				<BookSelling
+				<BookSellingLazy
 					data={data}
 					params={params}
 					searchParams={searchParams}
 					page={'bookSelling'}
 				/>
 			</article>
-			<aside className={styles.optionWrap}>
-				{/* <StateBtn
-					page={'bookSelling'}
-					doc_id={params.doc_id}
-					state={data.state as boolean}
-					selling={data.selling as boolean}
-					admin={data.created_user}
-				/>
-				<LikeBtn
-					page={'bookSelling'}
-					doc_id={params.doc_id}
-					like={data.like_users}
-				/>
-				<button>공유</button> */}
-			</aside>
+			<aside className={styles.optionWrap}></aside>
 		</main>
 	);
 }
