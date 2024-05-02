@@ -8,6 +8,7 @@ import { useSetRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
 import useOutsideClick from '@/hooks/useOutsideClick';
+import closeBigIcon from '@/assets/layout/closeBigIcon.png';
 
 interface SearchData {
 	title: string;
@@ -115,6 +116,7 @@ function BookSearch() {
 		<div className={styles.container}>
 			<input
 				type="text"
+				placeholder="작가명 또는 책 제목을 입력하세요."
 				value={searchBook.value as string}
 				onChange={searchBook.onChange}
 				onFocus={handleFocus}
@@ -125,19 +127,38 @@ function BookSearch() {
 			</button>
 			{showSearchHistory && (
 				<div className={styles.searchResultWrap}>
-					{searchData.map((data) => {
+					{searchData.map((data, index) => {
 						return (
-							<div
-								className={styles.searchResultItemWrap}
-								onMouseDown={() =>
-									selectBook(data.title, data.cover, data.isbn)
-								}
-								key={data.itemId}
-								style={{ borderBottom: '1px solid #cccccc' }}>
-								<div className={styles.searchResultItemTitle}>{data.title}</div>
-							</div>
+							<ul key={index}>
+								<li className={styles.searchResultLi}>
+									{index > 0 && (
+										<strong
+											className={styles.searchResultKeyword}
+											onMouseDown={() =>
+												selectBook(data.title, data.cover, data.isbn)
+											}>
+											{String(searchBook.value)}
+										</strong>
+									)}
+									{data.title}
+								</li>
+							</ul>
 						);
 					})}
+					<div
+						className={styles.lastlestDeleteAll}
+						onClick={() => setShowSearchHistory(false)}>
+						<div className={styles.lastlestCloseWrap}>
+							<span className={styles.lastelestCloseText}>닫기</span>
+							<Image
+								src={closeBigIcon}
+								alt="cancelIcon"
+								width={10}
+								height={10}
+								className={styles.cancelIcon}
+							/>
+						</div>
+					</div>
 				</div>
 			)}
 		</div>

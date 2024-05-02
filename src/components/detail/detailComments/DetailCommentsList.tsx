@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/detail/detailComments/detailCommentList.module.css';
+import styles from '@/styles/detail/detailcomments/detailCommentList.module.css';
 import { commentsType } from '@/types/detailComments';
 import { createClient } from '@/utils/supabase/client';
 import { useState } from 'react';

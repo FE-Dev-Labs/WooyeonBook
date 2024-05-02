@@ -13,7 +13,12 @@ const Comment = ({ id, comment }: { id: string; comment: string }) => {
 	useEffect(() => {
 		setText(comment);
 	}, []);
+
 	const onChangeText = async (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
+		if (e.target.value.length > 50) {
+			alert('50자 이내로 적어주세요.');
+		}
 		setText(e.target.value);
 	};
 	return (

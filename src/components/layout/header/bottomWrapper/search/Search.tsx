@@ -28,6 +28,7 @@ export default function Search() {
 	const [keyword, setKeyword] = useRecoilState(searchKeyword);
 	// 검색어 책 데이터 배열에 넣기
 	const [searchData, setSearchData] = useState<Book[]>([]);
+
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
@@ -59,6 +60,7 @@ export default function Search() {
 		}
 	};
 
+	// 검색어 데이터
 	const getdata = async () => {
 		const response = await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/keyword?keyword=${keyword}`,
@@ -68,6 +70,7 @@ export default function Search() {
 		setSearchData(data);
 	};
 
+	// keyword가 변할 때마다 debouce 이벤트로 setTimeout을 사용하여 0.4초후에 데이터를 호출
 	useEffect(() => {
 		const debounce = setTimeout(() => {
 			const word = keyword as string;
@@ -98,24 +101,32 @@ export default function Search() {
 	};
 
 	const keyonSubmit = async () => {
+		// 인기 검색어 데이터
 		const res = await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/popularSearch?keyword=${keyword}`,
 		);
 		const key = await res.json();
+
 		const postdata = {
 			keyword: keyword,
 			search_count: 1,
 			created_at: new Date(),
 		};
+
 		// 검색어에 대한 기록이 서버에 이미 존재하는지를 확인
 		if (key.length > 0) {
 			await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/update/supabase/keyword?keyword=${keyword}&count=${key[0].search_count}`,
 				{
 					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ search_count: key[0].search_count + 1 }),
 				},
 			);
 		} else {
+			// 검색어에 대한 기록이 서버에 없으면 검색어 추가
 			await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/create/supabase/keywords`,
 				{
@@ -159,36 +170,37 @@ export default function Search() {
 				</button>
 				{showSearchHistory && <RecentSearch />}
 				{isOpen && (
-					<div>
-						<div className={styles.recentSearchWrapper}>
-							<div className={styles.searchResultWord}>
-								{searchData?.map((data) => {
-									return (
-										<SearchResult
-											data={data}
-											key={data.itemId}
-											handleModalStateChange={handleModalStateChange}
-										/>
-									);
-								})}
-								<div
-									className={styles.lastlestDeleteAll}
-									onClick={() => handleModalCloseChange()}>
-									<div className={styles.lastlestCloseWrap}>
-										<span className={styles.lastelestCloseText}>닫기</span>
-										<Image
-											src={closeBigIcon}
-											alt="cancelIcon"
-											width={10}
-											height={10}
-											className={styles.cancelIcon}
-										/>
-									</div>
+				<div>
+					<div className={styles.recentSearchWrapper}>
+						<div className={styles.searchResultWord}>
+							{searchData?.map((data) => {
+								return (
+									<SearchResult
+										data={data}
+										key={data.itemId}
+										keyonSubmit={keyonSubmit}
+										handleModalStateChange={handleModalStateChange}
+									/>
+								);
+							})}
+							<div
+								className={styles.lastlestDeleteAll}
+								onClick={() => handleModalCloseChange()}>
+								<div className={styles.lastlestCloseWrap}>
+									<span className={styles.lastelestCloseText}>닫기</span>
+									<Image
+										src={closeBigIcon}
+										alt="cancelIcon"
+										width={10}
+										height={10}
+										className={styles.cancelIcon}
+									/>
 								</div>
 							</div>
 						</div>
 					</div>
-				)}
+				</div>
+				 )} 
 			</form>
 		</span>
 	);

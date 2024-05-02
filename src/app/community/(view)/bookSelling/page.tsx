@@ -1,6 +1,7 @@
-import ContentBox from '@/components/community/view/ContentBox';
 import Pagination from '@/components/community/view/Pagination';
+import SellingContentBox from '@/components/community/view/SellingContentBox';
 import { BookSellingDataType } from '@/types/community/view/data';
+import dynamic from 'next/dynamic';
 
 function isBookSellingArray(data: any): data is BookSellingDataType[] {
 	return (
@@ -28,6 +29,10 @@ function isBookSellingArray(data: any): data is BookSellingDataType[] {
 		)
 	);
 }
+const SellingContentBoxLazy = dynamic(
+	() => import('@/components/community/view/SellingContentBox'),
+	{ loading: () => <p>Loading...</p> },
+);
 
 export default async function bookSelling({
 	searchParams,
@@ -93,7 +98,13 @@ export default async function bookSelling({
 	return (
 		<section>
 			{numFiltering?.map((data: BookSellingDataType) => {
-				return <ContentBox key={data.doc_id} data={data} page="bookSelling" />;
+				return (
+					<SellingContentBoxLazy
+						key={data.doc_id as string}
+						data={data}
+						page="bookSelling"
+					/>
+				);
 			})}
 			<Pagination length={data.length} show_page_num={10} />
 		</section>

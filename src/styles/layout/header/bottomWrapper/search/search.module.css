@@ -13,7 +13,7 @@
 	font-size: 13px;
 	font-weight: 400;
 	margin-top: 5px;
-
+	font-size: 13px;
 	box-sizing: border-box;
 	border: none;
 	outline: none;
@@ -53,6 +53,7 @@
 	height: 40px;
 	line-height: 40px;
 	border-top: solid 1px #ebebeb;
+	cursor: pointer;
 }
 .lastelestDeleteAllText {
 	display: block;

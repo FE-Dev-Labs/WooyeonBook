@@ -29,8 +29,8 @@ export default function SignupModal() {
 		// validation 통과 하지 못할 시 함수 종료
 		if (!auth.checkValidation()) return;
 
-		// 에러 선언
-		const { error } = await supabase.auth.signUp({
+		// 회원가입 로직
+		const { data, error } = await supabase.auth.signUp({
 			email: auth.email,
 			password: auth.password,
 			options: {
@@ -38,6 +38,18 @@ export default function SignupModal() {
 				emailRedirectTo: `/auth/callback`,
 			},
 		});
+
+		// 사용자 이미 존재하는 경우 처리
+		if (
+			error &&
+			error.status === 422 &&
+			error.message.includes(
+				'User already registered' || 'User already registered',
+			)
+		) {
+			alert('이미 가입된 회원입니다.');
+			return; // 함수를 여기서 종료
+		}
 
 		// 유저 선언
 		const {

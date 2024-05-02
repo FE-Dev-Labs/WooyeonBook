@@ -1,6 +1,5 @@
 import { AllDataType } from '@/types/community/view/data';
 import styles from '@/styles/community/detail/detailPage.module.css';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
@@ -115,7 +114,6 @@ const BookBuying = async ({
 					<DropDownBtn data={data} user={user} />
 				</div>
 			</div>
-
 			{/* 댓글 */}
 			<section className={styles.commentWrapper}>
 				<div className={styles.commentHeader}>
