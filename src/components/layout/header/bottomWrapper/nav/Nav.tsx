@@ -22,10 +22,6 @@ export default function Nav() {
 			: styles.navItem;
 	};
 
-	// const linkClassName = (path: string) => {
-	// 	return path === pathname ? styles.selectedNav : styles.navItem;
-	// };
-
 	return (
 		<div className={styles.navigationWrapper}>
 			<NavCategory />

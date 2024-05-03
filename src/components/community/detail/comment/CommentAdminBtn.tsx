@@ -4,15 +4,13 @@ import {
 	isUpdateState,
 	updateComment,
 } from '@/recoil/atom/communityCommentAtom';
-import { createClient } from '@/utils/supabase/client';
 import { useRecoilState } from 'recoil';
 import styles from '@/styles/community/detail/commentAdminBtn.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { deleteComments, updateComments } from '@/apis/community/comment/CRUD';
 
 const CommentAdminBtn = ({
 	data,
-	id,
 }: {
 	data: {
 		id?: string;

@@ -1,6 +1,12 @@
 import styles from '@/styles/used/used.module.css';
 import PageHeader from '@/components/common/PageHeader';
 import UsedView from '@/components/used/usedView/UsedView';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '중고 도서 | Wooyeon.',
+	description: '지구를 위해 중고도서 어떠세요?',
+};
 
 export default async function usedPage({
 	searchParams,

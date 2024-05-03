@@ -1,8 +1,15 @@
 'use client';
+
 import styles from '@/styles/not-found.module.css';
 import Image from 'next/image';
 import notFoundImage from '@/assets/notFound/notFoundImage.png';
 import { useRouter } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '404 | Wooyeon.',
+	description: '해당 페이지를 찾을 수 없습니다.',
+};
 
 export default function Notfound() {
 	// useRouter 호출

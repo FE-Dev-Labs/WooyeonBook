@@ -1,12 +1,26 @@
 import styles from '@/styles/category/category.module.css';
 import PageHeader from '@/components/common/PageHeader';
 import CategoryView from '@/components/category/categoryView/CategoryView';
+import { Metadata } from 'next';
 
-export default async function categoryPage({
-	searchParams,
-}: {
+interface CategoryPageProp {
 	searchParams: { categoryId: string; pageNum: number };
-}) {
+}
+
+export async function generateMetadata({
+	searchParams,
+}: CategoryPageProp): Promise<Metadata> {
+	// 현재 선택된 카테고리 아이템 찾기
+	const currentCategoryItem = categoryItem.find(
+		(item) => item.id === Number(searchParams.categoryId),
+	);
+	return {
+		title: `${currentCategoryItem ? currentCategoryItem.name : '전체'} 카테고리 | Wooyeon.`,
+		description: `${currentCategoryItem ? currentCategoryItem.name : '전체'} 카테고리의 다양한 책을 찾아보세요.`,
+	};
+}
+
+export default async function categoryPage({ searchParams }: CategoryPageProp) {
 	// search params - category id
 	const categoryId = searchParams.categoryId;
 	// search params - page

@@ -15,7 +15,6 @@ export default function OrderCompleteView() {
 	const supabase = createClient();
 	// usePathname 선언
 	const orderId = usePathname().split('/orderId=')[1];
-
 	// 로그인 판별 및 유저 id
 	const user = useRecoilValue(userAtom);
 	// order state

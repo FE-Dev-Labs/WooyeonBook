@@ -1,6 +1,12 @@
 import styles from '@/styles/new/new.module.css';
 import PageHeader from '@/components/common/PageHeader';
 import NewView from '@/components/new/newView/NewView';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '신간 도서 | Wooyeon.',
+	description: '새로 나온 책 뭐가 있지?',
+};
 
 export default async function newPage({
 	searchParams,

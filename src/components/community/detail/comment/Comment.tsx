@@ -5,7 +5,7 @@ import {
 } from '@/recoil/atom/communityCommentAtom';
 import styles from '@/styles/community/detail/detailPage.module.css';
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 const Comment = ({ id, comment }: { id: string; comment: string }) => {
 	const isUpdate = useRecoilValue(isUpdateState);

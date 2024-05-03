@@ -143,7 +143,6 @@ export default function Search() {
 		e.preventDefault();
 		const searchUrl = `/search?keyword=${String(keyword)}&pageNum=1`;
 		// 로컬스토리지에 검색어 추가
-		// handleSubmitKeyword(String(keyword));
 		addKeyword(String(keyword));
 		keyonSubmit();
 		// 검색어 모달 닫기
@@ -151,7 +150,6 @@ export default function Search() {
 		router.push(searchUrl);
 		// 1페이지로&제목순으로 초기화
 		setCurrentPage(1);
-		// setSortType('title'); sort 제거
 	};
 
 	return (
@@ -170,37 +168,37 @@ export default function Search() {
 				</button>
 				{showSearchHistory && <RecentSearch />}
 				{isOpen && (
-				<div>
-					<div className={styles.recentSearchWrapper}>
-						<div className={styles.searchResultWord}>
-							{searchData?.map((data) => {
-								return (
-									<SearchResult
-										data={data}
-										key={data.itemId}
-										keyonSubmit={keyonSubmit}
-										handleModalStateChange={handleModalStateChange}
-									/>
-								);
-							})}
-							<div
-								className={styles.lastlestDeleteAll}
-								onClick={() => handleModalCloseChange()}>
-								<div className={styles.lastlestCloseWrap}>
-									<span className={styles.lastelestCloseText}>닫기</span>
-									<Image
-										src={closeBigIcon}
-										alt="cancelIcon"
-										width={10}
-										height={10}
-										className={styles.cancelIcon}
-									/>
+					<div>
+						<div className={styles.recentSearchWrapper}>
+							<div className={styles.searchResultWord}>
+								{searchData?.map((data) => {
+									return (
+										<SearchResult
+											data={data}
+											key={data.itemId}
+											keyonSubmit={keyonSubmit}
+											handleModalStateChange={handleModalStateChange}
+										/>
+									);
+								})}
+								<div
+									className={styles.lastlestDeleteAll}
+									onClick={() => handleModalCloseChange()}>
+									<div className={styles.lastlestCloseWrap}>
+										<span className={styles.lastelestCloseText}>닫기</span>
+										<Image
+											src={closeBigIcon}
+											alt="cancelIcon"
+											width={10}
+											height={10}
+											className={styles.cancelIcon}
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				 )} 
+				)}
 			</form>
 		</span>
 	);
