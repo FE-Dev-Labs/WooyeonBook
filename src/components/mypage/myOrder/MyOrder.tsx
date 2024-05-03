@@ -21,22 +21,17 @@ export default function MyOrder({ userId }: userIdProps) {
 				.eq('user_id', userId)
 				.order('created_at', { ascending: false });
 			if (error) {
-				console.log(error);
 				throw error;
 			}
 			setOrderList(data);
 		} catch (error) {
 			console.error('Error fetching orders:', error);
+			alert('주문 목록을 불러오는 도중 오류가 발생했습니다.');
 		}
 	};
 
-	useEffect(() => {
-		getOrderList();
-	}, []);
-
 	// 주문 삭제
 	const handleorderDelete = async (cartId: string) => {
-		console.log('카트아이디', cartId);
 		const yes = confirm('주문을 취소하시겠습니까?');
 		if (yes) {
 			try {
@@ -57,6 +52,12 @@ export default function MyOrder({ userId }: userIdProps) {
 			}
 		}
 	};
+
+	// 주문 리스트 뿌려주는 useEffect
+	useEffect(() => {
+		getOrderList();
+	}, []);
+
 	return (
 		<div>
 			{orderList?.map((order, index) => (
