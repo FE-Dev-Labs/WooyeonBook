@@ -28,7 +28,6 @@ export default function HotWord() {
 		const fetchKeywords = async () => {
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/keywords`,
-				{ next: { revalidate: 86400 } },
 			);
 			const data: popularKeywords[] = await response.json();
 			setPopularSearchData(data);
