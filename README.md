@@ -1,16 +1,18 @@
-### 파일 구조
+# 📖 Wooyeon
+![wooyeon](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/df425807-abd8-444a-851f-244202828a25)
 
-```jsx
-src
-    ├── apis       // api 관련 파일
-    ├── app        // next routes
-    ├── assets     // 로고 및 이미지 관련 파일
-    ├── components // 각 페이지에서 생성된 컴포넌트 파일
-    │   └── common // 2회 이상 재사용되는 공용 컴포넌트 파일
-    ├── css        // css 관련 파일
-    ├── hooks      // 커스텀 훅 관련 파일
-    ├── recoil     // recoil 관련 파일
-    │   └── atom   // 각 atom 파일
-    ├── types      // 타입 관련 파일
-    └── utils      // 기타 특정 작업 수행하는 함수 파일
-```
+
+**프로젝트 기간**  : 2024.02.10 ~ 2024.05.04
+
+🔗 [Wooyeon 서비스 배포 링크](https://wooyeon-book.vercel.app/)
+<br/>
+<br/>
+
+
+## 📢 프로젝트 소개
+
+### Discover Books, Build Community
+* **알라딘 API**를 통해 다양한 책을 쉽게 구매할 수 있는 서비스입니다. 
+* 신간, 베스트셀러, 중고도서, 추천도서를 통해 **다양한 책을 쉽게 찾아 구매**할 수 있습니다.
+* **커뮤니티 기능**을 통해 독후감을 작성하고 독서 모임에 참여할 수 있으며 '삽니다'와 '팝니다' 서비스를 통해 책을 거래할 수 있습니다.
+
