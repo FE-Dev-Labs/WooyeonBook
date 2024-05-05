@@ -1,4 +1,3 @@
-import BuyingContentBox from '@/components/community/view/BuyingContentBox';
 import Pagination from '@/components/community/view/Pagination';
 import { BookBuyingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';

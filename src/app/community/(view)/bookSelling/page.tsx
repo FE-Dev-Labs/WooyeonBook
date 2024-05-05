@@ -1,5 +1,4 @@
 import Pagination from '@/components/community/view/Pagination';
-import SellingContentBox from '@/components/community/view/SellingContentBox';
 import { BookSellingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
 

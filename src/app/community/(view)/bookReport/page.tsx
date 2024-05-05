@@ -1,5 +1,5 @@
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 import Pagination from '@/components/community/view/Pagination';
-import ReportContentBox from '@/components/community/view/ReportContentBox';
 import { BookReportDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
 

@@ -1,4 +1,3 @@
-import MeetingContentBox from '@/components/community/view/MeetingContentBox';
 import Pagination from '@/components/community/view/Pagination';
 import { BookMeetingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
