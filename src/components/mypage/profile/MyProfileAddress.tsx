@@ -4,7 +4,6 @@ import { useInforDateType } from '@/types/userInforDate';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import MyProfileDaumApi from './MyProfileDaumApi';
-// import MyProfileDaumApi from './MyprofileDaumApi';
 
 interface userIdProps {
 	userInfor: useInforDateType[];

@@ -9,8 +9,8 @@ import RecoilRootWrapper from '@/recoil/RecoilRootWrapper';
 const inter = Noto_Sans_KR({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: '',
-	description: '',
+	title: 'Wooyeon.',
+	description: 'Discover Books, Build Community',
 };
 
 export default async function RootLayout({ children, auth }: BasicLayoutType) {
