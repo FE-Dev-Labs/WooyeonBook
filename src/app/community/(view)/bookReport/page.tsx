@@ -1,4 +1,5 @@
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import ScalatonUi from '@/components/common/ScalatonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookReportDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
@@ -28,7 +29,7 @@ function isBookReportArray(data: any): data is BookReportDataType[] {
 }
 const ReportContentBoxLazy = dynamic(
 	() => import('@/components/community/view/ReportContentBox'),
-	{ loading: () => <p>Loading...</p> },
+	{ loading: () => <ScalatonUi wid="1000px" hei="158px" bgc="black" /> },
 );
 async function bookReport({
 	searchParams,

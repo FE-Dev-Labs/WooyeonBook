@@ -1,3 +1,4 @@
+import ScalatonUi from '@/components/common/ScalatonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookSellingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
@@ -30,7 +31,7 @@ function isBookSellingArray(data: any): data is BookSellingDataType[] {
 }
 const SellingContentBoxLazy = dynamic(
 	() => import('@/components/community/view/SellingContentBox'),
-	{ loading: () => <p>Loading...</p> },
+	{ loading: () => <ScalatonUi wid="1000px" hei="158px" bgc="black" /> },
 );
 
 export default async function bookSelling({
