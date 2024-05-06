@@ -166,7 +166,7 @@ export default function Search() {
 					ref={ref}
 				/>
 				<button type="submit" className={styles.searchIcon}>
-					<Image src={searchIcon} alt="searchIcon" width={20} height={20} />
+					<Image src={searchIcon} alt="search Icon" width={20} height={20} />
 				</button>
 				{showSearchHistory && <RecentSearch />}
 				{isOpen && (

@@ -60,7 +60,8 @@
 /* 컨텐츠 랩퍼 내 가입 폼 랩퍼 */
 .formWrapper {
 	width: inherit;
-	margin-top: 25px;
+	/* margin-top: 25px; */
+	margin-top: 50px;
 }
 .inputWrapper {
 	width: inherit;
@@ -117,7 +118,8 @@
 .buttonWrapper {
 	width: inherit;
 	height: 50px;
-	margin-top: 50px;
+	/* margin-top: 50px; */
+	margin-top: 40px;
 
 	display: flex;
 	justify-content: space-between;
@@ -136,7 +138,8 @@
 	background-color: #6594e7;
 	width: inherit;
 	height: 50px;
-	margin-top: 50px;
+	/* margin-top: 50px; */
+	margin-top: 30px;
 
 	display: flex;
 	justify-content: center;
@@ -145,8 +148,8 @@
 
 /* 로그인 시 로그인 버튼 */
 .loginLeftButton {
-	width: 80%;
-	margin-right: 10px;
+	width: 100%;
+	/* margin-right: 10px; */
 	height: inherit;
 	font-size: 18px;
 	font-weight: bold;

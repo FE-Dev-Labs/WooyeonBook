@@ -22,7 +22,7 @@ export default function CategoryTitle({
 			</div>
 			{!isUsedPage && (
 				<Link href={`${page}`}>
-					<p className={styles.seeAll}>전체보기</p>
+					<p className={styles.seeAll}>전체 보기</p>
 				</Link>
 			)}
 		</header>
