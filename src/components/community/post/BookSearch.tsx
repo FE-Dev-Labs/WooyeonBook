@@ -130,7 +130,11 @@ function BookSearch() {
 					{searchData.map((data, index) => {
 						return (
 							<ul key={index}>
-								<li className={styles.searchResultLi}>
+								<li
+									className={styles.searchResultLi}
+									onMouseDown={() =>
+										selectBook(data.title, data.cover, data.isbn)
+									}>
 									{index > 0 && (
 										<strong
 											className={styles.searchResultKeyword}

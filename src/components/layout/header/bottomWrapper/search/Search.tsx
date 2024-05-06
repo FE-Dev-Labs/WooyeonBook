@@ -170,37 +170,37 @@ export default function Search() {
 				</button>
 				{showSearchHistory && <RecentSearch />}
 				{isOpen && (
-				<div>
-					<div className={styles.recentSearchWrapper}>
-						<div className={styles.searchResultWord}>
-							{searchData?.map((data) => {
-								return (
-									<SearchResult
-										data={data}
-										key={data.itemId}
-										keyonSubmit={keyonSubmit}
-										handleModalStateChange={handleModalStateChange}
-									/>
-								);
-							})}
-							<div
-								className={styles.lastlestDeleteAll}
-								onClick={() => handleModalCloseChange()}>
-								<div className={styles.lastlestCloseWrap}>
-									<span className={styles.lastelestCloseText}>닫기</span>
-									<Image
-										src={closeBigIcon}
-										alt="cancelIcon"
-										width={10}
-										height={10}
-										className={styles.cancelIcon}
-									/>
+					<div>
+						<div className={styles.recentSearchWrapper}>
+							<div className={styles.searchResultWord}>
+								{searchData?.map((data) => {
+									return (
+										<SearchResult
+											data={data}
+											key={data.itemId}
+											keyonSubmit={keyonSubmit}
+											handleModalStateChange={handleModalStateChange}
+										/>
+									);
+								})}
+								<div
+									className={styles.lastlestDeleteAll}
+									onClick={() => handleModalCloseChange()}>
+									<div className={styles.lastlestCloseWrap}>
+										<span className={styles.lastelestCloseText}>닫기</span>
+										<Image
+											src={closeBigIcon}
+											alt="cancelIcon"
+											width={10}
+											height={10}
+											className={styles.cancelIcon}
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				 )} 
+				)}
 			</form>
 		</span>
 	);

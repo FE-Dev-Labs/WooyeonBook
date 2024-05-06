@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import uuid from 'react-uuid';
 import { commentsType } from '@/types/detailComments';
-import useCurrentUser from '../../../hooks/useCurrentUser';
 import DetailCommentsList from './DetailCommentsList';
 import { useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
@@ -14,8 +13,6 @@ import { userAtom } from '@/recoil/atom/userAtom';
 export default function DetailComment({ bookId }: { bookId: string }) {
 	// 댓글
 	const [comment, setComment] = useState<string>('');
-	// 댓글 창
-	const [isLogin, setIsLogin] = useState<boolean>(false);
 	// 댓글 리스트
 	const [commentsList, setCommentsList] = useState<commentsType[]>([]);
 	// 글자 실시간 표시
@@ -25,12 +22,8 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 
 	const supabase = createClient();
 
-	// useCurrentUser  훅
-	const { userName, userId } = useCurrentUser('');
-
 	// user state
-	// useCurrentUser 훅 사용시 로그인 후 userId가 바로 들어오지않음 userAtom을 사용
-	const [user, setUser] = useRecoilState(userAtom);
+	const [user] = useRecoilState(userAtom);
 
 	const hanldeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
@@ -52,9 +45,9 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 		}
 		const commentdata: commentsType = {
 			id: uuid(),
-			user_id: userId,
+			user_id: user.id,
 			book_id: bookId,
-			user_name: userName,
+			user_name: user.name,
 			comment: comment,
 			created_at: new Date(),
 		};
@@ -120,7 +113,7 @@ export default function DetailComment({ bookId }: { bookId: string }) {
 							<DetailCommentsList
 								key={list.id}
 								list={list}
-								userId={userId}
+								userId={user.id}
 								getCommentLists={getCommentLists}
 							/>
 						);

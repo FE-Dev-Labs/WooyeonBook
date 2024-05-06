@@ -4,7 +4,6 @@ import styles from '@/styles/layout/header/bottomWrapper/search/recentSearch/las
 import { useLocalStorage } from '@/hooks/useLocalStorage';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
-import { sortTypeAtom } from '@/recoil/atom/sortTypeAtom';
 import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
 
 export default function LastestWord() {
@@ -14,9 +13,6 @@ export default function LastestWord() {
 	const { storedValue, removeKeyword } = useLocalStorage('searchKeywords', []);
 
 	// 원준 추가
-	// sort type setValue
-	// const setSortType = useSetRecoilState(sortTypeAtom);
-	// current page setValue
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
 	// 최근 검색어 클릭 시 동작하는 함수

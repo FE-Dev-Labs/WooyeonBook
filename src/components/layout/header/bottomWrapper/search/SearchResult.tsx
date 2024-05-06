@@ -15,7 +15,6 @@ export default function SearchResult({
 	handleModalStateChange,
 	keyonSubmit,
 }: searchResultProp) {
-	console.log(data);
 	const router = useRouter();
 
 	const [keyword, setKeyword] = useRecoilState(searchKeyword);
