@@ -27,13 +27,16 @@
 
 ## 🖥 기술 스택
 
+![Web App Reference Architecture (1)](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/1c3242a7-5e98-48aa-8891-61a9fa160bf1)
+
+
 <table>
 <tr>
 <td align="center">구분</td>
 <td align="center">사용 기술</td>
 </tr>
 <tr>
-<td align="center">언</td>
+<td align="center">언어</td>
 <td align="center">TypeScript</td>
 </tr>
 <tr>
