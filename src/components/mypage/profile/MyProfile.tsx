@@ -4,7 +4,6 @@ import { createClient } from '@/utils/supabase/client';
 import { useEffect, useState } from 'react';
 import { useInforDateType } from '@/types/userInforDate';
 import MyProfileAddress from './MyProfileAddress';
-// import MyProfileAddress from './MyprofileAddress';
 
 interface userIdProps {
 	userId: string;
@@ -23,7 +22,6 @@ export default function MyProfile({ userId }: userIdProps) {
 		useState<string>('');
 	const supabase = createClient();
 
-	console.log(userInfor);
 	// 유저 정보 불러오기
 	const getUserInfor = async () => {
 		const { data, error } = await supabase

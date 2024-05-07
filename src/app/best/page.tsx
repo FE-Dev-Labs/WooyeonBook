@@ -1,6 +1,12 @@
 import PageHeader from '@/components/common/PageHeader';
 import styles from '@/styles/best/best.module.css';
 import BestView from '@/components/best/bestView/BestView';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '베스트셀러 | Wooyeon.',
+	description: '떤 책을 많이 읽을까?',
+};
 
 export default async function bestPage({
 	searchParams,

@@ -77,7 +77,12 @@ export default function Pagination({
 		// 현재 페이지 숫자 변경
 		setCurrentPage(pageNum);
 		// 페이지 별 라우트 설정
-		if (page === 'best' || 'new' || 'used' || 'cateegory') {
+		if (
+			page === 'best' ||
+			page === 'new' ||
+			page === 'used' ||
+			page === 'category'
+		) {
 			router.push(`${pathname}?categoryId=${categoryId}&pageNum=${pageNum}`);
 		}
 		if (page === 'search') {
