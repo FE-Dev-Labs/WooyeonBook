@@ -21,7 +21,7 @@ function Nav() {
 		if (isLogin.id === null) {
 			return router.push('/login');
 		}
-		return `/community/post/new/${pathname}`;
+		return router.push(`/community/post/new/${pathname}`);
 	};
 	const linkClassName = (path: string) => {
 		return path == pathname ? styles.active : styles.linkItem;
@@ -51,7 +51,7 @@ function Nav() {
 					팝니다
 				</Link>
 			</div>
-			<button className={styles.writeBtn} onClick={postUrl}>
+			<button className={styles.writeBtn} onClick={() => postUrl()}>
 				<Image
 					src={pencilIcon}
 					alt="writeIcon"
