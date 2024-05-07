@@ -30,7 +30,6 @@ const BookMeeting = async ({
 	page,
 	params,
 }: BookMeetingProps) => {
-  
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -125,7 +124,7 @@ const BookMeeting = async ({
 							<span className={styles.shareText}>공유</span>
 						</button>
 					</div>
-					<DropDownBtn data={data} user={user} />
+					<DropDownBtn data={data} user={user} page="bookMeeting" />
 				</div>
 			</div>
 

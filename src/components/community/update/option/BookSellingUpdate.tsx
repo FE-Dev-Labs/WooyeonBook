@@ -108,7 +108,7 @@ function Update({ data, docid }: UpdateProps) {
 			bookId: '',
 		});
 		setSellingState(false);
-		return router.push(`/community/bookSelling/detail/${docid}`);
+		return router.push(`/community/detail/bookSelling/${docid}`);
 	};
 	return (
 		<div className={styles.container}>

@@ -14,11 +14,7 @@ const UpdateBookReport = async ({
 		},
 	).then((res) => res.json());
 
-	return (
-		<div>
-			<BookReportUpdate data={data} docid={params.docId} />
-		</div>
-	);
+	return <BookReportUpdate data={data} docid={params.docId} />;
 };
 
 export default UpdateBookReport;

@@ -1,7 +1,7 @@
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import { fetchDetailCommunity } from '@/apis/community/CRUD';
 import dynamic from 'next/dynamic';
-import ScalatonUi from '@/components/common/ScalatonUi';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 export default async function DetailPage({
 	params,
@@ -13,7 +13,7 @@ export default async function DetailPage({
 	const data = await fetchDetailCommunity('bookMeeting', params.doc_id);
 	const BookMeetingLazy = dynamic(
 		() => import('@/components/community/detail/BookMeeting'),
-		{ loading: () => <ScalatonUi wid="1300px" hei="100vh" bgc="black" /> },
+		{ loading: () => <LoadingSpinner /> },
 	);
 	return (
 		<main className={styles.container}>

@@ -1,11 +1,11 @@
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import { fetchDetailCommunity } from '@/apis/community/CRUD';
 import dynamic from 'next/dynamic';
-import ScalatonUi from '@/components/common/ScalatonUi';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 const BookReportLazy = dynamic(
 	() => import('@/components/community/detail/BookReport'),
-	{ loading: () => <ScalatonUi wid="1300px" hei="100vh" bgc="black" /> },
+	{ loading: () => <LoadingSpinner /> },
 );
 
 export default async function DetailPage({

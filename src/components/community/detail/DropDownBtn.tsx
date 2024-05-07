@@ -13,13 +13,15 @@ import { useRouter } from 'next/navigation';
 interface BookReportProps {
 	data: AllDataType;
 	user: User | null;
+	page?: string;
 }
 interface User {
 	id: string;
 	name?: string;
+
 	// 필요한 다른 속성들을 추가할 수 있습니다.
 }
-const DropDownBtn = ({ data, user }: BookReportProps) => {
+const DropDownBtn = ({ data, user, page }: BookReportProps) => {
 	const [isOpen, setIsOpen] = useState(false); // 드롭다운 메뉴 상태관리
 	// 외부 클릭 시
 	const ref = useRef<HTMLInputElement>(null);
@@ -65,7 +67,7 @@ const DropDownBtn = ({ data, user }: BookReportProps) => {
 						<div className={styles.dropdownMenuWrapper}>
 							<div className={styles.dropdownIconHover}>
 								<Link
-									href={`/community/update/bookReport/${data.doc_id}`}
+									href={`/community/update/${page}/${data.doc_id}`}
 									className={styles.editBtn}>
 									<Image
 										src={editIcon}

@@ -100,7 +100,7 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 		setRecruitmentNumber(0);
 		setState(false);
 
-		return router.push(`/community/bookMeeting/detail/${docid}`);
+		return router.push(`/community/detail/bookMeeting/${docid}`);
 	};
 	return (
 		<div className={styles.container}>

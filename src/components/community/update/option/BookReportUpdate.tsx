@@ -12,7 +12,7 @@ import { BookReportDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
 
 interface UpdateProps {
-	data?: BookReportDataType;
+	data: BookReportDataType;
 	docid: string;
 }
 
@@ -92,7 +92,7 @@ function Update({ data, docid }: UpdateProps) {
 			bookId: '',
 		});
 		setContentArr([]);
-		return router.push(`/community/bookReport/detail/${docid}`);
+		return router.push(`/community/detail/bookReport/${docid}`);
 	};
 	return (
 		<div className={styles.container}>
