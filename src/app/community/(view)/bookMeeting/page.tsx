@@ -1,4 +1,4 @@
-import ScalatonUi from '@/components/common/ScalatonUi';
+import ScalatonUi from '@/components/common/SkeletonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookMeetingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
@@ -26,7 +26,7 @@ function isBookMeetingArray(data: any): data is BookMeetingDataType[] {
 }
 const MeetingContentBoxLazy = dynamic(
 	() => import('@/components/community/view/MeetingContentBox'),
-	{ loading: () => <ScalatonUi wid="1000px" hei="158px" bgc="black" /> },
+	{ loading: () => <ScalatonUi /> },
 );
 export default async function bookMeeting({
 	searchParams,

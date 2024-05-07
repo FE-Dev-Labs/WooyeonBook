@@ -1,9 +1,16 @@
+.container {
+	width: 1300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
 .spinner {
 	height: 30px;
 	width: 30px;
 	border: 7px solid;
 	border-radius: 50%;
-	border-color: red black black black;
+	border-color: rgb(156, 153, 153) black black black;
 	animation: rotate 1.5s linear infinite;
 }
 

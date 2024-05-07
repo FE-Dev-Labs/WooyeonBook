@@ -1,8 +1,12 @@
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import { fetchDetailCommunity } from '@/apis/community/CRUD';
 import dynamic from 'next/dynamic';
-import ScalatonUi from '@/components/common/ScalatonUi';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
+const BookBuyingLazy = dynamic(
+	() => import('@/components/community/detail/BookBuying'),
+	{ loading: () => <LoadingSpinner /> },
+);
 export default async function DetailPage({
 	params,
 	searchParams,
@@ -11,10 +15,6 @@ export default async function DetailPage({
 	searchParams?: { sort?: string };
 }) {
 	const data = await fetchDetailCommunity('bookBuying', params.doc_id);
-	const BookBuyingLazy = dynamic(
-		() => import('@/components/community/detail/BookBuying'),
-		{ loading: () => <ScalatonUi wid="1300px" hei="100vh" bgc="black" /> },
-	);
 	return (
 		<main className={styles.container}>
 			<aside></aside>

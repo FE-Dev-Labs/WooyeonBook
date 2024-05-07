@@ -102,7 +102,7 @@ function BookBuyingUpdate({ data, docid }: UpdateProps) {
 		price.init('');
 		setBuyingState(false);
 
-		return router.push(`/community/bookBuying/detail/${docid}`);
+		return router.push(`/community/detail/bookBuying/${docid}`);
 	};
 
 	return (

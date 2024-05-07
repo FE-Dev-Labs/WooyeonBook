@@ -1,7 +1,7 @@
-import ScalatonUi from '@/components/common/ScalatonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookBuyingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
+import BookContentSkeletonUi from '@/components/common/BookContentSkeletonUi';
 
 function isBookBuyingArray(data: any): data is BookBuyingDataType[] {
 	return (
@@ -29,7 +29,7 @@ function isBookBuyingArray(data: any): data is BookBuyingDataType[] {
 }
 const BuyingContentBoxLazy = dynamic(
 	() => import('@/components/community/view/BuyingContentBox'),
-	{ loading: () => <ScalatonUi wid="1000px" hei="158px" bgc="black" /> },
+	{ loading: () => <BookContentSkeletonUi /> },
 );
 export default async function bookBuying({
 	searchParams,

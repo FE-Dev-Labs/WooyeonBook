@@ -1,0 +1,105 @@
+.skeletonWrapper {
+	display: flex;
+}
+.skeletonImgArea {
+	padding: 18px 0px;
+}
+.skeletonImg {
+	width: 85px;
+	height: 120px;
+	border-radius: 10px;
+	background-color: #495057;
+}
+.skeletonDataWrapper {
+	border-bottom: 1px solid #dee2e6;
+}
+.skeletonDataWrap {
+	width: 100%;
+	padding: 18px 16px;
+}
+.skeletonTitle {
+	height: 16px;
+	padding: 0 0 5px 0;
+	background-color: #495057;
+	border-radius: 5px;
+
+	margin-bottom: 5px;
+}
+.skeletonReportContent {
+	margin-bottom: 30px;
+	height: 45px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	white-space: normal;
+	line-height: 1.5;
+	text-align: left;
+	word-break: break-all;
+	background-color: #495057;
+	border-radius: 5px;
+}
+.skeletonContent {
+	margin-bottom: 10px;
+	height: 45px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	white-space: normal;
+	line-height: 1.5;
+	text-align: left;
+	word-break: break-all;
+	color: #495057;
+	font-size: 14px;
+}
+.skeletonWrapper {
+	display: flex;
+}
+.skeletonFooter {
+	margin-top: 10px;
+	height: 20px;
+	background-color: #495057;
+	border-radius: 5px;
+}
+
+.skeletonIconWrapper {
+	display: flex;
+}
+.skeletonIconWrapper > dl {
+	display: flex;
+}
+.iconText {
+	position: absolute;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+.iconsStyle {
+	width: 15px;
+	height: 15px;
+	margin-right: 4px;
+	color: #868e96;
+}
+.skeletonDataNumber {
+	font-size: 12px;
+	font-weight: 700;
+	margin-right: 10px;
+	color: #868e96;
+}
+.icondd {
+	display: flex;
+	align-items: center;
+}
+.contentState {
+	margin-bottom: 10px;
+	display: inline-block;
+	border-radius: 25px;
+	padding: 5px 8px;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 1;
+	color: #fff;
+	text-align: center;
+	background-color: #495057;
+}

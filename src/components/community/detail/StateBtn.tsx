@@ -59,7 +59,9 @@ const StateBtn = ({
 	return (
 		<div className={styles.stateBtnWrapper}>
 			<div className={styles.stateBtnWrap} onClick={onSubmit}>
-				<span className={styles.stateBtnText}>{text()}</span>
+				<span className={styles.stateBtnText}>
+					{selling ? text() : state ? '나눔 완료' : '나눔중'}
+				</span>
 			</div>
 		</div>
 	);
