@@ -12,7 +12,7 @@ import { BookReportDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
 
 interface UpdateProps {
-	data?: BookReportDataType;
+	data: BookReportDataType;
 	docid: string;
 }
 

@@ -111,7 +111,7 @@ const BookBuying = async ({
 							<span className={styles.shareText}>공유</span>
 						</button>
 					</div>
-					<DropDownBtn data={data} user={user} />
+					<DropDownBtn data={data} user={user} page="bookBuying" />
 				</div>
 			</div>
 			{/* 댓글 */}

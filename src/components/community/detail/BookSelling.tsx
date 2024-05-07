@@ -1,6 +1,5 @@
 import { AllDataType } from '@/types/community/view/data';
 import styles from '@/styles/community/detail/detailPage.module.css';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
 import { cookies } from 'next/headers';
@@ -102,6 +101,7 @@ const BookSelling = async ({
 						doc_id={params.doc_id}
 						state={data.state as boolean}
 						admin={data.created_user}
+						selling={data.selling}
 					/>
 					<LikeBtn
 						page={'bookSelling'}
@@ -120,7 +120,7 @@ const BookSelling = async ({
 							<span className={styles.shareText}>공유</span>
 						</button>
 					</div>
-					<DropDownBtn data={data} user={user} />
+					<DropDownBtn data={data} user={user} page="bookSelling" />
 				</div>
 			</div>
 			{/* 댓글 */}
