@@ -27,3 +27,12 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.noResult {
+	height: calc(100vh - 440px);
+	font-size: 20px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
