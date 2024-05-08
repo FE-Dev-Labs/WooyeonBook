@@ -12,19 +12,45 @@ export const metadata: Metadata = {
 	title: '',
 	description: '',
 };
+async function fetchData() {
+	let retryCount = 0;
+	const maxRetries = 3;
 
+	while (retryCount < maxRetries) {
+		try {
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/view/popularList`,
+
+				{
+					cache: 'no-store',
+				},
+			);
+			if (response.ok) {
+				const data = await response.json();
+				return data;
+			} else {
+				throw new Error(
+					`Fetch request failed with status code ${response.status}`,
+				);
+			}
+		} catch (error) {
+			console.error(
+				`Fetch request failed. Retrying... (Attempt ${retryCount + 1}/${maxRetries})`,
+				error,
+			);
+			retryCount++;
+			await new Promise((resolve) => setTimeout(resolve, 1000)); // 1초 대기 후 재시도
+		}
+	}
+
+	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+}
 export default async function CommunityViewLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
-	const reponse = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/view/popularList`,
-		{
-			cache: 'no-store',
-		},
-	);
-	const popularData = await reponse.json();
+	const popularData = await fetchData();
 
 	return (
 		<main>
