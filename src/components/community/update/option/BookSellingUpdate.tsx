@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import OptionBookSelling from '../../post/option/OptionBookSelling';
 import { BookSellingDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 interface UpdateProps {
 	data?: BookSellingDataType;
@@ -34,6 +35,7 @@ const EditorComponent = dynamic(
 
 function Update({ data, docid }: UpdateProps) {
 	const router = useRouter();
+	const [loading, setLoading] = useState<boolean>(false);
 	const title = useInputState('');
 	const price = useInputState('');
 	const [state, setState] = useState<boolean>(false);
@@ -66,6 +68,7 @@ function Update({ data, docid }: UpdateProps) {
 		setSellingState(data.state);
 	}, []);
 	const onSubmit = async () => {
+		setLoading(true);
 		const { user_id, user_name } = await getUser();
 
 		const data = {
@@ -96,7 +99,9 @@ function Update({ data, docid }: UpdateProps) {
 				},
 				body: JSON.stringify(data),
 			},
-		);
+		).catch((err) => {
+			throw new Error(err);
+		});
 		// state 초기화
 		title.init('');
 		price.init(0);
@@ -108,41 +113,48 @@ function Update({ data, docid }: UpdateProps) {
 			bookId: '',
 		});
 		setSellingState(false);
+		setLoading(false);
 		return router.push(`/community/detail/bookSelling/${docid}`);
 	};
 	return (
-		<div className={styles.container}>
-			<div className={styles.header}>
-				<div>📚</div>
-				<h2>독후감을 작성하고 공유해 보세요.</h2>
-			</div>
-			<input
-				type="text"
-				className={styles.title}
-				placeholder={data?.title}
-				onChange={title.onChange}
-			/>
-			<OptionBookSelling
-				sellingPrice={
-					price as {
-						value: string;
-						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-					}
-				}
-				onchangeSellingState={onchangeSellingState}
-			/>
-			<div>
-				<EditorComponent data={data} />
-			</div>
-			<div className={styles.BtnWrap}>
-				<button onClick={goback} className={styles.cancelBtn}>
-					취소
-				</button>
-				<button onClick={onSubmit} className={styles.submitBtn}>
-					등록
-				</button>
-			</div>
-		</div>
+		<>
+			{loading ? (
+				<LoadingSpinner />
+			) : (
+				<div className={styles.container}>
+					<div className={styles.header}>
+						<div>📚</div>
+						<h2>독후감을 작성하고 공유해 보세요.</h2>
+					</div>
+					<input
+						type="text"
+						className={styles.title}
+						placeholder={data?.title}
+						onChange={title.onChange}
+					/>
+					<OptionBookSelling
+						sellingPrice={
+							price as {
+								value: string;
+								onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+							}
+						}
+						onchangeSellingState={onchangeSellingState}
+					/>
+					<div>
+						<EditorComponent data={data} />
+					</div>
+					<div className={styles.BtnWrap}>
+						<button onClick={goback} className={styles.cancelBtn}>
+							취소
+						</button>
+						<button onClick={onSubmit} className={styles.submitBtn}>
+							등록
+						</button>
+					</div>
+				</div>
+			)}
+		</>
 	);
 }
 

@@ -83,7 +83,9 @@ const BookReportPostPage = () => {
 				},
 				body: JSON.stringify(data),
 			},
-		);
+		).catch((err) => {
+			throw new Error('Failed to fetch data');
+		});
 		// state 초기화
 		title.init('');
 		setContent('');
