@@ -8,7 +8,6 @@ interface DetailPageProp {
 		docId: string;
 	};
 }
-
 export async function generateMetadata({
 	params,
 }: DetailPageProp): Promise<Metadata> {
