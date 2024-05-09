@@ -17,19 +17,12 @@ import { CommentData } from '@/types/community/comment';
 interface BookReportProps {
 	data: AllDataType;
 	params: { doc_id: string };
-	searchParams?: { sort?: string };
-	page: string;
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookReport = async ({
-	searchParams,
-	data,
-	page,
-	params,
-}: BookReportProps) => {
+const BookReport = async ({ data, params }: BookReportProps) => {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 	const {
@@ -39,21 +32,6 @@ const BookReport = async ({
 
 	const comments: CommentData[] = await fetchComments(data.doc_id as string);
 
-	// 댓글 좋아요, 최신순
-	// const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
-	// 	switch (searchParams?.sort) {
-	// 		case 'like':
-	// 			return b.like - a.like;
-	// 		case 'lastest':
-	// 			return (
-	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-	// 			);
-	// 		default:
-	// 			return (
-	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-	// 			);
-	// 	}
-	// });
 	return (
 		<section className={styles.container}>
 			<section className={styles.optionContainer}>
