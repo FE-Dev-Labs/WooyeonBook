@@ -1,8 +1,8 @@
-name: Synchronize to forked repo
+name: Synchronize to forked client repo
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   sync:
@@ -10,22 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout dev
+      - name: Checkout main
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.FORKED_REPO_TOKEN }}
           fetch-depth: 0
-          ref: dev
+          ref: main
 
       - name: Add remote-url
         run: |
-          git remote add forked-repo https://baesee0806:${{ secrets.FORKED_REPO_TOKEN }}@github.com/baesee0806/WooyeonBook
-          git config user.name baesee0806
-          git config user.email https://github.com/baesee0806
+          git remote add forked-repo https://kimwonjuun:${{ secrets.FORKED_REPO_TOKEN }}@github.com/kimwonjuun/WooyeonBook
+          git config user.name kimwonjuun
+          git config user.email https://github.com/kimwonjuun
 
       - name: Push changes to forked-repo
         run: |
-          git push -f forked-repo dev
+          git push -f forked-repo main
 
       - name: Clean up
         run: |
