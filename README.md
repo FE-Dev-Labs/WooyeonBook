@@ -27,14 +27,14 @@
 
 ## 🖥 기술 스택
 
-![Web App Reference Architecture (1)](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/de202c07-f6d1-4642-a2f8-4a9094245b3c)
+![Web-App-Reference-Architecture-(1)](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/99e9ff3f-d131-47bc-8b8d-6e8bec8478f9)
 
 
 
 | 구분                 | 사용 기술          |
 | -------------------- | ------------------ |
 | 언어                 | TypeScript         |
-| 프레임워                   | Next.js 14             |
+| 프레임워크                   | Next.js 14             |
 | 서버             | Express            |
 | 스타일링             | CSS Modules           |
 | DB                   | Supabase |
