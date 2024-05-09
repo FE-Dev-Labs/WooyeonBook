@@ -27,7 +27,8 @@
 
 ## 🖥 기술 스택
 
-![Web App Reference Architecture (2)](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/e66bfcc1-261f-45d2-94a0-d3b0ea40b92d)
+![Web App Reference Architecture (1)](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/de202c07-f6d1-4642-a2f8-4a9094245b3c)
+
 
 
 | 구분                 | 사용 기술          |
