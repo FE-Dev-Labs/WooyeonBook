@@ -3,6 +3,23 @@ import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { BookBuyingDataType } from '@/types/community/view/data';
 import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+
+interface BookBuyingDetailProp {
+	params: { doc_id: string };
+	searchParams?: { sort?: string };
+}
+
+export async function generateMetadata({
+	params,
+}: BookBuyingDetailProp): Promise<Metadata> {
+	const data = await fetchData('bookSelling', params.doc_id);
+
+	return {
+		title: `${data.title} | Wooyeon.`,
+		description: `커뮤니티 - ${data.title} 디테일 페이지입니다.`,
+	};
+}
 
 const BookBuyingLazy = dynamic(
 	() => import('@/components/community/detail/BookBuying'),
@@ -56,10 +73,7 @@ export async function generateStaticParams() {
 export default async function DetailPage({
 	params,
 	searchParams,
-}: {
-	params: { doc_id: string };
-	searchParams?: { sort?: string };
-}) {
+}: BookBuyingDetailProp) {
 	const data = await fetchData('bookBuying', params.doc_id);
 	return (
 		<main className={styles.container}>

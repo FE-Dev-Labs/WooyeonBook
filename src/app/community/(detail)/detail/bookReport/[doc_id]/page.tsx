@@ -3,6 +3,23 @@ import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { BookReportDataType } from '@/types/community/view/data';
 import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+
+interface BookReportDetailProp {
+	params: { doc_id: string };
+}
+
+export async function generateMetadata({
+	params,
+}: BookReportDetailProp): Promise<Metadata> {
+	const data: BookReportDataType = await fetchData('bookReport', params.doc_id);
+
+	return {
+		title: `${data.title} | Wooyeon.`,
+		description: `커뮤니티 - ${data.title} 디테일 페이지입니다.`,
+	};
+}
+
 const BookReportLazy = dynamic(
 	() => import('@/components/community/detail/BookReport'),
 	{ loading: () => <LoadingSpinner /> },
@@ -51,11 +68,7 @@ export async function generateStaticParams() {
 		};
 	});
 }
-export default async function DetailPage({
-	params,
-}: {
-	params: { doc_id: string };
-}) {
+export default async function DetailPage({ params }: BookReportDetailProp) {
 	const data: BookReportDataType = await fetchData('bookReport', params.doc_id);
 
 	return (
