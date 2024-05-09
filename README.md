@@ -30,36 +30,19 @@
 ![Web App Reference Architecture (2)](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/e66bfcc1-261f-45d2-94a0-d3b0ea40b92d)
 
 
-<table>
-<tr>
-<td align="center">구분</td>
-<td align="center">사용 기술</td>
-</tr>
-<tr>
-<td align="center">언어</td>
-<td align="center">TypeScript</td>
-</tr>
-<tr>
-<td align="center">UI</td>
-<td align="center">Next.js</td>
-</tr>
-  <tr>
-<td align="center">스타일링</td>
-<td align="center">CSS Module</td>
-</tr>
-<tr>
-<td align="center">DB</td>
-<td align="center">Supabase</td>
-</tr>
-<tr>
-<td align="center">Server</td>
-<td align="center">Express</td>
-</tr>
-<tr>
-<td align="center">클라이언트 상태 관리</td>
-<td align="center">Recoil</td>
-</tr>
-</table>
+| 구분                 | 사용 기술          |
+| -------------------- | ------------------ |
+| 언어                 | TypeScript         |
+| 프레임워                   | Next.js 14             |
+| 서버             | Express            |
+| 스타일링             | CSS Modules           |
+| DB                   | Supabase |
+| 서버 상태 관리       | React Query        |
+| 클라이언트 상태 관리 | Recoil             |
+| 패키지 관리 매니저   | Yarn         |
+| 배포             | Vercel            |
+| CI             | Github Actions            |
+| Editor             | Toast UI Editor            |
 <br/>
 <br/>
 
