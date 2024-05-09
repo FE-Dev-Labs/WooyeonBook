@@ -1,4 +1,5 @@
 import BookBuyingUpdate from '@/components/community/update/option/BookBuyingUpdate';
+import { Metadata } from 'next';
 
 // const getData = async (docId: string) => {
 // 	const res = await fetch(

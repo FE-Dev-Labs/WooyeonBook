@@ -8,11 +8,10 @@ import OptionBookReport from '@/components/community/post/option/OptionBookRepor
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
-import { supabase } from '@/utils/supabase/supabase';
 import { BookReportPostDataType } from '@/types/community/post/data';
 import { useEffect } from 'react';
-import { createClient } from '@/utils/supabase/client';
 import { getUser } from '@/apis/community/getUser';
+
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
 	{
