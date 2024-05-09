@@ -34,7 +34,7 @@
 | 구분                 | 사용 기술          |
 | -------------------- | ------------------ |
 | 언어                 | TypeScript         |
-| 프레임워                   | Next.js 14             |
+| 프레임워크                | Next.js 14             |
 | 서버             | Express            |
 | 스타일링             | CSS Modules           |
 | DB                   | Supabase |
