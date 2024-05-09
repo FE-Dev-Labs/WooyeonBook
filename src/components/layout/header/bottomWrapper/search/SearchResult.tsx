@@ -31,7 +31,7 @@ export default function SearchResult({
 		const goToDetailUrl = `/detail/${data.isbn}?type=new`;
 		// 로컬스토리지에 검색어 추가
 		addKeyword(String(keyword));
-		keyonSubmit();
+		keyonSubmit.mutate();
 		// 검색 횟수 업데이트
 		// 디테일 페이지로 넘어가면 검색창 닫아주기
 		handleModalStateChange();
