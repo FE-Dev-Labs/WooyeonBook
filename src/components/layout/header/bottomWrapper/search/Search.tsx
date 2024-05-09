@@ -15,6 +15,7 @@ import { useLocalStorage } from '@/hooks/useLocalStorage';
 import SearchResult from './SearchResult';
 import RecentSearch from './recentSearch/RecentSearch';
 import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
+import useKeyWordsQuery from '@/hooks/useKeyWordsQuery';
 
 export default function Search() {
 	// 검색어 로컬스토리지 저장
@@ -31,6 +32,9 @@ export default function Search() {
 
 	// current page setValue
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
+
+	// 리액트 쿼리 훅
+	const { keyonSubmitData } = useKeyWordsQuery();
 
 	// useModal 훅
 	const {
@@ -64,7 +68,6 @@ export default function Search() {
 	const getdata = async () => {
 		const response = await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/aladin/keyword?keyword=${keyword}`,
-			{ next: { revalidate: 86400 } },
 		);
 		const data = await response.json();
 		setSearchData(data);
@@ -100,44 +103,6 @@ export default function Search() {
 		handleModalCloseChange();
 	};
 
-	const keyonSubmit = async () => {
-		// 인기 검색어 데이터
-		const res = await fetch(
-			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/supabase/popularSearch?keyword=${keyword}`,
-		);
-		const key = await res.json();
-
-		const postdata = {
-			keyword: keyword,
-			search_count: 1,
-			created_at: new Date(),
-		};
-
-		// 검색어에 대한 기록이 서버에 이미 존재하는지를 확인
-		if (key.length > 0) {
-			await fetch(
-				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/update/supabase/keyword?keyword=${keyword}&count=${key[0].search_count}`,
-				{
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ search_count: key[0].search_count + 1 }),
-				},
-			);
-		} else {
-			// 검색어에 대한 기록이 서버에 없으면 검색어 추가
-			await fetch(
-				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/search/create/supabase/keywords`,
-				{
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(postdata),
-				},
-			);
-		}
-	};
-
 	// 쿼리값 전달
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -145,7 +110,7 @@ export default function Search() {
 		// 로컬스토리지에 검색어 추가
 		// handleSubmitKeyword(String(keyword));
 		addKeyword(String(keyword));
-		keyonSubmit();
+		keyonSubmitData.mutate();
 		// 검색어 모달 닫기
 		handleModalCloseChange();
 		router.push(searchUrl);
@@ -178,7 +143,7 @@ export default function Search() {
 										<SearchResult
 											data={data}
 											key={data.itemId}
-											keyonSubmit={keyonSubmit}
+											keyonSubmit={keyonSubmitData}
 											handleModalStateChange={handleModalStateChange}
 										/>
 									);
