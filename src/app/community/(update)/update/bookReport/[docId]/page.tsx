@@ -1,4 +1,5 @@
 import BookReportUpdate from '@/components/community/update/option/BookReportUpdate';
+import { Metadata } from 'next';
 
 const UpdateBookReport = async ({
 	params,

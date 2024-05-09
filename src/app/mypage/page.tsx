@@ -8,17 +8,30 @@ import MyPost from '@/components/mypage/myPost/MyPost';
 import MyProfile from '@/components/mypage/profile/MyProfile';
 import MyOrder from '@/components/mypage/myOrder/MyOrder';
 import CommunityNav from '@/components/common/CommunityNav';
+import { Metadata } from 'next';
 
-export default async function page({
-	searchParams,
-}: {
+interface DetailPageProps {
 	searchParams: {
 		page?: string;
 		sort: string;
 		categories: string;
 		num?: string;
 	};
-}) {
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+	const cookieStore = cookies();
+	const supabase = createClient(cookieStore);
+
+	const { data } = await supabase.auth.getUser();
+	const userName = data?.user?.user_metadata.name;
+	return {
+		title: `${userName}님의 마이페이지 | Wooyeon.`,
+		description: '마이페이지입니다.',
+	};
+}
+
+export default async function page({ searchParams }: DetailPageProps) {
 	const cookieStore = cookies();
 	const supabase = createClient(cookieStore);
 
@@ -27,7 +40,6 @@ export default async function page({
 	if (error) {
 		throw error;
 	}
-
 	return (
 		<div>
 			<div>

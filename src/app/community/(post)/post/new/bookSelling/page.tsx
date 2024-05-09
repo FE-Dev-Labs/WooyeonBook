@@ -7,12 +7,10 @@ import { useInputState } from '@/hooks/useInputState';
 import { useRecoilState } from 'recoil';
 import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
-import { supabase } from '@/utils/supabase/supabase';
 import { BookSellingPostDataType } from '@/types/community/post/data';
 import OptionBookSelling from '@/components/community/post/option/OptionBookSelling';
 import { useEffect, useState } from 'react';
 import { getUser } from '@/apis/community/getUser';
-
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
 	{

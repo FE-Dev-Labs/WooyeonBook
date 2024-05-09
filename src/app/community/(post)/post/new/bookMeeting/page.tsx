@@ -10,7 +10,6 @@ import { BookMeetingPostDataType } from '@/types/community/post/data';
 import OptionBookMeeting from '@/components/community/post/option/OptionBookMeeting';
 import { useEffect, useState } from 'react';
 import { getUser } from '@/apis/community/getUser';
-
 const EditorComponent = dynamic(
 	() => import('@/components/community/common/WysiwygEditor'),
 	{

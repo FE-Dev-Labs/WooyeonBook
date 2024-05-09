@@ -1,7 +1,14 @@
 import ScalatonUi from '@/components/common/SkeletonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookMeetingDataType } from '@/types/community/view/data';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+
+export const metadata: Metadata = {
+	title: '커뮤니티 - 모임 | Wooyeon.',
+	description: '커뮤니티 - 모임 페이지입니다.',
+};
+
 function isBookMeetingArray(data: any): data is BookMeetingDataType[] {
 	return (
 		Array.isArray(data) &&

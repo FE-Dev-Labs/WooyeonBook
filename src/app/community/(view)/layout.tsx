@@ -8,9 +8,10 @@ import { AllDataType } from '@/types/community/view/data';
 import Image from 'next/image';
 import userLogoIcon from '@/assets/community/userLogoIcon.png';
 import { Suspense } from 'react';
+
 export const metadata: Metadata = {
-	title: '',
-	description: '',
+	title: '커뮤니티 | Wooyeon.',
+	description: 'Discover Books, Build Community',
 };
 
 export default async function CommunityViewLayout({

@@ -1,4 +1,5 @@
 import BookMeetingUpdate from '@/components/community/update/option/BookMeetingUpdate';
+import { Metadata } from 'next';
 
 const UpdateBookMeeting = async ({
 	params,

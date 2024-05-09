@@ -41,8 +41,6 @@ export default function OrderCompleteView() {
 		}
 	};
 
-	console.log(order);
-
 	// 로딩 및 order list 뿌려주는 useEffect
 	useEffect(() => {
 		getOrderList();
