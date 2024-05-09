@@ -3,6 +3,13 @@ import { BookBuyingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
 import BookContentSkeletonUi from '@/components/common/BookContentSkeletonUi';
 import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	title: '커뮤니티 - 삽니다 | Wooyeon.',
+	description: '커뮤니티 - 삽니다 페이지입니다.',
+};
+
 async function fetchData() {
 	let retryCount = 0;
 	const maxRetries = 3;
