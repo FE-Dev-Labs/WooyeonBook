@@ -16,7 +16,7 @@ export default function ThemItem({ tag, image, color }: ThemItemProp) {
 					<p className={styles.themeRecommended}>의 추천도서</p>
 				</div>
 				<div className={styles.themeImage}>
-					<Image src={image} alt="theme image" width={150} height={200} />
+					<Image src={image} alt="theme image" width={150} height={160} />
 				</div>
 			</div>
 		</>
