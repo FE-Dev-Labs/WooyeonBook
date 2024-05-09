@@ -14,7 +14,7 @@ const fetchComments = async (doc_id: string) => {
 		const res = await fetch(
 			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/comment/detail/${doc_id}`,
 			{
-				cache: 'no-cache',
+				cache: 'no-store',
 			},
 		);
 		const comments: CommentData[] = await res.json();

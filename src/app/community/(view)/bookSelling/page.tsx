@@ -2,6 +2,7 @@ import BookContentSkeletonUi from '@/components/common/BookContentSkeletonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookSellingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
 async function fetchData() {
 	let retryCount = 0;
 	const maxRetries = 3;
@@ -33,7 +34,7 @@ async function fetchData() {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
 }
 function isBookSellingArray(data: any): data is BookSellingDataType[] {
 	return (
