@@ -2,7 +2,7 @@
 import styles from '@/styles/community/update/update.module.css';
 import OptionBookReport from '../../post/option/OptionBookReport';
 import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { selectBookData } from '@/recoil/atom/bookIdAtom';
 import { useInputState } from '@/hooks/useInputState';
@@ -10,6 +10,7 @@ import { editorImgArr, editorText } from '@/recoil/atom/editorAtom';
 import { useRouter } from 'next/navigation';
 import { BookReportDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 interface UpdateProps {
 	data: BookReportDataType;
@@ -34,6 +35,7 @@ const EditorComponent = dynamic(
 
 function Update({ data, docid }: UpdateProps) {
 	const router = useRouter();
+	const [loading, setLoading] = useState<boolean>(false);
 	const title = useInputState('');
 	const [text, setText] = useRecoilState(editorText);
 	const [selectBook, setSelectBook] = useRecoilState(selectBookData);
@@ -55,6 +57,7 @@ function Update({ data, docid }: UpdateProps) {
 		setContentArr(data.content_img_url as string[]);
 	}, []);
 	const onSubmit = async () => {
+		setLoading(true);
 		const { user_id, user_name } = await getUser();
 
 		const data = {
@@ -82,7 +85,9 @@ function Update({ data, docid }: UpdateProps) {
 				},
 				body: JSON.stringify(data),
 			},
-		);
+		).catch((err) => {
+			throw new Error(err);
+		});
 		// state 초기화
 		title.init('');
 		setText('');
@@ -92,33 +97,40 @@ function Update({ data, docid }: UpdateProps) {
 			bookId: '',
 		});
 		setContentArr([]);
+		setLoading(false);
 		return router.push(`/community/detail/bookReport/${docid}`);
 	};
 	return (
-		<div className={styles.container}>
-			<div className={styles.header}>
-				<div>📚</div>
-				<h2>독후감을 작성하고 공유해 보세요.</h2>
-			</div>
-			<input
-				type="text"
-				className={styles.title}
-				placeholder={data?.title}
-				onChange={title.onChange}
-			/>
-			<OptionBookReport />
-			<div>
-				<EditorComponent data={data} />
-			</div>
-			<div className={styles.BtnWrap}>
-				<button onClick={goback} className={styles.cancelBtn}>
-					취소
-				</button>
-				<button onClick={onSubmit} className={styles.submitBtn}>
-					등록
-				</button>
-			</div>
-		</div>
+		<>
+			{loading ? (
+				<LoadingSpinner />
+			) : (
+				<div className={styles.container}>
+					<div className={styles.header}>
+						<div>📚</div>
+						<h2>독후감을 작성하고 공유해 보세요.</h2>
+					</div>
+					<input
+						type="text"
+						className={styles.title}
+						placeholder={data?.title}
+						onChange={title.onChange}
+					/>
+					<OptionBookReport />
+					<div>
+						<EditorComponent data={data} />
+					</div>
+					<div className={styles.BtnWrap}>
+						<button onClick={goback} className={styles.cancelBtn}>
+							취소
+						</button>
+						<button onClick={onSubmit} className={styles.submitBtn}>
+							등록
+						</button>
+					</div>
+				</div>
+			)}
+		</>
 	);
 }
 

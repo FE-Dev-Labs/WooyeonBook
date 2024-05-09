@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import UpdateOptionBookMeeting from '../UpdateOptionBookMeeting';
 import { BookMeetingDataType } from '@/types/community/view/data';
 import { getUser } from '@/apis/community/getUser';
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 
 interface UpdateProps {
 	data?: BookMeetingDataType;
@@ -33,6 +34,7 @@ const EditorComponent = dynamic(
 
 function BookMeetingUpdate({ data, docid }: UpdateProps) {
 	const router = useRouter();
+	const [loading, setLoading] = useState<boolean>(false);
 	const title = useInputState('');
 	const [text, setText] = useRecoilState(editorText);
 	const [contentArr, setContentArr] = useRecoilState(editorImgArr);
@@ -62,6 +64,7 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 	}, []);
 
 	const onSubmit = async () => {
+		setLoading(true);
 		const { user_id, user_name } = await getUser();
 
 		const data = {
@@ -90,7 +93,9 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 				},
 				body: JSON.stringify(data),
 			},
-		);
+		).catch((err) => {
+			throw new Error(err);
+		});
 		// state 초기화
 		title.init('');
 		setText('');
@@ -99,49 +104,56 @@ function BookMeetingUpdate({ data, docid }: UpdateProps) {
 		deadline.init(new Date());
 		setRecruitmentNumber(0);
 		setState(false);
+		setLoading(false);
 
 		return router.push(`/community/detail/bookMeeting/${docid}`);
 	};
 	return (
-		<div className={styles.container}>
-			<div className={styles.header}>
-				<div>📚</div>
-				<h2>모임을 만들어 보세요.</h2>
-			</div>
-			<input
-				type="text"
-				className={styles.title}
-				placeholder={data?.title}
-				onChange={title.onChange}
-			/>
-			<UpdateOptionBookMeeting
-				data={data}
-				chatUrl={
-					chatUrl as {
-						value: string;
-						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-					}
-				}
-				deadline={
-					deadline as {
-						value: Date;
-						onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-					}
-				}
-				onchangeRecruitmentNumber={onchangeRecruitmentNumber}
-			/>
-			<div>
-				<EditorComponent data={data} />
-			</div>
-			<div className={styles.BtnWrap}>
-				<button onClick={goback} className={styles.cancelBtn}>
-					취소
-				</button>
-				<button onClick={onSubmit} className={styles.submitBtn}>
-					등록
-				</button>
-			</div>
-		</div>
+		<>
+			{loading ? (
+				<LoadingSpinner />
+			) : (
+				<div className={styles.container}>
+					<div className={styles.header}>
+						<div>📚</div>
+						<h2>모임을 만들어 보세요.</h2>
+					</div>
+					<input
+						type="text"
+						className={styles.title}
+						placeholder={data?.title}
+						onChange={title.onChange}
+					/>
+					<UpdateOptionBookMeeting
+						data={data}
+						chatUrl={
+							chatUrl as {
+								value: string;
+								onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+							}
+						}
+						deadline={
+							deadline as {
+								value: Date;
+								onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+							}
+						}
+						onchangeRecruitmentNumber={onchangeRecruitmentNumber}
+					/>
+					<div>
+						<EditorComponent data={data} />
+					</div>
+					<div className={styles.BtnWrap}>
+						<button onClick={goback} className={styles.cancelBtn}>
+							취소
+						</button>
+						<button onClick={onSubmit} className={styles.submitBtn}>
+							등록
+						</button>
+					</div>
+				</div>
+			)}
+		</>
 	);
 }
 

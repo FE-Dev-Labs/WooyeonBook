@@ -9,6 +9,9 @@ const fetchDetailCommunity = async (page: string, doc_id: string) => {
 			cache: 'no-store',
 		},
 	);
+	if (!response.ok) {
+		throw new Error('Failed to fetch data');
+	}
 	const data: AllDataType = await response.json();
 	return data;
 };
