@@ -1,0 +1,77 @@
+.container {
+	width: 1300px;
+	margin: 0 auto;
+}
+
+/* 등록 취소 버튼 */
+.BtnWrap {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+.cancelBtn {
+	margin-right: 20px;
+	width: 100px;
+	height: 36px;
+	font-size: 24px;
+	line-height: 36px;
+	background-color: #e0e0e0;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.cancelBtn:hover {
+	background-color: rgba(224, 224, 224, 0.5);
+}
+.submitBtn {
+	width: 100px;
+	height: 36px;
+	font-size: 24px;
+	line-height: 36px;
+	background-color: #6594e7;
+	border: none;
+	border-radius: 10px;
+	color: white;
+	cursor: pointer;
+}
+.submitBtn:hover {
+	background-color: rgba(101, 148, 231, 0.5);
+}
+/* header 영역 */
+.header {
+	width: 1220px;
+	height: 48px;
+	margin-bottom: 30px;
+	background-color: rgba(244, 242, 229, 0.5);
+
+	display: flex;
+	align-items: center;
+	padding: 20px 40px;
+}
+.header > div {
+	font-size: 30px;
+	line-height: 30px;
+	margin-right: 30px;
+}
+.header > h2 {
+	font-size: 30px;
+	line-height: 30px;
+	color: black;
+	font-weight: bold;
+}
+/* title */
+.title {
+	width: 1300px;
+	height: 48px;
+	margin-bottom: 30px;
+
+	display: flex;
+	align-items: center;
+	border: none;
+
+	font-size: 36px;
+}
+.title:focus {
+	outline: none;
+}

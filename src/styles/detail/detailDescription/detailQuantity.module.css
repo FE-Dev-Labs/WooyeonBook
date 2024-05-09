@@ -1,0 +1,44 @@
+.quantitySelectionWrap {
+	display: flex;
+}
+.quantityMinusImg {
+	width: 15px;
+	height: 15px;
+	transform: translate(0, 2px);
+	cursor: pointer;
+}
+.quantityInput {
+	margin: 0 10px;
+	text-align: center;
+	/* line-height: 20px; */
+	font-size: 1rem;
+	width: 30px;
+}
+.quantityPlusImg {
+	width: 15px;
+	height: 15px;
+	transform: translate(0, 2px);
+	cursor: pointer;
+}
+.quantityTotalSectionWrap {
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 30px;
+	align-items: center;
+}
+.quantityTotal {
+	font-size: 18px;
+	color: #333;
+	/* font-weight: bold; */
+	margin-right: 20px;
+}
+.quantityTotalWon {
+	font-size: 18px;
+	color: #333;
+}
+.quantityTotalPrice {
+	font-size: 25px;
+	color: #6594e7;
+	font-weight: bold;
+	margin-right: 5px;
+}

@@ -1,0 +1,62 @@
+/* Pagination */
+
+.categoryContents {
+	width: 1025px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 50px;
+}
+.paginationContainer {
+	width: inherit;
+	height: 30px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.paginationWrappper {
+	/* width: 400px; */
+	height: inherit;
+	gap: 8px;
+
+	display: flex;
+	justify-content: space-between;
+}
+.paginationItem {
+	width: 30px;
+	height: inherit;
+	border-radius: 3px;
+	border: 1px solid #aaaaaa;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	color: #aaaaaa;
+}
+.paginationItem:hover {
+	background-color: #6594e7;
+	color: #ffffff;
+}
+
+/* 선택된 페이지네이션 아이템 */
+.selectedNum {
+	width: 30px;
+	height: inherit;
+	border-radius: 3px;
+	border: 1px solid #aaaaaa;
+	font-size: 12px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	color: #ffffff;
+	background-color: #6594e7;
+}

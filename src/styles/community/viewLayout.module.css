@@ -1,0 +1,89 @@
+.container {
+	display: grid;
+	/* width: 100vw; */
+	grid-template-columns: 1fr 1300px 1fr;
+	min-height: 80vw;
+}
+
+/* mainWrap */
+.mainWrap {
+	display: grid;
+	width: 100%;
+	grid-template-columns: 1000px 1fr;
+	row-gap: 30px;
+}
+
+/* content 영역 */
+.contentWrap {
+	margin-top: 30px;
+	display: flex;
+	flex-direction: column;
+}
+/* 주간 인기글 영역 */
+
+.weeklyPopularWrap {
+	display: flex;
+	margin-top: 30px;
+	margin-left: 80px;
+}
+.weeklyPopularWrap > div {
+	width: 220px;
+	height: 470px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	border: 1px solid #dee2e6;
+}
+.weeklyPopularWrap > div > h3 {
+	padding: 12px;
+	/* margin-bottom: 10px; */
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 150%;
+	color: #212529;
+}
+
+.weeklyPopularWrap > div > a {
+	font-size: 16px;
+	margin-bottom: 20px;
+	color: #495057;
+	padding-left: 15px;
+	padding-top: 10px;
+	word-wrap: break-word;
+}
+.weeklyPopularWrap > div > a:hover {
+	background-color: #f8f8f8;
+	transition: 0.5s;
+}
+.weeklyPopularWrap > div > a:visited {
+	color: black;
+}
+.weeklyPopularContent {
+	color: #495057;
+	font-size: 14px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.weeklyPopularWriter {
+	display: flex;
+	align-items: center;
+}
+.userName {
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 150%;
+	color: #212529;
+}
+.userLogo {
+	object-fit: cover;
+	border-radius: 32px;
+	margin-right: 5px;
+}
+.line {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #dee2e6;
+	align-items: center;
+}

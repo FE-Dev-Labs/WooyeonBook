@@ -1,0 +1,63 @@
+.commentListWrapper {
+	height: 50px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-bottom: 8px;
+	margin-bottom: 20px;
+}
+.commentListUserSelection {
+	display: flex;
+	align-items: center;
+	margin-bottom: 13px;
+}
+.commentListUserName {
+	color: #6594e7;
+}
+.divice {
+	margin: 5px 5px 0 5px;
+	width: 1px;
+	height: 13px;
+	text-indent: -999em;
+	border-right: solid 1px #ccc;
+}
+.commentListDate {
+	color: #666;
+}
+.commentModifyWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+.commentModifySelection {
+	display: flex;
+	align-items: center;
+}
+.modifyBtn {
+	all: unset;
+	cursor: pointer;
+}
+.modifyBtn:hover {
+	color: #6594e7;
+}
+.deleteBtn {
+	all: unset;
+	cursor: pointer;
+}
+.deleteBtn:hover {
+	color: #6594e7;
+}
+.commentInput {
+	width: 80%;
+	/* padding: 0px 20px 0px 20px; */
+	/* border: none; */
+	background-color: #eeeeee;
+	/* border-radius: 16px; */
+	/* padding: 5px 10px 5px 15px; */
+	margin-right: 30px;
+	border-width: 0 0 1px; /* 여기에 추가 */
+	font-size: 16px;
+}
+
+.commentInput:focus {
+	outline: none;
+}

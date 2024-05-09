@@ -1,0 +1,64 @@
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #dee2e6;
+	align-items: center;
+}
+/* Link button */
+.linkWrap {
+	display: flex;
+	align-items: center;
+	position: relative;
+	height: 60px;
+}
+
+.linkItem {
+	color: #adb5bd;
+	margin-right: 10px;
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+}
+.linkItem:visited {
+	color: #adb5bd;
+
+	text-decoration: none;
+}
+.linkItem:hover {
+	font-weight: bold;
+	border-radius: 10px;
+}
+.active {
+	margin-right: 5px;
+	width: 100px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	color: #6594e7;
+	border-bottom: 2px solid #6594e7;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 18px;
+}
+/* write button */
+.writeBtn {
+	width: 100px;
+	height: 40px;
+	background-color: #6594e7;
+	color: #ffffff;
+	border: none;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-size: 14px;
+	cursor: pointer;
+}
+.writeIcon {
+	margin-right: 10px;
+}

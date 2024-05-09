@@ -1,0 +1,510 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+}
+
+.title {
+	width: 1300px;
+	/* margin: 0 auto 30px auto; */
+	font-size: 30px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.infoWrap {
+	display: flex;
+	color: #868e96;
+}
+
+.contentInfoWrap {
+	display: flex;
+	align-items: center;
+}
+
+.dot {
+	font-size: 20px;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 5px;
+}
+
+/* 수정 삭제 */
+
+.adimBtnWrap {
+	display: flex;
+}
+
+.adimBtnWrap > a {
+	width: 100px;
+	height: 40px;
+	background-color: #6594e7;
+	color: #ffffff;
+	border: none;
+	border-radius: 10px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	font-size: 14px;
+}
+/* .adimBtnWrap > a:hover {
+	color: #6594e7;
+} */
+.adimBtnWrap > button {
+	margin-right: 20px;
+	width: 100px;
+	height: 24px;
+	line-height: 24px;
+	cursor: pointer;
+	border: none;
+	background-color: white;
+	font-size: 18px;
+	font-weight: bold;
+}
+/* .adimBtnWrap > button:hover {
+	color: red;
+} */
+.line {
+	width: 1300px;
+	margin-bottom: 30px;
+}
+
+.viewerWrap {
+	width: 1300px;
+	min-height: 40px;
+	padding: 24px 0px;
+}
+
+/* option section*/
+
+.optionContainer {
+	width: 1300px;
+	flex-wrap: wrap;
+	border-bottom: 2px solid #dee2e6;
+}
+.optionMeetingContainer {
+	width: 500px;
+	height: 100px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.optionBuyingContainer {
+	width: 500px;
+	height: 60px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.optionItemWrap {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	justify-content: space-between;
+}
+.optionItemTitle {
+	width: 50%;
+	/* width: 120px;
+	margin-right: 10px; */
+	font-size: 16px;
+	color: #868e96;
+}
+.optionItemContent {
+	display: inline-block;
+	font-size: 16px;
+	color: #868e96;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.optionItemContent:visited {
+	color: #000;
+}
+
+/* 댓글 */
+.commentWrapper {
+	/* width: 1200px;
+	margin: 0 auto; */
+}
+.commentHeader {
+	border-top: 2px solid #dee2e6;
+	/* width: 1200px; */
+	margin: 50 auto 20px auto;
+	display: flex;
+	padding: 30px 50px 30px 0px;
+}
+.commentCount {
+	font-size: 20px;
+	font-weight: bold;
+	margin-right: 5px;
+}
+.commentCountLength {
+	font-size: 20px;
+	font-weight: bold;
+	color: #6594e7;
+}
+.commentSortWrap {
+	display: flex;
+	align-items: center;
+}
+.commentSortWrap > a {
+	border: none;
+	color: black;
+	background-color: white;
+	cursor: pointer;
+}
+.commentSortWrap > a:hover {
+	color: #6594e7;
+}
+.commentSortWrap > a:visited {
+	color: black;
+}
+
+.commentCreateWrap {
+	padding-bottom: 30px;
+}
+.commentCreateWrap > button {
+	width: 100%;
+	height: 50px;
+	text-align: left;
+	padding: 0 30px;
+	color: #adb5bd;
+	background-color: inherit;
+	border: 1px solid #adb5bd;
+	border-radius: 10px;
+}
+
+.commentEditorBtnWrap > button {
+	width: 100px;
+	height: 30px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+/* 댓글 */
+.commentWrapper {
+	/* display: flex; */
+}
+.commentCreateBoxWrap {
+	display: flex;
+	align-items: center;
+	/* width: 1200px;
+	margin: 0 auto; */
+}
+.commentCreateBoxWrap > input {
+	width: 96%;
+	height: 30px;
+	padding: 0px 20px 0px 20px;
+	border: none;
+	background-color: #ffffff;
+	border-radius: 16px;
+	padding: 15px 10px 10px 30px;
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+	margin-right: 30px;
+}
+
+.commentCreateBoxWrap > input:focus {
+	outline: none;
+}
+.commentCreateBoxWrap > input::placeholder {
+	font-size: 16px;
+	/* text-align: center; */
+	align-items: center;
+	/* line-height: 15; */
+}
+/* 댓글 본문 */
+.commnetWrap {
+	/* width: 1200px; */
+	margin: 0 auto;
+	padding: 30px 50px 0 50px;
+}
+.commentInfoWrap {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.commentInfoWrap > div {
+	display: flex;
+	align-items: center;
+}
+.commentContentWrap {
+	width: 80%;
+}
+.commentContentWrap > p {
+	/* margin-bottom: 20px; */
+}
+.contentBtnWrap {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 30px;
+}
+.optiondivice {
+	display: flex;
+}
+.dropdown {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px 10px 0px 10px;
+}
+.dropdownMenu {
+}
+.dropdownMenuWrapper {
+	position: absolute;
+	padding: 10px 0;
+	z-index: 1000;
+	top: 55px;
+	right: 10px;
+	display: flex;
+	color: #212529;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	border-radius: 0.25rem;
+	flex-direction: column;
+}
+.editBtn {
+	display: flex;
+	padding: 0.4rem 1rem;
+	clear: both;
+	font-weight: 400;
+	color: #212529;
+	text-align: inherit;
+	text-decoration: none;
+	white-space: nowrap;
+	background-color: transparent;
+	border: 0;
+	align-content: center;
+	align-items: center;
+	font-size: 14px;
+}
+.editIcon {
+	margin-right: 8px;
+}
+.deleteIcon {
+	margin-rigth: 8px;
+}
+.dropdown {
+	position: relative;
+}
+.moreIconHover {
+	border: none;
+	width: 45px;
+	height: 45px;
+	background-color: transparent;
+}
+.moreIconHover:hover {
+	width: 45px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
+}
+.moreIconActive {
+	width: 45px;
+	height: 45px;
+	background-color: #f8f9fa;
+	color: #495057;
+	border-radius: 4px;
+}
+.dropdownIconHover:hover {
+	background-color: #f1f3f5;
+}
+.viewBtnWrap {
+	display: flex;
+	justify-content: flex-end;
+}
+.likeBtn {
+	border: none;
+	width: 50px;
+	height: 45px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.likeBtn:hover {
+	width: 50px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
+}
+.shareBtn {
+	border: none;
+	width: 70px;
+	height: 45px;
+	background-color: transparent;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.shareBtn:hover {
+	width: 70px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
+}
+.likeBtnWrap {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px 0px 10px;
+	cursor: pointer;
+}
+.stateBtnWrapper {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px 0px 10px;
+	cursor: pointer;
+}
+.stateBtnWrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px;
+	height: 45px;
+	background-color: #f1f3f5;
+	border-radius: 4px;
+}
+.shareBtnWrap {
+	display: flex;
+	justify-content: center;
+	padding: 10px 10px 0px 10px;
+}
+.likeCountText {
+	font-size: 14px;
+	font-weight: 700;
+}
+.stateBtnText {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.shareText {
+	font-size: 14px;
+	font-weight: 700;
+}
+.iconsStyle {
+	margin-right: 10px;
+}
+.commentInput {
+	width: 96%;
+	height: 30px;
+	padding: 0px 20px 0px 20px;
+	border: none;
+	background-color: #ffffff;
+	border-radius: 16px;
+	padding: 15px 10px 10px 30px;
+	box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
+	margin-right: 30px;
+}
+.commentInput:focus {
+	outline: none;
+}
+.commentInput::placeholder {
+	font-size: 16px;
+	/* text-align: center; */
+	align-items: center;
+	/* line-height: 15; */
+}
+.commentBtnWrapper {
+	display: flex;
+}
+.cancelBtn {
+	width: 125px;
+	height: 48px;
+	border: 1px solid black;
+	border-radius: 14px;
+	font-weight: bold;
+	font-size: 14px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	/* background-color: #f8f8f8; */
+	background-color: #fff;
+	border: 2px solid #6594e7;
+}
+
+.updateBtn {
+	width: 125px;
+	height: 48px;
+	border: 1px solid black;
+	border-radius: 14px;
+	font-weight: bold;
+	font-size: 14px;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	background-color: #6594e7;
+	color: #fff;
+	margin-right: 10px;
+}
+.commentInputCount {
+	display: flex;
+	justify-content: flex-end;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	/* width: 1200px; */
+	margin: 0 auto;
+}
+.commentInputCountTxt {
+	color: #6594e7;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.commentListWrapper {
+	list-style: none;
+	height: 50px;
+	background-color: #eeeeee;
+	border-radius: 16px;
+	padding: 20px;
+	margin-bottom: 8px;
+	margin-bottom: 20px;
+}
+.commentListUserSelection {
+	display: flex;
+	align-items: center;
+	margin-bottom: 13px;
+}
+.commentListUserName {
+	color: #6594e7;
+}
+.divice {
+	margin: 5px 5px 0 5px;
+	width: 1px;
+	height: 13px;
+	text-indent: -999em;
+	border-right: solid 1px #ccc;
+}
+.commentListDate {
+	color: #666;
+}
+.commentModifyWrapper {
+	display: flex;
+	justify-content: space-between;
+}
+.commnetModifyInput {
+	width: 80%;
+	/* padding: 0px 20px 0px 20px; */
+	/* border: none; */
+	background-color: #eeeeee;
+	/* border-radius: 16px; */
+	/* padding: 5px 10px 5px 15px; */
+	margin-right: 30px;
+	border-width: 0 0 1px; /* 여기에 추가 */
+	font-size: 16px;
+}
+
+.commnetModifyInput:focus {
+	outline: none;
+}
+.OptionaccordionContainer {
+	/* display: flex; */
+}

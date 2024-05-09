@@ -1,0 +1,45 @@
+.lastesWordWrapper {
+	width: 200px;
+	border-right: solid 1px #ebebeb;
+}
+.lastesWordTxt {
+	padding-left: 20px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+}
+.lastesWordWrap {
+	padding-bottom: 15px;
+	height: 330px;
+}
+.lastesUl {
+	margin-left: 19px;
+}
+.lastesLi {
+	position: relative;
+}
+.lastesLink {
+	/* display: block;
+	margin-right: 40px; */
+	height: 30px;
+	/* overflow: hidden; */
+	line-height: 30px;
+	font-size: 14px;
+	color: #666;
+	cursor: pointer;
+}
+.cancelIcon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 9px 20px 10px 7px;
+	cursor: pointer;
+}
+.lastesNoArrayText {
+	line-height: 30px;
+	font-size: 14px;
+	color: #666;
+	font-size: 13px;
+}

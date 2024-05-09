@@ -1,0 +1,16 @@
+/* 헤더 틀 */
+.container {
+	height: 170px;
+
+	display: flex;
+	justify-content: center;
+
+	background-color: #f4f2e5;
+}
+.wrapper {
+	width: 1300px;
+	min-height: inherit;
+
+	display: flex;
+	flex-direction: column;
+}

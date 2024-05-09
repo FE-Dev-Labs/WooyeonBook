@@ -1,0 +1,281 @@
+/* 로그인/회원가입 모달 백그라운드 */
+.container {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+
+	display: flex;
+	position: fixed;
+	justify-content: center;
+	align-items: center;
+	overflow: auto;
+	/* overflow-y: scroll; */
+
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 로그인/회원가입 모달 틀 */
+.modalWrapper {
+	position: relative;
+	width: 550px;
+	height: 430px;
+	border-radius: 30px;
+	display: flex;
+	justify-content: center;
+	background-color: #f4f2e5;
+}
+.modalSignupWrapper {
+	position: relative;
+	width: 650px;
+	height: 600px;
+	border-radius: 30px;
+	display: flex;
+	justify-content: center;
+	background-color: #f4f2e5;
+}
+.signupContents {
+	width: 520px;
+	height: inherit;
+}
+
+.contents {
+	width: 400px;
+	height: inherit;
+}
+.title {
+	margin-top: 50px;
+	width: inherit;
+	display: flex;
+	justify-content: space-between;
+}
+.title > span {
+	font-size: 32px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+
+/* 컨텐츠 랩퍼 내 가입 폼 랩퍼 */
+.formWrapper {
+	width: inherit;
+	/* margin-top: 25px; */
+	margin-top: 50px;
+}
+.inputWrapper {
+	width: inherit;
+	gap: 20px;
+
+	display: flex;
+	flex-direction: column;
+}
+.inputSignupWrapper {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* 두 개의 컬럼을 같은 크기로 설정 */
+	gap: 20px; /* 컬럼 사이의 간격 */
+}
+.inputLeftWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.inputrightWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.inputLabel {
+	width: inherit;
+	height: 70px;
+	font-size: 16px;
+	font-weight: bold;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.inputAddressLabel {
+	width: inherit;
+	font-size: 16px;
+	font-weight: bold;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.inputField {
+	width: 100%;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+
+.buttonWrapper {
+	width: inherit;
+	height: 50px;
+	/* margin-top: 50px; */
+	margin-top: 40px;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 회원가입 시 회원가입 버튼 */
+.signupButton {
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+
+	border: none;
+	cursor: pointer;
+
+	color: #ffffff;
+	background-color: #6594e7;
+	width: inherit;
+	height: 50px;
+	/* margin-top: 50px; */
+	margin-top: 30px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* 로그인 시 로그인 버튼 */
+.loginLeftButton {
+	width: 100%;
+	/* margin-right: 10px; */
+	height: inherit;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: #6594e7;
+}
+/* .loginLeftButton:hover {
+	background-color: #3464b9;
+} */
+.loginRightButton {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	margin-left: 10px;
+	height: inherit;
+	font-size: 18px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	color: #6594e7;
+	background-color: transparent;
+	border: 1px solid #6594e7;
+}
+/* .loginRightButton:hover {
+	color: #ffffff;
+	background-color: #6594e7;
+} */
+
+/* 나가기 아이콘 */
+.closeIcon {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+}
+
+/* address */
+.inputAddress {
+	display: flex;
+	justify-content: space-between;
+}
+.inputFieldAddress {
+	width: 64%;
+	margin-right: 15px;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputRoadAddress {
+	width: 100%;
+	margin-top: 20px;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputDetailRoadAddress {
+	width: 100%;
+	margin-top: 20px;
+	height: 36px;
+	border-radius: 10px;
+	font-size: 16px;
+	padding: 0 12px;
+
+	border: none;
+	box-sizing: border-box;
+}
+.inputFieldBtn {
+	width: 30%;
+	height: 36px;
+	font-size: 12px;
+	font-weight: bold;
+	border-radius: 10px;
+	border: none;
+	cursor: pointer;
+	color: #ffffff;
+	background-color: #6594e7;
+}
+.postcodeWrapper {
+	position: relative; /* 이 부분을 추가합니다. */
+	width: 500px; /* DaumPostcode와 동일한 너비 */
+	height: 500px; /* DaumPostcode와 동일한 높이 */
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.closeBtn {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+}
+.closeBtnBackground {
+	position: absolute;
+	right: 0; /* 오른쪽 상단에 위치하도록 조정 */
+	top: 0; /* 상단에 위치하도록 조정 */
+	width: 20px;
+	height: 20px;
+	background-color: black;
+}
+.postCodeStyle {
+	width: 500px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.daumPostBackground {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.8);
+}
+.addressZipcodeWrapper {
+	margin-top: 20px;
+}

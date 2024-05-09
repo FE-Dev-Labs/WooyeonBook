@@ -1,0 +1,5 @@
+/* search page wrapper */
+.container {
+	display: flex;
+	flex-direction: column;
+}

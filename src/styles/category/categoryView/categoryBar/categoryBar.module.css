@@ -1,0 +1,49 @@
+.wrapper {
+	width: 225px;
+	margin-top: 50px;
+	padding-bottom: 10px;
+
+	border: solid 1px #d8d8d8;
+
+	position: sticky;
+	top: 15px;
+}
+.categoryBarTitle {
+	width: inherit;
+	height: 25px;
+	font-size: 14px;
+
+	margin-top: 20px;
+}
+.categoryBarTitle > h1 {
+	margin-left: 20px;
+	font-weight: bold;
+}
+.categoryBar {
+	margin-left: 20px;
+}
+.categoryItem {
+	font-size: 12px;
+	height: 25px;
+
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	color: #666;
+}
+.categoryItem:hover {
+	text-decoration: underline;
+}
+
+/* 선택된 카테고리 아이템 */
+.selectedCategory {
+	font-size: 12px;
+	height: 25px;
+
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+
+	color: #6594e7 !important;
+	font-weight: bold;
+}

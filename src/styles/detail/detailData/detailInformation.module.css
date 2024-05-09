@@ -1,0 +1,30 @@
+.accordionContent {
+}
+
+.accordionWrapper {
+	display: grid;
+	grid-template-columns: 2fr 2fr;
+	grid-column-gap: 10px;
+}
+.accordionWrappeActive {
+	display: grid;
+	grid-template-columns: 2fr 2fr 2fr;
+	grid-column-gap: 10px;
+}
+.accodionRowSelection {
+	/* margin-bottom: 50px; */
+}
+.accordionWrapperItem {
+	display: flex;
+	flex-direction: column;
+}
+.boookItemTitle {
+	line-height: 20px;
+	margin-right: 10px;
+	margin-top: 15px;
+	color: #d8d8d8;
+}
+.bookItem {
+	line-height: 20px;
+	margin-top: 10px;
+}

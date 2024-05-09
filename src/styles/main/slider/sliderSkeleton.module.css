@@ -1,0 +1,38 @@
+/* mainSliderSkeleton.module.css */
+.skeletonWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 400px;
+	background-color: #f0f0f0;
+}
+
+.skeletonItem {
+	width: 200px;
+	height: 400px;
+	border-radius: 10px;
+
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+.skeletonSecondItem {
+	width: 900px;
+	height: 400px;
+	border-radius: 10px;
+	margin: 0 4px;
+
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

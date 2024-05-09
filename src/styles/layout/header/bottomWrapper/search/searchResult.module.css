@@ -1,0 +1,25 @@
+
+.searchResultLink {
+	display: block;
+	margin-right: 20px;
+	padding-left: 19px;
+	height: 30px;
+	overflow: hidden;
+	line-height: 30px;
+	font-size: 14px;
+	color: #666;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.searchResultTitle {
+	color: inherit;
+	/* color: #6594e7; */
+	/* font-weight: bold; */
+}
+.searchResultKeyword {
+	color: #6594e7;
+	font-weight: bold;
+}
+.searchResultWrap {
+	cursor: pointer;
+}

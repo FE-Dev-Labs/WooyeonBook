@@ -1,0 +1,36 @@
+.buyingSelectContainer {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 40px;
+	margin-bottom: 30px;
+}
+.buyingSelectWrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.buyingSelectWrap > label {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.buyingSelectWrap > input {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+}
+.selectBookText {
+	width: 478px;
+	height: 38px;
+	font-size: 16px;
+	padding: 0 10px;
+	border: 1px solid #cccccc;
+	border-radius: 5px;
+	line-height: 38px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

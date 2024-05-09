@@ -1,0 +1,87 @@
+.searchForm {
+	width: 400px;
+	height: 60px;
+
+	display: flex;
+	position: relative;
+}
+.searchForm > input {
+	width: 100%;
+	height: 65%;
+	border-radius: 50px;
+	padding: 0 20px;
+	font-size: 13px;
+	font-weight: 400;
+	margin-top: 5px;
+	font-size: 13px;
+	box-sizing: border-box;
+	border: none;
+	outline: none;
+
+	transition: border-radius 0.3s;
+}
+.searchForm > input:focus {
+	border-radius: 5px;
+}
+.searchIcon {
+	right: 10px;
+	bottom: 23px;
+
+	border: none;
+	position: absolute;
+	cursor: pointer;
+
+	background-color: #ffffff;
+}
+.recentSearchWrapper {
+	box-sizing: border-box;
+	position: absolute;
+	left: 0;
+	top: 55px;
+	width: 100%;
+	text-align: left;
+	border: solid 1px #ebebeb;
+	border-radius: 3px;
+	background-color: #fff;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+	z-index: 100;
+}
+.lastlestDeleteAll {
+	display: flex;
+	position: relative;
+	z-index: 1;
+	height: 40px;
+	line-height: 40px;
+	border-top: solid 1px #ebebeb;
+	cursor: pointer;
+}
+.lastelestDeleteAllText {
+	display: block;
+	padding: 0 15px 0 15px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #666;
+}
+.lastlestCloseWrap {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 20px 0 30px;
+	height: 40px;
+	line-height: 40px;
+}
+.lastelestCloseText {
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #666;
+}
+.cancelIcon {
+	margin: 15px 0 0 4px;
+}
+.searchResultWord {
+	padding: 20px 0px 0px 0px;
+}
+.searchResultWrap {
+	cursor: pointer;
+}

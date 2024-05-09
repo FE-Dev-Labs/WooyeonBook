@@ -1,0 +1,17 @@
+.bestSellerWrapper {
+	width: inherit;
+	height: 435px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	/* background-color: yellow; */
+}
+.bestItemWrapper {
+	width: 1300px;
+
+	display: flex;
+	flex-direction: row;
+	gap: 75px;
+}

@@ -1,0 +1,46 @@
+.container {
+	height: calc(100vh - 170px);
+	gap: 30px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+.wrapper {
+	width: 1300px;
+	gap: 150px;
+
+	display: flex;
+	align-items: center;
+}
+
+.textWrpper {
+	height: 260px;
+	font-size: 20px;
+}
+.text {
+	font-size: 40px;
+}
+.p {
+	margin-top: 40px;
+	margin-bottom: 5px;
+}
+.button {
+	/* width: 220px; */
+	margin-top: 40px;
+	font-size: 20px;
+	text-decoration: underline;
+
+	background: inherit;
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+	overflow: visible;
+	cursor: pointer;
+}
+.button:hover {
+	cursor: pointer;
+	color: #6594e7;
+}

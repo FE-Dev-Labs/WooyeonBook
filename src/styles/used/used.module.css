@@ -1,0 +1,5 @@
+/* used page wrapper */
+.container {
+	display: flex;
+	flex-direction: column;
+}

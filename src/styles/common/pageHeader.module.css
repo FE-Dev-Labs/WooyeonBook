@@ -1,0 +1,21 @@
+.pageHeader {
+	/* width: 100vw; */
+	height: 150px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background-color: #f8f8f8;
+}
+.titleWrapper {
+	width: 1300px;
+	height: inherit;
+
+	display: flex;
+	align-items: center;
+}
+.title {
+	font-size: 30px;
+	font-weight: bold;
+}

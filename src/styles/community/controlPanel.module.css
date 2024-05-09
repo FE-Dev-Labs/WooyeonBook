@@ -1,0 +1,43 @@
+.container {
+	width: 1100px;
+	justify-content: space-between;
+	display: flex;
+	margin-bottom: 47px;
+}
+.optionBtnWrap {
+	width: 600px;
+	display: flex;
+}
+.sortOptionBtn {
+	width: 300px;
+	margin-right: 20px;
+}
+.optionBtn {
+	width: 300px;
+}
+.container > a {
+	width: 200px;
+	height: 36px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 36px;
+}
+
+@media screen and (min-width: 2000px) {
+	.container {
+		width: 1300px;
+	}
+	.optionBtnWrap {
+		width: 800px;
+	}
+	.sortOptionBtn {
+		width: 400px;
+	}
+	.optionBtn {
+		width: 400px;
+	}
+	.container > a {
+		width: 300px;
+	}
+}

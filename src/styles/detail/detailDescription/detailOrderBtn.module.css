@@ -1,0 +1,31 @@
+.btnWrapper {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 50px;
+}
+.addToCartBtn {
+	display: block;
+	cursor: pointer;
+	width: 150px;
+	height: 50px;
+	background-color: #fff;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	border: 2px solid #6594e7;
+	border-radius: 10px;
+	margin-right: 20px;
+}
+.orderBtn {
+	display: block;
+	cursor: pointer;
+	width: 150px;
+	height: 50px;
+	background: #6594e7;
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
+	border-radius: 10px;
+	border: 2px solid #6594e7;
+	color: #fff;
+}

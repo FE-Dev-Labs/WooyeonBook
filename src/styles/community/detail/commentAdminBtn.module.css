@@ -1,0 +1,26 @@
+.adminBtnWrap {
+	/* width: 90px; */
+	display: flex;
+	justify-content: space-between;
+}
+.updateBtn {
+	all: unset;
+	cursor: pointer;
+}
+.updateBtn:hover {
+	color: #6594e7;
+}
+.deleteBtn {
+	all: unset;
+	cursor: pointer;
+}
+.deleteBtn:hover {
+	color: #6594e7;
+}
+.divice {
+	margin: 5px 5px 0 5px;
+	width: 1px;
+	height: 13px;
+	text-indent: -999em;
+	border-right: solid 1px #ccc;
+}
