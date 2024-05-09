@@ -35,6 +35,9 @@ function Search() {
 		if (qs.num !== '') {
 			url.push(`num=${qs.num}`);
 		}
+		if (url.length === 0) {
+			return;
+		}
 		router.push('/community/' + pathname + '?' + url.join('&'));
 	}, [qs]);
 

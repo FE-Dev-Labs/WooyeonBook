@@ -2,6 +2,7 @@ import styles from '@/styles/community/detail/detailLayout.module.css';
 import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { BookMeetingDataType } from '@/types/community/view/data';
+import { redirect } from 'next/navigation';
 
 const BookMeetingLazy = dynamic(
 	() => import('@/components/community/detail/BookMeeting'),
@@ -37,7 +38,7 @@ async function fetchData(page: string, doc_id: string) {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
 }
 export const dynamicParams = true;
 export async function generateStaticParams() {
