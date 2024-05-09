@@ -21,7 +21,7 @@
 ## 🙆 팀원 소개
 |FE 박진양|FE 김원준|FE 배성완|
 |------|------|------|
-|[Github](https://github.com/Jinyang-Park)|[Github](https://github.com/kimwonjuun)|[Github](https://github.com/baesee0806)|
+|<a href="https://github.com/Jinyang-Park"><img src="https://avatars.githubusercontent.com/u/80263801?v=4" alt="Jinyang-Park" width="100px" height="100px"></a>|<a herf="https://github.com/kimwonjuun"> <img src="https://avatars.githubusercontent.com/u/117059038?v=4" alt="kimwonjuun" width="100px" height="100px"></a>|<a href="https://github.com/baesee0806"><img src="https://avatars.githubusercontent.com/u/62400479?v=4" alt="baesee0806" width="100px" height="100px"></a>|
 <br/>
 <br/>
 
