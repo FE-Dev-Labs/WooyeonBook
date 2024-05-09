@@ -2,6 +2,7 @@ import ScalatonUi from '@/components/common/SkeletonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookMeetingDataType } from '@/types/community/view/data';
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
 
 async function fetchData() {
 	let retryCount = 0;
@@ -34,7 +35,7 @@ async function fetchData() {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
 }
 
 function isBookMeetingArray(data: any): data is BookMeetingDataType[] {

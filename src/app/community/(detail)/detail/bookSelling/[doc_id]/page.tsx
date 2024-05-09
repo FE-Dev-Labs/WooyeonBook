@@ -1,6 +1,8 @@
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { BookSellingDataType } from '@/types/community/view/data';
+import { redirect } from 'next/navigation';
 const BookSellingLazy = dynamic(
 	() => import('@/components/community/detail/BookSelling'),
 	{ loading: () => <LoadingSpinner /> },
@@ -14,7 +16,7 @@ async function fetchData(page: string, doc_id: string) {
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/${page}/${doc_id}`,
 				{
-					cache: 'no-store',
+					next: { revalidate: 1 },
 				},
 			);
 			if (response.ok) {
@@ -35,7 +37,19 @@ async function fetchData(page: string, doc_id: string) {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
+}
+export const dynamicParams = true;
+export async function generateStaticParams() {
+	const datas = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookSelling`,
+	).then((res) => res.json());
+
+	return datas.map((data: BookSellingDataType) => {
+		return {
+			doc_id: data.doc_id,
+		};
+	});
 }
 export default async function DetailPage({
 	params,
