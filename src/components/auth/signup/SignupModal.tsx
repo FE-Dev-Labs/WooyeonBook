@@ -78,10 +78,10 @@ export default function SignupModal() {
 			return redirect('/?message=Could not authenticate user');
 		} else {
 			// 성공적인 회원가입 후 처리
-			alert('회원가입 완료. 로그인 해주세요!');
-			router.back();
-			window.scrollTo(0, 0); // router.back에 {scroll: false} 옵션 X
 			await supabase.auth.signOut();
+			alert('회원가입 완료. 로그인 해주세요!');
+			window.scrollTo(0, 0); // router.back에 {scroll: false} 옵션 X
+			router.back();
 		}
 	};
 
