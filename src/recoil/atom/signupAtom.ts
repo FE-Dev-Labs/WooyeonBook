@@ -5,8 +5,8 @@ export const zipcodeAtom = atom<string>({
 	default: '',
 });
 
-export const roadAddressAtom = atom<string>({
-	key: 'roadAddressAtom',
+export const addressAtom = atom<string>({
+	key: 'addressAtom',
 	default: '',
 });
 
