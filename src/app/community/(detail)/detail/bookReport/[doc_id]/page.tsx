@@ -1,7 +1,7 @@
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
-
+import { BookReportDataType } from '@/types/community/view/data';
 const BookReportLazy = dynamic(
 	() => import('@/components/community/detail/BookReport'),
 	{ loading: () => <LoadingSpinner /> },
@@ -40,23 +40,16 @@ async function fetchData(page: string, doc_id: string) {
 }
 export default async function DetailPage({
 	params,
-	searchParams,
 }: {
 	params: { doc_id: string };
-	searchParams?: { sort?: string };
 }) {
-	const data = await fetchData('bookReport', params.doc_id);
+	const data: BookReportDataType = await fetchData('bookReport', params.doc_id);
 
 	return (
 		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>
-				<BookReportLazy
-					data={data}
-					params={params}
-					searchParams={searchParams}
-					page="bookReport"
-				/>
+				<BookReportLazy data={data} params={params} />
 			</article>
 			<aside className={styles.optionWrap}></aside>
 		</main>
