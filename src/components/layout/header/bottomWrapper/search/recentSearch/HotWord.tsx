@@ -18,13 +18,13 @@ export default function HotWord() {
 	// 현재 인기 검색어 페이지 리코일
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
+
 	// react-query 훅
 	const {
 		getHotwordsData: { isLoading, error, data },
 	} = useKeyWordsQuery();
 
 	if (error) return <div> There was an error!</div>;
-	// if (isLoading) return <div> Data is Loading...</div>;
 
 	//현재 년도 날짜 함수
 	const today = new Date();
