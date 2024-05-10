@@ -89,3 +89,10 @@
 .hotWordPopularWrap {
 	padding-left: 0;
 }
+.loadingSkeleton {
+	width: 170px;
+	height: 25px;
+	background-color: #e0e0e0;
+	border-radius: 8px;
+	margin: 10px;
+}

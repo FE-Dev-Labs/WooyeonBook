@@ -1,6 +1,6 @@
 'use client';
 
-import { Book } from '@/types/bookDetailDate';
+import { Book, ResponseData } from '@/types/bookDetailDate';
 import AccordionWrapper from '../common/AccordionWrapper';
 import Accordion from '../common/Accordion';
 import { useEffect } from 'react';

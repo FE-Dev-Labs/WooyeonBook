@@ -1,4 +1,5 @@
 .container {
+	/* height: 100vh; */
 	width: clamp(500px, 90%, 1300px);
 	margin: 50px auto;
 	/* display: grid;

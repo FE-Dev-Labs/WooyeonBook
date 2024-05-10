@@ -4,7 +4,7 @@ import styles from '@/styles/community/detail/detailPage.module.css';
 import { createClient } from '@/utils/supabase/client';
 import { useState } from 'react';
 import { createComment } from '@/apis/community/comment/CRUD';
-
+import { useRouter } from 'next/navigation';
 interface CommentData {
 	id?: string;
 	created_at: Date;
@@ -17,6 +17,7 @@ interface CommentData {
 }
 
 const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
+	const router = useRouter();
 	const supabase = createClient();
 
 	const [comment, setComment] = useState('');
@@ -33,12 +34,13 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 		}
 	};
 	const [createState, setCreateState] = useState(false);
+
 	const handleState = async () => {
 		const {
 			data: { user },
 		} = await supabase.auth.getUser();
 		if (!user) {
-			alert('로그인이 필요합니다.');
+			router.push('/login');
 		} else {
 			setCreateState(!createState);
 		}
@@ -67,18 +69,21 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 		setCreateState(false);
 		setComment('');
 	};
+
 	return (
 		<div>
 			{/* create  btn client*/}
 			{!createState && (
-				<div className={styles.commentCreateWrap}>
-					<input
-						type="text"
-						placeholder="한글 기준 50자까지 작성 가능합니다."
-						onFocus={handleState}
-						className={styles.commentInput}
-						maxLength={50}
-					/>
+				<div>
+					<div className={styles.commentCreateWrap}>
+						<input
+							type="text"
+							placeholder="한글 기준 50자까지 작성 가능합니다."
+							onFocus={handleState}
+							className={styles.commentInput}
+							maxLength={50}
+						/>
+					</div>
 				</div>
 			)}
 			{/* create box client*/}
