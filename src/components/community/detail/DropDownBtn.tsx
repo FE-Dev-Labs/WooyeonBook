@@ -10,22 +10,20 @@ import editIcon from '@/assets/detail/editIcon.png';
 import deleteIcon from '@/assets/detail/deleteIcon.png';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '@/recoil/atom/userAtom';
 interface BookReportProps {
 	data: AllDataType;
-	user: User | null;
 	page?: string;
 }
-interface User {
-	id: string;
-	name?: string;
 
-	// 필요한 다른 속성들을 추가할 수 있습니다.
-}
-const DropDownBtn = ({ data, user, page }: BookReportProps) => {
+const DropDownBtn = ({ data, page }: BookReportProps) => {
 	const [isOpen, setIsOpen] = useState(false); // 드롭다운 메뉴 상태관리
 	// 외부 클릭 시
 	const ref = useRef<HTMLInputElement>(null);
 	const router = useRouter();
+	const userInfo = useRecoilValue(userAtom);
+
 	// useOutsideClick 훅
 	useOutsideClick({
 		ref,
@@ -63,7 +61,7 @@ const DropDownBtn = ({ data, user, page }: BookReportProps) => {
 				<div
 					className={styles.dropdownMenu}
 					style={{ display: isOpen ? 'block' : 'none' }}>
-					{data?.created_user === user?.id ? (
+					{data?.created_user === userInfo?.id ? (
 						<div className={styles.dropdownMenuWrapper}>
 							<div className={styles.dropdownIconHover}>
 								<Link

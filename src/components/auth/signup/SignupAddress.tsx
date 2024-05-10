@@ -1,5 +1,5 @@
 'use client';
-import { detailAddressAtom, roadAddressAtom } from '@/recoil/atom/signupAtom';
+import { detailAddressAtom, addressAtom } from '@/recoil/atom/signupAtom';
 import styles from '@/styles/auth/auth.module.css';
 import { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
@@ -11,14 +11,14 @@ import useAuth from '@/hooks/useAuth';
 export default function SignupAddress() {
 	const auth = useAuth();
 
-	const [roadAddress, setRoadAddress] = useRecoilState(roadAddressAtom);
+	const [address, setAddress] = useRecoilState(addressAtom);
 	const [detailaddress, setDetailAddress] = useRecoilState(detailAddressAtom);
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
 	// 주소 정보 가져오기
 	const handleComplete = (data: any) => {
 		auth.setZipcode(data.zonecode);
-		setRoadAddress(data.roadAddress);
+		setAddress(data.address);
 		setIsOpen(false);
 	};
 
@@ -55,7 +55,7 @@ export default function SignupAddress() {
 				</div>
 				<input
 					readOnly
-					defaultValue={roadAddress}
+					defaultValue={address}
 					type="text"
 					name="address"
 					className={styles.inputRoadAddress}

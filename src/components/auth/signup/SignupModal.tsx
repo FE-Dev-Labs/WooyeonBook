@@ -5,23 +5,20 @@ import Image from 'next/image';
 import closeBlackIcon from '@/assets/common/closeBlackIcon.png';
 import { redirect, useRouter } from 'next/navigation';
 import SignupAddress from './SignupAddress';
-import { useRecoilValue } from 'recoil';
-import {
-	detailAddressAtom,
-	roadAddressAtom,
-	zipcodeAtom,
-} from '@/recoil/atom/signupAtom';
+import { useRecoilState } from 'recoil';
+import { detailAddressAtom, addressAtom } from '@/recoil/atom/signupAtom';
 import { createClient } from '@/utils/supabase/client';
 import useAuth from '@/hooks/useAuth';
+import { useState } from 'react';
 
 export default function SignupModal() {
 	const router = useRouter();
 	const auth = useAuth();
 	const supabase = createClient();
 
-	const zipcode = useRecoilValue(zipcodeAtom);
-	const address = useRecoilValue(roadAddressAtom);
-	const detailaddress = useRecoilValue(detailAddressAtom);
+	// const zipcode = useRecoilValue(zipcodeAtom);
+	const [address, setAddress] = useRecoilState(addressAtom);
+	const [detailaddress, setDetailAddress] = useRecoilState(detailAddressAtom);
 
 	const signUp = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault(); // 폼의 기본 제출 동작 방지
@@ -63,7 +60,7 @@ export default function SignupModal() {
 			name: auth.name,
 			phone: auth.phone,
 			address: address,
-			zipcode: zipcode,
+			zipcode: auth.zipcode,
 			detailaddress: detailaddress,
 		};
 
@@ -77,6 +74,9 @@ export default function SignupModal() {
 		if (error) {
 			return redirect('/?message=Could not authenticate user');
 		} else {
+			setAddress('');
+			setDetailAddress('');
+			auth.setZipcode('');
 			// 성공적인 회원가입 후 처리
 			await supabase.auth.signOut();
 			alert('회원가입 완료. 로그인 해주세요!');

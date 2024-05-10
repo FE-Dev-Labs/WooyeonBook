@@ -3,8 +3,6 @@ import styles from '@/styles/community/detail/detailPage.module.css';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
-import { cookies } from 'next/headers';
-import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import { fetchComments } from '@/apis/community/fetchComments';
@@ -14,7 +12,7 @@ import LikeBtn from './LikeBtn';
 import Image from 'next/image';
 import DropDownBtn from './DropDownBtn';
 import shareIcon from '@/assets/community/shareIcon.png';
-
+import noCommentIcon from '@/assets/community/noComment.png';
 interface BookMeetingProps {
 	data: AllDataType;
 	params: { doc_id: string };
@@ -30,30 +28,8 @@ const BookMeeting = async ({
 	page,
 	params,
 }: BookMeetingProps) => {
-	const cookieStore = cookies();
-	const supabase = createClient(cookieStore);
-	const {
-		data: { user },
-		error,
-	} = await supabase.auth.getUser();
-
 	const comments: CommentData[] = await fetchComments(data.doc_id);
 
-	// 댓글 좋아요, 최신순
-	// const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
-	// 	switch (searchParams?.sort) {
-	// 		case 'like':
-	// 			return b.like - a.like;
-	// 		case 'lastest':
-	// 			return (
-	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-	// 			);
-	// 		default:
-	// 			return (
-	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-	// 			);
-	// 	}
-	// });
 	return (
 		<section className={styles.container}>
 			<section className={styles.optionContainer}>
@@ -124,7 +100,7 @@ const BookMeeting = async ({
 							<span className={styles.shareText}>공유</span>
 						</button>
 					</div>
-					<DropDownBtn data={data} user={user} page="bookMeeting" />
+					<DropDownBtn data={data} page="bookMeeting" />
 				</div>
 			</div>
 
@@ -136,6 +112,25 @@ const BookMeeting = async ({
 					<div className={styles.commentSortWrap}></div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
+				{comments.length === 0 && (
+					<div className={styles.noCommnetWrapper}>
+						<div className={styles.noCommentWrap}>
+							<Image
+								src={noCommentIcon}
+								alt="noCommentIcon"
+								width={25}
+								height={25}
+							/>
+							<div className={styles.noCommnetTxtWrap}>
+								<p className={styles.noCommentTxt}>
+									댓글을 기다리고 있습니다.
+									<br></br>
+									첫번째 댓글을 남겨보세요!
+								</p>
+							</div>
+						</div>
+					</div>
+				)}
 				<ul>
 					{comments.map((item) => {
 						return <CommentItem data={item} key={item.id} />;

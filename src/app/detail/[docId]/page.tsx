@@ -36,9 +36,7 @@ export default async function detailPage({ params }: DetailPageProp) {
 
 	return (
 		<div className={styles.container}>
-			{detailData.item.map((book) => (
-				<DetailView book={book} id={id} />
-			))}
+			<DetailView book={detailData.item[0]} id={id} />
 		</div>
 	);
 }

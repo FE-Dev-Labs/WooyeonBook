@@ -1,4 +1,4 @@
-import { roadAddressAtom, zipcodeAtom } from '@/recoil/atom/signupAtom';
+import { zipcodeAtom } from '@/recoil/atom/signupAtom';
 import { emailRegex, nameRegex, passwordRegex } from '@/utils/userRegex';
 import { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
