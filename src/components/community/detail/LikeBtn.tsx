@@ -1,10 +1,11 @@
 'use client';
-import { getUser } from '@/apis/community/getUser';
 import { createClient } from '@/utils/supabase/client';
 import { useRouter } from 'next/navigation';
 import styles from '@/styles/community/detail/detailPage.module.css';
 import Image from 'next/image';
 import heartIcon from '@/assets/common/heartIcon.png';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '@/recoil/atom/userAtom';
 const LikeBtn = ({
 	page,
 	doc_id,
@@ -15,10 +16,9 @@ const LikeBtn = ({
 	like: string[];
 }) => {
 	const router = useRouter();
+	const userInfo = useRecoilValue(userAtom);
 	const onSubmit = async () => {
-		const { user_id } = await getUser();
-
-		if (user_id === undefined) {
+		if (userInfo.id === null) {
 			router.push('/login');
 		} else {
 			onChangeLike();
@@ -26,19 +26,18 @@ const LikeBtn = ({
 	};
 	const onChangeLike = async () => {
 		const supabase = createClient();
-		const { user_id } = await getUser();
 
-		if (like.includes(user_id as string)) {
+		if (like.includes(userInfo.id as string)) {
 			const { error } = await supabase
 				.from(page)
-				.update({ like_users: like.filter((id) => id !== user_id) })
+				.update({ like_users: like.filter((id) => id !== userInfo.id) })
 				.eq('doc_id', doc_id)
 				.select();
 			window.location.reload();
 		} else {
 			const { error } = await supabase
 				.from(page)
-				.update({ like_users: [...like, user_id] })
+				.update({ like_users: [...like, userInfo.id] })
 				.eq('doc_id', doc_id)
 				.select();
 			window.location.reload();
