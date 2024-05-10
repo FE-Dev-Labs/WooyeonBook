@@ -22,12 +22,7 @@ interface BookMeetingProps {
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
-const BookMeeting = async ({
-	searchParams,
-	data,
-	page,
-	params,
-}: BookMeetingProps) => {
+const BookMeeting = async ({ data, params }: BookMeetingProps) => {
 	const comments: CommentData[] = await fetchComments(data.doc_id);
 
 	return (

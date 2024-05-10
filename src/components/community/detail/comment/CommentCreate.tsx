@@ -39,10 +39,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 	const [createState, setCreateState] = useState(false);
 
 	const handleState = async () => {
-		const {
-			data: { user },
-		} = await supabase.auth.getUser();
-		if (!user) {
+		if (userInfo.id === null) {
 			router.push('/login');
 		} else {
 			setCreateState(!createState);
