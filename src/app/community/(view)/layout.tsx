@@ -7,7 +7,6 @@ import Header from '@/components/community/common/Header';
 import { AllDataType } from '@/types/community/view/data';
 import Image from 'next/image';
 import userLogoIcon from '@/assets/community/userLogoIcon.png';
-import { Suspense } from 'react';
 
 export const metadata: Metadata = {
 	title: '커뮤니티 | Wooyeon.',
@@ -68,35 +67,30 @@ export default async function CommunityViewLayout({
 					</article>
 
 					<aside className={styles.weeklyPopularWrap}>
-						<Suspense fallback={<p>Loading ...</p>}>
-							<div>
-								<h3>주간 인기글</h3>
-
-								{popularData.map((data: AllDataType) => {
-									return (
-										<Link
-											href={`/community/detail/${data.field as string}/${data.doc_id as string}`}
-											key={data.doc_id}>
-											<div className={styles.weeklyPopularContent}>
-												{data.title}
-											</div>
-											<div className={styles.weeklyPopularWriter}>
-												<Image
-													src={userLogoIcon}
-													alt="img"
-													width={16}
-													height={16}
-													className={styles.userLogo}
-												/>
-												<span className={styles.userName}>
-													{data.user_name}
-												</span>
-											</div>
-										</Link>
-									);
-								})}
-							</div>
-						</Suspense>
+						<div>
+							<h3>주간 인기글</h3>
+							{popularData.map((data: AllDataType) => {
+								return (
+									<Link
+										href={`/community/detail/${data.field as string}/${data.doc_id as string}`}
+										key={data.doc_id}>
+										<div className={styles.weeklyPopularContent}>
+											{data.title}
+										</div>
+										<div className={styles.weeklyPopularWriter}>
+											<Image
+												src={userLogoIcon}
+												alt="img"
+												width={16}
+												height={16}
+												className={styles.userLogo}
+											/>
+											<span className={styles.userName}>{data.user_name}</span>
+										</div>
+									</Link>
+								);
+							})}
+						</div>
 					</aside>
 				</div>
 				{/* 오른쪽 광고 영역 */}

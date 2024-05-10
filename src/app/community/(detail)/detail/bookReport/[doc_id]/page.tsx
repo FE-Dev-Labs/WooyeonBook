@@ -1,6 +1,24 @@
 import styles from '@/styles/community/detail/detailLayout.module.css';
 import dynamic from 'next/dynamic';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { BookReportDataType } from '@/types/community/view/data';
+import { redirect } from 'next/navigation';
+import { Metadata } from 'next';
+
+interface BookReportDetailProp {
+	params: { doc_id: string };
+}
+
+export async function generateMetadata({
+	params,
+}: BookReportDetailProp): Promise<Metadata> {
+	const data: BookReportDataType = await fetchData('bookReport', params.doc_id);
+
+	return {
+		title: `${data.title} | Wooyeon.`,
+		description: `커뮤니티 - ${data.title} 디테일 페이지입니다.`,
+	};
+}
 
 const BookReportLazy = dynamic(
 	() => import('@/components/community/detail/BookReport'),
@@ -15,7 +33,7 @@ async function fetchData(page: string, doc_id: string) {
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/detail/${page}/${doc_id}`,
 				{
-					cache: 'no-store',
+					next: { revalidate: 100 },
 				},
 			);
 			if (response.ok) {
@@ -36,27 +54,28 @@ async function fetchData(page: string, doc_id: string) {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
 }
-export default async function DetailPage({
-	params,
-	searchParams,
-}: {
-	params: { doc_id: string };
-	searchParams?: { sort?: string };
-}) {
-	const data = await fetchData('bookReport', params.doc_id);
+export const dynamicParams = true;
+export async function generateStaticParams() {
+	const datas = await fetch(
+		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/community/bookReport`,
+	).then((res) => res.json());
+
+	return datas.map((data: BookReportDataType) => {
+		return {
+			doc_id: data.doc_id,
+		};
+	});
+}
+export default async function DetailPage({ params }: BookReportDetailProp) {
+	const data: BookReportDataType = await fetchData('bookReport', params.doc_id);
 
 	return (
 		<main className={styles.container}>
 			<aside></aside>
 			<article className={styles.mainWrap}>
-				<BookReportLazy
-					data={data}
-					params={params}
-					searchParams={searchParams}
-					page="bookReport"
-				/>
+				<BookReportLazy data={data} params={params} />
 			</article>
 			<aside className={styles.optionWrap}></aside>
 		</main>

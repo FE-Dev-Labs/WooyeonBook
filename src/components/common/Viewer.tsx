@@ -4,5 +4,5 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import React from 'react';
 
 export default function View({ content }: { content: string }) {
-	return <Viewer x initialValue={content} />;
+	return <Viewer initialValue={content} />;
 }

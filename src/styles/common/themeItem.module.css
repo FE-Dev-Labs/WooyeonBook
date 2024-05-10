@@ -12,9 +12,9 @@
 	transform: scale(1.05);
 }
 .themeText {
-	width: 265px;
+	width: 250px;
 	height: 200px;
-	font-size: 14px;
+	font-size: 12px;
 	gap: 10px;
 
 	display: flex;
@@ -35,14 +35,14 @@
 }
 .tagText {
 	margin-top: 20px;
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: bold;
 }
 .themeRecommended {
-	font-size: 18px;
+	font-size: 16px;
 }
 .themeImage {
-	top: 20px;
+	top: 40px;
 	left: 250px;
 	border-radius: 10px;
 

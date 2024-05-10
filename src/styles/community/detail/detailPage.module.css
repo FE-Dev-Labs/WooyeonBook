@@ -107,7 +107,7 @@
 	justify-content: space-between;
 }
 .optionItemTitle {
-	width: 50%;
+	/* width: 50%; */
 	/* width: 120px;
 	margin-right: 10px; */
 	font-size: 16px;
@@ -507,4 +507,25 @@
 }
 .OptionaccordionContainer {
 	/* display: flex; */
+}
+.noCommnetWrapper {
+	margin: 32px 0;
+}
+.noCommentWrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 210px;
+	height: 374px;
+	margin: 0 auto;
+	justify-content: center;
+}
+.noCommnetTxtWrap {
+	margin-top: 10px;
+}
+.noCommentTxt {
+	color: #ced4da;
+	font-size: 18px;
+	line-height: 1.3;
+	font-weight: 600;
 }

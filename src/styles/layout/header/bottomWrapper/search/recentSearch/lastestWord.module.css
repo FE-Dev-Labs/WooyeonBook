@@ -23,13 +23,18 @@
 .lastesLink {
 	/* display: block;
 	margin-right: 40px; */
+	width: 150px;
 	height: 30px;
 	/* overflow: hidden; */
 	line-height: 30px;
 	font-size: 14px;
 	color: #666;
 	cursor: pointer;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
+
 .cancelIcon {
 	position: absolute;
 	right: 0;

@@ -28,7 +28,7 @@
 }
 .weeklyPopularWrap > div {
 	width: 220px;
-	height: 470px;
+	height: 500px;
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;

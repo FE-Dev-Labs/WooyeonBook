@@ -8,10 +8,12 @@
 	width: 85px;
 	height: 120px;
 	border-radius: 10px;
-	background-color: #495057;
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .skeletonDataWrapper {
-	border-bottom: 1px solid #dee2e6;
+	border-bottom: 1px solid #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .skeletonDataWrap {
 	width: 100%;
@@ -20,10 +22,11 @@
 .skeletonTitle {
 	height: 16px;
 	padding: 0 0 5px 0;
-	background-color: #495057;
+	background-color: #e0e0e0;
 	border-radius: 5px;
 
 	margin-bottom: 5px;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .skeletonReportContent {
 	margin-bottom: 30px;
@@ -35,8 +38,9 @@
 	line-height: 1.5;
 	text-align: left;
 	word-break: break-all;
-	background-color: #495057;
+	background-color: #e0e0e0;
 	border-radius: 5px;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .skeletonContent {
 	margin-bottom: 10px;
@@ -48,8 +52,9 @@
 	line-height: 1.5;
 	text-align: left;
 	word-break: break-all;
-	color: #495057;
+	color: #e0e0e0;
 	font-size: 14px;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .skeletonWrapper {
 	display: flex;
@@ -57,8 +62,9 @@
 .skeletonFooter {
 	margin-top: 10px;
 	height: 20px;
-	background-color: #495057;
+	background-color: #e0e0e0;
 	border-radius: 5px;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 
 .skeletonIconWrapper {
@@ -79,13 +85,15 @@
 	width: 15px;
 	height: 15px;
 	margin-right: 4px;
-	color: #868e96;
+	color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .skeletonDataNumber {
 	font-size: 12px;
 	font-weight: 700;
 	margin-right: 10px;
-	color: #868e96;
+	color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
 }
 .icondd {
 	display: flex;
@@ -101,5 +109,18 @@
 	line-height: 1;
 	color: #fff;
 	text-align: center;
-	background-color: #495057;
+	background-color: #e0e0e0;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
 }

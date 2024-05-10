@@ -2,8 +2,6 @@ import { AllDataType } from '@/types/community/view/data';
 import styles from '@/styles/community/detail/detailPage.module.css';
 import dynamic from 'next/dynamic';
 import { getDate } from '@/utils/getDate';
-import { cookies } from 'next/headers';
-import { createClient } from '@/utils/supabase/server';
 import CommentCreate from './comment/CommentCreate';
 import CommentItem from './comment/CommentItem';
 import DropDownBtn from './DropDownBtn';
@@ -13,47 +11,19 @@ import Image from 'next/image';
 import shareIcon from '@/assets/community/shareIcon.png';
 import { fetchComments } from '@/apis/community/comment/CRUD';
 import { CommentData } from '@/types/community/comment';
+import noCommentIcon from '@/assets/community/noComment.png';
 
 interface BookReportProps {
 	data: AllDataType;
 	params: { doc_id: string };
-	searchParams?: { sort?: string };
-	page: string;
 }
 const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookReport = async ({
-	searchParams,
-	data,
-	page,
-	params,
-}: BookReportProps) => {
-	const cookieStore = cookies();
-	const supabase = createClient(cookieStore);
-	const {
-		data: { user },
-		error,
-	} = await supabase.auth.getUser();
-
+const BookReport = async ({ data, params }: BookReportProps) => {
 	const comments: CommentData[] = await fetchComments(data.doc_id as string);
 
-	// 댓글 좋아요, 최신순
-	// const sortedComments = comments.sort((a: CommentData, b: CommentData) => {
-	// 	switch (searchParams?.sort) {
-	// 		case 'like':
-	// 			return b.like - a.like;
-	// 		case 'lastest':
-	// 			return (
-	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-	// 			);
-	// 		default:
-	// 			return (
-	// 				new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-	// 			);
-	// 	}
-	// });
 	return (
 		<section className={styles.container}>
 			<section className={styles.optionContainer}>
@@ -105,7 +75,7 @@ const BookReport = async ({
 							<span className={styles.shareText}>공유</span>
 						</button>
 					</div>
-					<DropDownBtn data={data} user={user} page="bookReport" />
+					<DropDownBtn data={data} page="bookReport" />
 				</div>
 			</div>
 			{/* 댓글 */}
@@ -116,6 +86,25 @@ const BookReport = async ({
 					<div className={styles.commentSortWrap}></div>
 				</div>
 				<CommentCreate page={'bookReport'} doc_id={data.doc_id} />
+				{comments.length === 0 && (
+					<div className={styles.noCommnetWrapper}>
+						<div className={styles.noCommentWrap}>
+							<Image
+								src={noCommentIcon}
+								alt="noCommentIcon"
+								width={25}
+								height={25}
+							/>
+							<div className={styles.noCommnetTxtWrap}>
+								<p className={styles.noCommentTxt}>
+									댓글을 기다리고 있습니다.
+									<br></br>
+									첫번째 댓글을 남겨보세요!
+								</p>
+							</div>
+						</div>
+					</div>
+				)}
 				<ul>
 					{comments.map((item) => {
 						return <CommentItem data={item} key={item.id} />;

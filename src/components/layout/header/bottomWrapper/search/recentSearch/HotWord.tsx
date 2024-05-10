@@ -4,7 +4,6 @@ import lineIcon from '@/assets/layout/lineIcon.png';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { currentPageAtom } from '@/recoil/atom/currentPageAtom';
-import { useQuery } from '@tanstack/react-query';
 import useKeyWordsQuery from '@/hooks/useKeyWordsQuery';
 
 interface popularKeywords {
@@ -19,12 +18,13 @@ export default function HotWord() {
 	// 현재 인기 검색어 페이지 리코일
 	const setCurrentPage = useSetRecoilState(currentPageAtom);
 
+
+	// react-query 훅
 	const {
 		getHotwordsData: { isLoading, error, data },
 	} = useKeyWordsQuery();
 
 	if (error) return <div> There was an error!</div>;
-	if (isLoading) return <div> Data is Loading...</div>;
 
 	//현재 년도 날짜 함수
 	const today = new Date();
@@ -47,29 +47,33 @@ export default function HotWord() {
 			</dt>
 			<dd>
 				<ol className={styles.hotWordPopularWrap}>
-					{data?.map((hotword: any, index: any) => {
-						return (
-							<li className={styles.hotWordPopularLi} key={index}>
-								<span
-									className={styles.hotWordLink}
-									onMouseDown={() => {
-										handleValueClick(hotword.keyword as string);
-									}}>
-									<span className={styles.hotWordNum}>{index + 1}</span>
-									<span className={styles.hotWordTitle}>
-										{hotword.keyword as string}
+					{isLoading || !data?.length
+						? Array.from({ length: 9 }).map((_, index) => (
+								<li className={styles.hotWordPopularLi} key={index}>
+									<div className={styles.loadingSkeleton}></div>
+								</li>
+							))
+						: data?.map((hotword: any, index: any) => (
+								<li className={styles.hotWordPopularLi} key={index}>
+									<span
+										className={styles.hotWordLink}
+										onMouseDown={() => {
+											handleValueClick(hotword.keyword as string);
+										}}>
+										<span className={styles.hotWordNum}>{index + 1}</span>
+										<span className={styles.hotWordTitle}>
+											{hotword.keyword as string}
+										</span>
+										<Image
+											src={lineIcon}
+											alt="lineIcon"
+											className={styles.lineIcon}
+											width={15}
+											height={2}
+										/>
 									</span>
-									<Image
-										src={lineIcon}
-										alt="lineIcon"
-										className={styles.lineIcon}
-										width={15}
-										height={2}
-									/>
-								</span>
-							</li>
-						);
-					})}
+								</li>
+							))}
 				</ol>
 			</dd>
 		</dl>

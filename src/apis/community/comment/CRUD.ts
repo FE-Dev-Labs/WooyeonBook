@@ -10,14 +10,19 @@ interface CommentData {
 }
 
 const fetchComments = async (doc_id: string) => {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/comment/detail/${doc_id}`,
-		{
-			cache: 'no-cache',
-		},
-	);
-	const comments: CommentData[] = await res.json();
-	return comments;
+	try {
+		const res = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/comment/detail/${doc_id}`,
+			{
+				cache: 'no-store',
+			},
+		);
+		const comments: CommentData[] = await res.json();
+
+		return comments;
+	} catch (e) {
+		return [];
+	}
 };
 
 const createComment = async (postData: CommentData, doc_id: string) => {
