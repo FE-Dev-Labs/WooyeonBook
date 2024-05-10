@@ -13,7 +13,7 @@ interface BookBuyingDetailProp {
 export async function generateMetadata({
 	params,
 }: BookBuyingDetailProp): Promise<Metadata> {
-	const data = await fetchData('bookSelling', params.doc_id);
+	const data = await fetchData('bookBuying', params.doc_id);
 
 	return {
 		title: `${data.title} | Wooyeon.`,
