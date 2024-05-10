@@ -5,6 +5,9 @@ import { createClient } from '@/utils/supabase/client';
 import { useState } from 'react';
 import { createComment } from '@/apis/community/comment/CRUD';
 import { useRouter } from 'next/navigation';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '@/recoil/atom/userAtom';
+
 interface CommentData {
 	id?: string;
 	created_at: Date;
@@ -23,7 +26,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 	const [comment, setComment] = useState('');
 	// 글자 실시간 표시
 	const [inputCount, setInputCount] = useState<number>(0);
-
+	const userInfo = useRecoilValue(userAtom);
 	const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
 		e.preventDefault();
 		setComment(e.target.value);
@@ -46,13 +49,12 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 		}
 	};
 	const onSubmit = async () => {
-		const { user_id, user_name } = await getUser();
 		const submitData = {
 			created_at: new Date(),
 			filed: page,
 			comment: comment,
-			created_user: user_id,
-			created_user_name: user_name,
+			created_user: userInfo.id,
+			created_user_name: userInfo.name,
 			check: false,
 			doc_id: doc_id,
 			like: 0,
@@ -62,6 +64,7 @@ const CommentCreate = ({ page, doc_id }: { page: string; doc_id: string }) => {
 		setCreateState(false);
 		setComment('');
 		setInputCount(0); // 댓글 글자수도 초기화
+		console.log(process.env.NEXT_PUBLIC_SERVER_BASE_URL);
 
 		window.location.reload();
 	};

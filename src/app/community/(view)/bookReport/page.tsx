@@ -1,7 +1,15 @@
 import BookContentSkeletonUi from '@/components/common/BookContentSkeletonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookReportDataType } from '@/types/community/view/data';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
+
+export const metadata: Metadata = {
+	title: '커뮤니티 - 독후감 | Wooyeon.',
+	description: '커뮤니티 - 독후감 페이지입니다.',
+};
+
 async function fetchData() {
 	let retryCount = 0;
 	const maxRetries = 3;
@@ -33,7 +41,7 @@ async function fetchData() {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
 }
 function isBookReportArray(data: any): data is BookReportDataType[] {
 	return (

@@ -1,7 +1,14 @@
 import ScalatonUi from '@/components/common/SkeletonUi';
 import Pagination from '@/components/community/view/Pagination';
 import { BookMeetingDataType } from '@/types/community/view/data';
+import { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
+
+export const metadata: Metadata = {
+	title: '커뮤니티 - 모임 | Wooyeon.',
+	description: '커뮤니티 - 모임 페이지입니다.',
+};
 
 async function fetchData() {
 	let retryCount = 0;
@@ -34,7 +41,7 @@ async function fetchData() {
 		}
 	}
 
-	throw new Error('Maximum number of retries reached. Unable to fetch data.');
+	redirect('/error');
 }
 
 function isBookMeetingArray(data: any): data is BookMeetingDataType[] {
