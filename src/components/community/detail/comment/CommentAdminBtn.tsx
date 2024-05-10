@@ -4,10 +4,11 @@ import {
 	isUpdateState,
 	updateComment,
 } from '@/recoil/atom/communityCommentAtom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styles from '@/styles/community/detail/commentAdminBtn.module.css';
 import { useEffect } from 'react';
 import { deleteComments, updateComments } from '@/apis/community/comment/CRUD';
+import { userAtom } from '@/recoil/atom/userAtom';
 
 const CommentAdminBtn = ({
 	data,
@@ -26,6 +27,10 @@ const CommentAdminBtn = ({
 }) => {
 	const [isUpdate, setIsUpdate] = useRecoilState(isUpdateState);
 	const [text, setText] = useRecoilState(updateComment);
+	const userInfo = useRecoilValue(userAtom);
+	if (userInfo.id === null) {
+		return null;
+	}
 	useEffect(() => {
 		setText(data.comment);
 	}, []);

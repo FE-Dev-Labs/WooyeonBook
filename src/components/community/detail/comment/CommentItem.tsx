@@ -1,22 +1,10 @@
 import styles from '@/styles/community/detail/detailPage.module.css';
 import { getDate } from '@/utils/getDate';
-import { createClient } from '@/utils/supabase/server';
-import { cookies } from 'next/headers';
 import Comment from './Comment';
 import CommentAdminBtn from './CommentAdminBtn';
 import { CommentData } from '@/types/community/comment';
 
 const CommentItem = async ({ data }: { data: CommentData }) => {
-	const cookieStore = cookies();
-	const supabase = createClient(cookieStore);
-	const {
-		data: { user },
-		error,
-	} = await supabase.auth.getUser();
-	if (error) {
-		throw error;
-	}
-	const isAdmin = data.created_user === user?.id;
 	return (
 		<li className={styles.commentListWrapper}>
 			<div className={styles.commentListUserSelection}>
@@ -30,7 +18,7 @@ const CommentItem = async ({ data }: { data: CommentData }) => {
 			</div>
 			<div className={styles.commentModifyWrapper}>
 				<Comment id={data.id as string} comment={data.comment} />
-				{isAdmin && <CommentAdminBtn data={data} id={data.id as string} />}
+				<CommentAdminBtn data={data} id={data.id as string} />
 			</div>
 		</li>
 	);

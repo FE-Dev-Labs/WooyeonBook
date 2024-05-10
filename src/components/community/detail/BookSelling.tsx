@@ -22,12 +22,7 @@ const View = dynamic(() => import('@/components/common/Viewer'), {
 	ssr: false,
 });
 
-const BookSelling = async ({
-	searchParams,
-	data,
-	page,
-	params,
-}: BookSellingProps) => {
+const BookSelling = async ({ data, params }: BookSellingProps) => {
 	const comments: CommentData[] = await fetchComments(data.doc_id);
 
 	return (
