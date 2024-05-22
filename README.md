@@ -1,6 +1,5 @@
 # 📖 Wooyeon
-![wooyeon](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/df425807-abd8-444a-851f-244202828a25)
-
+![우연](https://github.com/FE-Dev-Labs/WooyeonBook/assets/80263801/86f67db8-2976-4d9d-86b2-641a1a3bd564)
 
 **프로젝트 기간**  : 2024.02.10 ~ 2024.05.04
 
